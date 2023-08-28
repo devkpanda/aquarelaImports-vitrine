@@ -12,74 +12,174 @@ Class Advertisement {
     private $videoUrl;
     
     public function __construct() {
-        $this->id = 0;
+        $this->id = '';
         $this->name = '';
         $this->description = '';
         $this->price = 0;
-        $this->category = new Category;
+        $this->category = new Category();
         $this->measurement = '';
         $this->size = 0;
         $this->videoUrl = '';
     }
-    
-    public function getId() {
+
+    /**
+     * Get the value of id
+     */ 
+    public function getId()
+    {
         return $this->id;
     }
-    
-    public function setId($id) {
+
+    /**
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
         $this->id = $id;
+
+        return $this;
     }
-    
-    public function getName() {
+
+    /**
+     * Get the value of name
+     */ 
+    public function getName()
+    {
         return $this->name;
     }
-    
-    public function setName($name) {
+
+    /**
+     * Set the value of name
+     *
+     * @return  self
+     */ 
+    public function setName($name)
+    {
         $this->name = $name;
+
+        return $this;
     }
-    
-    public function getDescription() {
+
+    /**
+     * Get the value of description
+     */ 
+    public function getDescription()
+    {
         return $this->description;
     }
-    
-    public function setDescription($description) {
+
+    /**
+     * Set the value of description
+     *
+     * @return  self
+     */ 
+    public function setDescription($description)
+    {
         $this->description = $description;
+
+        return $this;
     }
-    
-    public function getPrice() {
+
+    /**
+     * Get the value of price
+     */ 
+    public function getPrice()
+    {
         return $this->price;
     }
-    
-    public function setPrice($price) {
+
+    /**
+     * Set the value of price
+     *
+     * @return  self
+     */ 
+    public function setPrice($price)
+    {
         $this->price = $price;
+
+        return $this;
     }
-    
-    public function getMeasurement() {
+
+    /**
+     * Get the value of category
+     */ 
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set the value of category
+     *
+     * @return  self
+     */ 
+    public function setCategory($category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of measurement
+     */ 
+    public function getMeasurement()
+    {
         return $this->measurement;
     }
-    
-    public function setMeasurement($measurement) {
+
+    /**
+     * Set the value of measurement
+     *
+     * @return  self
+     */ 
+    public function setMeasurement($measurement)
+    {
         $this->measurement = $measurement;
+
+        return $this;
     }
-    
-    public function getSize() {
+
+    /**
+     * Get the value of size
+     */ 
+    public function getSize()
+    {
         return $this->size;
     }
-    
-    
-    public function setSize($size) {
+
+    /**
+     * Set the value of size
+     *
+     * @return  self
+     */ 
+    public function setSize($size)
+    {
         $this->size = $size;
+
+        return $this;
     }
-    
-    public function getVideoUrl() {
+
+    /**
+     * Get the value of videoUrl
+     */ 
+    public function getVideoUrl()
+    {
         return $this->videoUrl;
     }
-    
-    public function setVideoUrl($videoUrl) {
+
+    /**
+     * Set the value of videoUrl
+     *
+     * @return  self
+     */ 
+    public function setVideoUrl($videoUrl)
+    {
         $this->videoUrl = $videoUrl;
+
+        return $this;
     }
-    
 }
-
-
 ?>
