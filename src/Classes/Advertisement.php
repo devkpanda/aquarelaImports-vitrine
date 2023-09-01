@@ -1,50 +1,115 @@
-<?php 
+<?php
 
-Class Advertisement {
-    
-    private $id;
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+// use classes\database\DBQuery;
+
+class Advertisement
+{
+
+    private $advertisement_id;
     private $name;
     private $description;
     private $price;
-    private $category;
+    private $category_id;
+    private $sub_category_id;
     private $measurement;
     private $size;
     private $videoUrl;
-    
-    public function __construct() {
-        $this->id = '';
+
+    public function __construct()
+    {
+        $this->advertisement_id = '';
         $this->name = '';
         $this->description = '';
         $this->price = 0;
-        $this->category = new Category();
+        $this->category_id = 0;
+        $this->sub_category_id  = 0;
         $this->measurement = '';
         $this->size = 0;
         $this->videoUrl = '';
     }
 
+
+    
+    /* private $tableName = "hostdeprojetos_aquarelaimports";
+    private $fieldsName = "advertisement_id,name,description,price,category_id,sub_category_id,measurement,size,videoUrl";
+    private $fieldKey = "advsertisement_id";
+
+    private $dbQuery;
+
+    public function DBQuery_Construct()
+    {
+        $this->dbQuery = new DBQuery($this->tableName, $this->fieldsName, $this->fieldKey);
+    }
+
+    public function list($where = "")
+    {
+        return $this->dbQuery->select($where);
+    }
+
+    public function save()
+    {
+        if ($this->advertisement_id > 0) {
+            return $this->dbQuery->update($this->toArray());
+        } else {
+            return $this->dbQuery->insert($this->toArray());
+        }
+    }
+
+    public function delete()
+    {
+        if ($this->advertisement_id > 0) {
+            return $this->dbQuery->delete($this->toArray());
+        } else {
+            return 0;
+        }
+    }
+
+    private function toArray()
+    {
+        return [
+            $this->advertisement_id,
+            $this->name,
+            $this->description,
+            $this->price,
+            $this->category_id,
+            $this->sub_category_id,
+            $this->measurement,
+            $this->size,
+            $this->videoUrl
+        ];
+    }
+
+    public function checkLogin()
+    {
+        return true;
+    } */
+
     /**
      * Get the value of id
-     */ 
-    public function getId()
+     */
+    public function getAdvertisement_id()
     {
-        return $this->id;
+        return $this->advertisement_id;
     }
 
     /**
      * Set the value of id
      *
      * @return  self
-     */ 
-    public function setId($id)
+     */
+    public function setAdvertisement_id($advertisement_id)
     {
-        $this->id = $id;
+        $this->advertisement_id = $advertisement_id;
 
         return $this;
     }
 
     /**
      * Get the value of name
-     */ 
+     */
     public function getName()
     {
         return $this->name;
@@ -54,7 +119,7 @@ Class Advertisement {
      * Set the value of name
      *
      * @return  self
-     */ 
+     */
     public function setName($name)
     {
         $this->name = $name;
@@ -64,7 +129,7 @@ Class Advertisement {
 
     /**
      * Get the value of description
-     */ 
+     */
     public function getDescription()
     {
         return $this->description;
@@ -74,7 +139,7 @@ Class Advertisement {
      * Set the value of description
      *
      * @return  self
-     */ 
+     */
     public function setDescription($description)
     {
         $this->description = $description;
@@ -84,7 +149,7 @@ Class Advertisement {
 
     /**
      * Get the value of price
-     */ 
+     */
     public function getPrice()
     {
         return $this->price;
@@ -94,7 +159,7 @@ Class Advertisement {
      * Set the value of price
      *
      * @return  self
-     */ 
+     */
     public function setPrice($price)
     {
         $this->price = $price;
@@ -104,27 +169,44 @@ Class Advertisement {
 
     /**
      * Get the value of category
-     */ 
-    public function getCategory()
+     */
+    public function getCategory_id()
     {
-        return $this->category;
+        return $this->category_id;
     }
 
     /**
      * Set the value of category
      *
      * @return  self
-     */ 
-    public function setCategory($category)
+     */
+    public function setCategory_id($category_id)
     {
-        $this->category = $category;
+        $this->category_id = $category_id;
+
+        return $this;
+    }
+
+    public function getSub_category_id()
+    {
+        return $this->sub_category_id;
+    }
+
+    /**
+     * Set the value of sub_category_id
+     *
+     * @return  self
+     */
+    public function setSub_category_id($sub_category_id)
+    {
+        $this->sub_category_id = $sub_category_id;
 
         return $this;
     }
 
     /**
      * Get the value of measurement
-     */ 
+     */
     public function getMeasurement()
     {
         return $this->measurement;
@@ -134,7 +216,7 @@ Class Advertisement {
      * Set the value of measurement
      *
      * @return  self
-     */ 
+     */
     public function setMeasurement($measurement)
     {
         $this->measurement = $measurement;
@@ -144,7 +226,7 @@ Class Advertisement {
 
     /**
      * Get the value of size
-     */ 
+     */
     public function getSize()
     {
         return $this->size;
@@ -154,7 +236,7 @@ Class Advertisement {
      * Set the value of size
      *
      * @return  self
-     */ 
+     */
     public function setSize($size)
     {
         $this->size = $size;
@@ -164,7 +246,7 @@ Class Advertisement {
 
     /**
      * Get the value of videoUrl
-     */ 
+     */
     public function getVideoUrl()
     {
         return $this->videoUrl;
@@ -174,7 +256,7 @@ Class Advertisement {
      * Set the value of videoUrl
      *
      * @return  self
-     */ 
+     */
     public function setVideoUrl($videoUrl)
     {
         $this->videoUrl = $videoUrl;
@@ -182,4 +264,3 @@ Class Advertisement {
         return $this;
     }
 }
-?>

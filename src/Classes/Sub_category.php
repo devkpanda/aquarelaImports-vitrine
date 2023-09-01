@@ -1,8 +1,7 @@
 <?php
 
-class Category
+class Sub_category
 {
-
     private $category_id;
     private $sub_category_id;
     private $name;
@@ -12,20 +11,6 @@ class Category
         $this->category_id = 0;
         $this->sub_category_id = 0;
         $this->name;
-    }
-
-
-
-    /**
-     * Set the value of subCategoryId
-     *
-     * @return  self
-     */
-    public function setSubCategoryId($sub_category_id)
-    {
-        $this->sub_category_id = $sub_category_id;
-
-        return $this;
     }
 
     /**
