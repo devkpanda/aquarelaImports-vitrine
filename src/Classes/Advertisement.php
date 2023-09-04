@@ -1,5 +1,5 @@
 <?php
-
+include_once('/home/cecilia/html/aquarelaImports-vitrine.old/src/Classes/Connection.php');
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
@@ -32,60 +32,6 @@ class Advertisement
     }
 
 
-    
-    /* private $tableName = "hostdeprojetos_aquarelaimports";
-    private $fieldsName = "advertisement_id,name,description,price,category_id,sub_category_id,measurement,size,videoUrl";
-    private $fieldKey = "advsertisement_id";
-
-    private $dbQuery;
-
-    public function DBQuery_Construct()
-    {
-        $this->dbQuery = new DBQuery($this->tableName, $this->fieldsName, $this->fieldKey);
-    }
-
-    public function list($where = "")
-    {
-        return $this->dbQuery->select($where);
-    }
-
-    public function save()
-    {
-        if ($this->advertisement_id > 0) {
-            return $this->dbQuery->update($this->toArray());
-        } else {
-            return $this->dbQuery->insert($this->toArray());
-        }
-    }
-
-    public function delete()
-    {
-        if ($this->advertisement_id > 0) {
-            return $this->dbQuery->delete($this->toArray());
-        } else {
-            return 0;
-        }
-    }
-
-    private function toArray()
-    {
-        return [
-            $this->advertisement_id,
-            $this->name,
-            $this->description,
-            $this->price,
-            $this->category_id,
-            $this->sub_category_id,
-            $this->measurement,
-            $this->size,
-            $this->videoUrl
-        ];
-    }
-
-    public function checkLogin()
-    {
-        return true;
-    } */
 
     /**
      * Get the value of id
@@ -263,4 +209,5 @@ class Advertisement
 
         return $this;
     }
+
 }

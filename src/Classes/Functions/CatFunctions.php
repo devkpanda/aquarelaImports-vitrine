@@ -13,6 +13,20 @@ function listarCategorias()
     }
 }
 
+function listarCategoriasEsp($category_id) {
+    $commandSQL = "SELECT category_id,name FROM hostdeprojetos_aquarelaimports.category
+    WHERE category_id = $category_id";
+    $resultSet  = getPDOConnection()->query($commandSQL);
+    $rows = $resultSet->fetchAll();
+
+    foreach ($rows as $row) {
+        print_r($row);
+        echo "<br>";
+    }
+
+
+}
+
 function inserirCategoria($category_id, $name)
 {
 
@@ -51,3 +65,5 @@ function excluirCategoria($category_id)
     $stmt = getPDOConnection()->prepare($commandSQL);
     $stmt->execute();
 }
+
+listarCategoriasEsp(3);

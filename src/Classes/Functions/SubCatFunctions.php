@@ -13,6 +13,20 @@ function listarSubCategorias()
     }
 }
 
+function listarSubCategoriasEsp($sub_category_id) {
+    $commandSQL = "SELECT sub_category_id, category_id, name FROM hostdeprojetos_aquarelaimports.sub_category
+    WHERE sub_category_id = $sub_category_id";
+    $resultSet  = getPDOConnection()->query($commandSQL);
+    $rows = $resultSet->fetchAll();
+
+    foreach ($rows as $row) {
+        print_r($row);
+        echo "<br>";
+    }
+
+
+}
+
 function inserirSubCategoria($sub_category_id, $category_id, $name)
 {
 
@@ -54,3 +68,5 @@ function excluirSubCategoria($sub_category_id)
     $stmt = getPDOConnection()->prepare($commandSQL);
     $stmt->execute();
 }
+
+listarSubCategoriasEsp(1);

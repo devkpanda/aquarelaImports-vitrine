@@ -23,6 +23,18 @@ function listarAnuncios()
     }
 }
 
+function listarAnunciosEsp($advertisement_id) {
+    $commandSQL = "SELECT advertisement_id,name,description,price,category_id,sub_category_id,measurement,size,videoUrl FROM hostdeprojetos_aquarelaimports.advertisement
+    WHERE advertisement_id = $advertisement_id";
+    $resultSet  = getPDOConnection()->query($commandSQL);
+    $rows = $resultSet->fetchAll();
+
+    foreach ($rows as $row) {
+        print_r($row);
+        echo "<br>";
+    }
+}
+
 function inserirAnuncio($advertisement_id, $name, $description, $price, $category_id, $sub_category_id, $measurement, $size, $videoUrl)
 {
 
@@ -83,4 +95,4 @@ function excluirAnuncio($advertisement_id)
     $stmt->execute();
 }
 
-listarAnuncios();
+listarAnunciosEsp(1);
