@@ -1,5 +1,5 @@
 <?php
-include_once('/home/cecilia/html/aquarelaImports-vitrine.old/src/Classes/Connection.php');
+include_once('./Connection.php');
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
@@ -7,13 +7,11 @@ error_reporting(E_ALL);
 
 class Advertisement
 {
-
     private $advertisement_id;
     private $name;
     private $description;
     private $price;
-    private $category_id;
-    private $sub_category_id;
+    private $category;
     private $measurement;
     private $size;
     private $videoUrl;
@@ -24,14 +22,13 @@ class Advertisement
         $this->name = '';
         $this->description = '';
         $this->price = 0;
-        $this->category_id = 0;
-        $this->sub_category_id  = 0;
+        $this->category = new Category();
         $this->measurement = '';
         $this->size = 0;
         $this->videoUrl = '';
     }
 
-    function listAds()
+    function list()
     {
         $commandSQL = "SELECT advertisement_id,name,description,price,category_id,sub_category_id,measurement,size,videoUrl FROM hostdeprojetos_aquarelaimports.advertisement";
         $resultSet  = getPDOConnection()->query($commandSQL);
@@ -43,7 +40,7 @@ class Advertisement
         }
     }
 
-    function listAdsById($advertisement_id)
+    function listById($advertisement_id)
     {
         $commandSQL = "SELECT advertisement_id,name,description,price,category_id,sub_category_id,measurement,size,videoUrl FROM hostdeprojetos_aquarelaimports.advertisement
         WHERE advertisement_id = $advertisement_id";
@@ -56,18 +53,15 @@ class Advertisement
         }
     }
 
-    function insertAd()
+    function add()
     {
-
-        $commandSQL = "SELECT  advsertisement_id,name,description,price,category_id,sub_category_id,measurement,size,videoUrl FROM hostdeprojetos_aquarelaimports.advertisement";
-
         $data = [
             'advertisement_id'  => $this->advertisement_id,
             'name'              => $this->name,
             'description'       => $this->description,
             'price'             => $this->price,
-            'category_id'       => $this->category_id,
-            'sub_category_id'   => $this->sub_category_id,
+            'category_id'       => $this->category->getId(),
+            'sub_category_id'   => $this->category->getSub_id(),
             'measurement'       => $this->measurement,
             'size'              => $this->size,
             'videoUrl'          => $this->videoUrl
@@ -79,7 +73,7 @@ class Advertisement
         $stmt->execute($data);
     }
 
-    function updateAd($advertisement_id, $name, $description, $price, $category_id, $sub_category_id, $measurement, $size, $videoUrl)
+    function update($advertisement_id, $name, $description, $price, $category_id, $sub_category_id, $measurement, $size, $videoUrl)
     {
 
         $data = [
@@ -109,7 +103,7 @@ class Advertisement
         $stmt->execute($data);
     }
 
-    function deleteAd($advertisement_id)
+    function delete($advertisement_id)
     {
         $commandSQL = "DELETE FROM advertisement WHERE advertisement_id = $advertisement_id;";
         $stmt = getPDOConnection()->prepare($commandSQL);
@@ -192,43 +186,6 @@ class Advertisement
     public function setPrice($price)
     {
         $this->price = $price;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of category
-     */
-    public function getCategory_id()
-    {
-        return $this->category_id;
-    }
-
-    /**
-     * Set the value of category
-     *
-     * @return  self
-     */
-    public function setCategory_id($category_id)
-    {
-        $this->category_id = $category_id;
-
-        return $this;
-    }
-
-    public function getSub_category_id()
-    {
-        return $this->sub_category_id;
-    }
-
-    /**
-     * Set the value of sub_category_id
-     *
-     * @return  self
-     */
-    public function setSub_category_id($sub_category_id)
-    {
-        $this->sub_category_id = $sub_category_id;
 
         return $this;
     }

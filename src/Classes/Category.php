@@ -15,7 +15,7 @@ class Category
         $this->sub_name = '';
     }
 
-    function insertCategory()
+    function add()
     {
         try {
             $data = [
