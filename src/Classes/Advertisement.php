@@ -110,6 +110,17 @@ class Advertisement
         $stmt->execute();
     }
 
+    function search($search)
+    {
+        $data = [
+            'search' => $search
+        ];
+
+        $commandSQL = "SELECT * FROM advertisement WHERE name LIKE ':search'";
+        $stmt = getPDOConnection()->prepare($commandSQL);
+        $stmt->execute($data);
+    }
+
     /**
      * Get the value of id
      */
