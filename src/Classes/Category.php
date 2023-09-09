@@ -2,68 +2,59 @@
 
 class Category
 {
-
-    private $category_id;
-    private $sub_category_id;
+    private $id;
     private $name;
+    private $sub_id;
+    private $sub_name;
 
     public function __construct()
     {
-        $this->category_id = 0;
-        $this->sub_category_id = 0;
-        $this->name;
+        $this->id = 0;
+        $this->name = '';
+        $this->sub_id = 0;
+        $this->sub_name = '';
     }
 
+    function insertCategory()
+    {
+        try {
+            $data = [
+                'id'       => $this->id,
+                'name'     => $this->name,
+                'sub_id'   => $this->sub_id,
+                'sub_name' => $this->sub_name
+            ];
 
+            $commandSQL = "insert into hostdeprojetos_aquarelaimports.category (`category_id`, `name`, `sub_category_id`, `sub_category_name`) values (:id, :name, :sub_id, :sub_name);";
+            $stmt = getPDOConnection()->prepare($commandSQL);
+            $stmt->execute($data);
+
+            if ($stmt->rowCount() > 0) {
+                echo "insert succesfully";
+            } else {
+                echo "insert failed";
+            }
+        } catch (PDOException $error) {
+            echo "Erro :" . $error;
+        }
+    }
 
     /**
-     * Set the value of subCategoryId
+     * Get the value of id
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the value of id
      *
      * @return  self
      */
-    public function setSubCategoryId($sub_category_id)
+    public function setId($id)
     {
-        $this->sub_category_id = $sub_category_id;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of category_id
-     */
-    public function getCategory_id()
-    {
-        return $this->category_id;
-    }
-
-    /**
-     * Set the value of category_id
-     *
-     * @return  self
-     */
-    public function setCategory_id($category_id)
-    {
-        $this->category_id = $category_id;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of sub_category_id
-     */
-    public function getSub_category_id()
-    {
-        return $this->sub_category_id;
-    }
-
-    /**
-     * Set the value of sub_category_id
-     *
-     * @return  self
-     */
-    public function setSub_category_id($sub_category_id)
-    {
-        $this->sub_category_id = $sub_category_id;
+        $this->id = $id;
 
         return $this;
     }
@@ -84,6 +75,46 @@ class Category
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of sub_id
+     */
+    public function getSub_id()
+    {
+        return $this->sub_id;
+    }
+
+    /**
+     * Set the value of sub_id
+     *
+     * @return  self
+     */
+    public function setSub_id($sub_id)
+    {
+        $this->sub_id = $sub_id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of sub_name
+     */
+    public function getSub_name()
+    {
+        return $this->sub_name;
+    }
+
+    /**
+     * Set the value of sub_name
+     *
+     * @return  self
+     */
+    public function setSub_name($sub_name)
+    {
+        $this->sub_name = $sub_name;
 
         return $this;
     }

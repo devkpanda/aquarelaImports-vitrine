@@ -31,7 +31,90 @@ class Advertisement
         $this->videoUrl = '';
     }
 
+    function listAds()
+    {
+        $commandSQL = "SELECT advertisement_id,name,description,price,category_id,sub_category_id,measurement,size,videoUrl FROM hostdeprojetos_aquarelaimports.advertisement";
+        $resultSet  = getPDOConnection()->query($commandSQL);
+        $rows = $resultSet->fetchAll();
 
+        foreach ($rows as $row) {
+            print_r($row);
+            echo "<br>";
+        }
+    }
+
+    function listAdsById($advertisement_id)
+    {
+        $commandSQL = "SELECT advertisement_id,name,description,price,category_id,sub_category_id,measurement,size,videoUrl FROM hostdeprojetos_aquarelaimports.advertisement
+        WHERE advertisement_id = $advertisement_id";
+        $resultSet  = getPDOConnection()->query($commandSQL);
+        $rows = $resultSet->fetchAll();
+
+        foreach ($rows as $row) {
+            print_r($row);
+            echo "<br>";
+        }
+    }
+
+    function insertAd()
+    {
+
+        $commandSQL = "SELECT  advsertisement_id,name,description,price,category_id,sub_category_id,measurement,size,videoUrl FROM hostdeprojetos_aquarelaimports.advertisement";
+
+        $data = [
+            'advertisement_id'  => $this->advertisement_id,
+            'name'              => $this->name,
+            'description'       => $this->description,
+            'price'             => $this->price,
+            'category_id'       => $this->category_id,
+            'sub_category_id'   => $this->sub_category_id,
+            'measurement'       => $this->measurement,
+            'size'              => $this->size,
+            'videoUrl'          => $this->videoUrl
+        ];
+
+        $commandSQL = "INSERT INTO hostdeprojetos_aquarelaimports.advertisement (advertisement_id,name,description,price,category_id,sub_category_id,measurement,size,videoUrl) VALUES (:advertisement_id,:name,:description,:price,:category_id,:sub_category_id,:measurement,:size,:videoUrl)";
+        $stmt = getPDOConnection()->prepare($commandSQL);
+        //$stmt->bindValue(':advertisement_id', $advertisement_id, ':name', $name, ':description', $description, ':price', $price, ':category_id', $category_id, ':sub_category_id', $sub_category_id, ':measurement', $measurement, ':size', $size, ':videoUrl', $videoUrl);
+        $stmt->execute($data);
+    }
+
+    function updateAd($advertisement_id, $name, $description, $price, $category_id, $sub_category_id, $measurement, $size, $videoUrl)
+    {
+
+        $data = [
+            'advertisement_id'  => $advertisement_id,
+            'name'              => $name,
+            'description'       => $description,
+            'price'             => $price,
+            'category_id'       => $category_id,
+            'sub_category_id'   => $sub_category_id,
+            'measurement'       => $measurement,
+            'size'              => $size,
+            'videoUrl'          => $videoUrl
+        ];
+
+        $commandSQL = "UPDATE 
+            advertisement SET name  = :name, 
+            description             = :description,
+            price                   = :price,
+            category_id             = :category_id,
+            sub_category_id         = :sub_category_id,
+            measurement             = :measurement,
+            size                    = :size,
+            videoUrl                = :videoUrl
+            WHERE advertisement_id  = :advertisement_id;";
+
+        $stmt = getPDOConnection()->prepare($commandSQL);
+        $stmt->execute($data);
+    }
+
+    function deleteAd($advertisement_id)
+    {
+        $commandSQL = "DELETE FROM advertisement WHERE advertisement_id = $advertisement_id;";
+        $stmt = getPDOConnection()->prepare($commandSQL);
+        $stmt->execute();
+    }
 
     /**
      * Get the value of id
@@ -209,5 +292,4 @@ class Advertisement
 
         return $this;
     }
-
 }
