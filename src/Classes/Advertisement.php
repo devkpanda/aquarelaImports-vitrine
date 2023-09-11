@@ -30,7 +30,7 @@ class Advertisement
 
     function list()
     {
-        $commandSQL = "SELECT advertisement_id,name,description,price,category_id,sub_category_id,measurement,size,videoUrl FROM hostdeprojetos_aquarelaimports.advertisement";
+        $commandSQL = "SELECT * FROM hostdeprojetos_aquarelaimports.advertisement";
         $resultSet  = getPDOConnection()->query($commandSQL);
         $rows = $resultSet->fetchAll();
 
@@ -261,3 +261,5 @@ class Advertisement
         return $this;
     }
 }
+
+

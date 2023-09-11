@@ -119,3 +119,6 @@ class Category
         return $this;
     }
 }
+
+$add = new Category();
+$add->add();
