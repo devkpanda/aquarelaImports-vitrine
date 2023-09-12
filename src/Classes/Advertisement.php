@@ -1,9 +1,14 @@
 <?php
-include_once('./Connection.php');
+
+use classes\database\DBConnection;
+
+include_once('DBConnection.php');
+include_once('Category.php');
+
+
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
-// use classes\database\DBQuery;
 
 class Advertisement
 {
@@ -30,22 +35,44 @@ class Advertisement
 
     function list()
     {
+        $c = new DBConnection();
         $commandSQL = "SELECT * FROM hostdeprojetos_aquarelaimports.advertisement";
-        $resultSet  = getPDOConnection()->query($commandSQL);
-        $rows = $resultSet->fetchAll();
+        $result  = $c -> Connect() -> query($commandSQL);
+        $numRows = $result->num_rows;
 
-        foreach ($rows as $row) {
+        if ($numRows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $data [] = $row;
+            }
+        }
+        print_r($data);
+        /*foreach ($rows as $row) {
             print_r($row);
             echo "<br>";
-        }
+        } */
+        
     }
 
+    function search($search)
+    {
+        $data = [
+            'search' => $search
+        ];
+
+        $commandSQL = "SELECT * FROM advertisement WHERE name LIKE ':search'";
+        $stmt = getPDOConnection()->prepare($commandSQL);
+        $stmt->execute($data);
+    }
+
+
+
+    /*
     function listById($advertisement_id)
     {
         $commandSQL = "SELECT advertisement_id,name,description,price,category_id,sub_category_id,measurement,size,videoUrl FROM hostdeprojetos_aquarelaimports.advertisement
         WHERE advertisement_id = $advertisement_id";
-        $resultSet  = getPDOConnection()->query($commandSQL);
-        $rows = $resultSet->fetchAll();
+        //$resultSet  = getPDOConnection()->query($commandSQL);
+        //$rows = $resultSet->fetchAll();
 
         foreach ($rows as $row) {
             print_r($row);
@@ -108,18 +135,7 @@ class Advertisement
         $commandSQL = "DELETE FROM advertisement WHERE advertisement_id = $advertisement_id;";
         $stmt = getPDOConnection()->prepare($commandSQL);
         $stmt->execute();
-    }
-
-    function search($search)
-    {
-        $data = [
-            'search' => $search
-        ];
-
-        $commandSQL = "SELECT * FROM advertisement WHERE name LIKE ':search'";
-        $stmt = getPDOConnection()->prepare($commandSQL);
-        $stmt->execute($data);
-    }
+    } */
 
     /**
      * Get the value of id
@@ -261,5 +277,3 @@ class Advertisement
         return $this;
     }
 }
-
-

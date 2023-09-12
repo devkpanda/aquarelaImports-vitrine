@@ -1,4 +1,6 @@
 <?php
+use classes\database\DBConnection;
+include_once('DBConnection.php');
 
 class Category
 {
@@ -17,6 +19,7 @@ class Category
 
     function add()
     {
+        $c = new DBConnection();
         try {
             $data = [
                 'id'       => $this->id,
@@ -119,6 +122,3 @@ class Category
         return $this;
     }
 }
-
-$add = new Category();
-$add->add();
