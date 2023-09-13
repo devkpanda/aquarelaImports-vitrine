@@ -1,5 +1,7 @@
 <?php
+
 use classes\database\DBConnection;
+
 include_once('DBConnection.php');
 
 class Category
@@ -16,6 +18,27 @@ class Category
         $this->sub_id = 0;
         $this->sub_name = '';
     }
+    
+    function list()
+    {
+        $c = new DBConnection();
+        $commandSQL = "SELECT * FROM hostdeprojetos_aquarelaimports.category";
+        $result  = $c -> Connect() -> query($commandSQL);
+        $numRows = $result->num_rows;
+
+        if ($numRows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $data [] = $row;
+            }
+        }
+        print_r($data);
+        /*foreach ($rows as $row) {
+            print_r($row);
+            echo "<br>";
+        } */
+        
+    }
+
 
     function add()
     {
@@ -29,10 +52,9 @@ class Category
             ];
 
             $commandSQL = "insert into hostdeprojetos_aquarelaimports.category (`category_id`, `name`, `sub_category_id`, `sub_category_name`) values (:id, :name, :sub_id, :sub_name);";
-            $stmt = getPDOConnection()->prepare($commandSQL);
-            $stmt->execute($data);
+            $result  = $c->Connect()->query($commandSQL);
 
-            if ($stmt->rowCount() > 0) {
+            if ($result) {
                 echo "insert succesfully";
             } else {
                 echo "insert failed";
