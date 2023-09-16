@@ -7,28 +7,26 @@ include_once('DBConnection.php');
 class Category
 {
     private $id;
-    private $name;
-    private $sub_id;
-    private $sub_name;
+    private $description;
+    private $parent_id;
 
     public function __construct()
     {
         $this->id = 0;
-        $this->name = '';
-        $this->sub_id = 0;
-        $this->sub_name = '';
+        $this->description = '';
+        $this->parent_id = 0;
     }
-    
+
     function list()
     {
-        $c = new DBConnection();
+        $connection = new DBConnection();
         $commandSQL = "SELECT * FROM hostdeprojetos_aquarelaimports.category";
-        $result  = $c -> Connect() -> query($commandSQL);
+        $result  = $connection->Connect()->query($commandSQL);
         $numRows = $result->num_rows;
 
         if ($numRows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $data [] = $row;
+                $data[] = $row;
             }
         }
         print_r($data);
@@ -36,7 +34,6 @@ class Category
             print_r($row);
             echo "<br>";
         } */
-        
     }
 
 
@@ -46,12 +43,11 @@ class Category
         try {
             $data = [
                 'id'       => $this->id,
-                'name'     => $this->name,
-                'sub_id'   => $this->sub_id,
-                'sub_name' => $this->sub_name
+                'name'     => $this->description,
+                'sub_id'   => $this->parent_id
             ];
 
-            $commandSQL = "insert into hostdeprojetos_aquarelaimports.category (`category_id`, `name`, `sub_category_id`, `sub_category_name`) values (:id, :name, :sub_id, :sub_name);";
+            $commandSQL = "insert into hostdeprojetos_aquarelaimports.category (`id`, `description`, `parent_id`) values (:id, :description, :parent_id);";
             $result  = $c->Connect()->query($commandSQL);
 
             if ($result) {
@@ -84,62 +80,43 @@ class Category
         return $this;
     }
 
+
     /**
-     * Get the value of name
+     * Get the value of description
      */
-    public function getName()
+    public function getDescription()
     {
-        return $this->name;
+        return $this->description;
     }
 
     /**
-     * Set the value of name
+     * Set the value of description
      *
      * @return  self
      */
-    public function setName($name)
+    public function setDescription($description)
     {
-        $this->name = $name;
+        $this->description = $description;
 
         return $this;
     }
 
     /**
-     * Get the value of sub_id
+     * Get the value of parent_id
      */
-    public function getSub_id()
+    public function getParent_id()
     {
-        return $this->sub_id;
+        return $this->parent_id;
     }
 
     /**
-     * Set the value of sub_id
+     * Set the value of parent_id
      *
      * @return  self
      */
-    public function setSub_id($sub_id)
+    public function setParent_id($parent_id)
     {
-        $this->sub_id = $sub_id;
-
-        return $this;
-    }
-
-    /**
-     * Get the value of sub_name
-     */
-    public function getSub_name()
-    {
-        return $this->sub_name;
-    }
-
-    /**
-     * Set the value of sub_name
-     *
-     * @return  self
-     */
-    public function setSub_name($sub_name)
-    {
-        $this->sub_name = $sub_name;
+        $this->parent_id = $parent_id;
 
         return $this;
     }

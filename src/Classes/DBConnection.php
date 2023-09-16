@@ -6,33 +6,32 @@ ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
 use FTP\Connection;
-use mysqli;
+use PDO;
+use PDOException;
 
 class DBConnection
 {
 
     private $host;
-    private $dbname;
     private $user;
-    private $pass;
+    private $password;
+    private $database;
 
-    public function Connect () {
+    public function __construct()
+    {
         $this->host = "51.79.72.47";
-        $this->dbname = "hostdeprojetos_aquarelaimports";
         $this->user = "hostdeprojetos";
-        $this->pass = "ifspgru@2022";
-        
+        $this->password = "ifspgru@2022";
+        $this->database = "hostdeprojetos_aquarelaimports";
+    }
 
+    public function Connect()
+    {
         try {
-            $connection = new mysqli($this->host, $this->user, $this->pass, $this->dbname);
-
-            if ($connection->connect_error) {
-                die("Connection failed: " . $connection->connect_error);
-            }
-        } catch (\Exception $e) {
+            $connection = new PDO("mysql:host=$this->host;dbname=$this->database", $this->user, $this->password);
+        } catch (PDOException $e) {
             echo $e->getMessage();
         }
         return $connection;
     }
-
-    }
+}
