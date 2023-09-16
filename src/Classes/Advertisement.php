@@ -1,8 +1,8 @@
 <?php
 
-use classes\database\DBConnection;
+use classes\database\Connection;
 
-include_once('DBConnection.php');
+include_once('Connection.php');
 include_once('Category.php');
 
 
@@ -12,22 +12,24 @@ error_reporting(E_ALL);
 
 class Advertisement
 {
-    private $advertisement_id;
+    private $id;
+    private $cod;
     private $name;
     private $description;
     private $price;
-    private $category;
+    private $category_id;
     private $measurement;
     private $size;
     private $videoUrl;
 
     public function __construct()
     {
-        $this->advertisement_id = '';
+        $this->id = '';
+        $this->cod = '';
         $this->name = '';
         $this->description = '';
         $this->price = 0;
-        $this->category = new Category();
+        $this->category_id = '';
         $this->measurement = '';
         $this->size = 0;
         $this->videoUrl = '';
@@ -35,22 +37,18 @@ class Advertisement
 
     function list()
     {
-        $c = new DBConnection();
-        $commandSQL = "SELECT * FROM hostdeprojetos_aquarelaimports.advertisement";
-        $result  = $c -> Connect() -> query($commandSQL);
-        $numRows = $result->num_rows;
+        try {
+            $connection = new Connection();
+            $pdo = $connection->getConnection();
+            $commandSQL = "SELECT * FROM hostdeprojetos_aquarelaimports.advertisement";
+            $stmt = $pdo->prepare($commandSQL);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        if ($numRows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $data [] = $row;
-            }
+            return $result;
+        } catch (PDOException $e) {
+            $e->getMessage();
         }
-        print_r($data);
-        /*foreach ($rows as $row) {
-            print_r($row);
-            echo "<br>";
-        } */
-        
     }
 
     function search($search)
@@ -60,8 +58,13 @@ class Advertisement
         ];
 
         $commandSQL = "SELECT * FROM advertisement WHERE name LIKE ':search'";
-        $stmt = getPDOConnection()->prepare($commandSQL);
+        $connection = new Connection();
+        $pdo = $connection->getConnection();
+
+        $stmt = $pdo->prepare($commandSQL);
         $stmt->execute($data);
+
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
 
@@ -137,12 +140,16 @@ class Advertisement
         $stmt->execute();
     } */
 
+
+
+
+
     /**
      * Get the value of id
      */
-    public function getAdvertisement_id()
+    public function getId()
     {
-        return $this->advertisement_id;
+        return $this->id;
     }
 
     /**
@@ -150,9 +157,29 @@ class Advertisement
      *
      * @return  self
      */
-    public function setAdvertisement_id($advertisement_id)
+    public function setId($id)
     {
-        $this->advertisement_id = $advertisement_id;
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of cod
+     */
+    public function getCod()
+    {
+        return $this->cod;
+    }
+
+    /**
+     * Set the value of cod
+     *
+     * @return  self
+     */
+    public function setCod($cod)
+    {
+        $this->cod = $cod;
 
         return $this;
     }
@@ -213,6 +240,26 @@ class Advertisement
     public function setPrice($price)
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of category_id
+     */
+    public function getCategory_id()
+    {
+        return $this->category_id;
+    }
+
+    /**
+     * Set the value of category_id
+     *
+     * @return  self
+     */
+    public function setCategory_id($category_id)
+    {
+        $this->category_id = $category_id;
 
         return $this;
     }

@@ -1,8 +1,9 @@
 <?php
 
+use classes\database\Connection;
 use classes\database\DBConnection;
 
-include_once('DBConnection.php');
+include_once('Connection.php');
 
 class Category
 {
@@ -19,42 +20,37 @@ class Category
 
     function list()
     {
-        $connection = new DBConnection();
-        $commandSQL = "SELECT * FROM hostdeprojetos_aquarelaimports.category";
-        $result  = $connection->Connect()->query($commandSQL);
-        $numRows = $result->num_rows;
+        try {
+            $commandSQL = "SELECT * FROM hostdeprojetos_aquarelaimports.category";
 
-        if ($numRows > 0) {
-            while ($row = $result->fetch_assoc()) {
-                $data[] = $row;
-            }
+            $connection = new Connection();
+            $pdo = $connection->getConnection();
+
+            $stmt = $pdo->prepare($commandSQL);
+            $stmt->execute();
+
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $result;
+        } catch (PDOException $e) {
+            $e->getMessage();
         }
-        print_r($data);
-        /*foreach ($rows as $row) {
-            print_r($row);
-            echo "<br>";
-        } */
     }
 
 
     function add()
     {
-        $c = new DBConnection();
+        $c = new Connection();
+        $data = [
+            'id'       => $this->id,
+            'name'     => $this->description,
+            'sub_id'   => $this->parent_id
+        ];
         try {
-            $data = [
-                'id'       => $this->id,
-                'name'     => $this->description,
-                'sub_id'   => $this->parent_id
-            ];
 
             $commandSQL = "insert into hostdeprojetos_aquarelaimports.category (`id`, `description`, `parent_id`) values (:id, :description, :parent_id);";
-            $result  = $c->Connect()->query($commandSQL);
-
-            if ($result) {
-                echo "insert succesfully";
-            } else {
-                echo "insert failed";
-            }
+            $connection = new Connection();
+            $pdo = $connection->getConnection();
         } catch (PDOException $error) {
             echo "Erro :" . $error;
         }
