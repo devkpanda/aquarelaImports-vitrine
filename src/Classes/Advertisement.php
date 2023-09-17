@@ -53,15 +53,14 @@ class Advertisement
 
     public function search($search)
     {
-        $data = ['search' => $search];
-
-        $commandSQL = "SELECT * FROM advertisement WHERE name LIKE :search";
+        $commandSQL = "SELECT * FROM advertisement WHERE name LIKE lower(:search)";
         $connection = new Connection();
         $pdo = $connection->getConnection();
 
         $stmt = $pdo->prepare($commandSQL);
+        $stmt->bindValue(':search', $search, PDO::PARAM_STR);
 
-        $stmt->execute($data);
+        $stmt->execute();
 
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

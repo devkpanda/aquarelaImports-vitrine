@@ -19,7 +19,8 @@
 
     $ad = new Advertisement();
 
-    $search = 'BICICLETA MOTORIZADA';
+    $search = "bicicleta";
+    $search = '%' . $search . '%';
     $result = $ad->search($search);
     print_r($result);
 
