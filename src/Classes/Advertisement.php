@@ -35,7 +35,7 @@ class Advertisement
         $this->videoUrl = '';
     }
 
-    function list()
+    public function list()
     {
         try {
             $connection = new Connection();
@@ -51,20 +51,21 @@ class Advertisement
         }
     }
 
-    function search($search)
+    public function search($search)
     {
-        $data = [
-            'search' => $search
-        ];
+        $data = ['search' => $search];
 
-        $commandSQL = "SELECT * FROM advertisement WHERE name LIKE ':search'";
+        $commandSQL = "SELECT * FROM advertisement WHERE name LIKE :search";
         $connection = new Connection();
         $pdo = $connection->getConnection();
 
         $stmt = $pdo->prepare($commandSQL);
+
         $stmt->execute($data);
 
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
     }
 
 

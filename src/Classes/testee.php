@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <h1>bolita de baska</h1>
+    <h1>TESTE</h1>
     <?php
 
     ini_set('display_errors', 1);
@@ -19,11 +19,10 @@
 
     $ad = new Advertisement();
 
-    $result = $ad->list();
+    $search = 'BICICLETA MOTORIZADA';
+    $result = $ad->search($search);
+    print_r($result);
 
-    foreach ($result as $results) {
-        echo ": " . $result['id'] . ", Nome: " . $result['name'] . "<br>";
-    }
     ?>
 
 
