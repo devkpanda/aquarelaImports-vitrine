@@ -40,7 +40,6 @@
     // $ad->setSize(100);
     // $ad->setVideoUrl('');
 
-    // echo $ad->getName();
     // $ad->add();
 
     // ------------ DELETE TEST, UNCOMMENT TO TRY ------------
@@ -49,6 +48,20 @@
     // if ($ad->delete($id)) {
     //     echo "delete successfully";
     // }
+
+    // ------------ UPDATE TEST, UNCOMMENT TO TRY ------------
+
+    $id = 4;
+    $ad->setCod('BIKEMOT113');
+    $ad->setName('bicicleta motorizada shaneray');
+    $ad->setDescription('bicicleta motorizada da shaneray');
+    $ad->setPrice(1399.90);
+    $ad->setCategory_id(2);
+    $ad->setMeasurement('L');
+    $ad->setSize(100);
+    $ad->setVideoUrl('');
+
+    $ad->updateById($id);
 
     ?>
 

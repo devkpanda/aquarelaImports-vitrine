@@ -5,10 +5,8 @@ use classes\database\Connection;
 include_once('Connection.php');
 include_once('Category.php');
 
-
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
-
 
 class Advertisement
 {
@@ -126,6 +124,33 @@ class Advertisement
         }
     }
 
+    public function updateById($where)
+    {
+        try {
+            $data = [
+                'id'           => $where,
+                'cod'          => $this->cod,
+                'name'         => $this->name,
+                'description'  => $this->description,
+                'price'        => $this->price,
+                'category_id'  => $this->category_id,
+                'measurement'  => $this->measurement,
+                'size'         => $this->size,
+                'videoUrl'     => $this->videoUrl
+            ];
+
+            $commandSQL = "UPDATE advertisement SET cod = :cod, name = :name, description = :description, price = :price, category_id = :category_id, measurement = :measurement, size = :size, videoUrl = :videoUrl WHERE id = :id;";
+
+            $connection = new Connection();
+            $pdo = $connection->getConnection();
+
+            $stmt = $pdo->prepare($commandSQL);
+            $stmt->execute($data);
+        } catch (PDOException $e) {
+            $e->getMessage();
+            die('Error: ' . $e);
+        }
+    }
 
     // function listById($advertisement_id)
     // {
@@ -170,6 +195,7 @@ class Advertisement
     //     $stmt = getPDOConnection()->prepare($commandSQL);
     //     $stmt->execute($data);
     // }
+
 
 
 
