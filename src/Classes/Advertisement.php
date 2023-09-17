@@ -51,7 +51,7 @@ class Advertisement
             return $result;
         } catch (PDOException $e) {
             $e->getMessage();
-            return $e;
+            die('Error: ' . $e);
         }
     }
 
@@ -72,12 +72,12 @@ class Advertisement
             return $result;
         } catch (PDOException $e) {
             $e->getMessage();
-            return $e;
+            die('Error: ' . $e);
         }
     }
 
 
-    function add()
+    public function add()
     {
         try {
             $data = [
@@ -98,63 +98,78 @@ class Advertisement
 
             $stmt = $pdo->prepare($commandSQL);
             $stmt->execute($data);
+            return true;
         } catch (PDOException $e) {
             $e->getMessage();
-            return $e;
+            die('Error: ' . $e);
         }
     }
 
-    /*
-    function listById($advertisement_id)
+    public function delete($id)
     {
-        $commandSQL = "SELECT advertisement_id,name,description,price,category_id,sub_category_id,measurement,size,videoUrl FROM hostdeprojetos_aquarelaimports.advertisement
-        WHERE advertisement_id = $advertisement_id";
-        //$resultSet  = getPDOConnection()->query($commandSQL);
-        //$rows = $resultSet->fetchAll();
+        try {
+            $data = [
+                'id' => $id
+            ];
 
-        foreach ($rows as $row) {
-            print_r($row);
-            echo "<br>";
+            $commandSQL = "DELETE FROM advertisement WHERE id = :id;";
+
+            $connection = new Connection();
+            $pdo = $connection->getConnection();
+
+            $stmt = $pdo->prepare($commandSQL);
+            $stmt->execute($data);
+            return true;
+        } catch (PDOException $e) {
+            $e->getMessage();
+            die('Error: ' . $e);
         }
     }
 
 
-    function update($advertisement_id, $name, $description, $price, $category_id, $sub_category_id, $measurement, $size, $videoUrl)
-    {
+    // function listById($advertisement_id)
+    // {
+    //     $commandSQL = "SELECT advertisement_id,name,description,price,category_id,sub_category_id,measurement,size,videoUrl FROM hostdeprojetos_aquarelaimports.advertisement
+    //     WHERE advertisement_id = $advertisement_id";
+    //     //$resultSet  = getPDOConnection()->query($commandSQL);
+    //     //$rows = $resultSet->fetchAll();
 
-        $data = [
-            'advertisement_id'  => $advertisement_id,
-            'name'              => $name,
-            'description'       => $description,
-            'price'             => $price,
-            'category_id'       => $category_id,
-            'sub_category_id'   => $sub_category_id,
-            'measurement'       => $measurement,
-            'size'              => $size,
-            'videoUrl'          => $videoUrl
-        ];
+    //     foreach ($rows as $row) {
+    //         print_r($row);
+    //         echo "<br>";
+    //     }
+    // }
 
-        $commandSQL = "UPDATE 
-            advertisement SET name  = :name, 
-            description             = :description,
-            price                   = :price,
-            category_id             = :category_id,
-            sub_category_id         = :sub_category_id,
-            measurement             = :measurement,
-            size                    = :size,
-            videoUrl                = :videoUrl
-            WHERE advertisement_id  = :advertisement_id;";
 
-        $stmt = getPDOConnection()->prepare($commandSQL);
-        $stmt->execute($data);
-    }
+    // function update($advertisement_id, $name, $description, $price, $category_id, $sub_category_id, $measurement, $size, $videoUrl)
+    // {
 
-    function delete($advertisement_id)
-    {
-        $commandSQL = "DELETE FROM advertisement WHERE advertisement_id = $advertisement_id;";
-        $stmt = getPDOConnection()->prepare($commandSQL);
-        $stmt->execute();
-    } */
+    //     $data = [
+    //         'advertisement_id'  => $advertisement_id,
+    //         'name'              => $name,
+    //         'description'       => $description,
+    //         'price'             => $price,
+    //         'category_id'       => $category_id,
+    //         'sub_category_id'   => $sub_category_id,
+    //         'measurement'       => $measurement,
+    //         'size'              => $size,
+    //         'videoUrl'          => $videoUrl
+    //     ];
+
+    //     $commandSQL = "UPDATE 
+    //         advertisement SET name  = :name, 
+    //         description             = :description,
+    //         price                   = :price,
+    //         category_id             = :category_id,
+    //         sub_category_id         = :sub_category_id,
+    //         measurement             = :measurement,
+    //         size                    = :size,
+    //         videoUrl                = :videoUrl
+    //         WHERE advertisement_id  = :advertisement_id;";
+
+    //     $stmt = getPDOConnection()->prepare($commandSQL);
+    //     $stmt->execute($data);
+    // }
 
 
 

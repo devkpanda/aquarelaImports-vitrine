@@ -16,34 +16,39 @@
     error_reporting(E_ALL);
     include_once('./Advertisement.php');
 
-    // SEARCH ENGINE TEST, UNCOMMENT TO TRY
+    $ad = new Advertisement();
+
+    // ------------ SEARCH ENGINE TEST, UNCOMMENT TO TRY ------------
 
     // This line `$search = '%' . $search . '%';` concats % to make mysql sintax rule correctly, when make real product, will be the same as test to work correctly
-
-    // $ad = new Advertisement();
 
     // $search = "bicicleta";
     // $search = '%' . $search . '%';
     // $result = $ad->search($search);
     // print_r($result);
 
-    // ADD TEST, UNCOMMENT TO TRY
-
-    $ad = new Advertisement();
+    // ------------ ADD TEST, UNCOMMENT TO TRY ------------
 
     // i dont set the id because its autoincrement
 
-    $ad->setCod('BIKEMOT113');
-    $ad->setName('bicicleta motorizada shaneray');
-    $ad->setDescription('bicicleta motorizada da shaneray');
-    $ad->setPrice(1399.90);
-    $ad->setCategory_id(2);
-    $ad->setMeasurement('L');
-    $ad->setSize(100);
-    $ad->setVideoUrl('');
+    // $ad->setCod('BIKEMOT113');
+    // $ad->setName('bicicleta motorizada shaneray');
+    // $ad->setDescription('bicicleta motorizada da shaneray');
+    // $ad->setPrice(1399.90);
+    // $ad->setCategory_id(2);
+    // $ad->setMeasurement('L');
+    // $ad->setSize(100);
+    // $ad->setVideoUrl('');
 
-    echo $ad->getName();
-    $ad->add();
+    // echo $ad->getName();
+    // $ad->add();
+
+    // ------------ DELETE TEST, UNCOMMENT TO TRY ------------
+
+    // $id = 3;
+    // if ($ad->delete($id)) {
+    //     echo "delete successfully";
+    // }
 
     ?>
 
