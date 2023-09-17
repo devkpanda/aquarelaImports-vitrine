@@ -38,36 +38,71 @@ class Advertisement
     public function list()
     {
         try {
+            $commandSQL = "SELECT * FROM hostdeprojetos_aquarelaimports.advertisement";
+
             $connection = new Connection();
             $pdo = $connection->getConnection();
-            $commandSQL = "SELECT * FROM hostdeprojetos_aquarelaimports.advertisement";
+
             $stmt = $pdo->prepare($commandSQL);
             $stmt->execute();
+
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $result;
         } catch (PDOException $e) {
             $e->getMessage();
+            return $e;
         }
     }
 
     public function search($search)
     {
-        $commandSQL = "SELECT * FROM advertisement WHERE name LIKE lower(:search)";
-        $connection = new Connection();
-        $pdo = $connection->getConnection();
+        try {
+            $commandSQL = "SELECT * FROM advertisement WHERE name LIKE lower(:search)";
 
-        $stmt = $pdo->prepare($commandSQL);
-        $stmt->bindValue(':search', $search, PDO::PARAM_STR);
+            $connection = new Connection();
+            $pdo = $connection->getConnection();
 
-        $stmt->execute();
+            $stmt = $pdo->prepare($commandSQL);
+            $stmt->bindValue(':search', $search, PDO::PARAM_STR);
+            $stmt->execute();
 
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        return $result;
+            return $result;
+        } catch (PDOException $e) {
+            $e->getMessage();
+            return $e;
+        }
     }
 
 
+    function add()
+    {
+        try {
+            $data = [
+                'cod'          => $this->cod,
+                'name'         => $this->name,
+                'description'  => $this->description,
+                'price'        => $this->price,
+                'category_id'  => $this->category_id,
+                'measurement'  => $this->measurement,
+                'size'         => $this->size,
+                'videoUrl'     => $this->videoUrl
+            ];
+
+            $commandSQL = "INSERT INTO advertisement (cod,name,description,price,category_id,measurement,size,videoUrl) VALUES (:cod,:name,:description,:price,:category_id,:measurement,:size,:videoUrl);";
+
+            $connection = new Connection();
+            $pdo = $connection->getConnection();
+
+            $stmt = $pdo->prepare($commandSQL);
+            $stmt->execute($data);
+        } catch (PDOException $e) {
+            $e->getMessage();
+            return $e;
+        }
+    }
 
     /*
     function listById($advertisement_id)
@@ -83,25 +118,6 @@ class Advertisement
         }
     }
 
-    function add()
-    {
-        $data = [
-            'advertisement_id'  => $this->advertisement_id,
-            'name'              => $this->name,
-            'description'       => $this->description,
-            'price'             => $this->price,
-            'category_id'       => $this->category->getId(),
-            'sub_category_id'   => $this->category->getSub_id(),
-            'measurement'       => $this->measurement,
-            'size'              => $this->size,
-            'videoUrl'          => $this->videoUrl
-        ];
-
-        $commandSQL = "INSERT INTO hostdeprojetos_aquarelaimports.advertisement (advertisement_id,name,description,price,category_id,sub_category_id,measurement,size,videoUrl) VALUES (:advertisement_id,:name,:description,:price,:category_id,:sub_category_id,:measurement,:size,:videoUrl)";
-        $stmt = getPDOConnection()->prepare($commandSQL);
-        //$stmt->bindValue(':advertisement_id', $advertisement_id, ':name', $name, ':description', $description, ':price', $price, ':category_id', $category_id, ':sub_category_id', $sub_category_id, ':measurement', $measurement, ':size', $size, ':videoUrl', $videoUrl);
-        $stmt->execute($data);
-    }
 
     function update($advertisement_id, $name, $description, $price, $category_id, $sub_category_id, $measurement, $size, $videoUrl)
     {
