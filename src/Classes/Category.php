@@ -1,7 +1,6 @@
 <?php
 
 use classes\database\Connection;
-use classes\database\DBConnection;
 
 include_once('Connection.php');
 
@@ -18,7 +17,7 @@ class Category
         $this->parent_id = 0;
     }
 
-    function list()
+    public function list()
     {
         try {
             $commandSQL = "SELECT * FROM hostdeprojetos_aquarelaimports.category";
@@ -34,25 +33,95 @@ class Category
             return $result;
         } catch (PDOException $e) {
             $e->getMessage();
+            die('Error: ' . $e);
+        }
+    }
+
+    public function search($search)
+    {
+        try {
+            $commandSQL = "SELECT * FROM category WHERE name LIKE lower(:search)";
+
+            $connection = new Connection();
+            $pdo = $connection->getConnection();
+
+            $stmt = $pdo->prepare($commandSQL);
+            $stmt->bindValue(':search', $search, PDO::PARAM_STR);
+            $stmt->execute();
+
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $result;
+        } catch (PDOException $e) {
+            $e->getMessage();
+            die('Error: ' . $e);
         }
     }
 
 
-    function add()
+    public function add()
     {
-        $c = new Connection();
-        $data = [
+        try {
+            $data = [
             'id'       => $this->id,
             'name'     => $this->description,
             'sub_id'   => $this->parent_id
-        ];
-        try {
+            ];
 
-            $commandSQL = "insert into hostdeprojetos_aquarelaimports.category (`id`, `description`, `parent_id`) values (:id, :description, :parent_id);";
+            $commandSQL = "INSERT INTO category (insert into hostdeprojetos_aquarelaimports.category (`id`, `description`, `parent_id`) values (:id, :description, :parent_id);";
+
             $connection = new Connection();
             $pdo = $connection->getConnection();
-        } catch (PDOException $error) {
-            echo "Erro :" . $error;
+
+            $stmt = $pdo->prepare($commandSQL);
+            $stmt->execute($data);
+            return true;
+        } catch (PDOException $e) {
+            $e->getMessage();
+            die('Error: ' . $e);
+        }
+    }
+
+    public function delete($id)
+    {
+        try {
+            $data = [
+                'id' => $id
+            ];
+
+            $commandSQL = "DELETE FROM category WHERE id = :id;";
+
+            $connection = new Connection();
+            $pdo = $connection->getConnection();
+
+            $stmt = $pdo->prepare($commandSQL);
+            $stmt->execute($data);
+            return true;
+        } catch (PDOException $e) {
+            $e->getMessage();
+            die('Error: ' . $e);
+        }
+    }
+
+    public function updateById($where)
+    {
+        try {
+            $data = [
+            'id'           => $where,
+            'name'         => $this->description,
+            'sub_id'       => $this->parent_id
+            ];
+
+            $commandSQL = "UPDATE category SET name = :name, sub_id = :sub_id WHERE id = :id;";
+
+            $connection = new Connection();
+            $pdo = $connection->getConnection();
+
+            $stmt = $pdo->prepare($commandSQL);
+            $stmt->execute($data);
+        } catch (PDOException $e) {
+            $e->getMessage();
+            die('Error: ' . $e);
         }
     }
 
