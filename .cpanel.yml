@@ -1,5 +1,0 @@
-deployment:
-    tasks:
-        - export DEPLOYPATH=/home/hostdeprojetos/public_html/aquarelaImports-vitrine
-        - /bin/cp -R images $DEPLOYPATH
-        - /bin/cp index.html $DEPLOYPATH
