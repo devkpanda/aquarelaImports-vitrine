@@ -101,7 +101,6 @@ class Advertisement
                 $size           = $line['size'];
                 $videoUrl       = $line['videoUrl'];
                 $advertisements[] = new Advertisement($id, $cod, $name, $description, $price, $category_id, $measurement, $size, $videoUrl);
-                print_r($advertisements);
             }
         } else {
             $advertisements[] = array();

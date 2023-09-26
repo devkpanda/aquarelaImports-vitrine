@@ -12,13 +12,13 @@ if ($uriPath == '/advertisement/search'){
 
         if ($json === false){
             http_response_code(400);
-            echo json_encode(array('message' => 'Erro ao receber JSON'));
+            echo json_encode(array('message' => 'Error receiving json'));
         } else {
             $data = json_decode($json, true);
 
             if ($data === null){
                 http_response_code(400);
-                echo json_encode(array('message' => 'JSON vazio'));
+                echo json_encode(array('message' => 'Empty json'));
             } else {
                 $search = $data['search'];
 
@@ -27,12 +27,30 @@ if ($uriPath == '/advertisement/search'){
 
                 $advertisement = new Advertisement('','','','','','','','','','');
                 $advertisementResult = $advertisement->listAdvertisements($where);
+
+                $json = array();
+
+                foreach ($advertisementResult as $ad) {
+                    $adArray = array(
+                        "id"            => $ad->getId(),
+                        "cod"           => $ad->getCod(),
+                        "name"          => $ad->getName(),
+                        "description"   => $ad->getDescription(),
+                        "price"         => $ad->getPrice(),
+                        "category_id"   => $ad->getCategory_id(),
+                        "measurement"   => $ad->getMeasurement(),
+                        "size"          => $ad->getSize(),
+                        "videoUrl"      => $ad->getVideoUrl(),
+                    );
+
+                    $json[] = $adArray;
+                }
             
-                echo json_encode($advertisementResult);
+                echo json_encode($json);
             }
         }
     
     } else {
-        echo json_encode(array('message' => 'Método não permitido'));
+        echo json_encode(array('message' => 'Method not allowed'));
     }
 }
