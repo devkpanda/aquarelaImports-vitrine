@@ -32,7 +32,10 @@ class Router {
         
        if( str_starts_with($module ,"public/" )){
             // caso o recurso seja /public simplesmente responde o recurso
-            require $module;
+            if( str_ends_with($module ,".css" )){
+                header("Content-type: text/css");
+            }          
+            echo file_get_contents($module);
         } else
         if (isset($this->routes[$module]) && file_exists($this->routes[$module]['path'])){
             $route = $this->routes[$module];

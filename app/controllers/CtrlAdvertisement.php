@@ -6,6 +6,44 @@ use models\Advertisement;
 $url = parse_url($_SERVER['REQUEST_URI']);
 $uriPath = $url['path'];
 
+// não testado ainda, provavelmente incompleto
+if ($uriPath == '/advertisement/add'){
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+        // n entendi direito isso aq
+        $json = file_get_contents('php://input');
+        if ($json === false){
+            http_response_code(400);
+            echo json_encode(array('message' => 'Error receiving json'));
+        } else {
+            $data = json_decode($json, true);
+            if ($data === null){
+                http_response_code(400);
+                echo json_encode(array('message' => 'Empty json'));
+            } else {
+
+                $id          = $data['id'];
+                $cod         = $data['cod'];
+                $name        = $data['name'];
+                $description = $data['description'];
+                $price       = $data['price'];
+                $category_id = $data['category_id'];
+                $measurement = $data['measurement'];
+                $size        = $data['size'];
+                $videoUrl    = $data['videoUrl'];
+
+                $advertisement = new Advertisement($id, $cod, $name, $description, $price, $category_id, $measurement, $size, $videoUrl);
+                $advertisement = $advertisement->save();
+
+               
+
+            }
+        }
+
+    } else {
+        echo json_encode(array('message' => 'Method not allowed'));
+    }
+}
+
 if ($uriPath == '/advertisement/search'){
     if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         $json = file_get_contents('php://input');
