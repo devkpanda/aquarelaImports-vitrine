@@ -61,7 +61,7 @@ if ($showErrors){
     error_reporting(E_ALL);
 }
 
-$config['database']['host']		= '51.79.72.47';
+$config['database']['host']		= '144.217.39.54';
 $config['database']['schema']	= 'hostdeprojetos_aquarelaimports';
 $config['database']['user']		= 'hostdeprojetos';
 $config['database']['pass']		= 'ifspgru@2022';
