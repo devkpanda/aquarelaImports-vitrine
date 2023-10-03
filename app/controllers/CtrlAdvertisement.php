@@ -8,7 +8,7 @@ $uriPath = $url['path'];
 
 // não testado ainda, provavelmente incompleto
 if ($uriPath == '/advertisement/add'){
-    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if(strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
         // n entendi direito isso aq
         $json = file_get_contents('php://input');
         if ($json === false){
@@ -45,7 +45,7 @@ if ($uriPath == '/advertisement/add'){
 }
 
 if ($uriPath == '/advertisement/search'){
-    if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+    if (strtolower($_SERVER['REQUEST_METHOD']) == 'post'){
         $json = file_get_contents('php://input');
 
         if ($json === false){
