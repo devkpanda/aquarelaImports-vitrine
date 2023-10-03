@@ -4,7 +4,7 @@ namespace models;
 
 use core\database\DBQuery;
 
-class Usuarios {
+class User {
     
     private $id;
     private $idNivelUsuario;
@@ -89,7 +89,8 @@ class Usuarios {
                 $active_code        = $linha['active_code'];
                 $recovery_phrase    = $linha['recovery_phrase'];
                 
-                $usuarios[] = new Usuarios($id, $idNivelUsuario, $name, $email, $password, $active, $active_code, $recovery_phrase);                }
+                $usuarios[] = new User($id, $idNivelUsuario, $name, $email, $password, $active, $active_code, $recovery_phrase);
+            }
         } else {
             $usuarios[] = array();
             echo  "{'msg':'Nenhum usuário encontrado.\n'}";
