@@ -23,5 +23,4 @@
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
 		"errorPath" : "app/views/home.php"
 	}
-
 }

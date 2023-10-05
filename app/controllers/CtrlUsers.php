@@ -5,8 +5,6 @@ use models\User;
 $url = parse_url($_SERVER['REQUEST_URI']);
 $uriPath = $url['path'];
 
-echo $uriPath;
-
 if ($uriPath == '/user/add') {
     if (strtolower($_SERVER['REQUEST_METHOD']) == 'post'){
         $json = file_get_contents('php://input');
