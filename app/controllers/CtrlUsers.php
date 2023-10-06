@@ -61,23 +61,33 @@ if ($uriPath == '/login') {
                 $where = new Where();
                 $where->addCondition('AND', 'email', '=', $email);
                 $where->addCondition('AND', 'password', '=', $password);
-                $where->addCondition('AND', 'active', '=', 1);
+                // $where->addCondition('AND', 'active', '=', 1);
 
                 $user = new User('','','','','','','','','');
                 $result = $user->listUsuarios($where);
 
                 $json = array();
 
-                foreach ($result as $user) {
-                    $adArray = array(
-                        "id"             => $user->getId(),
-                        "idNivelUsuario" => $user->getIdNivelUsuario(),
-                        "name"           => $user->getName(),
-                        "email"          => $user->getEmail()
-                    );
+                if (count($result) == 1) {
+                    foreach ($result as $Ruser) {
+                        $user->setId($Ruser->getId());
+                        $user->setIdNivelUsuario($Ruser->getIdNivelUsuario());
+                        $user->setName($Ruser->getName());
+                        $user->setEmail($Ruser->getEmail());
 
-                    $json[] = $adArray;
+                        $userArray = array(
+                            "id" => $user->getId(),
+                            "Name" => $user->getName(),
+                            "email" => $user->getEmail()
+                        );
+
+                        $json[] = $userArray;
+                    }
+                } else {
+                    echo json_encode(array('message' => '1'));
                 }
+
+                $_SESSION['idNivelUsuario'] = $user->getIdNivelUsuario();
 
                 echo json_encode($json);
             }
