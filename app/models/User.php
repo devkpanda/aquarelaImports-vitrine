@@ -84,7 +84,7 @@ class User {
                 $idNivelUsuario     = $linha['idNivelUsuario'];
                 $name               = $linha['name'];
                 $email              = $linha['email'];
-                $password           = $linha['senha'];
+                $password           = $linha['password'];
                 $active             = $linha['active'];
                 $active_code        = $linha['active_code'];
                 $recovery_phrase    = $linha['recovery_phrase'];
