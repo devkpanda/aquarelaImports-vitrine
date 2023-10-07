@@ -92,3 +92,51 @@ if ($uriPath == '/advertisement/search'){
         echo json_encode(array('message' => 'Method not allowed'));
     }
 }
+
+if ($uriPath == '/advertisement/listbycategory') {
+    if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
+        $json = file_get_contents('php://input');
+
+        if ($json === false){
+            http_response_code(400);
+            echo json_encode(array('message' => 'Error receiving json'));
+        } else {
+            $data = json_decode($json, true);
+
+            if ($data === null){
+                http_response_code(400);
+                echo json_encode(array('message' => 'Empty json'));
+            } else {
+                $id = $data['id'];
+
+                $where = new Where();
+                $where->addCondition('AND', 'category_id', '=', $id);
+
+                $advertisement = new Advertisement('','','','','','','','','');
+                $result = $advertisement->listAdvertisements($where);
+
+                $json = array();
+
+                foreach ($result as $ad) {
+                    $adArray = array(
+                        "id"            => $ad->getId(),
+                        "cod"           => $ad->getCod(),
+                        "name"          => $ad->getName(),
+                        "description"   => $ad->getDescription(),
+                        "price"         => $ad->getPrice(),
+                        "category_id"   => $ad->getCategory_id(),
+                        "measurement"   => $ad->getMeasurement(),
+                        "size"          => $ad->getSize(),
+                        "videoUrl"      => $ad->getVideoUrl(),
+                    );
+
+                    $json[] = $adArray;
+                }
+            
+                echo json_encode($json);
+            }
+        }
+    } else {
+        echo json_encode(array('message' => 'Method not allowed'));
+    }
+}

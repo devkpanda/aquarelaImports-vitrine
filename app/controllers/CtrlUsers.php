@@ -97,6 +97,8 @@ if ($uriPath == '/login') {
                 echo json_encode($json);
             }
         } 
+    } else {
+        echo json_encode(array('message' => 'Method not allowed'));
     }
 }
 
