@@ -17,7 +17,7 @@ class Photo {
         $tableName = "photos";
         $fieldsName = "id, advertisement_id, base64_data, upload_date, description";
         $fieldKey = "id";
-        $this->dbquery =new DBQuery($tableName, $fieldsName, $fieldKey);
+        $this->dbquery = new DBQuery($tableName, $fieldsName, $fieldKey);
 
         $this->setId($id);
         $this->setAdvertisement_id($advertisement_id);
