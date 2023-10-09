@@ -13,7 +13,7 @@
 	},
 	"advertisement/add" : { 
 		"path" : "app/controllers/CtrlAdvertisement.php",
-		"sessionKey": [{"idUsuario": false}], 
+		"sessionKey": [{"idUsuario": true}],
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
 		"errorPath" : "app/views/home.php"
 	},
@@ -31,7 +31,7 @@
 	},
 	"user/add" : { 
 		"path" : "app/controllers/CtrlUsers.php",
-		"sessionKey": [{"idUsuario": false}], 
+		"sessionKey": [{"idUsuario": true}],  
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
 		"errorPath" : "app/views/home.php"
 	},
@@ -43,7 +43,7 @@
 	},
 	"category/add" : { 
 		"path" : "app/controllers/CtrlCategory.php",
-		"sessionKey": [{"idUsuario": false}], 
+		"sessionKey": [{"idUsuario": true}], 
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
 		"errorPath" : "app/views/home.php"
 	}
