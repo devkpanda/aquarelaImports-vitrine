@@ -78,6 +78,10 @@ class Advertisement
         }
     }
 
+    public function delete($id) {
+        return ($this->dbquery->delete($id));
+    }
+
     public function listAdvertisements($where = null): array
     {
         $advertisements = array();
