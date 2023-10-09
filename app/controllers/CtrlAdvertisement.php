@@ -7,31 +7,6 @@ $url = parse_url($_SERVER['REQUEST_URI']);
 $uriPath = $url['path'];
 
 
-if ($uriPath == '/advertisement/delete'){
-    if(strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
-        // n entendi direito isso aq
-        $json = file_get_contents('php://input');
-        if ($json === false){
-            http_response_code(400);
-            echo json_encode(array('message' => 'Error receiving json'));
-        } else {
-            $data = json_decode($json, true);
-            if ($data === null){
-                http_response_code(400);
-                echo json_encode(array('message' => 'Empty json'));
-            } else {
-                $id = $data['id'];
-
-                $advertisement = new Advertisement($id, '','','','','','','','');
-                $advertisement -> delete($id);
-            }
-        }
-
-    } else {
-        echo json_encode(array('message' => 'Method not allowed'));
-    }
-}
-
     if ($uriPath == '/advertisement/add'){
     if(strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
         // n entendi direito isso aq
@@ -56,8 +31,13 @@ if ($uriPath == '/advertisement/delete'){
                 $size        = $data['size'];
                 $videoUrl    = $data['videoUrl'];
 
-                $advertisement = new Advertisement($id, $cod, $name, $description, $price, $category_id, $measurement, $size, $videoUrl);
-                $advertisement = $advertisement->save();
+                $advertisement = new Advertisement(0, $cod, $name, $description, $price, $category_id, $measurement, $size, $videoUrl);
+    
+                    if ($advertisement->save()) {
+                        echo json_encode(array('message' => '0'));
+                    } else {
+                        echo json_encode(array('message' => '1'));
+                    }
 
                
 
@@ -113,6 +93,31 @@ if ($uriPath == '/advertisement/search'){
             }
         }
     
+    } else {
+        echo json_encode(array('message' => 'Method not allowed'));
+    }
+}
+
+if ($uriPath == '/advertisement/delete'){
+    if(strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
+        // n entendi direito isso aq
+        $json = file_get_contents('php://input');
+        if ($json === false){
+            http_response_code(400);
+            echo json_encode(array('message' => 'Error receiving json'));
+        } else {
+            $data = json_decode($json, true);
+            if ($data === null){
+                http_response_code(400);
+                echo json_encode(array('message' => 'Empty json'));
+            } else {
+                $id = $data['id'];
+
+                $advertisement = new Advertisement($id, '','','','','','','','');
+                $advertisement -> delete($id);
+            }
+        }
+
     } else {
         echo json_encode(array('message' => 'Method not allowed'));
     }
