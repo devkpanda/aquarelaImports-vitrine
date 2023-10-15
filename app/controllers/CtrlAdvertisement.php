@@ -67,9 +67,7 @@ $uriPath = $url['path'];
         }
     }
 
-    // dá update porém caso tenha um id que não exista (por exemplo o 4), aparece a mensagem de que a função save() foi realizada com sucesso porém deveria
-    // vir a mensagem de que a chave primária solicitada não existe ( DBQuery -> linha 227)
-    // ++ falta tbm como modificar o base_64 na tabela photos via a tabela advertisement
+
     if ($uriPath == '/advertisement/update') {
        // if (isset($_SESSION['idNivelUsuario']) && $_SESSION['idNivelUsuario'] == 1){
             if (strtolower($_SERVER['REQUEST_METHOD']) == 'post'){
@@ -95,22 +93,34 @@ $uriPath = $url['path'];
                         $size        = $data['size'];
                         $videoUrl    = $data['videoUrl'];
                         $base64_data = $data['base64_data'];
-
-                            $exist = ""; 
+                        
+                            $exist = false;
                             $advertisement = new Advertisement($id, $cod, $name, $description, $price, $category_id, $measurement, $size, $videoUrl);
-                            if($id == 0) {
-                                $exist = false; 
-                                echo json_encode(array('message' => 'este anúncio não existe!'));
-                            }
-                            if ($exist !== false) {
-                                if ($advertisement->save()) {
-                                    echo json_encode(array('message' => '0'));
-                                } else {
+                            if($id !== 0) {
+                                $exist = true; 
+                                $rSet = $advertisement->save();
+                            if ($rSet->rowCount() == 1) {
                                     echo json_encode(array('message' => '1'));
+                                } else {
+                                    echo json_encode(array('message' => '0'));
                                 }
+                            } else {
+                                echo json_encode(array('message' => '0'));
                             }
                        /*
+                        $where = new Where();
+                        $where->addCondition('AND', 'cod', '=', $cod);
 
+                        $result = $advertisement->listAdvertisements($where);
+
+                        $success = "";
+
+                        foreach ($base64_data as $photo) {
+                            $photo = new Photo(0, $result[0]->getId(), $photo, '', '');
+                            if ($photo->save()) {
+                            } else {
+                                $success = false;
+                            }
                        */
                     }   
                 }
@@ -234,10 +244,16 @@ if ($uriPath == '/advertisement/delete'){
             } else {
                 $id = $data['id'];
 
-                $advertisement = new Advertisement($id, '','','','','','','','');
-                $advertisement -> delete($id);
-            }
+                $advertisement = new Advertisement($id,'','','','','','','','');
+
+                $rSet = $advertisement->delete();
+               if ($rSet->rowCount() == 1) {
+                    echo json_encode(array('message' => '0'));
+                } else {
+                    echo json_encode(array('message' => '1'));
+                }
         }
+    }
 
     } else {
         echo json_encode(array('message' => 'Method not allowed'));
