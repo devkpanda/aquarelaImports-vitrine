@@ -67,6 +67,51 @@ $uriPath = $url['path'];
         }
     }
 
+    if ($uriPath == '/advertisement/update') {
+       // if (isset($_SESSION['idNivelUsuario']) && $_SESSION['idNivelUsuario'] == 1){
+            if (strtolower($_SERVER['REQUEST_METHOD']) == 'post'){
+                $json = file_get_contents('php://input');
+        
+                if ($json === false){
+                    http_response_code(400);
+                    echo json_encode(array('message' => 'Error receiving json'));
+                } else {
+                    $data = json_decode($json, true);
+        
+                    if ($data === null) {
+                        http_response_code(400);
+                        echo json_encode(array('message' => 'Empty json'));
+                    } else {
+                        $id          = $data['id'];
+                        $cod         = $data['cod'];
+                        $name        = $data['name'];
+                        $description = $data['description'];
+                        $price       = $data['price'];
+                        $category_id = $data['category_id'];
+                        $measurement = $data['measurement'];
+                        $size        = $data['size'];
+                        $videoUrl    = $data['videoUrl'];
+                        $base64_data = $data['base64_data'];
+
+                       
+                            $advertisement = new Advertisement($id, $cod, $name, $description, $price, $category_id, $measurement, $size, $videoUrl);
+                            if($id == 0) {
+                                echo json_encode(array('message' => 'esse anúncio não existe'));
+                            }
+                            if ($advertisement->save()) {
+                                echo json_encode(array('message' => '0'));
+                            } else {
+                                echo json_encode(array('message' => '1'));
+                            }
+                       
+                    }   
+                }
+            } else {
+                echo json_encode(array('message' => 'Method not allowed'));
+            }
+        }
+    //}
+
     if ($uriPath == '/advertisement/listbycategory') {
         if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
             $json = file_get_contents('php://input');
