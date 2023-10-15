@@ -67,6 +67,9 @@ $uriPath = $url['path'];
         }
     }
 
+    // dá update porém caso tenha um id que não exista (por exemplo o 4), aparece a mensagem de que a função save() foi realizada com sucesso porém deveria
+    // vir a mensagem de que a chave primária solicitada não existe ( DBQuery -> linha 227)
+    // ++ falta tbm como modificar o base_64 na tabela photos via a tabela advertisement
     if ($uriPath == '/advertisement/update') {
        // if (isset($_SESSION['idNivelUsuario']) && $_SESSION['idNivelUsuario'] == 1){
             if (strtolower($_SERVER['REQUEST_METHOD']) == 'post'){
@@ -93,17 +96,22 @@ $uriPath = $url['path'];
                         $videoUrl    = $data['videoUrl'];
                         $base64_data = $data['base64_data'];
 
-                       
+                            $exist = ""; 
                             $advertisement = new Advertisement($id, $cod, $name, $description, $price, $category_id, $measurement, $size, $videoUrl);
                             if($id == 0) {
-                                echo json_encode(array('message' => 'esse anúncio não existe'));
+                                $exist = false; 
+                                echo json_encode(array('message' => 'este anúncio não existe!'));
                             }
-                            if ($advertisement->save()) {
-                                echo json_encode(array('message' => '0'));
-                            } else {
-                                echo json_encode(array('message' => '1'));
+                            if ($exist !== false) {
+                                if ($advertisement->save()) {
+                                    echo json_encode(array('message' => '0'));
+                                } else {
+                                    echo json_encode(array('message' => '1'));
+                                }
                             }
-                       
+                       /*
+
+                       */
                     }   
                 }
             } else {
@@ -209,6 +217,8 @@ if ($uriPath == '/advertisement/search'){
     }
 }
 
+
+// deleta porém não do id 10 pra cima (?)
 if ($uriPath == '/advertisement/delete'){
     if(strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
         // n entendi direito isso aq
