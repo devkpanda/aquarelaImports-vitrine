@@ -93,7 +93,7 @@ $uriPath = $url['path'];
                         $size        = $data['size'];
                         $videoUrl    = $data['videoUrl'];
                         $base64_data = $data['base64_data'];
-                        
+
                             $exist = false;
                             $advertisement = new Advertisement($id, $cod, $name, $description, $price, $category_id, $measurement, $size, $videoUrl);
                             if($id !== 0) {
@@ -228,7 +228,6 @@ if ($uriPath == '/advertisement/search'){
 }
 
 
-// deleta porém não do id 10 pra cima (?)
 if ($uriPath == '/advertisement/delete'){
     if(strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
         // n entendi direito isso aq
