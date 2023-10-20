@@ -90,7 +90,7 @@
             <div class="flex justify-center items-center pb-5">
                 <div class="grid md:grid-cols-4 gap-10 w-3/4 pb-8 sm:pr-3">
                     <div class="card w-80 bg-base-100 bg-slate-50 text-primary-content">
-                        <figure><img class="w-full h-52 object-cover" src="/images/Conjunto Freio à disco.webp"
+                        <figure><img class="w-full h-52 object-cover" src="/app/views/images/Conjunto Freio à disco.webp"
                                 alt="Shoes" /></figure>
                         <div class="card-body">
                             <h2 class="card-title text-black">Conjunto Freio à disco</h2>
@@ -105,7 +105,7 @@
                         </div>
                     </div>
                     <div class="card w-80 bg-base-100 bg-slate-50 text-primary-content">
-                        <figure><img class="w-full h-52 object-cover" src="/images/Coroa.jpg" alt="Shoes" /></figure>
+                        <figure><img class="w-full h-52 object-cover" src="/app/views/images/Coroa.jpg" alt="Shoes" /></figure>
                         <div class="card-body">
                             <h2 class="card-title text-black">Coroa</h2>
                             <p class="text-black">Coroa convencional para bicicletas sem marcha. 44 dentes</p>
@@ -118,7 +118,7 @@
                         </div>
                     </div>
                     <div class="card w-80 bg-base-100 bg-slate-50 text-primary-content">
-                        <figure><img class="w-full h-52 object-cover" src="/images/Pedivela.jpeg" alt="Shoes" />
+                        <figure><img class="w-full h-52 object-cover" src="/app/views/images/Pedivela.jpeg" alt="Shoes" />
                         </figure>
                         <div class="card-body">
                             <h2 class="card-title text-black">Pedivela</h2>
@@ -132,7 +132,7 @@
                         </div>
                     </div>
                     <div class="card w-80 bg-base-100 bg-slate-50 text-primary-content">
-                        <figure><img class="w-full h-52 object-cover" src="/images/Pedal de Alumínio.jpeg"
+                        <figure><img class="w-full h-52 object-cover" src="/app/views/images/Pedal de Alumínio.jpeg"
                                 alt="Shoes" /></figure>
                         <div class="card-body">
                             <h2 class="card-title text-black">Pedal de Alumínio</h2>
@@ -157,7 +157,7 @@
             <div class="flex justify-center items-center pb-5">
                 <div class="grid md:grid-cols-4 gap-10 w-3/4 pb-8 sm:pr-3">
                     <div class="card w-80 bg-base-100 bg-slate-50 text-primary-content">
-                        <figure><img class="w-full h-52 object-cover" src="/images/Kit de Remendo Peneu.webp"
+                        <figure><img class="w-full h-52 object-cover" src="/app/views/images/Kit de Remendo Peneu.webp"
                                 alt="Shoes" /></figure>
                         <div class="card-body">
                             <h2 class="card-title text-black">Kit de remendo Pneu</h2>
@@ -173,7 +173,7 @@
                         </div>
                     </div>
                     <div class="card w-80 bg-base-100 bg-slate-50 text-primary-content">
-                        <figure><img class="w-full h-52 object-cover" src="/images/Extrator do Movimento Central.jpg"
+                        <figure><img class="w-full h-52 object-cover" src="/app/views/images/Extrator do Movimento Central.jpg"
                                 alt="Shoes" /></figure>
                         <div class="card-body">
                             <h2 class="card-title text-black">Extrator do movimento central</h2>
@@ -188,7 +188,7 @@
                         </div>
                     </div>
                     <div class="card w-80 bg-base-100 bg-slate-50 text-primary-content">
-                        <figure><img class="w-full h-52 object-cover" src="/images/Kit Catraca.webp" alt="Shoes" />
+                        <figure><img class="w-full h-52 object-cover" src="/app/views/images/Kit Catraca.webp" alt="Shoes" />
                         </figure>
                         <div class="card-body">
                             <h2 class="card-title text-black">Kit catraca</h2>
@@ -202,7 +202,7 @@
                         </div>
                     </div>
                     <div class="card w-80 bg-base-100 bg-slate-50 text-primary-content">
-                        <figure><img class="w-full h-50 object-cover" src="/images/Maleta de Ferramentas.jpg"
+                        <figure><img class="w-full h-50 object-cover" src="/app/views/images/Maleta de Ferramentas.jpg"
                                 alt="Shoes" /></figure>
                         <div class="card-body">
                             <h2 class="card-title text-black">Maleta de Ferramentas</h2>
@@ -227,7 +227,7 @@
             <div class="flex justify-center items-center pb-5">
                 <div class="grid md:grid-cols-4 gap-10 w-3/4 pb-8 sm:pr-3">
                     <div class="card w-80 bg-base-100 bg-slate-50 text-primary-content">
-                        <figure><img class="w-full h-52 object-cover" src="/images/Bicicleta Motorizada Moskito.jpg"
+                        <figure><img class="w-full h-52 object-cover" src="/app/views/images/Bicicleta Motorizada Moskito.jpg"
                                 alt="Shoes" /></figure>
                         <div class="card-body">
                             <h2 class="card-title text-black">Bicicleta Motorizada Moskito</h2>
@@ -242,7 +242,7 @@
                         </div>
                     </div>
                     <div class="card w-80 bg-base-100 bg-slate-50 text-primary-content">
-                        <figure><img class="w-full h-52 object-cover" src="/images/Mobilete Motor Estacionário.webp"
+                        <figure><img class="w-full h-52 object-cover" src="/app/views/images/Mobilete Motor Estacionário.webp"
                                 alt="Shoes" /></figure>
                         <div class="card-body">
                             <h2 class="card-title text-black">Mobilete com motor estacionário</h2>
@@ -257,7 +257,7 @@
                         </div>
                     </div>
                     <div class="card w-80 bg-base-100 bg-slate-50 text-primary-content">
-                        <figure><img class="w-full h-52 object-cover" src="/images/Mobilete 4 tempos.jpeg"
+                        <figure><img class="w-full h-52 object-cover" src="/app/views/images/Mobilete 4 tempos.jpeg"
                                 alt="Shoes" /></figure>
                         <div class="card-body">
                             <h2 class="card-title text-black">Mobilete 4 Tempos</h2>
@@ -273,7 +273,7 @@
                         </div>
                     </div>
                     <div class="card w-80 bg-base-100 bg-slate-50 text-primary-content">
-                        <figure><img class="w-full h-52 object-cover" src="/images/Bicicleta Motorizada Moskito.jpg"
+                        <figure><img class="w-full h-52 object-cover" src="/app/views/images/Bicicleta Motorizada Moskito.jpg"
                                 alt="Shoes" /></figure>
                         <div class="card-body">
                             <h2 class="card-title text-black">Shoes!</h2>
@@ -297,7 +297,7 @@
             <div class="flex justify-center items-center pb-5">
                 <div class="grid md:grid-cols-4 gap-10 w-3/4 pb-8 sm:pr-3">
                     <div class="card w-80 bg-base-100 bg-slate-50 text-primary-content">
-                        <figure><img class="w-full h-52 object-cover" src="/images/Capacete Absolute.webp"
+                        <figure><img class="w-full h-52 object-cover" src="/app/views/images/Capacete Absolute.webp"
                                 alt="Shoes" /></figure>
                         <div class="card-body">
                             <h2 class="card-title text-black">Capacete absolute</h2>
@@ -312,7 +312,7 @@
                         </div>
                     </div>
                     <div class="card w-80 bg-base-100 bg-slate-50 text-primary-content">
-                        <figure><img class="w-full h-52 object-cover" src="/images/Luvas Ciclismo.webp" alt="Shoes" />
+                        <figure><img class="w-full h-52 object-cover" src="/app/views/images/Luvas Ciclismo.webp" alt="Shoes" />
                         </figure>
                         <div class="card-body">
                             <h2 class="card-title text-black">Luvas Ciclismo</h2>
@@ -327,7 +327,7 @@
                         </div>
                     </div>
                     <div class="card w-80 bg-base-100 bg-slate-50 text-primary-content">
-                        <figure><img class="w-full h-52 object-cover" src="/images/Shorts para Bike.jpg" alt="Shoes" />
+                        <figure><img class="w-full h-52 object-cover" src="/app/views/images/Shorts para Bike.jpg" alt="Shoes" />
                         </figure>
                         <div class="card-body">
                             <h2 class="card-title text-black">Shorts para bike</h2>
@@ -341,7 +341,7 @@
                         </div>
                     </div>
                     <div class="card w-80 bg-base-100 bg-slate-50 text-primary-content">
-                        <figure><img class="w-full h-52 object-cover" src="/images/Meia oggi.webp" alt="Shoes" />
+                        <figure><img class="w-full h-52 object-cover" src="/app/views/images/Meia oggi.webp" alt="Shoes" />
                         </figure>
                         <div class="card-body">
                             <h2 class="card-title text-black">Meia oggi</h2>
@@ -403,7 +403,7 @@
                 contatar pelo whatsapp! Basta clicar no link: </p><a
                 href="https://wa.me/5511978654859?text=Ol%C3%A1%2C+estou+interessado+nos+produtos+da+Aquarela+Imports%2C+podem+me+dar+mais+informa%C3%A7%C3%B5es%3F">
                 <p class="underline text-blue-600">https://wa.me/5511978654859</p>
-            </a>. <br> <img src="images/qrcode.png" alt=""> <br>
+            </a>. <br> <img src="/app/views/images/qrcode.png" alt=""> <br>
             <p class="text-black">Lembrando que todos os nossos preços são ficticios no momento pois o site ainda está
                 em desenvolvimento...</p>
             <div class="modal-action">
@@ -421,7 +421,7 @@
                 contatar pelo whatsapp para ver mais produtos! Basta clicar no link: </p> <a
                 href="https://wa.me/5511978654859?text=Ol%C3%A1%2C+estou+interessado+nos+produtos+da+Aquarela+Imports%2C+podem+me+dar+mais+informa%C3%A7%C3%B5es%3F">
                 <p class="underline text-blue-600">https://wa.me/5511978654859</p>
-            </a>. <br> <img src="images/qrcode.png" alt=""><br>
+            </a>. <br> <img src="/app/views/images/qrcode.png" alt=""><br>
             <p class="text-black">Lembrando que todos os nossos preços são ficticios no momento pois o site ainda está
                 em desenvolvimento.</p>
             <div class="modal-action">

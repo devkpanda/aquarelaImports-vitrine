@@ -4,6 +4,8 @@
  */
 namespace core\database;
 
+
+
 use PDOException;
 use RuntimeException;
 
@@ -19,6 +21,8 @@ class DBConnection {
      *
      * @var \PDO
      */
+    
+
     private $conn;
     
     /**
@@ -27,6 +31,7 @@ class DBConnection {
      * @throws \InvalidArgumentException se a configuração do banco de dados estiver incompleta.
      * @throws \RuntimeException se a conexão com o banco de dados falhar.
      */
+    
     function __construct() {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
@@ -43,7 +48,9 @@ class DBConnection {
             throw new RuntimeException("Connection failed: " . $e->getMessage());
         }
     }
-    
+   
+
+
     /**
      * Função para realizar uma query SQL no banco de dados.
      *
