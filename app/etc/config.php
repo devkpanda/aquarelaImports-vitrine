@@ -1,5 +1,7 @@
 <?php
 
+require '././vendor/autoload.php';
+
 /**
  * config.php
  * @package ZaitTinyFrameworkPHP
@@ -34,6 +36,11 @@ if (session_status() == PHP_SESSION_NONE) {
 global $rootPath; // é necessário global pra usar $rootPath de '/index.php'
 global $config;   // é necessário global pra usar $config de '/index.php'
 
+use Dotenv\Dotenv;
+
+$dotenv = Dotenv::createImmutable('./');
+$dotenv->load();
+
 // Arquivo de configurações de rotas
 $routersFile = $rootPath . '/app/etc/routes.json';
 $uriArray    = [];
@@ -61,11 +68,11 @@ if ($showErrors){
     error_reporting(E_ALL);
 }
 
-$config['database']['host']		= '144.217.39.54';
-$config['database']['schema']	= 'hostdeprojetos_aquarelaimports';
-$config['database']['user']		= 'hostdeprojetos';
-$config['database']['pass']		= 'ifspgru@2022';
-$config['database']['port']		= '3306';
+$config['database']['host']		= $_ENV['db_host'];
+$config['database']['schema']	= $_ENV['db_schema'];
+$config['database']['user']		= $_ENV['db_user'];
+$config['database']['pass']		= $_ENV['db_pass'];
+$config['database']['port']		= $_ENV['db_port'];
 
 $config['email']['host']	    = 'smtp.mydomain.com';
 $config['email']['port']	    =  587;
