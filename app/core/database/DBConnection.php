@@ -2,13 +2,12 @@
 /**
  * Namespace para a classe DBConnection
  */
-namespace core\database;
+ namespace core\database;
 
 
 
 use PDOException;
 use RuntimeException;
-
 
 /**
  * Classe DBConnection para estabelecer uma conexão com o banco de dados.
@@ -36,7 +35,8 @@ class DBConnection {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-        if (!isset( $_SESSION['database']['host'], $_SESSION['database']['user'], $_SESSION['database']['pass'], $_SESSION['database']['schema'])) {
+        //( $_SESSION['database']['host'], $_SESSION['database']['user'], $_SESSION['database']['pass'], $_SESSION['database']['schema'])
+        if (!isset( $_ENV['db_host'], $_ENV['db_user'], $_ENV['db_pass'], $_ENV['db_schema'])) {
             throw new \InvalidArgumentException("Configuração de banco de dados incompleta.");
         }
         
