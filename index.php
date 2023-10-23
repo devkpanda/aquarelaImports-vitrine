@@ -7,9 +7,10 @@
  * @version 0.0.0.1
  * @see     https://cleberoliveira.info
  */
+
 require 'vendor/autoload.php';
 use Dotenv\Dotenv;
-use core\utils\router;
+use core\utils\Router;
 
 $path = dirname(__FILE__); // $path = dirname(__FILE__, 2); tbm serve n entendi pq
 
@@ -18,7 +19,7 @@ $dotenv->load();
 
 
 //var_dump($_ENV['db_host']);
-//die();
+//die(); */
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
