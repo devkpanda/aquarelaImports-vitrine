@@ -17,9 +17,10 @@
 
     <body>
         <div class="flex justify-center items-center h-screen bg-gray-200">
-            
             <div class="w-96 p-6 shadow-lg bg-white rounded-md">
+
             <div id="result"></div>
+            
                 <div class="flex justify-center items-center">
                     <img src="/app/views/images/logo2.png" alt="" class="w-24">
                 </div>
@@ -46,11 +47,29 @@
 
         <script>
        
-            var email    = $("email").val;
-            var password = $("password").val;
-            const login  = document.getElementById("login");
+            var email    = $("#email").val();
+            var password = $("#password").val();
+            var login = $("#login").val();
+            //const login  = document.getElementById("login");
 
-            login.addEventListener("click", () => {
+            $(document).on("click", "#login", function(e){
+                //alert("click");
+                // /app/controllers/teste.php
+                 $.ajax ({
+                    url: "/app/controllers/teste.php",
+                    type: "post",
+                    data: {
+                        email: email,
+                        password: password,
+                        login: login
+                    }, 
+                    sucess: function(data) {
+                        $("#result").html(data);
+                    }
+                }); 
+            });
+
+            /*login.addEventListener("click", () => {
                 //var login = $("login").val;
                 // erro aq
                 $.ajax ({
@@ -64,8 +83,8 @@
                     sucess: function(data) {
                         $("#result").html(data);
                     }
-                });
-            });
+                }); 
+            });*/
 
         
         </script>
