@@ -48,7 +48,7 @@
 		"errorPath" : "app/views/home.php"
 	},
 	"login" : { 
-		"path" : "app/controllers/CtrlUsers.php",
+		"path" : "app/views/login.php",
 		"sessionKey": [{"idUsuario": false}], 
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
 		"errorPath" : "app/views/home.php"
@@ -64,5 +64,11 @@
 		"sessionKey": [{"idUsuario": false}], 
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
 		"errorPath" : "app/views/home.php"
+	},
+	"login/teste" : { 
+		"path" : "app/controllers/teste.php",
+		"sessionKey": [{"idUsuario": false}], 
+		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
+		"errorPath" : "app/views/login.php"
 	}
 }

@@ -3,6 +3,8 @@
 use core\database\Where;
 use models\User;
 
+echo ("oi");
+
 $url = parse_url($_SERVER['REQUEST_URI']);
 $uriPath = strtolower($url['path']);
 
