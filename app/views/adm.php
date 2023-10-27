@@ -12,31 +12,16 @@
 
 <body>
 
-
-<!--
-        <script setup>
-            import ad from '/icons/icons-ad.png'
-            import insert from '/icons/insert.png'
-            import update from '/icons/update.png'
-                const sidebar = [
-                    [
-                        { name: "Advertisement", icon: ad },
-                        { name: "Insert", icon: insert },
-                        { name: "Update", icon: update }
-                    ]
-                ];
-
-        </script> -->
-
-        <div class="w-full min-h-screen font-sans text-gray-900 bg-gray-50 ml-4 flex">
+        <div class="w-full min-h-screen font-sans text-gray-900 bg-gray-50 flex">
           <aside class="py-6 px-18 w-64 border-r border-gray-200">
-            <div class="flex justify-center items-center">
-            <img src="/app/views/images/logo2.png" alt="" class="w-28">
+              <div class="flex justify-center items-center">
+              <img src="/app/views/images/logo2.png" alt="" class="w-28">
             </div>
-              
-                <ul v-for="group in sidebar" class="flex flex-col gap-y-6 pt-20 ">
+
+            <div class="ml-4">
+             <ul v-for="group in sidebar" class="flex flex-col gap-y-6 pt-20 ">
                     <li v-for="item in group">
-                        <a href="#" class="flex gap-x4 items-start py-2 text-gray-500 hover:text-black">
+                        <a href="#" id="ad_btn" class="flex gap-x4 items-start py-2 text-gray-500 hover:text-black">
                             <img src="/app/views/icons/icon-ad.png" alt="" class="w-8 mr-4">
                         <!--
                             $ npm install -D vite-svg-loader
@@ -58,76 +43,110 @@
                         </a>
                     </li>
                 </ul>
-                <ul class="flex items-center px-4 border-y border-gray-200">
-                    <li>
+
+                <div class=" items-end px-4 mt-96">
+                  <ul class="border-y border-gray-200 w-full">
+                    <li class="">
                         <a href="#" class="flex gap-x4 items-start py-2 text-gray-500 hover:text-black">
                             Logout
                         </a>
                     </li>
+                    <li class="">
+                        <a href="#" class="flex gap-x4 items-start py-2 text-gray-500 hover:text-black">
+                            Settings
+                        </a>
+                    </li>
+            </div>
+              </div>
+              
+
             </aside>
 
             <main class="flex-l w-full ">
-                <div class="flex">
+                <div class="flex flex-col">
                 <div class="flex items-center justify-between py-7 px-10">
                     <h1 class="text-2xl font-semibold leading-relaxed text-gray-800">Administrador</h1>
+                    <p class="text-sm font-medium text-gray-500">Administre sua página aqui.</p>
                 </div>
                 </div>
 
-                <div class="flex flex-col">
-                <ul class="flex gap-x-24 items-center px-4 border-y border-gray-200">
+                <div class="hidden flex flex-col" id="ad_ul">
+                <ul class="flex justify-center items-center gap-x-24 px-4 border-y border-gray-200">
                     <li>
-                        <button class="flex gap-x-2 items-center py-5 px-6 text-gray-500">
-                            Publicados
+                        <button class="flex gap-x-2 items-center py-5 px-6 text-gray-500" id="search_btn">
+                            Pesquisar
                         </button>
                     </li>
                     <li>
                         <button class="flex gap-x-2 items-center py-5 px-6 text-gray-500">
-                            Arquivados
+                            Adicionar
                         </button>
                     </li>
                     <li>
                         <button class="flex gap-x-2 items-center py-5 px-6 text-gray-500">
-                            Rascunhos
+                            Alterar
+                        </button>
+                    </li>
+                    <li>
+                        <button class="flex gap-x-2 items-center py-5 px-6 text-gray-500">
+                            Deletar
                         </button>
                     </li>
                 </ul>
                 </div>
 
-                <div class="grid gp-10 bg-white rounded-[10px] p-[3rem] h-50 m-10 w-6/12">
+               
+                
+
+                <div class="hidden flex justify-center items-center" id="ad_search">
+                  <div class="grid gp-10 bg-white rounded-[10px] p-[3rem] h-50 m-10 w-6/12 flex justify-center" >
                     <form action="">
-                    <div class="flex justify-center">
-                            <h1 class="text-2xl font-semibold leading-relaxed text-gray-800">Pesquise o anúncio</h1>
-                            </div>
-                        <div class="m-4 flex flex-row justify-center rounded-[8px] bg-white p-5 shadow-lg shadow-greyIsh-700">
-                       
-                                <div class="form-control flex flex-row">
-                                    <input type="text" id="search" placeholder="Pesquise o anúncio" class=" input input-bordered mt-4" />
-                                    <button class="btn btn-square mt-4 mr-4" id="submit">
-                                        <svg xmlns="http://www.w3.org/2000/svg" id="submit" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-                                    </button> 
-                                </div>
-                        <div class="">
-                            <div class="form-control flex flex-row">
-                                <div class="form-control">
-                                    <div class="input-group m-4">
-                                    <select class="select select-bordered">
-                                        <option disabled selected>Categoria</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                    </select>
-                                    <button class="btn">Go</button>
-                                </div>
-                            </div>
-                            </div>
+                        <div class="flex justify-center">
+                                <h1 class="text-2xl font-semibold leading-relaxed text-gray-800">Pesquise o anúncio</h1>
                         </div>
-                </div>
+                            <div class="m-4 flex flex-row justify-center rounded-[8px] bg-white p-5 shadow-lg shadow-greyIsh-700">
+                                    <div class="form-control flex flex-row">
+                                        <input type="text" id="search" placeholder="Pesquise o anúncio" class=" input input-bordered mt-4" />
+                                        <button class="btn btn-square mt-4 mr-4" id="submit">
+                                            <svg xmlns="http://www.w3.org/2000/svg" id="submit" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                                        </button> 
+                                    </div>
+                            <div class="">
+                                <div class="form-control flex flex-row">
+                                    <div class="form-control">
+                                        <div class="input-group m-4">
+                                          <select class="select select-bordered">
+                                              <option disabled selected>Categoria</option>
+                                              <option>1</option>
+                                              <option>2</option>
+                                          </select>
+                                        <button class="btn">Go</button>
+                                      </div>
+                                    </div>
+                            </div>
                     </form>
+                  </div>
+                </div>
             
-            </main>
+               
+              </main>
+
+        <script>
+          const ad_btn    = document.getElementById("ad_btn");
+          const ad_search   = document.getElementById("ad_search");
+          const ad_ul   = document.getElementById("ad_ul");
+          const search_btn  = document.getElementById("search_btn");
+
+          ad_btn.addEventListener("click", () => {
+            ad_ul.classList.toggle("hidden");
+          });
+
+          search_btn.addEventListener("click", () => {
+            ad_search.classList.toggle("hidden");
+          });
 
 
-        </div>
-
+        </script>
 </body>
 </html>
 
