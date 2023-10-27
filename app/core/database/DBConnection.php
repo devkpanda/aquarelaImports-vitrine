@@ -36,8 +36,7 @@ class DBConnection {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-        //( $_SESSION['database']['host'], $_SESSION['database']['user'], $_SESSION['database']['pass'], $_SESSION['database']['schema'])
-        if (!isset( $_ENV['db_host'], $_ENV['db_user'], $_ENV['db_pass'], $_ENV['db_schema'])) {
+        if (!isset( $_SESSION['database']['host'], $_SESSION['database']['user'], $_SESSION['database']['pass'], $_SESSION['database']['schema'])) {
             throw new \InvalidArgumentException("Configuração de banco de dados incompleta.");
         }
         

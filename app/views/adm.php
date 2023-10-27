@@ -11,95 +11,129 @@
 </head>
 
 <body>
-  <div class="navbar bg-orange-500 h-28">
-  <div class="drawer">
-          <input id="my-drawer" type="checkbox" class="drawer-toggle" />
-          <div class="drawer-content">
-          <label for="my-drawer" tabindex="0" class="btn btn-ghost btn-circle text-white" id="button">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
-      </label>
-          </div> 
-          <div class="drawer-side">
-            <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
-            <ul class="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-              <!-- Sidebar content here -->
-              <li><a id="btn_ad">Anúncios</a></li>
-              <div id="menu_ad" class="hidden">
-                <div class="px-2 pt-2 pd-3 sm:px-3">
-                  <a href="#" class="hover:gb-gray-200  block px-3 py-2 rounded-md text-xs font-sm">Inserir</a>
-                  <a href="#" class="hover:gb-gray-200 block px-3 py-2 rounded-md text-xs font-sm">Atualizar</a>
-                  <a href="#" class="hover:gb-gray-200  block px-3 py-2 rounded-md text-xs font-sm">Deletar</a>
-                  <a href="#" class="hover:gb-gray-200 block px-3 py-2 rounded-md text-xs font-sm">Listar</a>
+
+
+<!--
+        <script setup>
+            import ad from '/icons/icons-ad.png'
+            import insert from '/icons/insert.png'
+            import update from '/icons/update.png'
+                const sidebar = [
+                    [
+                        { name: "Advertisement", icon: ad },
+                        { name: "Insert", icon: insert },
+                        { name: "Update", icon: update }
+                    ]
+                ];
+
+        </script> -->
+
+        <div class="w-full min-h-screen font-sans text-gray-900 bg-gray-50 ml-4 flex">
+          <aside class="py-6 px-18 w-64 border-r border-gray-200">
+            <div class="flex justify-center items-center">
+            <img src="/app/views/images/logo2.png" alt="" class="w-28">
+            </div>
+              
+                <ul v-for="group in sidebar" class="flex flex-col gap-y-6 pt-20 ">
+                    <li v-for="item in group">
+                        <a href="#" class="flex gap-x4 items-start py-2 text-gray-500 hover:text-black">
+                            <img src="/app/views/icons/icon-ad.png" alt="" class="w-8 mr-4">
+                        <!--
+                            $ npm install -D vite-svg-loader
+                            <Component :is="item.icon" class="w-6 h-6 fill-current" />
+                           <span> {{ item.name }} </span>-->
+                            Anúncios
+
+                          <!--  <span>
+                                class="absolute w-1.5 h-8 bg-black rounded-r-full left-0 scale y-0 
+                                -translate-x-full group-hover:scale-y-100 group-hover:translate-x-0
+                                transition-transform ease-out"
+                            </span> -->
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex gap-x4 items-start py-2 text-gray-500 hover:text-black">
+                        <img src="/app/views/icons/pedido.png" alt="" class="w-8 mr-4">
+                            Pedidos
+                        </a>
+                    </li>
+                </ul>
+                <ul class="flex items-center px-4 border-y border-gray-200">
+                    <li>
+                        <a href="#" class="flex gap-x4 items-start py-2 text-gray-500 hover:text-black">
+                            Logout
+                        </a>
+                    </li>
+            </aside>
+
+            <main class="flex-l w-full ">
+                <div class="flex">
+                <div class="flex items-center justify-between py-7 px-10">
+                    <h1 class="text-2xl font-semibold leading-relaxed text-gray-800">Administrador</h1>
                 </div>
-              </div>
-              <li><a id="btn_pd">Pedidos</a></li>
-              <div id="menu_pd" class="hidden">
-                <div class="px-2 pt-2 pd-3 sm:px-3">
-                  <a href="#" class="hover:gb-gray-200  block px-3 py-2 rounded-md text-xs font-sm">Gerenciar</a>
-                  <a href="#" class="hover:gb-gray-200 block px-3 py-2 rounded-md text-xs font-sm">Pesquisar</a>
                 </div>
-              </div>
-            </ul>
-          </div>
-        </div>
+
+                <div class="flex flex-col">
+                <ul class="flex gap-x-24 items-center px-4 border-y border-gray-200">
+                    <li>
+                        <button class="flex gap-x-2 items-center py-5 px-6 text-gray-500">
+                            Publicados
+                        </button>
+                    </li>
+                    <li>
+                        <button class="flex gap-x-2 items-center py-5 px-6 text-gray-500">
+                            Arquivados
+                        </button>
+                    </li>
+                    <li>
+                        <button class="flex gap-x-2 items-center py-5 px-6 text-gray-500">
+                            Rascunhos
+                        </button>
+                    </li>
+                </ul>
+                </div>
+
+                <div class="grid gp-10 bg-white rounded-[10px] p-[3rem] h-50 m-10 w-6/12">
+                    <form action="">
+                    <div class="flex justify-center">
+                            <h1 class="text-2xl font-semibold leading-relaxed text-gray-800">Pesquise o anúncio</h1>
+                            </div>
+                        <div class="m-4 flex flex-row justify-center rounded-[8px] bg-white p-5 shadow-lg shadow-greyIsh-700">
+                       
+                                <div class="form-control flex flex-row">
+                                    <input type="text" id="search" placeholder="Pesquise o anúncio" class=" input input-bordered mt-4" />
+                                    <button class="btn btn-square mt-4 mr-4" id="submit">
+                                        <svg xmlns="http://www.w3.org/2000/svg" id="submit" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                                    </button> 
+                                </div>
+                        <div class="">
+                            <div class="form-control flex flex-row">
+                                <div class="form-control">
+                                    <div class="input-group m-4">
+                                    <select class="select select-bordered">
+                                        <option disabled selected>Categoria</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                    </select>
+                                    <button class="btn">Go</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                </div>
+                    </form>
             
-        <div class="flex-1">
-       <!-- <img class="w-20" src="/app/views/images/logo2.png"> !-->
-          <a class="btn btn-ghost normal-case text-xl text-white">Administrador</a>
-        </div>
-        <div class="flex-none">
+            </main>
 
-          <div class="dropdown dropdown-end text-white">
-            <button class="btn btn-square btn-ghost">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-8 h-8 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path></svg>
-            </button>
-            <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 ">
-              <li>
-                <a class="justify-between">
-                  Profile
-                  <span class="badge">New</span>
-                </a>
-              </li>
-              <li><a>Settings</a></li>
-              <li><a>Logout</a></li>
-            </ul>
-          </div>
-        </div>
+
         </div>
 
-        <div class="grid gp-10 bg-white rounded-[10px] p-[3rem] h-50 m-10 w-6/12">
-          <form action="">
-              <div class="m-4 flex flex-row justify-center rounded-[8px] bg-white p-5 shadow-lg shadow-greyIsh-700">
-                <div class="">
-                  <div class="form-control flex flex-row">
+</body>
+</html>
 
-                  <input type="text" id="search" placeholder="Pesquise o anúncio" class=" input input-bordered mt-4" />
 
-                  <button class="btn btn-square mt-4 mr-4" id="submit">
-                    <svg xmlns="http://www.w3.org/2000/svg" id="submit" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-                  </button> 
-
-                </div>
-              </div>
-              <div class="">
-                  <div class="form-control flex flex-row">
-                  <div class="form-control">
-                    <div class="input-group m-4">
-                      <select class="select select-bordered">
-                        <option disabled selected>Categoria</option>
-                        <option>1</option>
-                        <option>2</option>
-                      </select>
-                      <button class="btn">Go</button>
-                    </div>
-              </div>
-                </div>
-              </div>
-              </div>
-          </form>
-        </div>
-
-        <div class="container mx-auto">
+<!-- forms so p guardar
+     <div class="container mx-auto">
           <div class="w-6/12 bg-white rounded-md mx-auto shadow-lg overflow-hidden">
               <div class="py-16 px-12">
                 <img class="w-20" src="/app/views/images/logo2.png">
@@ -158,34 +192,4 @@
               
             </div>
             </div>
-        </div>
-
-</body>
-
-<script>
-
-    const menu_ad = document.getElementById("menu_ad");
-    const btn_ad  = document.getElementById("btn_ad");
-    const menu_pd = document.getElementById("menu_pd");
-    const btn_pd  = document.getElementById("btn_pd");
-
-    btn_ad.addEventListener("click", () => {
-        menu_ad.classList.toggle("hidden")
-    })
-
-    btn_pd.addEventListener("click", () => {
-        menu_pd.classList.toggle("hidden")
-    })
-      
-  
-
-
-</script>
-
-
-<script src="/../../public/assets/js/script.js"></script>
-
-<script src="/Jquery/jquery-3.5.1.min.js"></script>
-
-
-</html>
+        </div> -->

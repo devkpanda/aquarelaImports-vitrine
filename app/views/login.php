@@ -49,11 +49,11 @@
        
             var email    = $("#email").val();
             var password = $("#password").val();
-            var login = $("#login").val();
+            var login    = $("#login").val();
             //const login  = document.getElementById("login");
 
             $(document).on("click", "#login", function(e){
-                //alert("click");
+                e.preventDefault();
                 // /app/controllers/teste.php
                  $.ajax ({
                     url: "/app/controllers/teste.php",
@@ -62,8 +62,10 @@
                         email: email,
                         password: password,
                         login: login
+                        
                     }, 
-                    sucess: function(data) {
+                    sucess: function(response) {
+                        var data = JSON.parse(response);
                         $("#result").html(data);
                     }
                 }); 

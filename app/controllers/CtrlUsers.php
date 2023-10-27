@@ -3,8 +3,6 @@
 use core\database\Where;
 use models\User;
 
-echo ("oi");
-
 $url = parse_url($_SERVER['REQUEST_URI']);
 $uriPath = strtolower($url['path']);
 
@@ -45,7 +43,7 @@ if ($uriPath == '/user/add') {
     }
 }
 
-if ($uriPath == '/login') {
+if ($uriPath == '/login/2') {
     if (strtolower($_SERVER['REQUEST_METHOD']) == 'post'){
         $json = file_get_contents('php://input');
 
