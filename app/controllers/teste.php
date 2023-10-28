@@ -19,19 +19,4 @@ $uriPath = strtolower($url['path']);
         } 
 
 
-        /*if ($uriPath == '/login/teste') {
-            echo("oi2");
-
-            if(isset($_POST["login"])) {
-                echo ("foi");
-
-                if (isset($_POST["email"]) && isset($_POST["password"])) {
-                    echo $email     = $_POST["email"];
-                    echo $password  = $_POST["password"];
-            
-                }
-            }
-        } */
-
-
 ?>

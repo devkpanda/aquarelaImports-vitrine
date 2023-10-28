@@ -70,24 +70,6 @@
                     }
                 }); 
             });
-
-            /*login.addEventListener("click", () => {
-                //var login = $("login").val;
-                // erro aq
-                $.ajax ({
-                    url: "teste.php",
-                    method: "POST",
-                    data: {
-                        email: email,
-                        password: password,
-                        login: login
-                    }, 
-                    sucess: function(data) {
-                        $("#result").html(data);
-                    }
-                }); 
-            });*/
-
         
         </script>
     </body>
