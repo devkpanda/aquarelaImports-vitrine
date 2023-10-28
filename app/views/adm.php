@@ -27,7 +27,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" id="ad_btn" class="flex gap-x4 items-start py-2 text-gray-500 hover:text-black">
+                        <a href="#" id="advertisement_btn" class="flex gap-x4 items-start py-2 text-gray-500 hover:text-black">
                         <svg xmlns="http://www.w3.org/2000/svg" class="mr-6 ml-2 mt-1" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/></svg>
                             Anúncios
                         </a>
@@ -73,7 +73,7 @@
                         </button>
                     </li>
                     <li>
-                        <button class="flex gap-x-2 items-center py-5 px-6 text-gray-500" id="add_btn">
+                        <button class="flex gap-x-2 items-center py-5 px-6 text-gray-500" id="add_advertisement_btn">
                             Adicionar
                         </button>
                     </li>
@@ -92,15 +92,15 @@
                 
 
                 <div class=" hidden mt-4 flex justify-center items-center" id="ad_search">
-                  <div class="grid gp-10 bg-white shadow-lg rounded-[10px] p-[3rem] h-50 m-10 w-6/12 flex justify-center" >
+                  <div class="grid gp-10 bg-white rounded-[10px] p-[3rem] h-50 m-10 w-6/12 flex justify-center" >
                     <form action="">
                         <div class="flex justify-center">
                                 <h1 class="text-2xl font-semibold leading-relaxed text-gray-800">Pesquise o anúncio</h1>
                         </div>
                             <div class="m-4 flex flex-row justify-center rounded-[8px] bg-white p-5 shadow-lg shadow-greyIsh-700">
                                     <div class="form-control flex flex-row">
-                                        <input type="text" id="search" placeholder="Pesquise o anúncio" class=" input input-bordered mt-4" />
-                                        <button class="btn btn-square mt-4 mr-4" id="submit">
+                                        <input type="text" id="search" placeholder="Pesquise o anúncio" class=" input border-gray-300 mt-4 bg-white" />
+                                        <button class="btn btn-square mt-4 mr-4 bg-white border-gray-300" id="submit">
                                           <svg xmlns="http://www.w3.org/2000/svg" id="submit" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
                                         </button> 
                                     </div>
@@ -108,12 +108,13 @@
                                 <div class="form-control flex flex-row">
                                     <div class="form-control">
                                         <div class="input-group m-4">
-                                          <select class="select select-bordered">
-                                              <option disabled selected>Categoria</option>
-                                              <option>1</option>
-                                              <option>2</option>
-                                          </select>
-                                        <button class="btn">Go</button>
+                                            <select class="select select-bordered bg-white border-gray-300">
+                                                <option disabled selected>Categoria</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                            </select>
+                                            <button class="btn bg-white border-gray-300">Go</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -124,13 +125,13 @@
 
 <!-- script para os formulários e a tela de search só aparecerem conforme solicitado. Deixar mais como um rascunho já que ainda tem muitos erros -->
         <script>
-          const ad_btn      = document.getElementById("ad_btn");
+          const advertisement_btn      = document.getElementById("advertisement_btn");
           const ad_search   = document.getElementById("ad_search");
           const ad_ul       = document.getElementById("ad_ul");
           const search_btn  = document.getElementById("search_btn");
           const home_btn    = document.getElementById("home_btn");
 
-          ad_btn.addEventListener("click", () => {
+          advertisement_btn.addEventListener("click", () => {
             ad_ul.classList.toggle("hidden");
           });
 

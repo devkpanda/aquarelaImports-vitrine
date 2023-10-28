@@ -16,7 +16,7 @@
     </head>
 
     <body>
-        <div class="flex justify-center items-center h-screen bg-gray-200">
+        <div class="flex justify-center items-center h-screen bg-gray-200 rounded-md">
             <div class="w-96 p-6 shadow-lg bg-white rounded-md">
 
             <div id="result"></div>
@@ -27,17 +27,17 @@
                 <hr class="mt-3">
                 <div class="mt-3">
                     <label for="email" class="block text-base mb-2">Email</label>
-                    <input type="text" id="email" class="border w-full text-base px-2 py-1 focus:outline-none focues:ring-0
+                    <input type="text" id="email" class="rounded-md bg-white border w-full text-base px-2 py-1 focus:outline-none focues:ring-0
                     focus-border-gray-200" placeholder="Insira o email...">
                 </div>
 
                 <div class="mt-3">
                     <label for="email" class="block text-base mb-2">Senha</label>
-                    <input type="text" id="senha" class="border w-full text-base px-2 py-1 focus:outline-none focues:ring-0
+                    <input type="text" id="senha" class="rounded-md bg-white border w-full text-base px-2 py-1 focus:outline-none focues:ring-0
                     focus-border-gray-200" placeholder="Insira a senha...">
                 </div>
                 <div class="flex justify-center items-center mt-4">
-                    <button class="btn btn-default" id="login">Login</button>
+                    <button class="btn btn-default bg-white hover:bg-gray-100 font-black border-gray-300" id="login">Login</button>
                 </div>
                 
             </div>
@@ -49,20 +49,17 @@
        
             var email    = $("#email").val();
             var password = $("#password").val();
-            var login    = $("#login").val();
             //const login  = document.getElementById("login");
 
             $(document).on("click", "#login", function(e){
                 e.preventDefault();
                 // /app/controllers/teste.php
                  $.ajax ({
-                    url: "/app/controllers/teste.php",
+                    url: "127.0.0.1/login/auth",
                     type: "post",
                     data: {
                         email: email,
-                        password: password,
-                        login: login
-                        
+                        password: password
                     }, 
                     sucess: function(response) {
                         var data = JSON.parse(response);

@@ -43,7 +43,7 @@ if ($uriPath == '/user/add') {
     }
 }
 
-if ($uriPath == '/login/2') {
+if ($uriPath == '/login/auth') {
     if (strtolower($_SERVER['REQUEST_METHOD']) == 'post'){
         $json = file_get_contents('php://input');
 
@@ -88,6 +88,7 @@ if ($uriPath == '/login/2') {
 
                         $json[] = $userArray;
                     }
+                    echo $json;
                 } else {
                     echo json_encode(array('message' => '1'));
                 }
