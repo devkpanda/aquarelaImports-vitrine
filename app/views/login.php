@@ -84,7 +84,12 @@
                     if (formData.has("email") && formData.has("password")){
                         fetch("http://127.0.0.1/login/auth", {
                             method: "POST",
-                            headers: {'Content-Type': 'application/json'},
+                            headers: {
+                                'Origin': 'http://127.0.0.1', // O domínio do seu site
+                                'Access-Control-Request-Method': 'GET', // O método de solicitação que você deseja usar
+                                'Access-Control-Request-Headers': 'X-Requested-With, Content-Type', // Quais cabeçalhos personalizados você deseja enviar
+                                'Content-Type': 'application/json'
+                            },
                             body: JSON.stringify({
                                 email: formData.get("email"),
                                 password: formData.get("password")
