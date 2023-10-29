@@ -65,7 +65,7 @@
                       <p class="text-sm font-medium text-gray-500">Administre sua página aqui.</p>
                   </div>
                 </div>
-                <div class="hidden flex flex-col" id="ad_ul">
+                <div class="flex flex-col" id="ad_ul">
                   <ul class="flex justify-center items-center gap-x-24 px-4 border-y border-gray-200">
                     <li>
                         <button class="flex gap-x-2 items-center py-5 px-6 text-gray-500" id="search_btn">
@@ -91,8 +91,8 @@
                 </div>
                 
 
-                <div class=" hidden mt-4 flex justify-center items-center" id="ad_search">
-                  <div class="grid gp-10 bg-white rounded-[10px] p-[3rem] h-50 m-10 w-6/12 flex justify-center" >
+                <div class="mt-4 flex justify-center items-center " id="ad_search">
+                  <div class="grid gp-10 bg-white rounded-[10px] p-[3rem] h-50 m-10 w-6/12 flex justify-center lg:shadow" >
                     <form action="">
                         <div class="flex justify-center">
                                 <h1 class="text-2xl font-semibold leading-relaxed text-gray-800">Pesquise o anúncio</h1>
@@ -121,7 +121,72 @@
                     </form>
                   </div>
                 </div>
+
+
+                <div class="w-8/12 mr-4">
+                <div class="avatar flex items-center justify-center">
+                    <div class="w-24 rounded-full">
+                      <img src="/app/views/images/list-icon.jpg" />
+                    </div>
+                </div> 
+                    <div class="p-6 shadow-lg bg-white rounded-lg">
+                    <h1 class="text-2xl font-semibold leading-relaxed text-gray-800">Inserir</h1>
+                      <hr class="mt-3">
+
+                      <form action="" class="grid grid-cols-2 gap-4">
+                          <div class="mt-3">
+                              <label for="email" class="block text-base mb-2">Nome</label>
+                              <input type="text" placeholder="Digite o nome.." class="input input-bordered w-full max-w-xs" />
+                          </div>
+                          <div class="mt-3">
+                              <label for="email" class="block text-base mb-2">Descrição</label>
+                              <input type="text" placeholder="Digite a descrição.." class="input input-bordered w-full max-w-xs" />
+                          </div>
+                          <div class="mt-3">
+                              <label for="email" class="block text-base mb-2">Preço</label>
+                              <input type="text" placeholder="Digite o preço.." class="input input-bordered w-full max-w-xs" />
+                          </div>
+                          <div class="mt-3">
+                              <label for="email" class="block text-base mb-2">Id da Categoria</label>
+                              <input type="text" placeholder="Digite o Id.." class="input input-bordered w-full max-w-xs" />
+                          </div>
+                          <div class="mt-3">
+                              <label for="email" class="block text-base mb-2">Peso</label>
+                              <input type="text" placeholder="Digite o peso.." class="input input-bordered w-full max-w-xs" />
+                          </div>
+
+                          <div class="mt-3">
+                              <label for="email" class="block text-base mb-2">Tamanho</label>
+                              <input type="text" placeholder="Digite o tamanho.." class="input input-bordered w-full max-w-xs" />
+                          </div>
+                          <div class="mt-3">
+                              <label for="email" class="block text-base mb-2">Url</label>
+                              <input type="text" placeholder="Digite a Url.." class="input input-bordered w-full max-w-xs" />
+                          </div>
+
+                          <div class="mt-3">
+                              <label for="email" class="block text-base mb-2">Foto</label>
+                              <input type="file" class="file-input file-input-bordered file-input-bg-orange-500 w-full max-w-xs" />
+                          </div>
+
+
+
+
+                          
+                          <div class="flex justify-center items-center mt-4">
+                              <button class="btn btn-default bg-orange-500 hover:bg-black font-black border-orange-500">Submit</button>
+                          </div>
+                          
+                      </form>
+                    </div>
+                </div>
+                 
+              
+
               </main>
+
+
+
 
 <!-- script para os formulários e a tela de search só aparecerem conforme solicitado. Deixar mais como um rascunho já que ainda tem muitos erros -->
         <script>
@@ -132,6 +197,7 @@
           const home_btn    = document.getElementById("home_btn");
 
           advertisement_btn.addEventListener("click", () => {
+           
             ad_ul.classList.toggle("hidden");
           });
 
@@ -139,9 +205,9 @@
             ad_search.classList.toggle("hidden");
           });
 
-         /* add_btn.addEventListener("click", () => {
+         add_btn.addEventListener("click", () => {
             ad_add.classList.toggle("hidden");
-          }); */
+          }); 
 
 
         </script>
