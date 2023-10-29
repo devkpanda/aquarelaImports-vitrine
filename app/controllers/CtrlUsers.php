@@ -88,18 +88,17 @@ if ($uriPath == '/login/auth') {
 
                         $json[] = $userArray;
                     }
-                    echo $json;
                 } else {
-                    echo json_encode(array('message' => '1'));
+                    return json_encode(array('message' => '1'));
                 }
 
                 $_SESSION['idNivelUsuario'] = $user->getIdNivelUsuario();
 
-                echo json_encode($json);
+                die(json_encode($json[0])); 
             }
         } 
     } else {
-        echo json_encode(array('message' => 'Method not allowed'));
+        die(json_encode(array('message' => 'Method not allowed')));
     }
 }
 
