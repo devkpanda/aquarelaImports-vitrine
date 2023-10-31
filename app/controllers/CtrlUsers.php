@@ -93,9 +93,10 @@ if ($uriPath == '/login/auth') {
                         $user->setEmail($Ruser->getEmail());
 
                         $userArray = array(
-                            "id" => $user->getId(),
-                            "Name" => $user->getName(),
-                            "email" => $user->getEmail()
+                            "message"   => "0",
+                            "id"        => $user->getId(),
+                            "Name"      => $user->getName(),
+                            "email"     => $user->getEmail()
                         );
 
                         $json[] = $userArray;

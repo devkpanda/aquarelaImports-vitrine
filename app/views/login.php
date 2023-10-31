@@ -99,16 +99,10 @@
                             if (!response.ok) {
                                 throw new Error('Erro na solicitação. Código de status: ' + response.status);
                             }
-                            return response.text();
-                        })
-                        .then(text => {
-                            $("#result").html("Resposta do servidor:", text); // Depuração
-                            const data = JSON.parse(text); // Tentar analisar o texto como JSON
-                            $("#result").html("Dados analisados:", data); // Depuração
-                            // Resto do seu código
+                            return response.json();
                         })
                         .then(data => {
-                            $("#result").html(data)
+                            if (data.name)
                             $("#login-loading").hide(100)
                         })
                         .catch(error => {
