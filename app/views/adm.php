@@ -40,7 +40,7 @@
                     </li>
                 </ul>
 
-                <div class=" items-end px-4 mt-96">
+                <div class=" flex justify-end items-end px-4 place-items-end mt-96 ">
                   <ul class="border-y border-gray-200 w-full">
                     <li class="">
                         <a href="#" class="flex gap-x4 items-start py-2 text-gray-500 hover:text-black">
@@ -55,6 +55,8 @@
                         </a>
                     </li>
                 </div>
+
+
             </div>
           </aside>
 
@@ -91,7 +93,7 @@
                 </div>
                 
 
-                <div class="mt-4 flex justify-center items-center " id="ad_search">
+                <div class="hidden mt-4 flex justify-center items-center " id="ad_search">
                   <div class="grid gp-10 bg-white rounded-[10px] p-[3rem] h-50 m-10 w-6/12 flex justify-center lg:shadow" >
                     <form action="">
                         <div class="flex justify-center">
@@ -121,65 +123,136 @@
                     </form>
                   </div>
                 </div>
+                </div>
                 
 
 
-                <div class="w-8/12 mr-4">
-                <div class="avatar ml-96">
-                    <div class="w-24 rounded-full mt-4 -my-12">
-                      <img src="/app/views/images/list-icon.jpg" class="" />
-                    </div>
-                </div> 
-                    <div class="p-6 shadow-lg bg-white rounded-lg">
-                    <h1 class="text-2xl font-semibold leading-relaxed text-gray-800">Inserir</h1>
-                    
-                      <hr class="mt-4 w-full">
+                <div class="w-8/12 mr-4 ml-8">
+                    <div class="avatar ml-96">
+                        <div class="w-24 rounded-full mt-4 -my-12 lg:shadow">
+                        <img src="/app/views/images/list-icon.jpg" class="" />
+                        </div>
+                    </div> 
+                        <div class="p-6 shadow-lg bg-white rounded-lg">
+                        <h1 class="text-2xl font-semibold leading-relaxed text-gray-800">Inserir</h1>
+                        <hr class="mt-4 w-full">
+                        <form action="" class="grid grid-cols-2 gap-4 mt-6 ml-24 ">
+                            <div class="mt-3">
+                                <label for="email" class="block text-base mb-2">Nome</label>
+                                <input type="text" placeholder="Digite o nome.." class="input input-bordered w-full max-w-xs" />
+                            </div>
+                            <div class="mt-3">
+                                <label for="email" class="block text-base mb-2">Descrição</label>
+                                <input type="text" placeholder="Digite a descrição.." class="input input-bordered w-full max-w-xs" />
+                            </div>
+                            <div class="mt-3">
+                                <label for="email" class="block text-base mb-2">Preço</label>
+                                <input type="text" placeholder="Digite o preço.." class="input input-bordered w-full max-w-xs" />
+                            </div>
+                            <div class="mt-3">
+                                <label for="email" class="block text-base mb-2">Id da Categoria</label>
+                                <input type="text" placeholder="Digite o Id.." class="input input-bordered w-full max-w-xs" />
+                            </div>
+                            <div class="mt-3">
+                                <label for="email" class="block text-base mb-2">Peso</label>
+                                <input type="text" placeholder="Digite o peso.." class="input input-bordered w-full max-w-xs" />
+                            </div>
 
-                      <form action="" class="grid grid-cols-2 gap-4 mt-6 ml-12">
-                          <div class="mt-3">
-                              <label for="email" class="block text-base mb-2">Nome</label>
-                              <input type="text" placeholder="Digite o nome.." class="input input-bordered w-full max-w-xs" />
-                          </div>
-                          <div class="mt-3">
-                              <label for="email" class="block text-base mb-2">Descrição</label>
-                              <input type="text" placeholder="Digite a descrição.." class="input input-bordered w-full max-w-xs" />
-                          </div>
-                          <div class="mt-3">
-                              <label for="email" class="block text-base mb-2">Preço</label>
-                              <input type="text" placeholder="Digite o preço.." class="input input-bordered w-full max-w-xs" />
-                          </div>
-                          <div class="mt-3">
-                              <label for="email" class="block text-base mb-2">Id da Categoria</label>
-                              <input type="text" placeholder="Digite o Id.." class="input input-bordered w-full max-w-xs" />
-                          </div>
-                          <div class="mt-3">
-                              <label for="email" class="block text-base mb-2">Peso</label>
-                              <input type="text" placeholder="Digite o peso.." class="input input-bordered w-full max-w-xs" />
-                          </div>
+                            <div class="mt-3">
+                                <label for="email" class="block text-base mb-2">Tamanho</label>
+                                <input type="text" placeholder="Digite o tamanho.." class="input input-bordered w-full max-w-xs" />
+                            </div>
+                            <div class="mt-3">
+                                <label for="email" class="block text-base mb-2">Url</label>
+                                <input type="text" placeholder="Digite a Url.." class="input input-bordered w-full max-w-xs" />
+                            </div>
 
-                          <div class="mt-3">
-                              <label for="email" class="block text-base mb-2">Tamanho</label>
-                              <input type="text" placeholder="Digite o tamanho.." class="input input-bordered w-full max-w-xs" />
-                          </div>
-                          <div class="mt-3">
-                              <label for="email" class="block text-base mb-2">Url</label>
-                              <input type="text" placeholder="Digite a Url.." class="input input-bordered w-full max-w-xs" />
-                          </div>
+                            <div class="mt-3">
+                                <label for="email" class="block text-base mb-2">Foto</label>
+                                <input type="file" class="file-input file-input-bordered file-input-bg-orange-500 w-full max-w-xs" />
+                            </div>
 
-                          <div class="mt-3">
-                              <label for="email" class="block text-base mb-2">Foto</label>
-                              <input type="file" class="file-input file-input-bordered file-input-bg-orange-500 w-full max-w-xs" />
-                          </div>
+                            <div class="flex justify-center items-center mt-6 ml-96">
+                                <button class="btn btn-default bg-orange-500 hover:bg-black font-black border-orange-500">Submit</button>
+                            </div>
+                        </form>
 
-                          <div class="flex justify-center items-center mt-6 ml-96">
-                              <button class="btn btn-default bg-orange-500 hover:bg-black font-black border-orange-500">Submit</button>
-                          </div>
-                          
-                      </form>
-                    </div>
-                
-              
+                        <div class="hidden">
+                        <div class="alert alert-success">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                    <span>Seu anúncio foi inserido!</span>
+                                </div>
+                        </div>
+                        </div>
 
+                        <div class="mt-6 flex justify-center">
+                            <input type="radio" name="radio-8" class="radio radio-error mr-4" checked />
+                            <input type="radio" name="radio-8" class="radio radio-error" />
+                        </div>
+
+                <div class="w-12/12 mr-4 ml-4 my-4">
+                    <div class="avatar ml-96">
+                        <div class="w-24 rounded-full mt-4 -my-12 lg:shadow">
+                        <img src="/app/views/images/update-icon.png" class="w-16" />
+                        </div>
+                    </div> 
+                        <div class="p-6 shadow-lg bg-white rounded-lg">
+                        <h1 class="text-2xl font-semibold leading-relaxed text-gray-800">Atualizar</h1>
+                        <hr class="mt-4 w-full">
+                        <form action="" class="grid grid-cols-2 gap-4 mt-6 ml-24">
+                        <div class="mt-3">
+                                <label for="email" class="block text-base mb-2">Id</label>
+                                <input type="text" placeholder="Digite o Id.." class="input input-bordered w-full max-w-xs" />
+                            </div>
+                            <div class="mt-3">
+                                <label for="email" class="block text-base mb-2">Nome</label>
+                                <input type="text" placeholder="Digite o nome.." class="input input-bordered w-full max-w-xs" />
+                            </div>
+                            <div class="mt-3">
+                                <label for="email" class="block text-base mb-2">Descrição</label>
+                                <input type="text" placeholder="Digite a descrição.." class="input input-bordered w-full max-w-xs" />
+                            </div>
+                            <div class="mt-3">
+                                <label for="email" class="block text-base mb-2">Preço</label>
+                                <input type="text" placeholder="Digite o preço.." class="input input-bordered w-full max-w-xs" />
+                            </div>
+                            <div class="mt-3">
+                                <label for="email" class="block text-base mb-2">Id da Categoria</label>
+                                <input type="text" placeholder="Digite o Id.." class="input input-bordered w-full max-w-xs" />
+                            </div>
+                            <div class="mt-3">
+                                <label for="email" class="block text-base mb-2">Peso</label>
+                                <input type="text" placeholder="Digite o peso.." class="input input-bordered w-full max-w-xs" />
+                            </div>
+
+                            <div class="mt-3">
+                                <label for="email" class="block text-base mb-2">Tamanho</label>
+                                <input type="text" placeholder="Digite o tamanho.." class="input input-bordered w-full max-w-xs" />
+                            </div>
+                            <div class="mt-3">
+                                <label for="email" class="block text-base mb-2">Url</label>
+                                <input type="text" placeholder="Digite a Url.." class="input input-bordered w-full max-w-xs" />
+                            </div>
+
+                            <div class="mt-3">
+                                <label for="email" class="block text-base mb-2">Foto</label>
+                                <input type="file" class="file-input file-input-bordered file-input-bg-orange-500 w-full max-w-xs" />
+                            </div>
+
+                            <div class="flex justify-center items-center mt-6 mr-24">
+                                <button class="btn btn-default bg-orange-500 hover:bg-black font-black border-orange-500">Submit</button>
+                            </div>
+                        </form>
+
+                        <div class="hidden">
+                        <div class="alert alert-success">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                    <span>Seu anúncio foi inserido!</span>
+                                </div>
+                        </div>
+                        </div>
+
+                        
               </main>
 
 
