@@ -121,19 +121,21 @@
                     </form>
                   </div>
                 </div>
+                
 
 
                 <div class="w-8/12 mr-4">
-                <div class="avatar flex items-center justify-center">
-                    <div class="w-24 rounded-full">
-                      <img src="/app/views/images/list-icon.jpg" />
+                <div class="avatar ml-96">
+                    <div class="w-24 rounded-full mt-4 -my-12">
+                      <img src="/app/views/images/list-icon.jpg" class="" />
                     </div>
                 </div> 
                     <div class="p-6 shadow-lg bg-white rounded-lg">
                     <h1 class="text-2xl font-semibold leading-relaxed text-gray-800">Inserir</h1>
-                      <hr class="mt-3">
+                    
+                      <hr class="mt-4 w-full">
 
-                      <form action="" class="grid grid-cols-2 gap-4">
+                      <form action="" class="grid grid-cols-2 gap-4 mt-6 ml-12">
                           <div class="mt-3">
                               <label for="email" class="block text-base mb-2">Nome</label>
                               <input type="text" placeholder="Digite o nome.." class="input input-bordered w-full max-w-xs" />
@@ -169,18 +171,13 @@
                               <input type="file" class="file-input file-input-bordered file-input-bg-orange-500 w-full max-w-xs" />
                           </div>
 
-
-
-
-                          
-                          <div class="flex justify-center items-center mt-4">
+                          <div class="flex justify-center items-center mt-6 ml-96">
                               <button class="btn btn-default bg-orange-500 hover:bg-black font-black border-orange-500">Submit</button>
                           </div>
                           
                       </form>
                     </div>
-                </div>
-                 
+                
               
 
               </main>
