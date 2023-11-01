@@ -155,41 +155,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                         <form action="" class="grid grid-cols-2 gap-4 mt-6 ml-24 ">
                             <div class="mt-3">
                                 <label for="email" class="block text-base mb-2">Nome</label>
-                                <input type="text" placeholder="Digite o nome.." class="input input-bordered w-full max-w-xs" />
+                                <input type="text" placeholder="Digite o nome.." class="input input-bordered w-full max-w-xs bg-gray-100" />
                             </div>
                             <div class="mt-3">
                                 <label for="email" class="block text-base mb-2">Descrição</label>
-                                <input type="text" placeholder="Digite a descrição.." class="input input-bordered w-full max-w-xs" />
+                                <input type="text" placeholder="Digite a descrição.." class="input input-bordered w-full max-w-xs bg-gray-100" />
                             </div>
                             <div class="mt-3">
                                 <label for="email" class="block text-base mb-2">Preço</label>
-                                <input type="text" placeholder="Digite o preço.." class="input input-bordered w-full max-w-xs" />
+                                <input type="text" placeholder="Digite o preço.." class="input input-bordered w-full max-w-xs bg-gray-100" />
                             </div>
                             <div class="mt-3">
                                 <label for="email" class="block text-base mb-2">Id da Categoria</label>
-                                <input type="text" placeholder="Digite o Id.." class="input input-bordered w-full max-w-xs" />
+                                <input type="text" placeholder="Digite o Id.." class="input input-bordered w-full max-w-xs bg-gray-100" />
                             </div>
                             <div class="mt-3">
                                 <label for="email" class="block text-base mb-2">Peso</label>
-                                <input type="text" placeholder="Digite o peso.." class="input input-bordered w-full max-w-xs" />
+                                <input type="text" placeholder="Digite o peso.." class="input input-bordered w-full max-w-xs bg-gray-100" />
                             </div>
 
                             <div class="mt-3">
                                 <label for="email" class="block text-base mb-2">Tamanho</label>
-                                <input type="text" placeholder="Digite o tamanho.." class="input input-bordered w-full max-w-xs" />
+                                <input type="text" placeholder="Digite o tamanho.." class="input input-bordered w-full max-w-xs bg-gray-100" />
                             </div>
                             <div class="mt-3">
                                 <label for="email" class="block text-base mb-2">Url</label>
-                                <input type="text" placeholder="Digite a Url.." class="input input-bordered w-full max-w-xs" />
+                                <input type="text" placeholder="Digite a Url.." class="input input-bordered w-full max-w-xs bg-gray-100" />
                             </div>
 
                             <div class="mt-3">
                                 <label for="email" class="block text-base mb-2">Foto</label>
-                                <input type="file" class="file-input file-input-bordered file-input-bg-orange-500 w-full max-w-xs" />
+                                <input type="file" class="file-input file-input-bordered file-input-bg-orange-500 w-full max-w-xs bg-gray-100" />
                             </div>
 
                             <div class="flex justify-center items-center mt-6 ml-96">
-                                <button class="btn btn-default bg-orange-500 hover:bg-black font-black border-orange-500">Submit</button>
+                                <button class="btn btn-default bg-orange-500 hover:bg-black font-black border-orange-500 text-white">Submit</button>
                             </div>
                         </form>
 
@@ -218,45 +218,45 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                         <form action="" class="grid grid-cols-2 gap-4 mt-6 ml-24">
                         <div class="mt-3">
                                 <label for="email" class="block text-base mb-2">Id</label>
-                                <input type="text" placeholder="Digite o Id.." class="input input-bordered w-full max-w-xs" />
+                                <input type="text" placeholder="Digite o Id.." class="input input-bordered w-full max-w-xs bg-gray-100" />
                             </div>
                             <div class="mt-3">
                                 <label for="email" class="block text-base mb-2">Nome</label>
-                                <input type="text" placeholder="Digite o nome.." class="input input-bordered w-full max-w-xs" />
+                                <input type="text" placeholder="Digite o nome.." class="input input-bordered w-full max-w-xs bg-gray-100" />
                             </div>
                             <div class="mt-3">
                                 <label for="email" class="block text-base mb-2">Descrição</label>
-                                <input type="text" placeholder="Digite a descrição.." class="input input-bordered w-full max-w-xs" />
+                                <input type="text" placeholder="Digite a descrição.." class="input input-bordered w-full max-w-xs bg-gray-100" />
                             </div>
                             <div class="mt-3">
                                 <label for="email" class="block text-base mb-2">Preço</label>
-                                <input type="text" placeholder="Digite o preço.." class="input input-bordered w-full max-w-xs" />
+                                <input type="text" placeholder="Digite o preço.." class="input input-bordered w-full max-w-xs bg-gray-100" />
                             </div>
                             <div class="mt-3">
                                 <label for="email" class="block text-base mb-2">Id da Categoria</label>
-                                <input type="text" placeholder="Digite o Id.." class="input input-bordered w-full max-w-xs" />
+                                <input type="text" placeholder="Digite o Id.." class="input input-bordered w-full max-w-xs bg-gray-100" />
                             </div>
                             <div class="mt-3">
                                 <label for="email" class="block text-base mb-2">Peso</label>
-                                <input type="text" placeholder="Digite o peso.." class="input input-bordered w-full max-w-xs" />
+                                <input type="text" placeholder="Digite o peso.." class="input input-bordered w-full max-w-xs bg-gray-100" />
                             </div>
 
                             <div class="mt-3">
                                 <label for="email" class="block text-base mb-2">Tamanho</label>
-                                <input type="text" placeholder="Digite o tamanho.." class="input input-bordered w-full max-w-xs" />
+                                <input type="text" placeholder="Digite o tamanho.." class="input input-bordered w-full max-w-xs bg-gray-100" />
                             </div>
                             <div class="mt-3">
                                 <label for="email" class="block text-base mb-2">Url</label>
-                                <input type="text" placeholder="Digite a Url.." class="input input-bordered w-full max-w-xs" />
+                                <input type="text" placeholder="Digite a Url.." class="input input-bordered w-full max-w-xs bg-gray-100" />
                             </div>
 
                             <div class="mt-3">
                                 <label for="email" class="block text-base mb-2">Foto</label>
-                                <input type="file" class="file-input file-input-bordered file-input-bg-orange-500 w-full max-w-xs" />
+                                <input type="file" class="file-input file-input-bordered file-input-bg-orange-500 w-full max-w-xs bg-gray-100" />
                             </div>
 
                             <div class="flex justify-center items-center mt-6 mr-24">
-                                <button class="btn btn-default bg-orange-500 hover:bg-black font-black border-orange-500">Submit</button>
+                                <button class="btn btn-default bg-orange-500 hover:bg-black font-black border-orange-500 text-white">Submit</button>
                             </div>
                         </form>
 

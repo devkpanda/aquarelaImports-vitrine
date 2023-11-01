@@ -121,6 +121,7 @@
                                 .then(html => {
                                     $("#login-menu").hide()
                                     $("#adm-get").html(html)
+                                    window.location.replace('manage/advertisement');
                                 })
                                 .catch(error => {
                                     console.error('Erro na solicitação Fetch:', error);
