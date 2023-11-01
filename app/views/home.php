@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDU5_4EEiM4mlZw9zYcbM39TeTATyMSF0Q&callback=console.debug&libraries=maps,marker&v=beta">
+    </script>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@3.5.1/dist/full.css" rel="stylesheet" type="text/css" />
     <title>Aquarela Imports - Vitrine Virtual</title>
 </head>
@@ -359,7 +361,10 @@
             </div>
         </div>
 
-
+        <gmp-map class="w-full h-96" center="-23.541576385498047,-46.632240295410156" zoom="14" map-id="DEMO_MAP_ID">
+            <gmp-advanced-marker position="-23.541576385498047,-46.632240295410156" title="My location">
+            </gmp-advanced-marker>
+        </gmp-map>
 
         <footer class="footer p-10 bg-neutral text-neutral-content">
             <div>
