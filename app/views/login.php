@@ -16,7 +16,7 @@
     </head>
 
     <body>
-        <div class="flex justify-center items-center h-screen bg-gray-200 rounded-md">
+        <div id="login-menu" class="flex justify-center items-center h-screen bg-gray-200 rounded-md">
             <div class="w-96 p-6 shadow-lg bg-white rounded-md">
             
                 <div id="result"></div>
@@ -43,6 +43,7 @@
                 </form>
             </div>
         </div>
+        <div id="adm-get"></div>
 
 
 
@@ -102,7 +103,29 @@
                             return response.json();
                         })
                         .then(data => {
-                            if (data.name)
+                            if (data.message == "0") {
+                                fetch("http://127.0.0.1/manage/advertisement", {
+                                    method: "GET",
+                                    headers: {
+                                        'Origin': 'http://127.0.0.1',
+                                        'Access-Control-Request-Method': 'GET',
+                                        'Access-Control-Request-Headers': 'X-Requested-With, Content-Type',
+                                    }
+                                })
+                                .then(response => {
+                                    if (!response.ok){
+                                        throw new Error('Erro na solicitação. Código de status: ' + response.status);
+                                    }
+                                    return response.text();
+                                })
+                                .then(html => {
+                                    $("#login-menu").hide()
+                                    $("#adm-get").html(html)
+                                })
+                                .catch(error => {
+                                    console.error('Erro na solicitação Fetch:', error);
+                                });
+                            }
                             $("#login-loading").hide(100)
                         })
                         .catch(error => {
