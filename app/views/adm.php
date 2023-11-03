@@ -107,43 +107,156 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                     </li>
                   </ul>
                 </div>
-                
 
-                <div class="hidden mt-4 flex justify-center items-center " id="ad_search">
-                  <div class="grid gp-10 bg-white rounded-[10px] p-[3rem] h-50 m-10 w-6/12 flex justify-center lg:shadow" >
-                    <form action="">
-                        <div class="flex justify-center">
-                                <h1 class="text-2xl font-semibold leading-relaxed text-gray-800">Pesquise o anúncio</h1>
-                        </div>
-                            <div class="m-4 flex flex-row justify-center rounded-[8px] bg-white p-5 shadow-lg shadow-greyIsh-700">
-                                    <div class="form-control flex flex-row">
-                                        <input type="text" id="search" placeholder="Pesquise o anúncio" class=" input border-gray-300 mt-4 bg-white" />
-                                        <button class="btn btn-square mt-4 mr-4 bg-white border-gray-300" id="submit">
-                                          <svg xmlns="http://www.w3.org/2000/svg" id="submit" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-                                        </button> 
-                                    </div>
-                            <div class="">
-                                <div class="form-control flex flex-row">
+               
+               
+                   
+                        <div class=" shadow-xl grid gp-10 bg-white rounded-[10px] p-[3rem] h-50 m-10 w-10/12 flex justify-center" >
+                            <form action="" class="w-12/12">
+                                <div class="flex justify-center">
+                                        <h1 class="text-2xl font-semibold leading-relaxed text-gray-800">Pesquise o anúncio</h1>
+                                </div>
+
+                                    <div class="m-4 flex flex-row justify-center rounded-[8px] bg-white p-5 ">
                                     <div class="form-control">
-                                        <div class="input-group m-4">
-                                            <select class="select select-bordered bg-white border-gray-300">
-                                                <option disabled selected>Categoria</option>
-                                                <option>1</option>
-                                                <option>2</option>
-                                            </select>
-                                            <button class="btn bg-white border-gray-300">Go</button>
+                                        <div class="input-group">
+                                            <input type="text" placeholder="Search…" class="input input-bordered" />
+                                            <button class="btn btn-square">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+                                            </button>
+                                        </div>
+                                        </div>
+                                    <div class="">
+                                        <div class="form-control flex flex-row">
+                                            <div class="form-control">
+                                                <div class="input-group ml-4">
+                                                    <select class="select select-bordered bg-white border-gray-300">
+                                                        <option disabled selected>Categoria</option>
+                                                        <option>1</option>
+                                                        <option>2</option>
+                                                    </select>
+                                                    <button class="btn bg-white border-gray-300">Go</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                    </form>
-                  </div>
-                </div>
-                </div>
+                            </form>
+                   
+                        </div>
                 
+                    
+                    <div class="flex flex-col">
+                        <div class="overflow-x-auto my-4 flex justify-center">
+                            <table class="table">
+                                <!-- head -->
+                                <thead>
+                                <tr>
+                                
+                                    <th></th>
+                                    <th>Nome</th>
+                                    <th>Descrição</th>
+                                    <th>Preço</th>
+                                    <th>Tamanho</th>
+                                    <th>Peso</th>
+                                    <th>Video Url</th>
+                                    <th>Foto (base64)</th>
+                                    <th class="flex justify-center">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <!-- row 1 -->
+                                <tr>
+                                <tr class="hover">
+                                    <th>1</th>
+                                    <td>Conjunto Freio à disco</td>
+                                    <td>Conjunto de instalação de freio à disco para bicicletas. Contendo dois discos, duas pinças com quatro pastilhas, dois cabos com conduites</td>
+                                    <td>R$150</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td class="flex justify-between">
+                                    <div class="badge badge-success gap-2 mr-3">
+                                        <button class="w-20">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                            success
+                                        </button>
+                                    </div>
+                                    <div class="badge badge-error gap-2">
+                                        <button class="w-20"> 
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                            error
+                                        </button>
+                                    </div>
+                                    </td>
+                                
+                                </tr>
+                                <!-- row 2 -->
+                                <tr class="hover">
+                                    <th>2</th>
+                                    <td>Coroa</td>
+                                    <td>Coroa convencional para bicicletas sem marcha. 44 dentes</td>
+                                    <td>R$150</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td class="flex justify-between">
+                                    <div class="badge badge-success gap-2 mr-3">
+                                    <button class="">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                            success
+                                        </button>
+                                            
+                                    </div>
+                                    <div class="badge badge-error gap-2">
+                                        <button> 
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                            error
+                                        </button>
+                                    </div>
+                                    </td>
+                                </tr>
+                                <!-- row 3 -->
+                                <tr>
+                                <tr class="hover">
+                                    <th>3</th>
+                                    <td>Pedivela</td>
+                                    <td>Pedivila convencional de alumínio, 44mm</td>
+                                    <td>R$150</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td class="flex justify-between">
+                                    <div class="badge badge-success gap-2 mr-3">
+                                        <button>
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                            success
+                                        </button>
+                                            
+                                    </div>
+                                    <div class="badge badge-error gap-2">
+                                        <button> 
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                            error
+                                        </button>
+                                    </div>
+                                    </td>
+                                </tr>
+                                
+                                </tbody>
+                                
+                            </div>
+                            </table>
+                            <div class="mt-6 flex justify-center">
+                                    <input type="radio" name="radio-8" class="radio radio-error mr-4" checked />
+                                    <input type="radio" name="radio-8" class="radio radio-error" />
+                                </div>
+                    </div>    
+                </div>
 
-
-                <div class="w-8/12 mr-4 ml-8">
+                <div class="hidden w-8/12 mr-4 ml-8">
                     <div class="avatar ml-96">
                         <div class="w-24 rounded-full mt-4 -my-12 lg:shadow">
                         <img src="/app/views/images/list-icon.jpg" class="" />
@@ -201,103 +314,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                         </div>
                         </div>
 
-                        <div class="mt-6 flex justify-center">
-                            <input type="radio" name="radio-8" class="radio radio-error mr-4" checked />
-                            <input type="radio" name="radio-8" class="radio radio-error" />
+                            <div class="mt-6 flex justify-center">
+                                <input type="radio" name="radio-8" class="radio radio-error mr-4" checked />
+                                <input type="radio" name="radio-8" class="radio radio-error" />
+                            </div>
                         </div>
 
-                        <div class="overflow-x-auto my-4">
-                            <table class="table">
-                                <!-- head -->
-                                <thead>
-                                <tr>
-                                
-                                    <th></th>
-                                    <th>Nome</th>
-                                    <th>Descrição</th>
-                                    <th>Preço</th>
-                                    <th>Tamanho</th>
-                                    <th>Peso</th>
-                                    <th>Video Url</th>
-                                    <th>Foto (base64)</th>
-                                    <th class="flex justify-center">Action</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <!-- row 1 -->
-                                <tr>
-                                <tr class="hover">
-                                    <th>1</th>
-                                    <td>Conjunto Freio à disco</td>
-                                    <td>Conjunto de instalação de freio à disco para bicicletas. Contendo dois discos, duas pinças com quatro pastilhas, dois cabos com conduites</td>
-                                    <td>R$150</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td class="flex justify-center">
-                                    <div class="badge badge-success gap-2 mr-3 flex justify-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                            success
-                                    </div>
-                                    <div class="badge badge-error gap-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                            error
-                                    </div>
-                                    </td>
-                                   
-                                </tr>
-                                <!-- row 2 -->
-                                <tr class="hover">
-                                    <th>2</th>
-                                    <td>Coroa</td>
-                                    <td>Coroa convencional para bicicletas sem marcha. 44 dentes</td>
-                                    <td>R$150</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td class="flex justify-between">
-                                    <div class="badge badge-success gap-2 mr-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                            success
-                                    </div>
-                                    <div class="badge badge-error gap-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                            error
-                                    </div>
-                                    </td>
-                                </tr>
-                                <!-- row 3 -->
-                                <tr>
-                                <tr class="hover">
-                                    <th>3</th>
-                                    <td>Pedivela</td>
-                                    <td>Pedivila convencional de alumínio, 44mm</td>
-                                    <td>R$150</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td class="flex justify-between">
-                                    <div class="badge badge-success gap-2 mr-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                            success
-                                    </div>
-                                    <div class="badge badge-error gap-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                            error
-                                    </div>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            </div>
-
-
-                        
+                      
+                            
               </main>
-
+              
 
 
 
