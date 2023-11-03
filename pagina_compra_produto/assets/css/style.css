@@ -1,0 +1,165 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px 20px 40px 20px;
+}
+
+.product-details {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* display: flex; Utilizando flexbox para posicionar os elementos lado a lado */
+    /* visibility: hidden; */
+    display: none;
+}
+
+.product-image {
+    flex: 1; /* A imagem ocupará metade do espaço */
+    padding: 10px 0 0 10px;
+}
+
+.product-image img {
+    max-width: 60%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.back-button {
+    text-align: left;
+    margin: 5px 0 20px 0; /* Margem ajustada para espaçamento */
+}
+
+.back-button button {
+    padding: 10px 20px;
+    background-color: #F97316;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.back-button button:hover {
+    background-color: #0e638c;
+}
+
+.details-text {
+    color: black;
+    flex: 1; /* O texto ocupará metade do espaço */
+    padding: 20px;
+}
+
+.details-text h1 {
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.description {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.preco{
+    padding: 10px 0 20px 0;
+    font-size: 29px;
+    font-weight: bold;
+    color: #F97316; /* Cor laranja para chamar atenção */
+}
+
+/* O restante do código CSS permanece igual */
+
+.discount {
+    color: #27ae60; /* Cor verde para o texto */
+    margin-left: 2px; /* Espaçamento à esquerda para o texto */
+    font-weight: bold; /* Deixa o texto em negrito */
+    font-size: 20px;
+}
+
+
+.add-to-cart {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #F97316;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-to-cart:hover {
+    background-color: #219653;
+}
+
+.value-selection {
+    margin-top: 10px;
+}
+
+.value-selection2 {
+    padding-bottom: 30px;
+    margin-top: 05px;
+}
+
+.value-selection h3 {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 3px;
+}
+
+.value-selection input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+/* O restante do código CSS permanece igual */
+
+.custom-checkbox {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.custom-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.custom-checkbox label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 1px;
+    width: 22px;
+    height: 22px;
+    border: 2px solid #2196F3;
+    border-radius: 4px;
+}
+
+.custom-checkbox input[type="checkbox"]:checked + label:before {
+    background: #2196F3;
+}
+
+.custom-checkbox label:after {
+    content: '\2713';
+    position: absolute;
+    top: -1px;
+    left: 5px;
+    font-size: 18px;
+    color: #fff;
+    display: none;
+}
+
+.custom-checkbox input[type="checkbox"]:checked + label:after {
+    display: block;
+}
+
