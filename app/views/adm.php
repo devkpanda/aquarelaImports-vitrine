@@ -48,12 +48,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                             Anúncios
                         </a>
                     </li>
-                    <li>
+                 <!--   <li>
                         <a href="#" class="flex gap-x4 items-start py-2 text-gray-500 hover:text-black">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="mr-6 ml-2 mt-1" height="1em" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M48 0C21.5 0 0 21.5 0 48V368c0 26.5 21.5 48 48 48H64c0 53 43 96 96 96s96-43 96-96H384c0 53 43 96 96 96s96-43 96-96h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V288 256 237.3c0-17-6.7-33.3-18.7-45.3L512 114.7c-12-12-28.3-18.7-45.3-18.7H416V48c0-26.5-21.5-48-48-48H48zM416 160h50.7L544 237.3V256H416V160zM112 416a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm368-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="mr-6 ml-2 mt-1" height="1em" viewBox="0 0 640 512"><path d="M48 0C21.5 0 0 21.5 0 48V368c0 26.5 21.5 48 48 48H64c0 53 43 96 96 96s96-43 96-96H384c0 53 43 96 96 96s96-43 96-96h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V288 256 237.3c0-17-6.7-33.3-18.7-45.3L512 114.7c-12-12-28.3-18.7-45.3-18.7H416V48c0-26.5-21.5-48-48-48H48zM416 160h50.7L544 237.3V256H416V160zM112 416a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm368-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
                             Pedidos
                         </a>
-                    </li>
+                    </li> -->
                 </ul>
 
                 <div class=" flex justify-end items-end px-4 place-items-end mt-96 ">
@@ -91,59 +91,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                         </button>
                     </li>
                     <li>
-                        <button class="flex gap-x-2 items-center py-5 px-6 text-gray-500" id="add_advertisement_btn">
+                        <button class="flex gap-x-2 items-center py-5 px-6 text-gray-500" id="add_btn">
                             Adicionar
                         </button>
                     </li>
-                    <li>
-                        <button class="flex gap-x-2 items-center py-5 px-6 text-gray-500">
-                            Alterar
-                        </button>
-                    </li>
-                    <li>
-                        <button class="flex gap-x-2 items-center py-5 px-6 text-gray-500">
-                            Deletar
-                        </button>
                     </li>
                   </ul>
                 </div>
 
                
                
-                   
-                        <div class=" shadow-xl grid gp-10 bg-white rounded-[10px] p-[3rem] h-50 m-10 w-10/12 flex justify-center" >
-                            <form action="" class="w-12/12">
+                    <div class="hidden flex justify-center mt-10" id="ad_search">
+                        <div class="flex justify-center shadow-xl grid gp-10 bg-white rounded-[10px] p-[3rem] h-50 w-10/12" >
+                            <form action="" class="w-12/12 ">
                                 <div class="flex justify-center">
                                         <h1 class="text-2xl font-semibold leading-relaxed text-gray-800">Pesquise o anúncio</h1>
                                 </div>
-
                                     <div class="m-4 flex flex-row justify-center rounded-[8px] bg-white p-5 ">
-                                    <div class="form-control">
-                                        <div class="input-group">
-                                            <input type="text" placeholder="Search…" class="input input-bordered" />
-                                            <button class="btn btn-square">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
-                                            </button>
-                                        </div>
-                                        </div>
-                                    <div class="">
-                                        <div class="form-control flex flex-row">
-                                            <div class="form-control">
-                                                <div class="input-group ml-4">
-                                                    <select class="select select-bordered bg-white border-gray-300">
-                                                        <option disabled selected>Categoria</option>
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                    </select>
-                                                    <button class="btn bg-white border-gray-300">Go</button>
+                                        <div class="join">
+                                            <div>
+                                                <div>
+                                                    <input class="input input-bordered join-item" placeholder="Insira o nome.."/>
                                                 </div>
                                             </div>
+                                            <select class="select select-bordered join-item">
+                                                <option disabled selected>Categoria</option>
+                                                <option>Categoria</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                            </select>
+                                            <div class="indicator">
+                                                <button class="btn join-item">Pesquisar</button>
+                                            </div>
                                         </div>
-                                    </div>
-                            </form>
-                   
+                             </form>
                         </div>
-                
                     
                     <div class="flex flex-col">
                         <div class="overflow-x-auto my-4 flex justify-center">
@@ -151,7 +134,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                                 <!-- head -->
                                 <thead>
                                 <tr>
-                                
                                     <th></th>
                                     <th>Nome</th>
                                     <th>Descrição</th>
@@ -175,21 +157,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                                     <td>-</td>
                                     <td>-</td>
                                     <td>-</td>
-                                    <td class="flex justify-between">
-                                    <div class="badge badge-success gap-2 mr-3">
-                                        <button class="w-20">
+                                    <td class="flex justify-">
+                                        <div class="badge badge-success gap-2 mr-3">
+                                            <button class="w-20">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                                success
+                                            </button>
+                                        </div>
+                                        <div class="badge badge-error gap-2">
+                                            <button class="w-20"> 
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                            success
-                                        </button>
-                                    </div>
-                                    <div class="badge badge-error gap-2">
-                                        <button class="w-20"> 
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                            error
-                                        </button>
-                                    </div>
+                                                error
+                                            </button>
+                                        </div>
                                     </td>
-                                
                                 </tr>
                                 <!-- row 2 -->
                                 <tr class="hover">
@@ -202,19 +183,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                                     <td>-</td>
                                     <td>-</td>
                                     <td class="flex justify-between">
-                                    <div class="badge badge-success gap-2 mr-3">
-                                    <button class="">
+                                        <div class="badge badge-success gap-2 mr-3">
+                                            <button class="">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                                    success
+                                                </button>  
+                                        </div>
+                                        <div class="badge badge-error gap-2">
+                                            <button> 
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                            success
-                                        </button>
-                                            
-                                    </div>
-                                    <div class="badge badge-error gap-2">
-                                        <button> 
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                            error
-                                        </button>
-                                    </div>
+                                                error
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                                 <!-- row 3 -->
@@ -229,42 +209,46 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                                     <td>-</td>
                                     <td>-</td>
                                     <td class="flex justify-between">
-                                    <div class="badge badge-success gap-2 mr-3">
-                                        <button>
+                                        <div class="badge badge-success gap-2 mr-3">
+                                            <button>
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                                success
+                                            </button>
+                                        </div>
+                                        <div class="badge badge-error gap-2">
+                                            <button> 
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                            success
-                                        </button>
-                                            
-                                    </div>
-                                    <div class="badge badge-error gap-2">
-                                        <button> 
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                            error
-                                        </button>
-                                    </div>
+                                                error
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
-                                
                                 </tbody>
-                                
-                            </div>
+                                    </div>
                             </table>
-                            <div class="mt-6 flex justify-center">
-                                    <input type="radio" name="radio-8" class="radio radio-error mr-4" checked />
-                                    <input type="radio" name="radio-8" class="radio radio-error" />
-                                </div>
-                    </div>    
-                </div>
-
-                <div class="hidden w-8/12 mr-4 ml-8">
-                    <div class="avatar ml-96">
-                        <div class="w-24 rounded-full mt-4 -my-12 lg:shadow">
-                        <img src="/app/views/images/list-icon.jpg" class="" />
                         </div>
-                    </div> 
+                    </div>    
+                    <div class="mt-6 flex justify-center">
+                        <input type="radio" name="radio-8" class="radio radio-error mr-4" checked />
+                        <input type="radio" name="radio-8" class="radio radio-error" />
+                    </div>
+                    
+                </div>
+                </div>
+                
+
+                <div class="hidden flex justify-center m-4" id="ad_add">
+                    <div class="w-8/12 mr-4 ml-8">
+                        <div class="flex justify-center">
+                            <div class="avatar">
+                                <div class="w-24 rounded-full mt-4 -my-12 lg:shadow">
+                                    <img src="/app/views/images/list-icon.jpg" class="" />
+                                </div>
+                            </div>
+                        </div> 
                         <div class="p-6 shadow-lg bg-white rounded-lg">
-                        <h1 class="text-2xl font-semibold leading-relaxed text-gray-800">Inserir</h1>
-                        <hr class="mt-4 w-full">
+                            <h1 class="text-2xl font-semibold leading-relaxed text-gray-800">Inserir</h1>
+                            <hr class="mt-4 w-full">
                         <form action="" class="grid grid-cols-2 gap-4 mt-6 ml-24 ">
                             <div class="mt-3">
                                 <label for="email" class="block text-base mb-2">Nome</label>
@@ -306,22 +290,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                             </div>
                         </form>
 
-                        <div class="hidden">
-                        <div class="alert alert-success">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                                    <span>Seu anúncio foi inserido!</span>
+                            <div class="hidden">
+                                <div class="alert alert-success">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                        <span>Seu anúncio foi inserido!</span>
                                 </div>
-                        </div>
-                        </div>
-
-                            <div class="mt-6 flex justify-center">
-                                <input type="radio" name="radio-8" class="radio radio-error mr-4" checked />
-                                <input type="radio" name="radio-8" class="radio radio-error" />
                             </div>
-                        </div>
-
-                      
-                            
+                    </div>
+                </div>  
               </main>
               
 
@@ -335,10 +311,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
           const search_btn  = document.getElementById("search_btn");
           const home_btn    = document.getElementById("home_btn");
 
-          advertisement_btn.addEventListener("click", () => {
-           
-            ad_ul.classList.toggle("hidden");
-          });
+          if (!ad_search.classList.contains("hidden")) {
+            ad_add.classList.toggle("hidden");
+          }
 
           search_btn.addEventListener("click", () => {
             ad_search.classList.toggle("hidden");
