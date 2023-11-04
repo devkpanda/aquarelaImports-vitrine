@@ -43,9 +43,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                         </a>
                     </li>
                     <li>
-                        <a href="#" id="advertisement_btn" class="flex gap-x4 items-start py-2 text-gray-500 hover:text-black">
+                        <a href="#" id="ad_btn" class="flex gap-x4 items-start py-2 text-gray-500 hover:text-black">
                         <svg xmlns="http://www.w3.org/2000/svg" class="mr-6 ml-2 mt-1" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/></svg>
                             Anúncios
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex gap-x4 items-start py-2 text-gray-500 hover:text-black">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="mr-6 ml-2 mt-1" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#c0bfbc}</style><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
+                            Usuários
                         </a>
                     </li>
                  <!--   <li>
@@ -77,13 +83,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
           </aside>
 
             <main class="flex-l w-full ">
+
                 <div class="flex flex-col">
                   <div class="flex items-center justify-between py-7 px-10">
                       <h1 class="text-2xl font-semibold leading-relaxed text-gray-800">Administrador</h1>
                       <p class="text-sm font-medium text-gray-500">Administre sua página aqui.</p>
                   </div>
                 </div>
-                <div class="flex flex-col" id="ad_ul">
+
+                <div class="hidden flex flex-col" id="ad_nav">
                   <ul class="flex justify-center items-center gap-x-24 px-4 border-y border-gray-200">
                     <li>
                         <button class="flex gap-x-2 items-center py-5 px-6 text-gray-500" id="search_btn">
@@ -142,7 +150,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                                     <th>Peso</th>
                                     <th>Video Url</th>
                                     <th>Foto (base64)</th>
-                                    <th class="flex justify-center">Action</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -237,8 +244,197 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                     
                 </div>
                 </div>
-                
 
+                <div class="hidden flex justify-center mt-10" id="ad_search">
+                        <div class="flex justify-center shadow-xl grid gp-10 bg-white rounded-[10px] p-[3rem] h-50 w-10/12" >
+                        <form action="" class="w-12/12 ">
+                                <div class="flex justify-center">
+                                        <h1 class="text-2xl font-semibold leading-relaxed text-gray-800">Pesquise o anúncio</h1>
+                                </div>
+                                    <div class="m-4 flex flex-row justify-center rounded-[8px] bg-white p-5 ">
+                                                <div>
+                                                    <input class="input input-bordered join-item" placeholder="Insira o nome.."/>
+                                                </div>
+                                            </div>
+                                            <select class="select select-bordered join-item">
+                                                <option disabled selected>Categoria</option>
+                                                <option>Categoria</option>
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                            </select>
+                                            <div class="indicator">
+                                                <button class="btn join-item">Pesquisar</button>
+                                            </div>
+                             </form>
+                        </div>
+                        </div>
+
+                        <div class="flex justify-center mt-5">
+                        <div class="flex justify-center shadow-xl grid gp-10 bg-white rounded-[10px] p-[3rem] h-50 w-10/12">
+                            <table class="table">
+                                    <!-- head -->
+                                    <thead>
+                                    <tr>
+                                        <th>
+                                        </th>
+                                        <th>Nome</th>
+                                        <th>E-mail</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <!-- row 1 -->
+                                    <tr>
+                                        <th>
+                                        </th>
+                                        <td>
+                                        <div class="flex items-center space-x-3">
+                                            <div class="avatar">
+                                            <div class="mask mask-squircle w-12 h-12">
+                                                <img src="/app/views/images/Shorts para Bike.jpg" alt="Avatar Tailwind CSS Component" />
+                                            </div>
+                                            </div>
+                                            <div>
+                                            <div class="font-bold">Carlos Eduardo</div>
+                                            <div class="text-sm opacity-50">Administrador</div>
+                                            </div>
+                                        </div>
+                                        </td>
+                                        <td>
+                                        adm@gmail.com
+                                        <td class="flex mt-4">
+                                            <div class="badge badge-success gap-2 mr-3">
+                                            <button class="w-20" onclick="user_update.showModal()">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                                    success
+                                                </button>
+                                            </div>
+                                            <div class="badge badge-error gap-2">
+                                                <button class="w-20" onclick="user_delete.showModal()"> 
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                                    error
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- row 2 -->
+                                    <tr>
+                                        <th>
+                                        </th>
+                                        <td>
+                                        <div class="flex items-center space-x-3">
+                                            <div class="avatar">
+                                            <div class="mask mask-squircle w-12 h-12">
+                                                <img src="/app/views/images/Shorts para Bike.jpg" alt="Avatar Tailwind CSS Component" />
+                                            </div>
+                                            </div>
+                                            <div>
+                                            <div class="font-bold">Jhonnata Lorusso</div>
+                                            <div class="text-sm opacity-50">Funcionário</div>
+                                            </div>
+                                        </div>
+                                        </td>
+                                        <td>
+                                        fun@gmail.com
+                                        </td>
+                                        <td class="flex mt-4">
+                                            <div class="badge badge-success gap-2 mr-3">
+                                            <button class="w-20" onclick="user_update.showModal()">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                                    success
+                                                </button>
+                                            </div>
+                                            <div class="badge badge-error gap-2">
+                                                <button class="w-20" onclick="user_delete.showModal()"> 
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                                    error
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- row 3 -->
+                                    <tr>
+                                        <th>
+                                        </th>
+                                        <td>
+                                        <div class="flex items-center space-x-3">
+                                            <div class="avatar">
+                                            <div class="mask mask-squircle w-12 h-12">
+                                                <img src="/app/views/images/Shorts para Bike.jpg" alt="Avatar Tailwind CSS Component" />
+                                            </div>
+                                            </div>
+                                            <div>
+                                            <div class="font-bold">Fulano</div>
+                                            <div class="text-sm opacity-50">Funcionário</div>
+                                            </div>
+                                        </div>
+                                        </td>
+                                        <td>
+                                        fun@gmail.com
+                                        </td>
+                                        <td class="flex mt-4">
+                                            <div class="badge badge-success gap-2 mr-3">
+                                            <button class="w-20" onclick="user_update.showModal()">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                                    success
+                                                </button>
+                                            </div>
+                                            <div class="badge badge-error gap-2">
+                                                <button class="w-20" onclick="user_delete.showModal()"> 
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                                    error
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <!-- row 4 -->
+                                    <tr>
+                                        <th>
+                                        </th>
+                                        <td>
+                                        <div class="flex items-center space-x-3">
+                                            <div class="avatar">
+                                            <div class="mask mask-squircle w-12 h-12">
+                                                <img src="/app/views/images/Shorts para Bike.jpg" alt="Avatar Tailwind CSS Component" />>
+                                            </div>
+                                            </div>
+                                            <div>
+                                            <div class="font-bold">Fulano funcionário</div>
+                                            <div class="text-sm opacity-50">Funcionário</div>
+                                            </div>
+                                        </div>
+                                        </td>
+                                        <td>
+                                        fun@gmail.com
+                                        </td>
+                                        <td class="flex mt-4">
+                                            <div class="badge badge-success gap-2 mr-3">
+                                            <button class="w-20" onclick="user_update.showModal()">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                                    success
+                                                </button>
+                                            </div>
+                                            <div class="badge badge-error gap-2">
+                                                <button class="w-20" onclick="user_delete.showModal()"> 
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                                    error
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        
+                    
+
+                <!-- forms/modals -->
+                <!-- users -->
+
+
+                <!-- advertisement -->
                 <div class="hidden flex justify-center m-4" id="ad_add">
                     <div class="w-8/12 mr-4 ml-8">
                         <div class="flex justify-center">
@@ -302,16 +498,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                 </div>  
                 </div>
 
-                <!-- modal update -->
-                    <dialog id="update_modal" class="modal">
+                <!-- modal update (ad) -->
+                    <dialog id="ad_update" class="modal">
                         <div class="modal-box w-11/12">
-                        <form method="dialog">
-                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                        </form>
-                        <h1 class="text-2xl font-semibold leading-relaxed text-gray-800">Editar</h1>
-                            <hr class="mt-4 w-full">
-                        <form action="" class="grid grid-cols-2 gap-4 ">
-                        <div class="mt-3">
+                            <form method="dialog">
+                                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                            </form>
+                            <div class="w-12/12">
+                            <h1 class="text-2xl font-semibold leading-relaxed text-gray-800">Editar</h1>
+                                <hr class="mt-4 w-full">
+                            <form action="" class="grid grid-cols-2 gap-4 ">
+                            <div class="mt-3">
                                 <label for="email" class="block text-base mb-2">Id</label>
                                 <input type="text" placeholder="Digite o id.." class="input input-bordered w-full max-w-xs bg-gray-100" />
                             </div>
@@ -358,9 +555,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                         </div>
                     </dialog>
 
-                    <!-- modal delete -->
+                    <!-- modal delete (ad) -->
 
-                    <dialog id="delete_modal" class="modal">
+                    <dialog id="ad_delete" class="modal">
                         <div class="modal-box">
                         <h3 class="font-bold text-lg">Deseja mesmo deletar esse anúncio?</h3>
                         <div class="modal-action">
@@ -372,7 +569,60 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                         </div>
                     </dialog>
 
+                    <!-- modal update (user) -->
+                    <dialog id="user_update" class="modal">
+                        <div class="modal-box w-11/12">
+                            <form method="dialog">
+                                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                            </form>
+                            <div class="w-12/12">
+                            <h1 class="text-2xl font-semibold leading-relaxed text-gray-800">Editar</h1>
+                                <hr class="mt-4 w-full">
+                            <form action="" class="grid grid-cols-2 gap-4 ">
+                            <div class="mt-3">
+                                <label for="email" class="block text-base mb-2">Id</label>
+                                <input type="text" placeholder="Digite o id.." class="input input-bordered w-full max-w-xs bg-gray-100" />
+                            </div>
+                            <div class="mt-3">
+                                <label for="email" class="block text-base mb-2">Id do nível do Usuário</label>
+                                <input type="text" placeholder="Digite o id.." class="input input-bordered w-full max-w-xs bg-gray-100" />
+                            </div>
+                            <div class="mt-3">
+                                <label for="email" class="block text-base mb-2">Nome</label>
+                                <input type="text" placeholder="Digite o nome.." class="input input-bordered w-full max-w-xs bg-gray-100" />
+                            </div>
+                            <div class="mt-3">
+                                <label for="email" class="block text-base mb-2">E-mail</label>
+                                <input type="text" placeholder="Digite o e-mail.." class="input input-bordered w-full max-w-xs bg-gray-100" />
+                            </div>
+                            <div class="mt-3">
+                                <label for="email" class="block text-base mb-2">Senha</label>
+                                <input type="text" placeholder="Digite a senha.." class="input input-bordered w-full max-w-xs bg-gray-100" />
+                            </div>
+                            <div class="mt-3">
+                                <label for="email" class="block text-base mb-2">Ativo</label>
+                                <input type="text" placeholder="Digite se está ativo.." class="input input-bordered w-full max-w-xs bg-gray-100" />
+                            </div>
+                            <div class="flex justify-center items-center mt-10 ">
+                                <button class="btn btn-default bg-orange-500 hover:bg-black font-black border-orange-500 text-white">Submit</button>
+                            </div>
+                        </form>
+                        </div>
+                        </div>
+                    </dialog>
 
+                    <!-- model delete (user) -->
+                    <dialog id="user_delete" class="modal">
+                        <div class="modal-box">
+                        <h3 class="font-bold text-lg">Deseja mesmo deletar esse usuário?</h3>
+                        <div class="modal-action">
+                            <form method="dialog">
+                                <button class="btn">Sim</button>
+                                <button class="btn">Não</button>
+                            </form>
+                        </div>
+                        </div>
+                    </dialog>
 
               </main>
               
@@ -381,11 +631,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
 <!-- script para os formulários e a tela de search só aparecerem conforme solicitado. Deixar mais como um rascunho já que ainda tem muitos erros -->
         <script>
-          const advertisement_btn      = document.getElementById("advertisement_btn");
+          const ad_btn      = document.getElementById("ad_btn");
           const ad_search   = document.getElementById("ad_search");
-          const ad_ul       = document.getElementById("ad_ul");
           const search_btn  = document.getElementById("search_btn");
           const home_btn    = document.getElementById("home_btn");
+          const ad_nav      = document.getElementById("ad_nav");
 
           if (!ad_search.classList.contains("hidden")) {
             ad_add.classList.toggle("hidden");
@@ -397,6 +647,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
          add_btn.addEventListener("click", () => {
             ad_add.classList.toggle("hidden");
+          }); 
+
+          ad_btn.addEventListener("click", () => {
+            ad_nav.classList.toggle("hidden");
           }); 
 
 
