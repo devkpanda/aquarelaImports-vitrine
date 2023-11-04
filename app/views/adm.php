@@ -159,13 +159,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                                     <td>-</td>
                                     <td class="flex justify-">
                                         <div class="badge badge-success gap-2 mr-3">
-                                            <button class="w-20">
+                                        <button class="w-20" onclick="update_modal.showModal()">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                                                 success
                                             </button>
                                         </div>
                                         <div class="badge badge-error gap-2">
-                                            <button class="w-20"> 
+                                            <button class="w-20" onclick="delete_modal.showModal()"> 
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                                                 error
                                             </button>
@@ -184,13 +184,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                                     <td>-</td>
                                     <td class="flex justify-between">
                                         <div class="badge badge-success gap-2 mr-3">
-                                            <button class="">
+                                        <button class="w-20" onclick="update_modal.showModal()">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                                                     success
                                                 </button>  
                                         </div>
                                         <div class="badge badge-error gap-2">
-                                            <button> 
+                                        <button class="w-20" onclick="delete_modal.showModal()"> 
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                                                 error
                                             </button>
@@ -210,13 +210,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                                     <td>-</td>
                                     <td class="flex justify-between">
                                         <div class="badge badge-success gap-2 mr-3">
-                                            <button>
+
+                                       
+                                        <button class="w-20" onclick="update_modal.showModal()">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                                                 success
                                             </button>
                                         </div>
                                         <div class="badge badge-error gap-2">
-                                            <button> 
+                                        <button class="w-20" onclick="delete_modal.showModal()"> 
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                                                 error
                                             </button>
@@ -298,6 +300,80 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                             </div>
                     </div>
                 </div>  
+                </div>
+
+                <!-- modal update -->
+                    <dialog id="update_modal" class="modal">
+                        <div class="modal-box w-11/12">
+                        <form method="dialog">
+                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                        </form>
+                        <h1 class="text-2xl font-semibold leading-relaxed text-gray-800">Editar</h1>
+                            <hr class="mt-4 w-full">
+                        <form action="" class="grid grid-cols-2 gap-4 ">
+                        <div class="mt-3">
+                                <label for="email" class="block text-base mb-2">Id</label>
+                                <input type="text" placeholder="Digite o id.." class="input input-bordered w-full max-w-xs bg-gray-100" />
+                            </div>
+                            <div class="mt-3">
+                                <label for="email" class="block text-base mb-2">Nome</label>
+                                <input type="text" placeholder="Digite o nome.." class="input input-bordered w-full max-w-xs bg-gray-100" />
+                            </div>
+                            <div class="mt-3">
+                                <label for="email" class="block text-base mb-2">Descrição</label>
+                                <input type="text" placeholder="Digite a descrição.." class="input input-bordered w-full max-w-xs bg-gray-100" />
+                            </div>
+                            <div class="mt-3">
+                                <label for="email" class="block text-base mb-2">Preço</label>
+                                <input type="text" placeholder="Digite o preço.." class="input input-bordered w-full max-w-xs bg-gray-100" />
+                            </div>
+                            <div class="mt-3">
+                                <label for="email" class="block text-base mb-2">Id da Categoria</label>
+                                <input type="text" placeholder="Digite o Id.." class="input input-bordered w-full max-w-xs bg-gray-100" />
+                            </div>
+                            <div class="mt-3">
+                                <label for="email" class="block text-base mb-2">Peso</label>
+                                <input type="text" placeholder="Digite o peso.." class="input input-bordered w-full max-w-xs bg-gray-100" />
+                            </div>
+
+                            <div class="mt-3">
+                                <label for="email" class="block text-base mb-2">Tamanho</label>
+                                <input type="text" placeholder="Digite o tamanho.." class="input input-bordered w-full max-w-xs bg-gray-100" />
+                            </div>
+                            <div class="mt-3">
+                                <label for="email" class="block text-base mb-2">Url</label>
+                                <input type="text" placeholder="Digite a Url.." class="input input-bordered w-full max-w-xs bg-gray-100" />
+                            </div>
+
+                            <div class="mt-3">
+                                <label for="email" class="block text-base mb-2">Foto</label>
+                                <input type="file" class="file-input file-input-bordered file-input-bg-orange-500 w-full max-w-xs bg-gray-100" />
+                            </div>
+
+                            <div class="flex justify-center items-center mt-10 ">
+                                <button class="btn btn-default bg-orange-500 hover:bg-black font-black border-orange-500 text-white">Submit</button>
+                            </div>
+                        </form>
+                        </div>
+                        </div>
+                    </dialog>
+
+                    <!-- modal delete -->
+
+                    <dialog id="delete_modal" class="modal">
+                        <div class="modal-box">
+                        <h3 class="font-bold text-lg">Deseja mesmo deletar esse anúncio?</h3>
+                        <div class="modal-action">
+                            <form method="dialog">
+                                <button class="btn">Sim</button>
+                                <button class="btn">Não</button>
+                            </form>
+                        </div>
+                        </div>
+                    </dialog>
+
+
+
               </main>
               
 
