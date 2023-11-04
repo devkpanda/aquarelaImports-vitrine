@@ -166,13 +166,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                                     <td>-</td>
                                     <td class="flex justify-">
                                         <div class="badge badge-success gap-2 mr-3">
-                                        <button class="w-20" onclick="update_modal.showModal()">
+                                        <button class="w-20" onclick="ad_update.showModal()">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                                                 success
                                             </button>
                                         </div>
                                         <div class="badge badge-error gap-2">
-                                            <button class="w-20" onclick="delete_modal.showModal()"> 
+                                            <button class="w-20" onclick="ad_delete.showModal()"> 
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                                                 error
                                             </button>
@@ -191,13 +191,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                                     <td>-</td>
                                     <td class="flex justify-between">
                                         <div class="badge badge-success gap-2 mr-3">
-                                        <button class="w-20" onclick="update_modal.showModal()">
+                                        <button class="w-20" onclick="ad_update.showModal()">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                                                     success
                                                 </button>  
                                         </div>
                                         <div class="badge badge-error gap-2">
-                                        <button class="w-20" onclick="delete_modal.showModal()"> 
+                                        <button class="w-20" onclick="ad_delete.showModal()"> 
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                                                 error
                                             </button>
@@ -219,13 +219,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                                         <div class="badge badge-success gap-2 mr-3">
 
                                        
-                                        <button class="w-20" onclick="update_modal.showModal()">
+                                        <button class="w-20" onclick="ad_update.showModal()">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                                                 success
                                             </button>
                                         </div>
                                         <div class="badge badge-error gap-2">
-                                        <button class="w-20" onclick="delete_modal.showModal()"> 
+                                        <button class="w-20" onclick="ad_delete.showModal()"> 
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
                                                 error
                                             </button>
