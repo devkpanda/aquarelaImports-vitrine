@@ -37,19 +37,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
             <div class="ml-4">
              <ul v-for="group in sidebar" class="flex flex-col gap-y-6 pt-20 ">
                     <li v-for="item in group">
-                        <a href="#" id="home_btn" class="flex gap-x4 items-start py-2 text-gray-500 hover:text-black">
+                        <a href="#" onclick="home()" id="home_btn" class="flex gap-x4 items-start py-2 text-gray-500 hover:text-black">
                         <svg xmlns="http://www.w3.org/2000/svg" class="mr-6 ml-2 mt-1" height="1em" viewBox="0 0 576 512"><path d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5 8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8 .1-4.2 .1H416 392c-22.1 0-40-17.9-40-40V448 384c0-17.7-14.3-32-32-32H256c-17.7 0-32 14.3-32 32v64 24c0 22.1-17.9 40-40 40H160 128.1c-1.5 0-3-.1-4.5-.2c-1.2 .1-2.4 .2-3.6 .2H104c-22.1 0-40-17.9-40-40V360c0-.9 0-1.9 .1-2.8V287.6H32c-18 0-32-14-32-32.1c0-9 3-17 10-24L266.4 8c7-7 15-8 22-8s15 2 21 7L564.8 231.5c8 7 12 15 11 24z"/></svg>
                             Home
                         </a>
                     </li>
                     <li>
-                        <a href="#" id="ad_btn" class="flex gap-x4 items-start py-2 text-gray-500 hover:text-black">
+                        <a href="#" id="ad_btn" onclick="ad()" class="flex gap-x4 items-start py-2 text-gray-500 hover:text-black">
                         <svg xmlns="http://www.w3.org/2000/svg" class="mr-6 ml-2 mt-1" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/></svg>
                             Anúncios
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="flex gap-x4 items-start py-2 text-gray-500 hover:text-black">
+                        <a href="#" onclick="user()" id="usr_btn" class="flex gap-x4 items-start py-2 text-gray-500 hover:text-black">
                         <svg xmlns="http://www.w3.org/2000/svg" class="mr-6 ml-2 mt-1" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#c0bfbc}</style><path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/></svg>
                             Usuários
                         </a>
@@ -245,32 +245,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                 </div>
                 </div>
 
-                <div class="hidden flex justify-center mt-10" id="ad_search">
-                        <div class="flex justify-center shadow-xl grid gp-10 bg-white rounded-[10px] p-[3rem] h-50 w-10/12" >
-                        <form action="" class="w-12/12 ">
-                                <div class="flex justify-center">
-                                        <h1 class="text-2xl font-semibold leading-relaxed text-gray-800">Pesquise o anúncio</h1>
-                                </div>
-                                    <div class="m-4 flex flex-row justify-center rounded-[8px] bg-white p-5 ">
-                                                <div>
-                                                    <input class="input input-bordered join-item" placeholder="Insira o nome.."/>
-                                                </div>
-                                            </div>
-                                            <select class="select select-bordered join-item">
-                                                <option disabled selected>Categoria</option>
-                                                <option>Categoria</option>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                            </select>
-                                            <div class="indicator">
-                                                <button class="btn join-item">Pesquisar</button>
-                                            </div>
-                             </form>
-                        </div>
-                        </div>
 
-                        <div class="flex justify-center mt-5">
+                        <div class="hidden flex justify-center mt-5" id="usr_tbl">
                         <div class="flex justify-center shadow-xl grid gp-10 bg-white rounded-[10px] p-[3rem] h-50 w-10/12">
                             <table class="table">
                                     <!-- head -->
@@ -631,28 +607,45 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
 <!-- script para os formulários e a tela de search só aparecerem conforme solicitado. Deixar mais como um rascunho já que ainda tem muitos erros -->
         <script>
-          const ad_btn      = document.getElementById("ad_btn");
-          const ad_search   = document.getElementById("ad_search");
-          const search_btn  = document.getElementById("search_btn");
-          const home_btn    = document.getElementById("home_btn");
-          const ad_nav      = document.getElementById("ad_nav");
 
-          if (!ad_search.classList.contains("hidden")) {
-            ad_add.classList.toggle("hidden");
-          }
+            function ad() {
+                ad_nav.classList.remove("hidden");
+                ad_search.classList.add("hidden");
+                ad_add.classList.add("hidden");
+                usr_tbl.classList.add("hidden");
 
-          search_btn.addEventListener("click", () => {
-            ad_search.classList.toggle("hidden");
-          });
 
-         add_btn.addEventListener("click", () => {
-            ad_add.classList.toggle("hidden");
-          }); 
+                   
+                search_btn.addEventListener("click", function () {
+                   ad_search.classList.remove("hidden");
+                   ad_add.classList.add("hidden");
+                });
 
-          ad_btn.addEventListener("click", () => {
-            ad_nav.classList.toggle("hidden");
-          }); 
+                add_btn.addEventListener("click", function () {
+                   ad_add.classList.remove("hidden");
+                   ad_search.classList.add("hidden");
+                });
+            }
 
+
+            function home () {
+                    ad_nav.classList.add("hidden");
+              //  if (!ad_add.classList.contains("hidden")) {
+                    ad_add.classList.add("hidden");
+              //  }
+                    usr_tbl.classList.add("hidden");
+                    ad_search.classList.add("hidden");
+            }
+
+            function user () {
+                    ad();
+                    ad_nav.classList.add("hidden");
+                    usr_tbl.classList.remove("hidden");
+            }
+
+         
+       
+          
 
         </script>
 </body>
