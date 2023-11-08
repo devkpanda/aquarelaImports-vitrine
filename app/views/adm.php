@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                 <div class=" flex justify-end items-end px-4 place-items-end mt-96 ">
                   <ul class="border-y border-gray-200 w-full">
                     <li class="">
-                        <a href="#" class="flex gap-x4 items-start py-2 text-gray-500 hover:text-black">
+                        <a href="#" onclick="logout1.showModal()" class="flex gap-x4 items-start py-2 text-gray-500 hover:text-black">
                         <svg xmlns="http://www.w3.org/2000/svg" class="mr-6 ml-2 mt-1" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#c0bfbc}</style><path d="M377.9 105.9L500.7 228.7c7.2 7.2 11.3 17.1 11.3 27.3s-4.1 20.1-11.3 27.3L377.9 406.1c-6.4 6.4-15 9.9-24 9.9c-18.7 0-33.9-15.2-33.9-33.9l0-62.1-128 0c-17.7 0-32-14.3-32-32l0-64c0-17.7 14.3-32 32-32l128 0 0-62.1c0-18.7 15.2-33.9 33.9-33.9c9 0 17.6 3.6 24 9.9zM160 96L96 96c-17.7 0-32 14.3-32 32l0 256c0 17.7 14.3 32 32 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32l-64 0c-53 0-96-43-96-96L0 128C0 75 43 32 96 32l64 0c17.7 0 32 14.3 32 32s-14.3 32-32 32z"/></svg>
                             Logout
                         </a>
@@ -104,6 +104,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                         </button>
                     </li>
                     </li>
+                  </ul>
+                </div>
+
+                <div class="hidden flex flex-col" id="usr_nav">
+                  <ul class="flex justify-center items-center gap-x-24 px-4 border-y border-gray-200">
+                    <li>
+                        <button class="flex gap-x-2 items-center py-5 px-6 text-gray-500" id="list_btn">
+                            Listar
+                        </button>
                   </ul>
                 </div>
 
@@ -165,18 +174,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                                     <td>-</td>
                                     <td>-</td>
                                     <td class="flex justify-">
-                                        <div class="badge badge-success gap-2 mr-3">
-                                        <button class="w-20" onclick="ad_update.showModal()">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                                success
-                                            </button>
-                                        </div>
-                                        <div class="badge badge-error gap-2">
-                                            <button class="w-20" onclick="ad_delete.showModal()"> 
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                                error
-                                            </button>
-                                        </div>
+                                            <div>
+                                                <button onclick="ad_update.showModal()" class="btn btn-ghost btn-xs">editar</button>
+                                            </div>
+                                            <div>
+                                                <button onclick="ad_delete.showModal()" class="btn btn-ghost btn-xs">excluir</button>
+                                            </div>
                                     </td>
                                 </tr>
                                 <!-- row 2 -->
@@ -190,18 +193,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                                     <td>-</td>
                                     <td>-</td>
                                     <td class="flex justify-between">
-                                        <div class="badge badge-success gap-2 mr-3">
-                                        <button class="w-20" onclick="ad_update.showModal()">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                                    success
-                                                </button>  
-                                        </div>
-                                        <div class="badge badge-error gap-2">
-                                        <button class="w-20" onclick="ad_delete.showModal()"> 
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                                error
-                                            </button>
-                                        </div>
+                                            <div>
+                                                <button onclick="ad_update.showModal()" class="btn btn-ghost btn-xs">editar</button>
+                                            </div>
+                                            <div>
+                                                <button onclick="ad_delete.showModal()" class="btn btn-ghost btn-xs">excluir</button>
+                                            </div>
                                     </td>
                                 </tr>
                                 <!-- row 3 -->
@@ -216,20 +213,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                                     <td>-</td>
                                     <td>-</td>
                                     <td class="flex justify-between">
-                                        <div class="badge badge-success gap-2 mr-3">
-
-                                       
-                                        <button class="w-20" onclick="ad_update.showModal()">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                                success
-                                            </button>
-                                        </div>
-                                        <div class="badge badge-error gap-2">
-                                        <button class="w-20" onclick="ad_delete.showModal()"> 
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                                error
-                                            </button>
-                                        </div>
+                                            <div>
+                                                <button onclick="ad_update.showModal()" class="btn btn-ghost btn-xs">editar</button>
+                                            </div>
+                                            <div>
+                                                <button onclick="ad_delete.showModal()" class="btn btn-ghost btn-xs">excluir</button>
+                                            </div>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -256,7 +245,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                                         </th>
                                         <th>Nome</th>
                                         <th>E-mail</th>
-                                        <th></th>
+                                        <th>Ativo</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -279,18 +268,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                                         </td>
                                         <td>
                                         adm@gmail.com
+                                        </td>
+                                        <td>
+                                        S
+                                        </td>
                                         <td class="flex mt-4">
-                                            <div class="badge badge-success gap-2 mr-3">
-                                            <button class="w-20" onclick="user_update.showModal()">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                                    success
-                                                </button>
+                                            <div>
+                                                <button onclick="user_update.showModal()" class="btn btn-ghost btn-xs">editar</button>
                                             </div>
-                                            <div class="badge badge-error gap-2">
-                                                <button class="w-20" onclick="user_delete.showModal()"> 
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                                    error
-                                                </button>
+                                            <div>
+                                                <button onclick="user_delete.showModal()" class="btn btn-ghost btn-xs">excluir</button>
                                             </div>
                                         </td>
                                     </tr>
@@ -314,18 +301,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                                         <td>
                                         fun@gmail.com
                                         </td>
+                                        <td>
+                                        N
+                                        </td>
                                         <td class="flex mt-4">
-                                            <div class="badge badge-success gap-2 mr-3">
-                                            <button class="w-20" onclick="user_update.showModal()">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                                    success
-                                                </button>
+                                            <div>
+                                                <button onclick="user_update.showModal()" class="btn btn-ghost btn-xs">editar</button>
                                             </div>
-                                            <div class="badge badge-error gap-2">
-                                                <button class="w-20" onclick="user_delete.showModal()"> 
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                                    error
-                                                </button>
+                                            <div>
+                                                <button onclick="user_delete.showModal()" class="btn btn-ghost btn-xs">excluir</button>
                                             </div>
                                         </td>
                                     </tr>
@@ -349,18 +333,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                                         <td>
                                         fun@gmail.com
                                         </td>
+                                        <td>
+                                        S
+                                        </td>
                                         <td class="flex mt-4">
-                                            <div class="badge badge-success gap-2 mr-3">
-                                            <button class="w-20" onclick="user_update.showModal()">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                                    success
-                                                </button>
+                                           <div>
+                                                <button onclick="user_update.showModal()" class="btn btn-ghost btn-xs">editar</button>
                                             </div>
-                                            <div class="badge badge-error gap-2">
-                                                <button class="w-20" onclick="user_delete.showModal()"> 
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                                    error
-                                                </button>
+                                            <div>
+                                                <button onclick="user_delete.showModal()" class="btn btn-ghost btn-xs">excluir</button>
                                             </div>
                                         </td>
                                     </tr>
@@ -376,7 +357,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                                             </div>
                                             </div>
                                             <div>
-                                            <div class="font-bold">Fulano funcionário</div>
+                                            <div class="font-bold">Fulano</div>
                                             <div class="text-sm opacity-50">Funcionário</div>
                                             </div>
                                         </div>
@@ -384,18 +365,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                                         <td>
                                         fun@gmail.com
                                         </td>
+                                        <td>
+                                        S
+                                        </td>
                                         <td class="flex mt-4">
-                                            <div class="badge badge-success gap-2 mr-3">
-                                            <button class="w-20" onclick="user_update.showModal()">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                                    success
-                                                </button>
+                                            <div>
+                                                <button onclick="user_update.showModal()" class="btn btn-ghost btn-xs">editar</button>
                                             </div>
-                                            <div class="badge badge-error gap-2">
-                                                <button class="w-20" onclick="user_delete.showModal()"> 
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                                    error
-                                                </button>
+                                            <div>
+                                                <button onclick="user_delete.showModal()" class="btn btn-ghost btn-xs">excluir</button>
                                             </div>
                                         </td>
                                     </tr>
@@ -485,9 +463,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                                 <hr class="mt-4 w-full">
                             <form action="" class="grid grid-cols-2 gap-4 ">
                             <div class="mt-3">
-                                <label for="email" class="block text-base mb-2">Id</label>
-                                <input type="text" placeholder="Digite o id.." class="input input-bordered w-full max-w-xs bg-gray-100" />
-                            </div>
+                                    <label for="email" class="block text-base mb-2">Id</label>
+                                    <input type="text" placeholder="Id" class="input input-bordered w-full max-w-xs" disabled />
+                                </div>
                             <div class="mt-3">
                                 <label for="email" class="block text-base mb-2">Nome</label>
                                 <input type="text" placeholder="Digite o nome.." class="input input-bordered w-full max-w-xs bg-gray-100" />
@@ -501,9 +479,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                                 <input type="text" placeholder="Digite o preço.." class="input input-bordered w-full max-w-xs bg-gray-100" />
                             </div>
                             <div class="mt-3">
-                                <label for="email" class="block text-base mb-2">Id da Categoria</label>
-                                <input type="text" placeholder="Digite o Id.." class="input input-bordered w-full max-w-xs bg-gray-100" />
+                                <label for="email" class="block text-base">Categoria</label>
+                                <select class="select select-bordered join-item w-full mt-2">
+                                                    <option disabled selected>Categoria</option>
+                                                    <option>S</option>
+                                                    <option>N</option>
+                                </select>
                             </div>
+                            
                             <div class="mt-3">
                                 <label for="email" class="block text-base mb-2">Peso</label>
                                 <input type="text" placeholder="Digite o peso.." class="input input-bordered w-full max-w-xs bg-gray-100" />
@@ -555,14 +538,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                             <h1 class="text-2xl font-semibold leading-relaxed text-gray-800">Editar</h1>
                                 <hr class="mt-4 w-full">
                             <form action="" class="grid grid-cols-2 gap-4 ">
-                            <div class="mt-3">
-                                <label for="email" class="block text-base mb-2">Id</label>
-                                <input type="text" placeholder="Digite o id.." class="input input-bordered w-full max-w-xs bg-gray-100" />
-                            </div>
-                            <div class="mt-3">
-                                <label for="email" class="block text-base mb-2">Id do nível do Usuário</label>
-                                <input type="text" placeholder="Digite o id.." class="input input-bordered w-full max-w-xs bg-gray-100" />
-                            </div>
+                                <div class="mt-3">
+                                    <label for="email" class="block text-base mb-2">Id</label>
+                                    <input type="text" placeholder="Id" class="input input-bordered w-full max-w-xs" disabled />
+                                </div>
+                            <select class="select select-bordered join-item mt-11">
+                                                <option disabled selected>Nível Usuário</option>
+                                                <option>Administrador</option>
+                                            </select>
                             <div class="mt-3">
                                 <label for="email" class="block text-base mb-2">Nome</label>
                                 <input type="text" placeholder="Digite o nome.." class="input input-bordered w-full max-w-xs bg-gray-100" />
@@ -571,15 +554,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                                 <label for="email" class="block text-base mb-2">E-mail</label>
                                 <input type="text" placeholder="Digite o e-mail.." class="input input-bordered w-full max-w-xs bg-gray-100" />
                             </div>
-                            <div class="mt-3">
-                                <label for="email" class="block text-base mb-2">Senha</label>
-                                <input type="text" placeholder="Digite a senha.." class="input input-bordered w-full max-w-xs bg-gray-100" />
-                            </div>
-                            <div class="mt-3">
-                                <label for="email" class="block text-base mb-2">Ativo</label>
-                                <input type="text" placeholder="Digite se está ativo.." class="input input-bordered w-full max-w-xs bg-gray-100" />
-                            </div>
-                            <div class="flex justify-center items-center mt-10 ">
+                            <select class="select select-bordered join-item mt-3">
+                                                <option disabled selected>Ativo</option>
+                                                <option>S</option>
+                                                <option>N</option>
+                                            </select>
+                            <div class="flex justify-center items-center mt-3 ">
                                 <button class="btn btn-default bg-orange-500 hover:bg-black font-black border-orange-500 text-white">Submit</button>
                             </div>
                         </form>
@@ -599,19 +579,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                         </div>
                         </div>
                     </dialog>
+                    
 
+                    <!-- modal logout -->
+                    <dialog id="logout1" class="modal">
+                        <div class="modal-box">
+                        <h3 class="font-bold text-lg">Deseja mesmo sair?</h3>
+                        <div class="modal-action">
+                            <form method="dialog">
+                                <button class="btn">Sim</button>
+                                <button class="btn">Não</button>
+                            </form>
+                        </div>
+                        </div>
+                    </dialog>
+
+                    
               </main>
               
-
-
-
-<!-- script para os formulários e a tela de search só aparecerem conforme solicitado. Deixar mais como um rascunho já que ainda tem muitos erros -->
         <script>
 
             function ad() {
+               
                 ad_nav.classList.remove("hidden");
                 ad_search.classList.add("hidden");
                 ad_add.classList.add("hidden");
+                usr_nav.classList.add("hidden");
                 usr_tbl.classList.add("hidden");
 
 
@@ -630,20 +623,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
             function home () {
                     ad_nav.classList.add("hidden");
-              //  if (!ad_add.classList.contains("hidden")) {
+                    usr_nav.classList.add("hidden");
                     ad_add.classList.add("hidden");
-              //  }
                     usr_tbl.classList.add("hidden");
                     ad_search.classList.add("hidden");
             }
 
             function user () {
                     ad();
-                    ad_nav.classList.add("hidden");
-                    usr_tbl.classList.remove("hidden");
-            }
 
-         
+                    usr_nav.classList.remove("hidden");
+                    ad_nav.classList.add("hidden");
+
+                    list_btn.addEventListener("click", function () {
+                        usr_tbl.classList.remove("hidden");
+                    });
+                   
+                    
+            }
        
           
 
