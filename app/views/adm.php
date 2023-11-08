@@ -1,5 +1,14 @@
 <?php
 
+use models\User;
+
+function listUsers(){
+    $user = new User(0, '', '', '', '', '', '', '');
+
+    $rows = $user->listUsuarios();
+    
+}
+
 // CORS Request to get the html page
 
 header('Access-Control-Allow-Origin: *');
@@ -245,9 +254,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                                         <td>
                                         <div class="flex items-center space-x-3">
                                             <div class="avatar">
-                                            <div class="mask mask-squircle w-12 h-12">
-                                                <img src="/app/views/images/Shorts para Bike.jpg" alt="Avatar Tailwind CSS Component" />
-                                            </div>
+                                            
                                             </div>
                                             <div>
                                             <div class="font-bold">Carlos Eduardo</div>
@@ -277,9 +284,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                                         <td>
                                         <div class="flex items-center space-x-3">
                                             <div class="avatar">
-                                            <div class="mask mask-squircle w-12 h-12">
-                                                <img src="/app/views/images/Shorts para Bike.jpg" alt="Avatar Tailwind CSS Component" />
-                                            </div>
+                                            
                                             </div>
                                             <div>
                                             <div class="font-bold">Jhonnata Lorusso</div>
@@ -309,9 +314,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                                         <td>
                                         <div class="flex items-center space-x-3">
                                             <div class="avatar">
-                                            <div class="mask mask-squircle w-12 h-12">
-                                                <img src="/app/views/images/Shorts para Bike.jpg" alt="Avatar Tailwind CSS Component" />
-                                            </div>
+                                            
                                             </div>
                                             <div>
                                             <div class="font-bold">Fulano</div>
@@ -341,9 +344,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                                         <td>
                                         <div class="flex items-center space-x-3">
                                             <div class="avatar">
-                                            <div class="mask mask-squircle w-12 h-12">
-                                                <img src="/app/views/images/Shorts para Bike.jpg" alt="Avatar Tailwind CSS Component" />>
-                                            </div>
+                                            
                                             </div>
                                             <div>
                                             <div class="font-bold">Fulano</div>
