@@ -103,7 +103,7 @@
                                 <p class="mt-3 text-black">R$ 150</p>
                                 <button
                                     class="btn btn-primary border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300"
-                                    onclick="modalsemcompra.showModal()">Buy Now</button>
+                                    onclick="produto.showModal()">Buy Now</button>
                             </div>
                         </div>
                     </div>
@@ -401,7 +401,37 @@
             </div>
         </footer>
     </div>
-    <dialog id="modalsemcompra" class="modal modal-bottom sm:modal-middle">
+
+            <dialog id="produto" class="modal">
+                <div class="w-8/12">
+                <div class="card lg:card-side bg-base-100 shadow-xl">
+                    <div class="m-10 flex flex-row">
+                        <img src="/app/views/images/Conjunto Freio à disco.webp" alt="" class="w-96 lg:rounded"> 
+                     <!--   <p class="py-4">Novo</p> -->
+                     <div class="w-full">
+                        <h3 class="font-bold text-2xl m-5">Conjunto Freio à disco</h3>
+                     </div>
+                    </div>
+                    <div class="modal-action">
+                    <form method="dialog">
+                        <!-- if there is a button, it will close the modal -->
+                        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                    </form>
+                    </div>
+
+                    <div class="ml-96 m-12">
+                            <div class="card w-96 bg-base-100 shadow-xl">
+                                <div class="card-body items-center text-center h-96 m-12">
+                                <button class="btn btn-wide">Comprar</button>
+                            </div> 
+                    </div>
+
+                </div>
+                </div>
+            </dialog>
+
+            
+<!--  <dialog id="modalsemcompra" class="modal modal-bottom sm:modal-middle">
         <form method="dialog" class="modal-box bg-slate-100">
             <h3 class="font-bold text-lg text-black">Olá Cliente! Desculpe-nos pelo inconveniente mas nosso site ainda
                 está em desenvolvimento.</h3>
@@ -413,12 +443,13 @@
             <p class="text-black">Lembrando que todos os nossos preços são ficticios no momento pois o site ainda está
                 em desenvolvimento...</p>
             <div class="modal-action">
-                <!-- if there is a button in form, it will close the modal -->
+               
                 <button
                     class="btn border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300 text-white">Close</button>
             </div>
         </form>
     </dialog>
+
     <dialog id="modalpoucoanuncio" class="modal modal-bottom sm:modal-middle">
         <form method="dialog" class="modal-box bg-slate-100">
             <h3 class="font-bold text-lg text-black">Olá Cliente! Desculpe-nos pelo inconveniente mas nosso site ainda
@@ -431,12 +462,14 @@
             <p class="text-black">Lembrando que todos os nossos preços são ficticios no momento pois o site ainda está
                 em desenvolvimento.</p>
             <div class="modal-action">
-                <!-- if there is a button in form, it will close the modal -->
+               
                 <button
                     class="btn border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300 text-white">Close</button>
             </div>
         </form>
-    </dialog>
+    </dialog> -->
+
+
     <script src="/public/assets/js/script.js"></script>
 </body>
 
