@@ -410,7 +410,10 @@
                      <!--   <p class="py-4">Novo</p> -->
                      <div class="w-full">
                         <h3 class="font-bold text-2xl m-5">Conjunto Freio à disco</h3>
+                        <p class="text-lg m-5">Conjunto de instalação de freio à disco para bicicletas. Contendo dois discos, duas pinças com quatro pastilhas,
+                         dois cabos com conduites</p>
                      </div>
+                     
                     </div>
                     <div class="modal-action">
                     <form method="dialog">
@@ -419,7 +422,7 @@
                     </form>
                     </div>
 
-                    <div class="ml-96 m-12">
+                    <div class="m-12">
                             <div class="card w-96 bg-base-100 shadow-xl">
                                 <div class="card-body items-center text-center h-96 m-12">
                                 <button class="btn btn-wide">Comprar</button>
