@@ -54,7 +54,7 @@
                     </td>
                     <td class="flex gap-2 mt-2">
                         <div>
-                            <button onclick="user_active.value = '${userActive}'; user_role.value = '${roles[user.idNivelUsuario]}'; user_name.value = '${user.name}'; user_email.value = '${user.email}'; user_update.showModal()" class="btn btn-ghost btn-xs">editar</button>
+                            <button onclick="user_id = ${user.id}; user_active.value = '${userActive}'; user_role.value = '${roles[user.idNivelUsuario]}'; user_name.value = '${user.name}'; user_email.value = '${user.email}'; user_update.showModal()" class="btn btn-ghost btn-xs">editar</button>
                         </div>
                         <div>
                             <button onclick="deleteUserId = ${user.id}; user_delete.showModal()" class="btn btn-ghost btn-xs">desativar</button>
