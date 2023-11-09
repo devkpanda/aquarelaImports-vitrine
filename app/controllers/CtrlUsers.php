@@ -151,6 +151,51 @@ if ($uriPath == '/user/deactive') {
     // }
 }
 
+if ($uriPath == '/user/update') {
+    if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
+        $json = file_get_contents('php://input');
+
+        if ($json === false){
+            http_response_code(400);
+            echo json_encode(array('message' => 'Error receiving json'));
+        } else {
+            $data = json_decode($json, true);
+
+            if ($data === null) {
+                http_response_code(400);
+                echo json_encode(array('message' => 'Empty json'));
+            } else {
+                if (!isset($data['id']) || !isset($data['idNivelUsuario']) || !isset($data['name'])  || !isset($data['email'])|| !isset($data['active'])){
+                    die(json_encode(array('message' => 'unexpected JSON')));
+                } else {
+                    $id = $data['id'];
+                    $idNivelUsuario = $data['idNivelUsuario'];
+                    $name = $data['name'];
+                    $email = $data['email'];
+                    $active = $data['active'];
+
+                    $where = new Where();
+                    $where->addCondition('AND', 'id', '=', $id);
+
+                    $user = new User('', '', '', '', '', '', '', '');
+                    $result = $user->listUsuarios($where);
+
+                    $result[0]->setIdNivelUsuario($idNivelUsuario);
+                    $result[0]->setName($name);
+                    $result[0]->setEmail($email);
+                    $result[0]->setActive($active);
+                    
+                    if (!$result[0]->save()) {
+                        die(json_encode(array('message' => '1')));
+                    } else {
+                        die(json_encode(array('message' => '0')));
+                    }
+                }
+            }
+        }
+    }
+}
+
 if ($uriPath == '/login/auth') {
     if (strtolower($_SERVER['REQUEST_METHOD']) == 'post'){
         $json = file_get_contents('php://input');

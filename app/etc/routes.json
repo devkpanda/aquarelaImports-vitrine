@@ -59,6 +59,12 @@
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
 		"errorPath" : "app/views/home.php"
 	},
+	"user/update" : { 
+		"path" : "app/controllers/CtrlUsers.php",
+		"sessionKey": [{"idUsuario": true}],  
+		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
+		"errorPath" : "app/views/home.php"
+	},
 	"user/listall" : { 
 		"path" : "app/controllers/CtrlUsers.php",
 		"sessionKey": [{"idUsuario": false}],  
