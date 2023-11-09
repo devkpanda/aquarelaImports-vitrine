@@ -19,8 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 $url = parse_url($_SERVER['REQUEST_URI']);
 $uriPath = $url['path'];
 
-
-
     // if (isset($_SESSION['idNivelUsuario']) && $_SESSION['idNivelUsuario'] == 1) {
     if ($uriPath == '/advertisement/add'){
     if(strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
