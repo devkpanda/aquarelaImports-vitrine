@@ -81,6 +81,76 @@ if ($uriPath == '/user/add') {
     }
 }
 
+if ($uriPath == '/user/active') {
+    // if (isset($_SESSION['idNivelUsuario']) && $_SESSION['idNivelUsuario'] == 1){
+        if (strtolower($_SERVER['REQUEST_METHOD']) == 'post'){
+            $json = file_get_contents('php://input');
+    
+            if ($json === false){
+                http_response_code(400);
+                echo json_encode(array('message' => 'Error receiving json'));
+            } else {
+                $data = json_decode($json, true);
+    
+                if ($data === null) {
+                    http_response_code(400);
+                    echo json_encode(array('message' => 'Empty json'));
+                } else {
+                    $id = $data['id'];
+
+                    $user = new User($id, '', '', '', '', 0, '', '');
+                    $userList = $user->listUsuarios();
+
+                    $userList[0]->setActive("1");
+    
+                    if ($userList[0]->save()) {
+                        echo json_encode(array('message' => '0'));
+                    } else {
+                        echo json_encode(array('message' => '1'));
+                    }
+                }   
+            }
+        } else {
+            echo json_encode(array('message' => 'Method not allowed'));
+        }
+    // }
+}
+
+if ($uriPath == '/user/deactive') {
+    // if (isset($_SESSION['idNivelUsuario']) && $_SESSION['idNivelUsuario'] == 1){
+        if (strtolower($_SERVER['REQUEST_METHOD']) == 'post'){
+            $json = file_get_contents('php://input');
+    
+            if ($json === false){
+                http_response_code(400);
+                echo json_encode(array('message' => 'Error receiving json'));
+            } else {
+                $data = json_decode($json, true);
+    
+                if ($data === null) {
+                    http_response_code(400);
+                    echo json_encode(array('message' => 'Empty json'));
+                } else {
+                    $id = $data['id'];
+
+                    $user = new User($id, '', '', '', '', 0, '', '');
+                    $userList = $user->listUsuarios();
+
+                    $userList[0]->setActive("0");
+    
+                    if ($userList[0]->save()) {
+                        echo json_encode(array('message' => '0'));
+                    } else {
+                        echo json_encode(array('message' => '1'));
+                    }
+                }   
+            }
+        } else {
+            echo json_encode(array('message' => 'Method not allowed'));
+        }
+    // }
+}
+
 if ($uriPath == '/login/auth') {
     if (strtolower($_SERVER['REQUEST_METHOD']) == 'post'){
         $json = file_get_contents('php://input');

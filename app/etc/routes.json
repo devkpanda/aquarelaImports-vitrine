@@ -47,11 +47,35 @@
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
 		"errorPath" : "app/views/home.php"
 	},
+	"user/active" : { 
+		"path" : "app/controllers/CtrlUsers.php",
+		"sessionKey": [{"idUsuario": true}],  
+		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
+		"errorPath" : "app/views/home.php"
+	},
+	"user/deactive" : { 
+		"path" : "app/controllers/CtrlUsers.php",
+		"sessionKey": [{"idUsuario": true}],  
+		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
+		"errorPath" : "app/views/home.php"
+	},
 	"user/listall" : { 
 		"path" : "app/controllers/CtrlUsers.php",
 		"sessionKey": [{"idUsuario": false}],  
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
 		"errorPath" : "app/views/home.php"
+	},
+	"user_level/listall" : { 
+		"path" : "app/controllers/CtrlUser_level.php",
+		"sessionKey": [{"idUsuario": false}], 
+		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
+		"errorPath" : "app/views/adm.php"
+	},
+	"user_level/add" : { 
+		"path" : "app/controllers/CtrlUser_level.php",
+		"sessionKey": [{"idUsuario": false}], 
+		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
+		"errorPath" : "app/views/adm.php"
 	},
 	"login" : { 
 		"path" : "app/views/login.php",
