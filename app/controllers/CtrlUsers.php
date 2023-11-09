@@ -18,6 +18,32 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 $url = parse_url($_SERVER['REQUEST_URI']);
 $uriPath = strtolower($url['path']);
 
+if ($uriPath == '/user/listall'){
+    if (strtolower($_SERVER['REQUEST_METHOD']) == 'get'){
+        $user = new User(0, '', '', '', '', 0, '', '');
+
+        $users = $user->listUsuarios();
+
+        $json = array();
+
+        foreach ($users as $user) {
+            $userArray = array(
+                "id" => $user->getId(),
+                "idNivelUsuario" => $user->getIdNivelUsuario(),
+                "name" => $user->getName(),
+                "email" => $user->getEmail(),
+                "active" => $user->getActive()
+            );
+
+            $json[] = $userArray;
+        }
+
+        echo json_encode($json);
+    } else {
+        echo json_encode(array('message' => 'Method not allowed'));
+    }
+}
+
 if ($uriPath == '/user/add') {
     if (isset($_SESSION['idNivelUsuario']) && $_SESSION['idNivelUsuario'] == 1){
         if (strtolower($_SERVER['REQUEST_METHOD']) == 'post'){

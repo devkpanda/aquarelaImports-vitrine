@@ -4,9 +4,22 @@ use models\User;
 
 function listUsers(){
     $user = new User(0, '', '', '', '', '', '', '');
-
     $rows = $user->listUsuarios();
-    
+
+    foreach ($rows as $row) {
+        echo "<tr>";
+            echo "<th></th>";
+            echo "<td>
+                    <div class='flex items-center space-x-3'>
+                        <div>
+                            <div class='font-bold'> " . $row['name'] . "</div>
+                            <div class='text-sm opacity-50'>" . ( $row['idNivelUsuario'] == 1 ? "Administrador" : "Funcionario" ) . "</div>
+                        </div>
+                    </div>
+                </td>";
+                echo ""
+        echo "</tr>";
+    }
 }
 
 // CORS Request to get the html page
@@ -253,9 +266,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                                         </th>
                                         <td>
                                         <div class="flex items-center space-x-3">
-                                            <div class="avatar">
-                                            
-                                            </div>
                                             <div>
                                             <div class="font-bold">Carlos Eduardo</div>
                                             <div class="text-sm opacity-50">Administrador</div>
