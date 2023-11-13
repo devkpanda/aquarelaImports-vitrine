@@ -21,53 +21,58 @@ $uriPath = $url['path'];
 
     // if (isset($_SESSION['idNivelUsuario']) && $_SESSION['idNivelUsuario'] == 1) {
     if ($uriPath == '/advertisement/add'){
-    if(strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
-        $json = file_get_contents('php://input');
+        
+        if(strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
+            $json = file_get_contents('php://input');
 
-        if ($json === false){
-            echo json_encode(array('message' => 'Error receiving json'));
+            if ($json === false){
+                echo json_encode(array('message' => 'Error receiving json'));
             } else {
                 $data = json_decode($json, true);
 
-                if ($data === null){
+                if ($data === null) {
                     http_response_code(400);
-                    echo json_encode(array('message' => 'Empty json'));
+                    die(json_encode(array("message" => "empty data")));
                 } else {
-                    $cod         = $data['cod'];
-                    $name        = $data['name'];
-                    $description = $data['description'];
-                    $price       = $data['price'];
-                    $category_id = $data['category_id'];
-                    $measurement = $data['measurement'];
-                    $size        = $data['size'];
-                    $videoUrl    = $data['videoUrl'];
-                    $base64_data = $data['base64_data'];
-
-                    $advertisement = new Advertisement(0, $cod, $name, $description, $price, $category_id, $measurement, $size, $videoUrl);
-
-                    if ($advertisement->save()) {
-                        $where = new Where();
-                        $where->addCondition('AND', 'cod', '=', $cod);
-
-                        $result = $advertisement->listAdvertisements($where);
-
-                        $success = "";
-
-                        foreach ($base64_data as $photo) {
-                            $photo = new Photo(0, $result[0]->getId(), $photo, '', '');
-                            if ($photo->save()) {
-                            } else {
-                                $success = false;
-                            }
-                        }
-
-                        if ($success === false){
-                            echo json_encode(array('message' => '1'));
-                        } else {
-                            echo json_encode(array('message' => '0'));
-                        }
+                    if (!isset($data['cod']) || !isset($data['name']) || !isset($data['description']) || !isset($data['price']) || !isset($data['category_id']) || !isset($data['measurement']) || !isset($data['size']) || !isset($data['videoUrl']) || !isset($data['base64_data'])) {
+                        die(json_encode(array('message' => 'unexpected JSON')));
                     } else {
-                        echo json_encode(array('message' => '1'));
+                        $cod         = $data['cod'];
+                        $name        = $data['name'];
+                        $description = $data['description'];
+                        $price       = $data['price'];
+                        $category_id = $data['category_id'];
+                        $measurement = $data['measurement'];
+                        $size        = $data['size'];
+                        $videoUrl    = $data['videoUrl'];
+                        $base64_data = $data['base64_data'];
+    
+                        $advertisement = new Advertisement(0, $cod, $name, $description, $price, $category_id, $measurement, $size, $videoUrl);
+    
+                        if ($advertisement->save()) {
+                            $where = new Where();
+                            $where->addCondition('AND', 'cod', '=', $cod);
+    
+                            $result = $advertisement->listAdvertisements($where);
+    
+                            $success = "";
+    
+                            foreach ($base64_data as $photo) {
+                                $photo = new Photo(0, $result[0]->getId(), $photo, '', '');
+                                if ($photo->save()) {
+                                } else {
+                                    $success = false;
+                                }
+                            }
+    
+                            if ($success === false){
+                                echo json_encode(array('message' => '1'));
+                            } else {
+                                echo json_encode(array('message' => '0'));
+                            }
+                        } else {
+                            echo json_encode(array('message' => '1'));
+                        }
                     }
                 }
             }
@@ -87,22 +92,24 @@ $uriPath = $url['path'];
                     echo json_encode(array('message' => 'Error receiving json'));
                 } else {
                     $data = json_decode($json, true);
-        
-                    if ($data === null) {
-                        http_response_code(400);
-                        echo json_encode(array('message' => 'Empty json'));
+                    
+                    if ($data === null)  {
+                        die (json_encode(array('message' => 'Empty data')));
                     } else {
-                        $id          = $data['id'];
-                        $cod         = $data['cod'];
-                        $name        = $data['name'];
-                        $description = $data['description'];
-                        $price       = $data['price'];
-                        $category_id = $data['category_id'];
-                        $measurement = $data['measurement'];
-                        $size        = $data['size'];
-                        $videoUrl    = $data['videoUrl'];
-                        $base64_data = $data['base64_data'];
-
+                        if (!isset($data['id']) || !isset($data['cod']) || !isset($data['name']) || !isset($data['description']) || !isset($data['price']) || !isset($data['category_id']) || !isset($data['measurement']) || !isset($data['size']) || !isset($data['videoUrl']) || !isset($data['base64_data'])) {
+                            die(json_encode(array('message' => 'unexpected JSON')));
+                        } else {
+                            $id          = $data['id'];
+                            $cod         = $data['cod'];
+                            $name        = $data['name'];
+                            $description = $data['description'];
+                            $price       = $data['price'];
+                            $category_id = $data['category_id'];
+                            $measurement = $data['measurement'];
+                            $size        = $data['size'];
+                            $videoUrl    = $data['videoUrl'];
+                            $base64_data = $data['base64_data'];
+    
                             $exist = false;
                             $advertisement = new Advertisement($id, $cod, $name, $description, $price, $category_id, $measurement, $size, $videoUrl);
                             if($id !== 0) {
@@ -116,22 +123,23 @@ $uriPath = $url['path'];
                             } else {
                                 echo json_encode(array('message' => '0'));
                             }
-                       /*
-                        $where = new Where();
-                        $where->addCondition('AND', 'cod', '=', $cod);
-
-                        $result = $advertisement->listAdvertisements($where);
-
-                        $success = "";
-
-                        foreach ($base64_data as $photo) {
-                            $photo = new Photo(0, $result[0]->getId(), $photo, '', '');
-                            if ($photo->save()) {
-                            } else {
-                                $success = false;
-                            }
-                       */
-                    }   
+                           /*
+                            $where = new Where();
+                            $where->addCondition('AND', 'cod', '=', $cod);
+    
+                            $result = $advertisement->listAdvertisements($where);
+    
+                            $success = "";
+    
+                            foreach ($base64_data as $photo) {
+                                $photo = new Photo(0, $result[0]->getId(), $photo, '', '');
+                                if ($photo->save()) {
+                                } else {
+                                    $success = false;
+                                }
+                           */
+                        }   
+                    }
                 }
             } else {
                 echo json_encode(array('message' => 'Method not allowed'));

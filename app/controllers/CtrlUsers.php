@@ -167,6 +167,7 @@ if ($uriPath == '/user/update') {
             } else {
                 if (!isset($data['id']) || !isset($data['idNivelUsuario']) || !isset($data['name'])  || !isset($data['email'])|| !isset($data['active'])){
                     die(json_encode(array('message' => 'unexpected JSON')));
+                    
                 } else {
                     $id = $data['id'];
                     $idNivelUsuario = $data['idNivelUsuario'];
