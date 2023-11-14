@@ -85,7 +85,7 @@ if ($uriPath == '/user/add') {
     }
 }
 
-if ($uriPath == '/user/active') {
+if ($uriPath == '/user/enable') {
     // if (isset($_SESSION['idNivelUsuario']) && $_SESSION['idNivelUsuario'] == 1){
         if (strtolower($_SERVER['REQUEST_METHOD']) == 'post'){
             $json = file_get_contents('php://input');
@@ -104,16 +104,23 @@ if ($uriPath == '/user/active') {
                         die(json_encode(array('message' => 'unexpected JSON')));
                     } else {
                         $id = $data['id'];
+
+                        $where = new Where();
+                        $where->addCondition('AND', 'id', '=', $id);
     
                         $user = new User($id, '', '', '', '', 0, '', '');
-                        $userList = $user->listUsuarios();
-    
-                        $userList[0]->setActive("1");
-        
-                        if ($userList[0]->save()) {
-                            echo json_encode(array('message' => '0'));
+                        $userList = $user->listUsuarios($where);
+
+                        if (!count($userList) == 1) {
+                            die(json_encode(array("message" => "unexpected id")));
                         } else {
-                            echo json_encode(array('message' => '1'));
+                            $userList[0]->setActive("1");
+        
+                            if ($userList[0]->save()) {
+                                echo json_encode(array('message' => '0'));
+                            } else {
+                                echo json_encode(array('message' => '1'));
+                            }
                         }
                     }
                 }   
@@ -150,7 +157,7 @@ if ($uriPath == '/user/disable') {
                         $user = new User($id, '', '', '', '', '', '', '');
                         $userList = $user->listUsuarios($where);
 
-                        if (!count($userList) == 0) {
+                        if (!count($userList) == 1) {
                             die(json_encode(array("message" => "unexpected id")));
                         } else {
                             $userList[0]->setActive("0");

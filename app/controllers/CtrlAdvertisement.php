@@ -246,6 +246,50 @@ if ($uriPath == '/advertisement/search'){
     }
 }
 
+if ($uriPath == '/advertisement/enable'){
+    if(strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
+        $json = file_get_contents('php://input');
+
+        if ($json === false){
+            http_response_code(400);
+            echo json_encode(array('message' => 'Error receiving json'));
+        } else {
+            $data = json_decode($json, true);
+
+            if ($data === null){
+                http_response_code(400);
+                echo json_encode(array('message' => 'Empty json'));
+            } else {
+                if (!isset($data['id'])){ 
+                    die(json_encode(array('message' => 'unexpected JSON')));
+                } else {
+                    $id = $data['id'];
+
+                    $where = new Where();
+                    $where->addCondition('AND', 'id', '=', $id);
+    
+                    $advertisement = new Advertisement('','','','','','','','','','');
+                    $advertisementList = $advertisement->listAdvertisements($where);
+
+                    if (!count($advertisementList) == 1) {
+                        die(json_encode(array("message" => "unexpected id")));
+                    } else {
+                        $advertisementList[0]->setIsActive('1');
+    
+                        if ($advertisementList[0]->save()) {
+                            die(json_encode(array('message' => '0')));
+                        } else {
+                            die(json_encode(array('message' => '1')));
+                        }
+                    }
+                }
+            }
+        }
+
+    } else {
+        echo json_encode(array('message' => 'Method not allowed'));
+    }
+}
 
 if ($uriPath == '/advertisement/disable'){
     if(strtolower($_SERVER['REQUEST_METHOD']) == 'post') {

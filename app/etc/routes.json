@@ -29,6 +29,12 @@
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
 		"errorPath" : "app/views/home.php"
 	},
+	"advertisement/enable" : { 
+		"path" : "app/controllers/CtrlAdvertisement.php",
+		"sessionKey": [{"idUsuario": false}], 
+		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
+		"errorPath" : "app/views/home.php"
+	},
 	"advertisement/disable" : { 
 		"path" : "app/controllers/CtrlAdvertisement.php",
 		"sessionKey": [{"idUsuario": false}], 
@@ -47,7 +53,7 @@
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
 		"errorPath" : "app/views/home.php"
 	},
-	"user/active" : { 
+	"user/enable" : { 
 		"path" : "app/controllers/CtrlUsers.php",
 		"sessionKey": [{"idUsuario": true}],  
 		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
