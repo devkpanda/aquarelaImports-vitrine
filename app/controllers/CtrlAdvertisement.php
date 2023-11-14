@@ -47,7 +47,7 @@ $uriPath = $url['path'];
                         $videoUrl    = $data['videoUrl'];
                         $base64_data = $data['base64_data'];
     
-                        $advertisement = new Advertisement(0, $cod, $name, $description, $price, $category_id, $measurement, $size, $videoUrl);
+                        $advertisement = new Advertisement(0, $cod, $name, $description, $price, $category_id, $measurement, $size, $videoUrl, 1);
     
                         if ($advertisement->save()) {
                             $where = new Where();
@@ -111,7 +111,7 @@ $uriPath = $url['path'];
                             $base64_data = $data['base64_data'];
     
                             $exist = false;
-                            $advertisement = new Advertisement($id, $cod, $name, $description, $price, $category_id, $measurement, $size, $videoUrl);
+                            $advertisement = new Advertisement($id, $cod, $name, $description, $price, $category_id, $measurement, $size, $videoUrl, 1);
                             if($id !== 0) {
                                 $exist = true; 
                                 $rSet = $advertisement->save();
@@ -166,7 +166,7 @@ $uriPath = $url['path'];
                     $where = new Where();
                     $where->addCondition('AND', 'category_id', '=', $id);
     
-                    $advertisement = new Advertisement('','','','','','','','','');
+                    $advertisement = new Advertisement('','','','','','','','','', '');
                     $result = $advertisement->listAdvertisements($where);
     
                     $json = array();
@@ -182,6 +182,7 @@ $uriPath = $url['path'];
                             "measurement"   => $ad->getMeasurement(),
                             "size"          => $ad->getSize(),
                             "videoUrl"      => $ad->getVideoUrl(),
+                            "isActive"      => $ad->getIsActive()
                         );
     
                         $json[] = $adArray;
@@ -230,6 +231,7 @@ if ($uriPath == '/advertisement/search'){
                         "measurement"   => $ad->getMeasurement(),
                         "size"          => $ad->getSize(),
                         "videoUrl"      => $ad->getVideoUrl(),
+                        "isActive"      => $ad->getIsActive()
                     );
 
                     $json[] = $adArray;
@@ -245,31 +247,45 @@ if ($uriPath == '/advertisement/search'){
 }
 
 
-if ($uriPath == '/advertisement/delete'){
+if ($uriPath == '/advertisement/disable'){
     if(strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
-        // n entendi direito isso aq
         $json = file_get_contents('php://input');
+
         if ($json === false){
             http_response_code(400);
             echo json_encode(array('message' => 'Error receiving json'));
         } else {
             $data = json_decode($json, true);
+
             if ($data === null){
                 http_response_code(400);
                 echo json_encode(array('message' => 'Empty json'));
             } else {
-                $id = $data['id'];
-
-                $advertisement = new Advertisement($id,'','','','','','','','');
-
-                $rSet = $advertisement->delete();
-               if ($rSet->rowCount() == 1) {
-                    echo json_encode(array('message' => '0'));
+                if (!isset($data['id'])){ 
+                    die(json_encode(array('message' => 'unexpected JSON')));
                 } else {
-                    echo json_encode(array('message' => '1'));
+                    $id = $data['id'];
+
+                    $where = new Where();
+                    $where->addCondition('AND', 'id', '=', $id);
+    
+                    $advertisement = new Advertisement('','','','','','','','','','');
+                    $advertisementList = $advertisement->listAdvertisements($where);
+
+                    if (!count($advertisementList) == 1) {
+                        die(json_encode(array("message" => "unexpected id")));
+                    } else {
+                        $advertisementList[0]->setIsActive('0');
+    
+                        if ($advertisementList[0]->save()) {
+                            die(json_encode(array('message' => '0')));
+                        } else {
+                            die(json_encode(array('message' => '1')));
+                        }
+                    }
                 }
+            }
         }
-    }
 
     } else {
         echo json_encode(array('message' => 'Method not allowed'));

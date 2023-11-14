@@ -18,13 +18,14 @@ class Advertisement
     private $measurement;
     private $size;
     private $videoUrl;
+    private $isActive;
 
     private $dbquery;
 
-    public function __construct($id, $cod, $name, $description, $price, $category_id, $measurement, $size, $videoUrl)
+    public function __construct($id, $cod, $name, $description, $price, $category_id, $measurement, $size, $videoUrl, $isActive)
     {
         $tableName = "advertisement";
-        $fieldsName = "id, cod, name, description, price, category_id, measurement, size, videoUrl";
+        $fieldsName = "id, cod, name, description, price, category_id, measurement, size, videoUrl, isActive";
         $fieldKey = "id";
         $this->dbquery = new DBQuery($tableName, $fieldsName, $fieldKey);
 
@@ -37,6 +38,7 @@ class Advertisement
         $this->setMeasurement($measurement);
         $this->setSize($size);
         $this->setVideoUrl($videoUrl);
+        $this->setIsActive($isActive);
     }
 
     public function toArray()
@@ -51,6 +53,7 @@ class Advertisement
             $this->getMeasurement(),
             $this->getSize(),
             $this->getVideoUrl(),
+            $this->getIsActive()
         );
     }
 
@@ -107,7 +110,8 @@ class Advertisement
                 $measurement    = $line['measurement'];
                 $size           = $line['size'];
                 $videoUrl       = $line['videoUrl'];
-                $advertisements[] = new Advertisement($id, $cod, $name, $description, $price, $category_id, $measurement, $size, $videoUrl);
+                $isActive       = $line['isActive'];
+                $advertisements[] = new Advertisement($id, $cod, $name, $description, $price, $category_id, $measurement, $size, $videoUrl, $isActive);
             }
         } else {
             $advertisements[] = array();
@@ -293,6 +297,26 @@ class Advertisement
     public function setVideoUrl($videoUrl)
     {
         $this->videoUrl = $videoUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of videoUrl
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * Set the value of videoUrl
+     *
+     * @return  self
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
 
         return $this;
     }

@@ -59,19 +59,23 @@ if ($uriPath == '/user/add') {
                     http_response_code(400);
                     echo json_encode(array('message' => 'Empty json'));
                 } else {
-                    $idNivelUsuario  = $data['idNivelUsuario'];
-                    $name            = $data['name'];
-                    $email           = $data['email'];
-                    $password        = $data['password'];
-                    $active_code     = $data['active_code'];
-                    $recovery_phrase = $data['recovery_phrase'];
-    
-                    $user = new User(0, $idNivelUsuario, $name, $email, $password, 0, $active_code, $recovery_phrase);
-    
-                    if ($user->save()) {
-                        echo json_encode(array('message' => '0'));
+                    if (!isset($data['idNivelUsuario']) || !isset($data['name']) || !isset($data['email']) || !isset($data['password']) || !isset($data['active_code']) || !isset($data['recovery_phrase'])) {
+                        die(json_encode(array('message' => 'unexpected JSON')));
                     } else {
-                        echo json_encode(array('message' => '1'));
+                        $idNivelUsuario  = $data['idNivelUsuario'];
+                        $name            = $data['name'];
+                        $email           = $data['email'];
+                        $password        = $data['password'];
+                        $active_code     = $data['active_code'];
+                        $recovery_phrase = $data['recovery_phrase'];
+        
+                        $user = new User(0, $idNivelUsuario, $name, $email, $password, 0, $active_code, $recovery_phrase);
+        
+                        if ($user->save()) {
+                            echo json_encode(array('message' => '0'));
+                        } else {
+                            echo json_encode(array('message' => '1'));
+                        }
                     }
                 }   
             }
@@ -96,17 +100,21 @@ if ($uriPath == '/user/active') {
                     http_response_code(400);
                     echo json_encode(array('message' => 'Empty json'));
                 } else {
-                    $id = $data['id'];
-
-                    $user = new User($id, '', '', '', '', 0, '', '');
-                    $userList = $user->listUsuarios();
-
-                    $userList[0]->setActive("1");
-    
-                    if ($userList[0]->save()) {
-                        echo json_encode(array('message' => '0'));
+                    if (!isset($data['id'])) {
+                        die(json_encode(array('message' => 'unexpected JSON')));
                     } else {
-                        echo json_encode(array('message' => '1'));
+                        $id = $data['id'];
+    
+                        $user = new User($id, '', '', '', '', 0, '', '');
+                        $userList = $user->listUsuarios();
+    
+                        $userList[0]->setActive("1");
+        
+                        if ($userList[0]->save()) {
+                            echo json_encode(array('message' => '0'));
+                        } else {
+                            echo json_encode(array('message' => '1'));
+                        }
                     }
                 }   
             }
@@ -116,7 +124,7 @@ if ($uriPath == '/user/active') {
     // }
 }
 
-if ($uriPath == '/user/deactive') {
+if ($uriPath == '/user/disable') {
     // if (isset($_SESSION['idNivelUsuario']) && $_SESSION['idNivelUsuario'] == 1){
         if (strtolower($_SERVER['REQUEST_METHOD']) == 'post'){
             $json = file_get_contents('php://input');
@@ -131,17 +139,28 @@ if ($uriPath == '/user/deactive') {
                     http_response_code(400);
                     echo json_encode(array('message' => 'Empty json'));
                 } else {
-                    $id = $data['id'];
-
-                    $user = new User($id, '', '', '', '', 0, '', '');
-                    $userList = $user->listUsuarios();
-
-                    $userList[0]->setActive("0");
-    
-                    if ($userList[0]->save()) {
-                        echo json_encode(array('message' => '0'));
+                    if (!isset($data['id'])) {
+                        die(json_encode(array('message' => 'unexpected JSON')));
                     } else {
-                        echo json_encode(array('message' => '1'));
+                        $id = $data['id'];
+
+                        $where = new Where();
+                        $where->addCondition('AND', 'id', '=', $id);
+    
+                        $user = new User($id, '', '', '', '', '', '', '');
+                        $userList = $user->listUsuarios($where);
+
+                        if (!count($userList) == 0) {
+                            die(json_encode(array("message" => "unexpected id")));
+                        } else {
+                            $userList[0]->setActive("0");
+        
+                            if ($userList[0]->save()) {
+                                echo json_encode(array('message' => '0'));
+                            } else {
+                                echo json_encode(array('message' => '1'));
+                            }
+                        }
                     }
                 }   
             }
@@ -211,45 +230,49 @@ if ($uriPath == '/login/auth') {
                 http_response_code(400);
                 echo json_encode(array('message' => 'Empty json'));
             } else {
-                $email = $data['email'];
-                $password = $data['password'];
-
-                $where = new Where();
-                $where->addCondition('AND', 'email', '=', $email);
-                $where->addCondition('AND', 'password', '=', $password);
-
-                // uncomment line below here when email send work correctly to activate users
-
-                // $where->addCondition('AND', 'active', '=', 1);
-
-                $user = new User('','','','','','','','','');
-                $result = $user->listUsuarios($where);
-
-                $json = array();
-
-                if (count($result) == 1) {
-                    foreach ($result as $Ruser) {
-                        $user->setId($Ruser->getId());
-                        $user->setIdNivelUsuario($Ruser->getIdNivelUsuario());
-                        $user->setName($Ruser->getName());
-                        $user->setEmail($Ruser->getEmail());
-
-                        $userArray = array(
-                            "message"   => "0",
-                            "id"        => $user->getId(),
-                            "Name"      => $user->getName(),
-                            "email"     => $user->getEmail()
-                        );
-
-                        $json[] = $userArray;
-                    }
+                if (!isset($data['email']) || !isset($data['password'])) {
+                    die(json_encode(array('message' => 'unexpected JSON')));
                 } else {
-                    return json_encode(array('message' => '1'));
+                    $email = $data['email'];
+                    $password = $data['password'];
+    
+                    $where = new Where();
+                    $where->addCondition('AND', 'email', '=', $email);
+                    $where->addCondition('AND', 'password', '=', $password);
+    
+                    // uncomment line below here when email send work correctly to activate users
+    
+                    // $where->addCondition('AND', 'active', '=', 1);
+    
+                    $user = new User('','','','','','','','','');
+                    $result = $user->listUsuarios($where);
+    
+                    $json = array();
+    
+                    if (count($result) == 1) {
+                        foreach ($result as $Ruser) {
+                            $user->setId($Ruser->getId());
+                            $user->setIdNivelUsuario($Ruser->getIdNivelUsuario());
+                            $user->setName($Ruser->getName());
+                            $user->setEmail($Ruser->getEmail());
+    
+                            $userArray = array(
+                                "message"   => "0",
+                                "id"        => $user->getId(),
+                                "Name"      => $user->getName(),
+                                "email"     => $user->getEmail()
+                            );
+    
+                            $json[] = $userArray;
+                        }
+                    } else {
+                        return json_encode(array('message' => '1'));
+                    }
+    
+                    $_SESSION['idNivelUsuario'] = $user->getIdNivelUsuario();
+    
+                    die(json_encode($json[0])); 
                 }
-
-                $_SESSION['idNivelUsuario'] = $user->getIdNivelUsuario();
-
-                die(json_encode($json[0])); 
             }
         } 
     } else {
