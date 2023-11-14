@@ -26,7 +26,7 @@ $uriPath = $url['path'];
             $json = file_get_contents('php://input');
 
             if ($json === false){
-                echo json_encode(array('message' => 'Error receiving json'));
+                die(json_encode(array('message' => 'Error receiving json')));
             } else {
                 $data = json_decode($json, true);
 
@@ -66,18 +66,18 @@ $uriPath = $url['path'];
                             }
     
                             if ($success === false){
-                                echo json_encode(array('message' => '1'));
+                                die(json_encode(array('message' => '1')));
                             } else {
-                                echo json_encode(array('message' => '0'));
+                                die(json_encode(array('message' => '0')));
                             }
                         } else {
-                            echo json_encode(array('message' => '1'));
+                            die(json_encode(array('message' => '1')));
                         }
                     }
                 }
             }
         } else {
-            echo json_encode(array('message' => 'Method not allowed'));
+            die(json_encode(array('message' => 'Method not allowed')));
         }
     }
 
@@ -89,7 +89,7 @@ $uriPath = $url['path'];
         
                 if ($json === false){
                     http_response_code(400);
-                    echo json_encode(array('message' => 'Error receiving json'));
+                    die(json_encode(array('message' => 'Error receiving json')));
                 } else {
                     $data = json_decode($json, true);
                     
@@ -116,33 +116,18 @@ $uriPath = $url['path'];
                                 $exist = true; 
                                 $rSet = $advertisement->save();
                             if ($rSet->rowCount() == 1) {
-                                    echo json_encode(array('message' => '1'));
+                                    die(json_encode(array('message' => '1')));
                                 } else {
-                                    echo json_encode(array('message' => '0'));
+                                    die(json_encode(array('message' => '0')));
                                 }
                             } else {
-                                echo json_encode(array('message' => '0'));
+                                die(json_encode(array('message' => '0')));
                             }
-                           /*
-                            $where = new Where();
-                            $where->addCondition('AND', 'cod', '=', $cod);
-    
-                            $result = $advertisement->listAdvertisements($where);
-    
-                            $success = "";
-    
-                            foreach ($base64_data as $photo) {
-                                $photo = new Photo(0, $result[0]->getId(), $photo, '', '');
-                                if ($photo->save()) {
-                                } else {
-                                    $success = false;
-                                }
-                           */
                         }   
                     }
                 }
             } else {
-                echo json_encode(array('message' => 'Method not allowed'));
+                die(json_encode(array('message' => 'Method not allowed')));
             }
         }
     //}
@@ -188,11 +173,11 @@ $uriPath = $url['path'];
                         $json[] = $adArray;
                     }
     
-                    echo json_encode($json);
+                    die(json_encode($json));
                 }
             }
         } else {
-            echo json_encode(array('message' => 'Method not allowed'));
+            die(json_encode(array('message' => 'Method not allowed')));
         }
     }
 
@@ -210,7 +195,10 @@ if ($uriPath == '/advertisement/search'){
                 http_response_code(400);
                 echo json_encode(array('message' => 'Empty json'));
             } else {
-                $search = $data['search'];
+                if (!isset($data['search'])) {
+                    die(json_encode(array('message' => 'unexpected JSON')));
+                } else {
+                    $search = $data['search'];
 
                 $where = new Where();
                 $where->addLike('', 'name', $search);
@@ -237,7 +225,8 @@ if ($uriPath == '/advertisement/search'){
                     $json[] = $adArray;
                 }
             
-                echo json_encode($json);
+                die(json_encode($json));
+                }
             }
         }
     
