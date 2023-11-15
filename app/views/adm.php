@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                 <ul class="flex justify-center items-center gap-x-24 px-4 border-y border-gray-200">
                     <li>
                         <button class="flex gap-x-2 items-center py-5 px-6 text-gray-500" id="search_btn">
-                            Pesquisar
+                            Listar
                         </button>
                     </li>
                     <li>
@@ -123,271 +123,145 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
 
 
-            <div class="hidden flex justify-center mt-10" id="ad_search">
-                <div class="flex justify-center shadow-xl grid gp-10 bg-white rounded-[10px] p-[3rem] h-50 w-10/12">
-                    <form action="" class="w-12/12 ">
-                        <div class="flex justify-center">
-                            <h1 class="text-2xl font-semibold leading-relaxed text-gray-800">Pesquise o anúncio</h1>
-                        </div>
-                        <div class="m-4 flex flex-row justify-center rounded-[8px] bg-white p-5 ">
-                            <div class="join">
-                                <div>
-                                    <div>
-                                        <input class="input input-bordered join-item" placeholder="Insira o nome.." />
-                                    </div>
-                                </div>
-                                <select class="select select-bordered join-item">
-                                    <option disabled selected>Categoria</option>
-                                    <option>Categoria</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                </select>
-                                <div class="indicator">
-                                    <button class="btn join-item">Pesquisar</button>
-                                </div>
+            <?php include "components/search_ad.php" ?>
+
+            <?php include "components/users.php" ?>
+
+            <!-- forms/modals -->
+            <!-- users -->
+
+
+            <!-- advertisement -->
+            <?php include "components/add_ad.php" ?>
+
+            <!-- modal update (ad) -->
+            <?php include "components/ad_update.php" ?>
+
+            <!-- modal delete (ad) -->
+
+            <dialog id="ad_delete" class="modal">
+                <div class="modal-box">
+                    <h3 class="font-bold text-lg">Deseja mesmo deletar esse anúncio?</h3>
+                    <div class="modal-action">
+                        <form method="dialog">
+                            <button class="btn">Sim</button>
+                            <button class="btn">Não</button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
+
+            <!-- modal update (user) -->
+            <?php include "components/edit_user.php" ?>
+
+            <!-- model delete (user) -->
+            <?php include "components/delete_user.php" ?>
+
+            <!-- modal logout -->
+            <dialog id="logout1" class="modal">
+                <div class="modal-box">
+                    <h3 class="font-bold text-lg">Deseja mesmo sair?</h3>
+                    <div class="modal-action">
+                        <form method="dialog">
+                            <button class="btn">Sim</button>
+                            <button class="btn">Não</button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
+
+            <script>
+                var editUserModal
+                var deleteUserId
+
+                function ad() {
+                    ad_nav.classList.remove("hidden");
+
+                    ad_search.classList.add("hidden");
+                    ad_add.classList.add("hidden");
+
+                    usr_nav.classList.add("hidden");
+                    usr_tbl.classList.add("hidden");
+
+
+                    search_btn.addEventListener("click", function() {
+                        ad_search.classList.remove("hidden");
+                        ad_add.classList.add("hidden");
+                    });
+
+                    add_btn.addEventListener("click", function() {
+                        ad_add.classList.remove("hidden");
+                        ad_search.classList.add("hidden");
+                    });
+                }
+
+
+                function home() {
+                    ad_nav.classList.add("hidden");
+                    usr_nav.classList.add("hidden");
+                    ad_add.classList.add("hidden");
+                    usr_tbl.classList.add("hidden");
+                    ad_search.classList.add("hidden");
+                }
+
+                function user() {
+                    ad(); // why?
+
+                    usr_nav.classList.remove("hidden");
+                    ad_nav.classList.add("hidden");
+
+                    list_btn.addEventListener("click", function() {
+                        usr_tbl.classList.remove("hidden");
+                    });
+
+                    fetch("http://127.0.0.1/user/listall", {
+                            method: "GET",
+                            headers: {
+                                'Origin': 'http://127.0.0.1',
+                                'Access-Control-Request-Method': 'GET',
+                                'Access-Control-Request-Headers': 'X-Requested-With, Content-Type',
+                            }
+                        })
+                        .then((response) => response.json())
+                        .then((response) => {
+                            const roles = {
+                                1: "Administrador",
+                                2: "Funcionário"
+                            }
+
+                            listusers.innerHTML = response.map(user => {
+                                const userActive = user.active === 0 ? "Não" : "Sim"
+
+                                return `<tr>
+                    <th>
+                    </th>
+                    <td>
+                        <div class="flex items-center space-x-3">
+                            <div>
+                                <div class="font-bold">${user.name}</div>
+                                <div class="text-sm opacity-50">${roles[user.idNivelUsuario]}</div>
                             </div>
-                    </form>
-                </div>
-
-                <div class="flex flex-col">
-                    <div class="overflow-x-auto my-4 flex justify-center">
-                        <table class="table">
-                            <!-- head -->
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Nome</th>
-                                    <th>Descrição</th>
-                                    <th>Preço</th>
-                                    <th>Tamanho</th>
-                                    <th>Peso</th>
-                                    <th>Video Url</th>
-                                    <th>Foto (base64)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- row 1 -->
-                                <tr>
-                                <tr class="hover">
-                                    <th>1</th>
-                                    <td>Conjunto Freio à disco</td>
-                                    <td>Conjunto de instalação de freio à disco para bicicletas. Contendo dois discos, duas pinças com quatro pastilhas, dois cabos com conduites</td>
-                                    <td>R$150</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td class="flex justify-">
-                                        <div>
-                                            <button onclick="ad_update.showModal()" class="btn btn-ghost btn-xs">editar</button>
-                                        </div>
-                                        <div>
-                                            <button onclick="ad_delete.showModal()" class="btn btn-ghost btn-xs">excluir</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <!-- row 2 -->
-                                <tr class="hover">
-                                    <th>2</th>
-                                    <td>Coroa</td>
-                                    <td>Coroa convencional para bicicletas sem marcha. 44 dentes</td>
-                                    <td>R$150</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td class="flex justify-between">
-                                        <div>
-                                            <button onclick="ad_update.showModal()" class="btn btn-ghost btn-xs">editar</button>
-                                        </div>
-                                        <div>
-                                            <button onclick="ad_delete.showModal()" class="btn btn-ghost btn-xs">excluir</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <!-- row 3 -->
-                                <tr>
-                                <tr class="hover">
-                                    <th>3</th>
-                                    <td>Pedivela</td>
-                                    <td>Pedivila convencional de alumínio, 44mm</td>
-                                    <td>R$150</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td class="flex justify-between">
-                                        <div>
-                                            <button onclick="ad_update.showModal()" class="btn btn-ghost btn-xs">editar</button>
-                                        </div>
-                                        <div>
-                                            <button onclick="ad_delete.showModal()" class="btn btn-ghost btn-xs">excluir</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                    </div>
-                    </table>
-                </div>
-            </div>
-            <div class="mt-6 flex justify-center">
-                <input type="radio" name="radio-8" class="radio radio-error mr-4" checked />
-                <input type="radio" name="radio-8" class="radio radio-error" />
-            </div>
-
-    </div>
-    </div>
-
-    <?php include "components/users.php" ?>
-
-    <!-- forms/modals -->
-    <!-- users -->
-
-
-    <!-- advertisement -->
-    <?php include "components/add_ad.php" ?>
-
-    <!-- modal update (ad) -->
-    <dialog id="ad_update" class="modal">
-        <div class="modal-box w-11/12">
-            <form method="dialog">
-                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-            </form>
-            <div class="w-12/12">
-                <h1 class="text-2xl font-semibold leading-relaxed text-gray-800">Editar</h1>
-                <hr class="mt-4 w-full">
-                <form action="" class="grid grid-cols-2 gap-4 ">
-                    <div class="mt-3">
-                        <label for="email" class="block text-base mb-2">Id</label>
-                        <input type="text" placeholder="Id" class="input input-bordered w-full max-w-xs" disabled />
-                    </div>
-                    <div class="mt-3">
-                        <label for="email" class="block text-base mb-2">Nome</label>
-                        <input type="text" placeholder="Digite o nome.." class="input input-bordered w-full max-w-xs bg-gray-100" />
-                    </div>
-                    <div class="mt-3">
-                        <label for="email" class="block text-base mb-2">Descrição</label>
-                        <input type="text" placeholder="Digite a descrição.." class="input input-bordered w-full max-w-xs bg-gray-100" />
-                    </div>
-                    <div class="mt-3">
-                        <label for="email" class="block text-base mb-2">Preço</label>
-                        <input type="text" placeholder="Digite o preço.." class="input input-bordered w-full max-w-xs bg-gray-100" />
-                    </div>
-                    <div class="mt-3">
-                        <label for="email" class="block text-base">Categoria</label>
-                        <select class="select select-bordered join-item w-full mt-2">
-                            <option disabled selected>Categoria</option>
-                            <option>S</option>
-                            <option>N</option>
-                        </select>
-                    </div>
-
-                    <div class="mt-3">
-                        <label for="email" class="block text-base mb-2">Peso</label>
-                        <input type="text" placeholder="Digite o peso.." class="input input-bordered w-full max-w-xs bg-gray-100" />
-                    </div>
-
-                    <div class="mt-3">
-                        <label for="email" class="block text-base mb-2">Tamanho</label>
-                        <input type="text" placeholder="Digite o tamanho.." class="input input-bordered w-full max-w-xs bg-gray-100" />
-                    </div>
-                    <div class="mt-3">
-                        <label for="email" class="block text-base mb-2">Url</label>
-                        <input type="text" placeholder="Digite a Url.." class="input input-bordered w-full max-w-xs bg-gray-100" />
-                    </div>
-
-                    <div class="mt-3">
-                        <label for="email" class="block text-base mb-2">Foto</label>
-                        <input type="file" class="file-input file-input-bordered file-input-bg-orange-500 w-full max-w-xs bg-gray-100" />
-                    </div>
-
-                    <div class="flex justify-center items-center mt-10 ">
-                        <button class="btn btn-default bg-orange-500 hover:bg-black font-black border-orange-500 text-white">Submit</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </dialog>
-
-    <!-- modal delete (ad) -->
-
-    <dialog id="ad_delete" class="modal">
-        <div class="modal-box">
-            <h3 class="font-bold text-lg">Deseja mesmo deletar esse anúncio?</h3>
-            <div class="modal-action">
-                <form method="dialog">
-                    <button class="btn">Sim</button>
-                    <button class="btn">Não</button>
-                </form>
-            </div>
-        </div>
-    </dialog>
-
-    <!-- modal update (user) -->
-    <?php include "components/edit_user.php" ?>
-
-    <!-- model delete (user) -->
-    <?php include "components/delete_user.php" ?>
-
-    <!-- modal logout -->
-    <dialog id="logout1" class="modal">
-        <div class="modal-box">
-            <h3 class="font-bold text-lg">Deseja mesmo sair?</h3>
-            <div class="modal-action">
-                <form method="dialog">
-                    <button class="btn">Sim</button>
-                    <button class="btn">Não</button>
-                </form>
-            </div>
-        </div>
-    </dialog>
-
-    <script>
-        var editUserModal
-        var deleteUserId
-
-        function ad() {
-            ad_nav.classList.remove("hidden");
-
-            ad_search.classList.add("hidden");
-            ad_add.classList.add("hidden");
-
-            usr_nav.classList.add("hidden");
-            usr_tbl.classList.add("hidden");
-
-
-            search_btn.addEventListener("click", function() {
-                ad_search.classList.remove("hidden");
-                ad_add.classList.add("hidden");
-            });
-
-            add_btn.addEventListener("click", function() {
-                ad_add.classList.remove("hidden");
-                ad_search.classList.add("hidden");
-            });
-        }
-
-
-        function home() {
-            ad_nav.classList.add("hidden");
-            usr_nav.classList.add("hidden");
-            ad_add.classList.add("hidden");
-            usr_tbl.classList.add("hidden");
-            ad_search.classList.add("hidden");
-        }
-
-        function user() {
-            ad(); // why?
-
-            usr_nav.classList.remove("hidden");
-            ad_nav.classList.add("hidden");
-
-            list_btn.addEventListener("click", function() {
-                usr_tbl.classList.remove("hidden");
-            });
-        }
-    </script>
+                        </div>
+                    </td>
+                    <td>
+                        ${user.email}
+                    </td>
+                    <td>
+                        ${userActive}
+                    </td>
+                    <td class="flex gap-2 mt-2">
+                        <div>
+                            <button onclick="user_id = ${user.id}; user_active.value = '${userActive}'; user_role.value = '${roles[user.idNivelUsuario]}'; user_name.value = '${user.name}'; user_email.value = '${user.email}'; user_update.showModal()" class="btn btn-ghost btn-xs">editar</button>
+                        </div>
+                        <div>
+                            <button onclick="deleteUserId = ${user.id}; user_delete.showModal()" class="btn btn-ghost btn-xs">desativar</button>
+                        </div>
+                    </td>
+                </tr>`
+                            }).join('')
+                        })
+                }
+            </script>
 </body>
 
 </html>
