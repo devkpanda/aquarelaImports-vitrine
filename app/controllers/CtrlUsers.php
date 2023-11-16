@@ -45,45 +45,48 @@ if ($uriPath == '/user/listall'){
 }
 
 if ($uriPath == '/user/add') {
-    if (isset($_SESSION['idNivelUsuario']) && $_SESSION['idNivelUsuario'] == 1){
-        if (strtolower($_SERVER['REQUEST_METHOD']) == 'post'){
-            $json = file_get_contents('php://input');
-    
-            if ($json === false){
-                http_response_code(400);
-                die(json_encode(array('message' => 'Error receiving json')));
-            } else {
-                $data = json_decode($json, true);
-    
-                if ($data === null) {
-                    http_response_code(400);
-                    die(json_encode(array('message' => 'Empty json')));
-                } else {
-                    if (!isset($data['idNivelUsuario']) || !isset($data['name']) || !isset($data['email']) || !isset($data['password']) || !isset($data['active_code']) || !isset($data['recovery_phrase'])) {
-                        die(json_encode(array('message' => 'unexpected JSON')));
-                    } else {
-                        $idNivelUsuario  = $data['idNivelUsuario'];
-                        $name            = $data['name'];
-                        $email           = $data['email'];
-                        $password        = $data['password'];
-                        $active_code     = $data['active_code'];
-                        $recovery_phrase = $data['recovery_phrase'];
-        
-                        $user = new User(0, $idNivelUsuario, $name, $email, $password, 0, $active_code, $recovery_phrase);
-        
-                        if ($user->save()) {
-                            die(json_encode(array('message' => '0')));
-                        } else {
-                            die(json_encode(array('message' => '1')));
-                        }
-                    }
-                }   
-            }
+    if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
+        $json = file_get_contents('php://input');
+
+        if ($json === false) {
+            http_response_code(400);
+            die(json_encode(array('message' => 'Error receiving json')));
         } else {
-            die(json_encode(array('message' => 'Method not allowed')));
+            $data = json_decode($json, true);
+
+            if ($data === null) {
+                http_response_code(400);
+                echo json_encode(array('message' => 'Empty json'));
+            } else {
+                if (!isset($data['idNivelUsuario']) || !isset($data['name']) || !isset($data['email']) || !isset($data['password'])) {
+                    die(json_encode(array('message' => 'unexpected JSON')));
+                } else {
+                    try {
+                        $idNivelUsuario     = $data['idNivelUsuario'];
+                        $name               = $data['name'];
+                        $email              = $data['email'];
+                        $password           = $data['password'];
+
+                        $user = new User(0, $idNivelUsuario, $name, $email, $password, 0, 0, '');
+
+                        if (!$user->save()) {
+                            die(json_encode(array('message' => '1')));
+                        } else {
+                            die(json_encode(array('message' => '0')));
+                        }
+                    } catch (Exception $e) {
+                        die(json_encode(array('message' => $e->getMessage())));
+                    } catch (InvalidArgumentException $iae) {
+                        die(json_encode(array('message' => $iae->getMessage())));
+                    }
+                }
+            }
         }
+    } else {
+        echo json_encode(array('message' => 'Method not allowed'));
     }
 }
+
 
 if ($uriPath == '/user/enable') {
     // if (isset($_SESSION['idNivelUsuario']) && $_SESSION['idNivelUsuario'] == 1){
@@ -103,24 +106,30 @@ if ($uriPath == '/user/enable') {
                     if (!isset($data['id'])) {
                         die(json_encode(array('message' => 'unexpected JSON')));
                     } else {
-                        $id = $data['id'];
+                        try {
+                            $id = $data['id'];
 
-                        $where = new Where();
-                        $where->addCondition('AND', 'id', '=', $id);
-    
-                        $user = new User($id, '', '', '', '', 0, '', '');
-                        $userList = $user->listUsuarios($where);
-
-                        if (!count($userList) == 1) {
-                            die(json_encode(array("message" => "unexpected id")));
-                        } else {
-                            $userList[0]->setActive("1");
+                            $where = new Where();
+                            $where->addCondition('AND', 'id', '=', $id);
         
-                            if ($userList[0]->save()) {
-                                die(json_encode(array('message' => '0')));
+                            $user = new User($id, '', '', '', '', 0, '', '');
+                            $userList = $user->listUsuarios($where);
+
+                            if (!count($userList) == 1) {
+                                die(json_encode(array("message" => "unexpected id")));
                             } else {
-                                die(json_encode(array('message' => '1')));
+                                $userList[0]->setActive("1");
+            
+                                if ($userList[0]->save()) {
+                                    die(json_encode(array('message' => '0')));
+                                } else {
+                                    die(json_encode(array('message' => '1')));
+                                }
                             }
+                        } catch (Exception $e) {
+                            die(json_encode(array('message' => $e->getMessage())));
+                        } catch (InvalidArgumentException $iae) {
+                            die(json_encode(array('message' => $iae->getMessage())));
                         }
                     }
                 }   
@@ -138,35 +147,41 @@ if ($uriPath == '/user/disable') {
     
             if ($json === false){
                 http_response_code(400);
-                echo json_encode(array('message' => 'Error receiving json'));
+                die(json_encode(array('message' => 'Error receiving json')));
             } else {
                 $data = json_decode($json, true);
     
                 if ($data === null) {
                     http_response_code(400);
-                    echo json_encode(array('message' => 'Empty json'));
+                    die(json_encode(array('message' => 'Empty json')));
                 } else {
                     if (!isset($data['id'])) {
                         die(json_encode(array('message' => 'unexpected JSON')));
                     } else {
-                        $id = $data['id'];
+                        try {
+                            $id = $data['id'];
 
-                        $where = new Where();
-                        $where->addCondition('AND', 'id', '=', $id);
-    
-                        $user = new User($id, '', '', '', '', '', '', '');
-                        $userList = $user->listUsuarios($where);
-
-                        if (!count($userList) == 1) {
-                            die(json_encode(array("message" => "unexpected id")));
-                        } else {
-                            $userList[0]->setActive("0");
+                            $where = new Where();
+                            $where->addCondition('AND', 'id', '=', $id);
         
-                            if ($userList[0]->save()) {
-                                echo json_encode(array('message' => '0'));
+                            $user = new User($id, '', '', '', '', 0, '', '');
+                            $userList = $user->listUsuarios($where);
+
+                            if (!count($userList) == 1) {
+                                die(json_encode(array("message" => "unexpected id")));
                             } else {
-                                echo json_encode(array('message' => '1'));
+                                $userList[0]->setActive("0");
+            
+                                if ($userList[0]->save()) {
+                                    die(json_encode(array('message' => '0')));
+                                } else {
+                                    die(json_encode(array('message' => '1')));
+                                }
                             }
+                        } catch (Exception $e) {
+                            die(json_encode(array('message' => $e->getMessage())));
+                        } catch (InvalidArgumentException $iae) {
+                            die(json_encode(array('message' => $iae->getMessage())));
                         }
                     }
                 }   
@@ -191,32 +206,37 @@ if ($uriPath == '/user/update') {
                 http_response_code(400);
                 echo json_encode(array('message' => 'Empty json'));
             } else {
-                if (!isset($data['id']) || !isset($data['idNivelUsuario']) || !isset($data['name'])  || !isset($data['email'])|| !isset($data['active'])){
+                if (!isset($data['id']) || !isset($data['idNivelUsuario']) || !isset($data['name'])  || !isset($data['email'])){
                     die(json_encode(array('message' => 'unexpected JSON')));
                     
                 } else {
-                    $id = $data['id'];
-                    $idNivelUsuario = $data['idNivelUsuario'];
-                    $name = $data['name'];
-                    $email = $data['email'];
-                    $active = $data['active'];
+                    try {
+                        $id = $data['id'];
+                        $idNivelUsuario = $data['idNivelUsuario'];
+                        $name = $data['name'];
+                        $email = $data['email'];
 
-                    $where = new Where();
-                    $where->addCondition('AND', 'id', '=', $id);
+                        $where = new Where();
+                        $where->addCondition('AND', 'id', '=', $id);
 
-                    $user = new User('', '', '', '', '', '', '', '');
-                    $result = $user->listUsuarios($where);
+                        $user = new User('', '', '', '', '', '', '', '');
+                        $result = $user->listUsuarios($where);
 
-                    $result[0]->setIdNivelUsuario($idNivelUsuario);
-                    $result[0]->setName($name);
-                    $result[0]->setEmail($email);
-                    $result[0]->setActive($active);
-                    
-                    if (!$result[0]->save()) {
-                        die(json_encode(array('message' => '1')));
-                    } else {
-                        die(json_encode(array('message' => '0')));
+                        $result[0]->setIdNivelUsuario($idNivelUsuario);
+                        $result[0]->setName($name);
+                        $result[0]->setEmail($email);
+                        
+                        if (!$result[0]->save()) {
+                            die(json_encode(array('message' => '1')));
+                        } else {
+                            die(json_encode(array('message' => '0')));
+                        }
+                    } catch (Exception $e) {
+                        die(json_encode(array('message' => $e->getMessage())));
+                    } catch (InvalidArgumentException $iae) {
+                        die(json_encode(array('message' => $iae->getMessage())));
                     }
+                    
                 }
             }
         }
