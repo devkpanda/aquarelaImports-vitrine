@@ -53,6 +53,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                         </a>
                     </li>
                     <li>
+                        <a href="#" id="category_btn" onclick="category()" class="md:w-full flex gap-x4 items-start py-2 text-gray-500 hover:text-black">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-6 ml-2 mt-1" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                <path d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z" />
+                            </svg>
+                            Categorias
+                        </a>
+                    </li>
+                    <li>
                         <a href="#" onclick="user()" id="usr_btn" class="md:w-full flex gap-x4 items-start py-2 text-gray-500 hover:text-black">
                             <svg xmlns="http://www.w3.org/2000/svg" class="mr-6 ml-2 mt-1 fill-[#c0bfbc]" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
                                 <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
@@ -108,7 +116,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                             Adicionar
                         </button>
                     </li>
-                    </li>
                 </ul>
             </div>
 
@@ -121,14 +128,36 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                 </ul>
             </div>
 
+            <div class="hidden flex flex-col" id="category_nav">
+                <ul class="flex justify-center items-center gap-x-24 px-4 border-y border-gray-200">
+                    <li>
+                        <button class="flex gap-x-2 items-center py-5 px-6 text-gray-500" id="category_list_btn">
+                            Listar
+                        </button>
+                    </li>
+                    <li>
+                        <button class="flex gap-x-2 items-center py-5 px-6 text-gray-500" id="category_add_btn">
+                            Adicionar
+                        </button>
+                    </li>
+                </ul>
+            </div>
 
 
             <?php include "components/search_ad.php" ?>
+
+            <?php include "components/category.php" ?>
+
 
             <?php include "components/users.php" ?>
 
             <!-- forms/modals -->
             <!-- users -->
+
+            <!-- category -->
+            <?php include "components/category_add.php" ?>
+            <?php include "components/category_update.php" ?>
+            <?php include "components/category_delete.php" ?>
 
 
             <!-- advertisement -->
@@ -138,18 +167,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
             <?php include "components/ad_update.php" ?>
 
             <!-- modal delete (ad) -->
-
-            <dialog id="ad_delete" class="modal">
-                <div class="modal-box">
-                    <h3 class="font-bold text-lg">Deseja mesmo deletar esse anúncio?</h3>
-                    <div class="modal-action">
-                        <form method="dialog">
-                            <button class="btn">Sim</button>
-                            <button class="btn">Não</button>
-                        </form>
-                    </div>
-                </div>
-            </dialog>
+            <?php include "components/ad_delete.php" ?>
 
             <!-- modal update (user) -->
             <?php include "components/edit_user.php" ?>
@@ -172,17 +190,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
             <script>
                 var editUserModal
+                var editCategoryModal
+
                 var deleteUserId
 
-                function ad() {
-                    ad_nav.classList.remove("hidden");
-
-                    ad_search.classList.add("hidden");
-                    ad_add.classList.add("hidden");
-
+                function reset() {
+                    ad_nav.classList.add("hidden");
                     usr_nav.classList.add("hidden");
+                    ad_add.classList.add("hidden");
                     usr_tbl.classList.add("hidden");
+                    ad_search.classList.add("hidden");
+                    category_add.classList.add("hidden")
+                    category_search.classList.add('hidden')
+                    category_nav.classList.add('hidden')
+                }
 
+
+                function ad() {
+                    reset()
+                    ad_nav.classList.remove("hidden");
 
                     search_btn.addEventListener("click", function() {
                         ad_search.classList.remove("hidden");
@@ -195,20 +221,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                     });
                 }
 
-
                 function home() {
-                    ad_nav.classList.add("hidden");
-                    usr_nav.classList.add("hidden");
-                    ad_add.classList.add("hidden");
-                    usr_tbl.classList.add("hidden");
-                    ad_search.classList.add("hidden");
+                    reset()
+                }
+
+                function category() {
+                    reset()
+
+                    category_nav.classList.remove('hidden')
+
+                    category_list_btn.addEventListener('click', function() {
+                        category_search.classList.remove('hidden')
+                        category_add.classList.add("hidden");
+                    })
+
+                    category_add_btn.addEventListener('click', function() {
+                        category_add.classList.remove("hidden");
+                        category_search.classList.add('hidden')
+                    })
                 }
 
                 function user() {
-                    ad(); // why?
+                    reset()
 
                     usr_nav.classList.remove("hidden");
-                    ad_nav.classList.add("hidden");
 
                     list_btn.addEventListener("click", function() {
                         usr_tbl.classList.remove("hidden");

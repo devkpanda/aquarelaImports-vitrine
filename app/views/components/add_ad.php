@@ -53,19 +53,19 @@
                     <input id="ad_photo" multiple accept="image/*" type="file" class="file-input file-input-bordered file-input-bg-orange-500 w-full bg-gray-100" />
                 </div>
 
-                <div class="md:col-span-2 flex justify-center items-center mt-6">
+                <div class="mt-6">
+                    <div class="alert alert-success">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>Seu anúncio foi inserido!</span>
+                    </div>
+                </div>
+
+                <div class="flex justify-center items-center mt-6">
                     <button type="submit" class="ml-auto btn btn-default bg-orange-500 hover:bg-black font-black border-orange-500 text-white">Adicionar anúncio</button>
                 </div>
             </form>
-
-            <div class="hidden">
-                <div class="alert alert-success">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span>Seu anúncio foi inserido!</span>
-                </div>
-            </div>
         </div>
     </div>
 </div>
