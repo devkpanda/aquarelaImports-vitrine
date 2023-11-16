@@ -1,128 +1,134 @@
 {
-	"home" : { 
-		"path" : "app/views/home.php",
-		"sessionKey": [{"idUsuario": false}], 
-		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/views/public_home.php"
-	},
-	"manage/advertisement" : { 
-		"path" : "app/views/adm.php",
-		"sessionKey": [{"idUsuario": false}], 
-		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/views/home.php"
-	},
-	"advertisement/search" : { 
-		"path" : "app/controllers/CtrlAdvertisement.php",
-		"sessionKey": [{"idUsuario": false}], 
-		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/views/home.php"
-	},
-	"advertisement/add" : { 
-		"path" : "app/controllers/CtrlAdvertisement.php",
-		"sessionKey": [{"idUsuario": true}],
-		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/views/home.php"
-	},
-	"advertisement/listbycategory" : { 
-		"path" : "app/controllers/CtrlAdvertisement.php",
-		"sessionKey": [{"idUsuario": false}], 
-		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/views/home.php"
-	},
-	"advertisement/enable" : { 
-		"path" : "app/controllers/CtrlAdvertisement.php",
-		"sessionKey": [{"idUsuario": false}], 
-		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/views/home.php"
-	},
-	"advertisement/disable" : { 
-		"path" : "app/controllers/CtrlAdvertisement.php",
-		"sessionKey": [{"idUsuario": false}], 
-		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/views/home.php"
-	},
-	"advertisement/update" : { 
-		"path" : "app/controllers/CtrlAdvertisement.php",
-		"sessionKey": [{"idUsuario": false}], 
-		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/views/home.php"
-	},
-	"user/add" : { 
-		"path" : "app/controllers/CtrlUsers.php",
-		"sessionKey": [{"idUsuario": true}],  
-		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/views/home.php"
-	},
-	"user/enable" : { 
-		"path" : "app/controllers/CtrlUsers.php",
-		"sessionKey": [{"idUsuario": true}],  
-		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/views/home.php"
-	},
-	"user/disable" : { 
-		"path" : "app/controllers/CtrlUsers.php",
-		"sessionKey": [{"idUsuario": true}],  
-		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/views/home.php"
-	},
-	"user/update" : { 
-		"path" : "app/controllers/CtrlUsers.php",
-		"sessionKey": [{"idUsuario": true}],  
-		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/views/home.php"
-	},
-	"user/listall" : { 
-		"path" : "app/controllers/CtrlUsers.php",
-		"sessionKey": [{"idUsuario": false}],  
-		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/views/home.php"
-	},
-	"user_level/listall" : { 
-		"path" : "app/controllers/CtrlUser_level.php",
-		"sessionKey": [{"idUsuario": false}], 
-		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/views/adm.php"
-	},
-	"user_level/add" : { 
-		"path" : "app/controllers/CtrlUser_level.php",
-		"sessionKey": [{"idUsuario": false}], 
-		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/views/adm.php"
-	},
-	"login" : { 
-		"path" : "app/views/login.php",
-		"sessionKey": [{"idUsuario": false}], 
-		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/views/home.php"
-	},
-	"category/add" : { 
-		"path" : "app/controllers/CtrlCategory.php",
-		"sessionKey": [{"idUsuario": true}], 
-		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/views/home.php"
-	},
-	"classtest" : { 
-		"path" : "app/controllers/CtrlTest.php",
-		"sessionKey": [{"idUsuario": false}], 
-		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/views/home.php"
-	},
-	"login/teste" : { 
-		"path" : "app/controllers/teste.php",
-		"sessionKey": [{"idUsuario": false}], 
-		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/views/login.php"
-	},
-	"adm" : { 
-		"path" : "app/views/adm.php",
-		"sessionKey": [{"idUsuario": false}], 
-		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/views/adm.php"
-	},
-	"login/auth" : { 
-		"path" : "app/controllers/CtrlUsers.php",
-		"sessionKey": [{"idUsuario": false}], 
-		"sanitize"  : {"requestVars" : true, "code" : true, "sql" : true},
-		"errorPath" : "app/views/login.php"
-	}
+    "home": {
+        "path": "app/views/home.php",
+        "sessionKey": [{ "idUsuario": false }],
+        "sanitize": { "requestVars": true, "code": true, "sql": true },
+        "errorPath": "app/views/public_home.php"
+    },
+    "manage/advertisement": {
+        "path": "app/views/adm.php",
+        "sessionKey": [{ "idUsuario": false }],
+        "sanitize": { "requestVars": true, "code": true, "sql": true },
+        "errorPath": "app/views/home.php"
+    },
+    "advertisement/search": {
+        "path": "app/controllers/CtrlAdvertisement.php",
+        "sessionKey": [{ "idUsuario": false }],
+        "sanitize": { "requestVars": true, "code": true, "sql": true },
+        "errorPath": "app/views/home.php"
+    },
+    "advertisement/add": {
+        "path": "app/controllers/CtrlAdvertisement.php",
+        "sessionKey": [{ "idUsuario": true }],
+        "sanitize": { "requestVars": true, "code": true, "sql": true },
+        "errorPath": "app/views/home.php"
+    },
+    "advertisement/listbycategory": {
+        "path": "app/controllers/CtrlAdvertisement.php",
+        "sessionKey": [{ "idUsuario": false }],
+        "sanitize": { "requestVars": true, "code": true, "sql": true },
+        "errorPath": "app/views/home.php"
+    },
+    "advertisement/enable": {
+        "path": "app/controllers/CtrlAdvertisement.php",
+        "sessionKey": [{ "idUsuario": false }],
+        "sanitize": { "requestVars": true, "code": true, "sql": true },
+        "errorPath": "app/views/home.php"
+    },
+    "advertisement/disable": {
+        "path": "app/controllers/CtrlAdvertisement.php",
+        "sessionKey": [{ "idUsuario": false }],
+        "sanitize": { "requestVars": true, "code": true, "sql": true },
+        "errorPath": "app/views/home.php"
+    },
+    "advertisement/update": {
+        "path": "app/controllers/CtrlAdvertisement.php",
+        "sessionKey": [{ "idUsuario": false }],
+        "sanitize": { "requestVars": true, "code": true, "sql": true },
+        "errorPath": "app/views/home.php"
+    },
+    "user/add": {
+        "path": "app/controllers/CtrlUsers.php",
+        "sessionKey": [{ "idUsuario": true }],
+        "sanitize": { "requestVars": true, "code": true, "sql": true },
+        "errorPath": "app/views/home.php"
+    },
+    "user/enable": {
+        "path": "app/controllers/CtrlUsers.php",
+        "sessionKey": [{ "idUsuario": true }],
+        "sanitize": { "requestVars": true, "code": true, "sql": true },
+        "errorPath": "app/views/home.php"
+    },
+    "user/disable": {
+        "path": "app/controllers/CtrlUsers.php",
+        "sessionKey": [{ "idUsuario": true }],
+        "sanitize": { "requestVars": true, "code": true, "sql": true },
+        "errorPath": "app/views/home.php"
+    },
+    "user/update": {
+        "path": "app/controllers/CtrlUsers.php",
+        "sessionKey": [{ "idUsuario": true }],
+        "sanitize": { "requestVars": true, "code": true, "sql": true },
+        "errorPath": "app/views/home.php"
+    },
+    "user/listall": {
+        "path": "app/controllers/CtrlUsers.php",
+        "sessionKey": [{ "idUsuario": false }],
+        "sanitize": { "requestVars": true, "code": true, "sql": true },
+        "errorPath": "app/views/home.php"
+    },
+    "user_level/listall": {
+        "path": "app/controllers/CtrlUser_level.php",
+        "sessionKey": [{ "idUsuario": false }],
+        "sanitize": { "requestVars": true, "code": true, "sql": true },
+        "errorPath": "app/views/adm.php"
+    },
+    "user_level/add": {
+        "path": "app/controllers/CtrlUser_level.php",
+        "sessionKey": [{ "idUsuario": false }],
+        "sanitize": { "requestVars": true, "code": true, "sql": true },
+        "errorPath": "app/views/adm.php"
+    },
+    "login": {
+        "path": "app/views/login.php",
+        "sessionKey": [{ "idUsuario": false }],
+        "sanitize": { "requestVars": true, "code": true, "sql": true },
+        "errorPath": "app/views/home.php"
+    },
+    "category/add": {
+        "path": "app/controllers/CtrlCategory.php",
+        "sessionKey": [{ "idUsuario": true }],
+        "sanitize": { "requestVars": true, "code": true, "sql": true },
+        "errorPath": "app/views/home.php"
+    },
+    "category/listall": {
+        "path": "app/controllers/CtrlCategory.php",
+        "sessionKey": [{ "idUsuario": true }],
+        "sanitize": { "requestVars": true, "code": true, "sql": true },
+        "errorPath": "app/views/home.php"
+    },
+    "classtest": {
+        "path": "app/controllers/CtrlTest.php",
+        "sessionKey": [{ "idUsuario": false }],
+        "sanitize": { "requestVars": true, "code": true, "sql": true },
+        "errorPath": "app/views/home.php"
+    },
+    "login/teste": {
+        "path": "app/controllers/teste.php",
+        "sessionKey": [{ "idUsuario": false }],
+        "sanitize": { "requestVars": true, "code": true, "sql": true },
+        "errorPath": "app/views/login.php"
+    },
+    "adm": {
+        "path": "app/views/adm.php",
+        "sessionKey": [{ "idUsuario": false }],
+        "sanitize": { "requestVars": true, "code": true, "sql": true },
+        "errorPath": "app/views/adm.php"
+    },
+    "login/auth": {
+        "path": "app/controllers/CtrlUsers.php",
+        "sessionKey": [{ "idUsuario": false }],
+        "sanitize": { "requestVars": true, "code": true, "sql": true },
+        "errorPath": "app/views/login.php"
+    }
 }
