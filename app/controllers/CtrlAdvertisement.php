@@ -20,6 +20,37 @@ $url = parse_url($_SERVER['REQUEST_URI']);
 $uriPath = $url['path'];
 
     // if (isset($_SESSION['idNivelUsuario']) && $_SESSION['idNivelUsuario'] == 1) {
+        if ($uriPath == '/advertisement/listall'){
+            if (strtolower($_SERVER['REQUEST_METHOD']) == 'get'){
+                $advertisement = new Advertisement('','','','','','','','','','');
+        
+                $advertisements = $advertisement->listAdvertisements();
+        
+                $json = array();
+        
+                foreach ($advertisements as $advertisement) {
+                    $advertisementArray = array(
+                        "id"            => $advertisement->getId(),
+                        "cod"           => $advertisement->getCod(),
+                        "name"          => $advertisement->getName(),
+                        "description"   => $advertisement->getDescription(),
+                        "price"         => $advertisement->getPrice(),
+                        "category_id"   => $advertisement->getCategory_id(),
+                        "measurement"   => $advertisement->getMeasurement(),
+                        "size"          => $advertisement->getSize(),
+                        "videoUrl"      => $advertisement->getVideoUrl(),
+                        "isActive"      => $advertisement->getIsActive(),
+                    );
+        
+                    $json[] = $advertisementArray;
+                }
+        
+                die(json_encode($json));
+            } else {
+                die(json_encode(array('message' => 'Method not allowed')));
+            }
+        }
+
     if ($uriPath == '/advertisement/add'){
         
         if(strtolower($_SERVER['REQUEST_METHOD']) == 'post') {

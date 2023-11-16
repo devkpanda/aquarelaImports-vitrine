@@ -40,10 +40,10 @@ if ($uriPath == '/category/add') {
 
                     $category = new Category(0, $description, $parent_id);
 
-                    if ($category->save()) {
-                        echo json_encode(array('message' => '0'));
+                    if (!$category->save()) {
+                        die(json_encode(array('message' => '1')));
                     } else {
-                        echo json_encode(array('message' => '1'));
+                        die(json_encode(array('message' => '0')));
                     }
                 }
             }
@@ -124,3 +124,46 @@ if ($uriPath == '/category/update') {
         die(json_encode(array('message' => 'Method not allowed')));
     }
 }
+
+if ($uriPath == '/category/delete') {
+    if (strtolower($_SERVER['REQUEST_METHOD']) == 'post') {
+        $json = file_get_contents('php://input');
+
+        if ($json === false) {
+            http_response_code(400);
+            echo json_encode(array('message' => 'Error receiving json'));
+        } else {
+            $data = json_decode($json, true);
+
+            if ($data === null) {
+                http_response_code(400);
+                echo json_encode(array('message' => 'Empty json'));
+            } else {
+                if (!isset($data['id'])) {
+                    die(json_encode(array('message' => 'unexpected JSON')));
+                } else {
+                    try {
+                        $id = $data['id'];
+
+                        $category = new Category($id, '', '');
+                        $category->setId($id);
+
+                        if (!$category->delete()->rowCount() == 1) {
+                            die(json_encode(array('message' => '1')));
+                        } else {
+                            die(json_encode(array('message' => '0')));
+                        }
+                    } catch (Exception $e) {
+                        die(json_encode(array('message' => $e->getMessage())));
+                    } catch (InvalidArgumentException $iae) {
+                        die(json_encode(array('message' => $iae->getMessage())));
+                    }
+                }
+            }
+        }
+    } else {
+        die(json_encode(array('message' => 'Method not allowed'))); 
+    }
+}
+
+?>
