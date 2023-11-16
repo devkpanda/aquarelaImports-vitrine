@@ -107,8 +107,9 @@
                         <button onclick="adDeleteId = ${ad.id}; ad_delete.showModal()" class="btn btn-ghost btn-xs">excluir</button>
                     </div>
                 </td>
-            </tr>
+            </tr> 
         `)
+            .join("")
     }
 
     ad_search_form.addEventListener('submit', (e) => {
@@ -116,7 +117,15 @@
 
         const name = ad_search_name.value
 
-        fetch('http://127.0.0.1/advertisement/listall?search=' + encodeURIComponent(name))
+        fetch('http://127.0.0.1/advertisement/search', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    search: name
+                })
+            })
             .then((response) => response.json())
             .then((response) => displayAds(response))
     })

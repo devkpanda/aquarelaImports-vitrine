@@ -10,7 +10,7 @@
         <div class="p-8 shadow-lg bg-white rounded-lg">
             <h1 class="text-2xl font-semibold leading-relaxed text-gray-800">Inserir</h1>
             <hr class="mt-4 w-full">
-            <form id="ad_form" action="POST" class="w-full grid md:grid-cols-2 md:gap-x-8">
+            <form id="ad_category_form" action="POST" class="w-full grid md:grid-cols-2 md:gap-x-8">
                 <div class="mt-3">
                     <label for="email" class="block text-base mb-2">Nome</label>
                     <input id="category_name" type="text" placeholder="Digite o nome.." class="w-full input input-bordered bg-gray-100" />
@@ -38,13 +38,14 @@
 </div>
 
 <script>
-    ad_form.addEventListener('submit', async function(e) {
+    // edit not working
+    ad_category_form.addEventListener('submit', async function(e) {
         e.preventDefault()
 
         const description = category_name.value
         const parentId = category_parent.value
 
-        fetch('/advertisement/add', {
+        fetch('http://localhost/category/add', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

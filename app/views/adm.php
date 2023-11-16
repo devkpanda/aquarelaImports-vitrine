@@ -161,7 +161,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 
 
             <!-- advertisement -->
-            <?php include "components/add_ad.php" ?>
+            <?php include "components/ad_add.php" ?>
 
             <!-- modal update (ad) -->
             <?php include "components/ad_update.php" ?>

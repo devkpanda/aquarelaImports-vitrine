@@ -10,7 +10,7 @@
         <div class="p-8 shadow-lg bg-white rounded-lg">
             <h1 class="text-2xl font-semibold leading-relaxed text-gray-800">Inserir</h1>
             <hr class="mt-4 w-full">
-            <form id="ad_form" action="POST" class="w-full grid md:grid-cols-2 md:gap-x-8">
+            <form id="ad_advertisement_form" action="" class="w-full grid md:grid-cols-2 md:gap-x-8">
                 <div class="mt-3">
                     <label for="email" class="block text-base mb-2">SKU</label>
                     <input id="ad_sku" type="text" placeholder="Digite o SKU.." class="w-full input input-bordered bg-gray-100" />
@@ -32,8 +32,9 @@
                     <input id="ad_id" type="text" placeholder="Digite o Id.." class="w-full input input-bordered bg-gray-100" />
                 </div>
                 <div class="mt-3">
+                    <!-- Litros (L), Centimetro cubico (cm³), Metro cubico (m³) -->
                     <label for="email" class="block text-base mb-2">Medida</label>
-                    <input id="ad_measurement" type="text" placeholder="Digite a medida.." class="w-full input input-bordered bg-gray-100" />
+                    <input id="ad_measurement" type="text" placeholder="Digite a medida.." class="w-full input input-bordered bg-gray-100" /> 
                 </div>
                 <div class="mt-3">
                     <label for="email" class="block text-base mb-2">Tamanho</label>
@@ -84,8 +85,10 @@
 
     let adPhotoBase64 = {}
 
-    ad_form.addEventListener('submit', async function(e) {
+    ad_advertisement_form.addEventListener('submit', async function(e) {
         e.preventDefault()
+        
+        //to do clean after submit
 
         const sku = ad_sku.value
         const categoryId = ad_id.value
@@ -96,7 +99,7 @@
         const size = ad_size.value
         const videoUrl = ad_url.value
 
-        fetch('/advertisement/add', {
+        fetch('http://127.0.0.1/advertisement/add', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
