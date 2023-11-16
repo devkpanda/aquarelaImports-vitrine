@@ -32,10 +32,6 @@
                     <input id="ad_id" type="text" placeholder="Digite o Id.." class="w-full input input-bordered bg-gray-100" />
                 </div>
                 <div class="mt-3">
-                    <label for="email" class="block text-base mb-2">Peso</label>
-                    <input id="ad_weight" type="text" placeholder="Digite o peso.." class="w-full input input-bordered bg-gray-100" />
-                </div>
-                <div class="mt-3">
                     <label for="email" class="block text-base mb-2">Medida</label>
                     <input id="ad_measurement" type="text" placeholder="Digite a medida.." class="w-full input input-bordered bg-gray-100" />
                 </div>
@@ -53,7 +49,7 @@
                     <input id="ad_photo" multiple accept="image/*" type="file" class="file-input file-input-bordered file-input-bg-orange-500 w-full bg-gray-100" />
                 </div>
 
-                <div class="mt-6">
+                <div class="hidden mt-6">
                     <div class="alert alert-success">
                         <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -97,7 +93,6 @@
         const description = ad_description.value
         const measurement = ad_measurement.value
         const price = ad_price.value
-        const weight = ad_weight.value
         const size = ad_size.value
         const videoUrl = ad_url.value
 
