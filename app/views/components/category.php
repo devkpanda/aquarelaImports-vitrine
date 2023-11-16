@@ -19,32 +19,13 @@
 </div>
 
 <script>
-    function editCategory(id) {
-        fetch('http://127.0.0.1/advertisement/update', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    id
-                })
-            })
-            .then((response) => response.json())
-            .then((response) => window.location.reload())
-    }
+    var editCategoryModal
 
-    function deleteCategory(id) {
-        fetch('http://127.0.0.1/advertisement/delete', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    id
-                })
-            })
-            .then((response) => response.json())
-            .then((response) => window.location.reload())
+    function displayCategoryUpdate() {
+        const fields = JSON.parse(atob(editCategoryModal))
+
+        category_update_name.value = fields.description
+        category_update_parent.value = fields.parent_id
     }
 
     fetch('http://127.0.0.1/category/listall')
@@ -57,7 +38,7 @@
                 <td>${category.parent_id}</td>
                 <td class="flex">
                     <div>
-                        <button onclick="editCategoryModal.id = ${category.id}; editCategoryModal.description = "${category.description}"; editCategoryModal.parent_id = ${category.parent_id}; category_update.showModal()" class="btn btn-ghost btn-xs">editar</button>
+                        <button onclick="editCategoryModal = '${btoa(JSON.stringify(category))}'; displayCategoryUpdate(); category_update.showModal();" class="btn btn-ghost btn-xs">editar</button>
                     </div>
                     <div>
                         <button onclick="deleteCategoryId = ${category.id}; category_delete.showModal()" class="btn btn-ghost btn-xs">excluir</button>

@@ -1,6 +1,6 @@
 <div class="hidden w-full mt-10 px-8" id="ad_search">
     <div class="max-w-7xl mx-auto shadow-xl gap-10 bg-white rounded-[10px] p-6">
-        <form action="GET">
+        <form id="ad_search_form" action="GET">
             <div class="flex flex-col items-center justify-center gap-5 p-5">
                 <h1 class="text-center text-2xl font-semibold leading-relaxed text-gray-800">Pesquise o anúncio</h1>
                 <div class="join">
@@ -32,62 +32,7 @@
                             <th>Video</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <!-- row 1 -->
-                        <tr class="hover">
-                            <th>1</th>
-                            <td>Conjunto Freio à disco</td>
-                            <td>Conjunto de instalação de freio à disco para bicicletas. Contendo dois discos, duas pinças com quatro pastilhas, dois cabos com conduites</td>
-                            <td>R$150</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td class="flex justify-">
-                                <div>
-                                    <button onclick="ad_update.showModal()" class="btn btn-ghost btn-xs">editar</button>
-                                </div>
-                                <div>
-                                    <button onclick="ad_delete.showModal()" class="btn btn-ghost btn-xs">excluir</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <!-- row 2 -->
-                        <tr class="hover">
-                            <th>2</th>
-                            <td>Coroa</td>
-                            <td>Coroa convencional para bicicletas sem marcha. 44 dentes</td>
-                            <td>R$150</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td class="flex justify-between">
-                                <div>
-                                    <button onclick="ad_update.showModal()" class="btn btn-ghost btn-xs">editar</button>
-                                </div>
-                                <div>
-                                    <button onclick="ad_delete.showModal()" class="btn btn-ghost btn-xs">excluir</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <!-- row 3 -->
-                        <tr class="hover">
-                            <th>3</th>
-                            <td>Pedivela</td>
-                            <td>Pedivila convencional de alumínio, 44mm</td>
-                            <td>R$150</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td class="flex justify-between">
-                                <div>
-                                    <button onclick="ad_update.showModal()" class="btn btn-ghost btn-xs">editar</button>
-                                </div>
-                                <div>
-                                    <button onclick="ad_delete.showModal()" class="btn btn-ghost btn-xs">excluir</button>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
+                    <tbody id="ads_listing"></tbody>
                 </table>
             </div>
         </div>
@@ -124,11 +69,55 @@
             .then((response) => window.location.reload())
     }
 
-    ad_search_button.addEventListener('click', () => {
+    var editAdvertisementModal
+
+    function loadAdvertisement() {
+        const advertisement = JSON.parse(atob(editAdvertisementModal))
+
+        ad_update_sku.value = advertisement.cod
+        ad_update_name.value = advertisement.name
+        ad_update_description.value = advertisement.description
+        ad_update_price.value = advertisement.price
+        ad_update_id.value = advertisement.category_id
+        ad_update_measurement.value = advertisement.measurement
+        ad_update_size.value = advertisement.size
+        ad_update_url.value = advertisement.videoUrl
+    }
+
+    function displayAds(ads) {
+        const formatter = new Intl.NumberFormat('pt-BR', {
+            style: "currency",
+            currency: "BRL"
+        })
+
+        ads_listing.innerHTML = ads.map(ad => `
+            <tr class="hover">
+                <th>${ad.id}</th>
+                <td>${ad.name}</td>
+                <td>${ad.description}</td>
+                <td>${formatter.format(ad.price)}</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td class="flex">
+                    <div>
+                        <button onclick="editAdvertisementModal = '${btoa(JSON.stringify(ad))}'; loadAdvertisement(); ad_update.showModal()" class="btn btn-ghost btn-xs">editar</button>
+                    </div>
+                    <div>
+                        <button onclick="adDeleteId = ${ad.id}; ad_delete.showModal()" class="btn btn-ghost btn-xs">excluir</button>
+                    </div>
+                </td>
+            </tr>
+        `)
+    }
+
+    ad_search_form.addEventListener('submit', (e) => {
+        e.preventDefault()
+
         const name = ad_search_name.value
 
-        // todo /ad/search
-        // todo /ad/edit
-        // todo /ad/delete
+        fetch('http://127.0.0.1/advertisement/listall?search=' + encodeURIComponent(name))
+            .then((response) => response.json())
+            .then((response) => displayAds(response))
     })
 </script>

@@ -213,6 +213,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                     search_btn.addEventListener("click", function() {
                         ad_search.classList.remove("hidden");
                         ad_add.classList.add("hidden");
+
+                        fetch('http://127.0.0.1/advertisement/listall')
+                            .then((response) => response.json())
+                            .then((response) => displayAds(response))
                     });
 
                     add_btn.addEventListener("click", function() {
@@ -268,32 +272,33 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                             listusers.innerHTML = response.map(user => {
                                 const userActive = user.active === 0 ? "Não" : "Sim"
 
-                                return `<tr>
-                    <th>
-                    </th>
-                    <td>
-                        <div class="flex items-center space-x-3">
-                            <div>
-                                <div class="font-bold">${user.name}</div>
-                                <div class="text-sm opacity-50">${roles[user.idNivelUsuario]}</div>
-                            </div>
-                        </div>
-                    </td>
-                    <td>
-                        ${user.email}
-                    </td>
-                    <td>
-                        ${userActive}
-                    </td>
-                    <td class="flex gap-2 mt-2">
-                        <div>
-                            <button onclick="user_id = ${user.id}; user_active.value = '${userActive}'; user_role.value = '${roles[user.idNivelUsuario]}'; user_name.value = '${user.name}'; user_email.value = '${user.email}'; user_update.showModal()" class="btn btn-ghost btn-xs">editar</button>
-                        </div>
-                        <div>
-                            <button onclick="deleteUserId = ${user.id}; user_delete.showModal()" class="btn btn-ghost btn-xs">desativar</button>
-                        </div>
-                    </td>
-                </tr>`
+                                return `
+                                    <tr>
+                                        <th>
+                                        </th>
+                                        <td>
+                                            <div class="flex items-center space-x-3">
+                                                <div>
+                                                    <div class="font-bold">${user.name}</div>
+                                                    <div class="text-sm opacity-50">${roles[user.idNivelUsuario]}</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            ${user.email}
+                                        </td>
+                                        <td>
+                                            ${userActive}
+                                        </td>
+                                        <td class="flex gap-2 mt-2">
+                                            <div>
+                                                <button onclick="user_id = ${user.id}; user_active.value = '${userActive}'; user_role.value = '${roles[user.idNivelUsuario]}'; user_name.value = '${user.name}'; user_email.value = '${user.email}'; user_update.showModal()" class="btn btn-ghost btn-xs">editar</button>
+                                            </div>
+                                            <div>
+                                                <button onclick="deleteUserId = ${user.id}; user_delete.showModal()" class="btn btn-ghost btn-xs">desativar</button>
+                                            </div>
+                                        </td>
+                                    </tr>`
                             }).join('')
                         })
                 }
