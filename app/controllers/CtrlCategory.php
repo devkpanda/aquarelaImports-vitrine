@@ -35,15 +35,21 @@ if ($uriPath == '/category/add') {
                 if (!isset($data['description']) || !isset($data['parent_id'])) {
                     die(json_encode(array('message' => 'unexpected JSON')));
                 } else {
-                    $description = $data['description'];
-                    $parent_id   = $data['parent_id'];
+                    try {
+                        $description = $data['description'];
+                        $parent_id   = $data['parent_id'];
 
-                    $category = new Category(0, $description, $parent_id);
+                        $category = new Category(0, $description, $parent_id);
 
-                    if (!$category->save()) {
-                        die(json_encode(array('message' => '1')));
-                    } else {
-                        die(json_encode(array('message' => '0')));
+                        if (!$category->save()) {
+                            die(json_encode(array('message' => '1')));
+                        } else {
+                            die(json_encode(array('message' => '0')));
+                        }
+                    } catch (Exception $e) {
+                        die(json_encode(array('message' => $e->getMessage())));
+                    } catch (InvalidArgumentException $iae) {
+                        die(json_encode(array('message' => $iae->getMessage())));
                     }
                 }
             }
@@ -94,28 +100,22 @@ if ($uriPath == '/category/update') {
                 if (!isset($data['id']) || !isset($data['description']) || !isset($data['parent_id'])) {
                     die(json_encode(array('message' => 'unexpected JSON')));
                 } else {
-                    $id             = $data['id'];
-                    $description    = $data['description'];
-                    $parent_id      = $data['parent_id'];
+                    try {
+                        $id             = $data['id'];
+                        $description    = $data['description'];
+                        $parent_id      = $data['parent_id'];
 
-                    $where = new Where();
-                    $where->addCondition('AND', 'id', '=', $id);
+                        $category = new Category($id, $description, $parent_id);
 
-                    $category = new Category($id, '', '');
-                    $categoryList = $category->listCategory($where);
-
-                    if (!count($categoryList) == 1) {
-                        die(json_encode(array("message" => "unexpected id")));
-                    } else {
-                        $categoryList[0]->setId($id);
-                        $categoryList[0]->setDescription($description);
-                        $categoryList[0]->setParent_id($parent_id);
-
-                        if (!$categoryList[0]->save()) {
+                        if (!$category->save()->rowCount() == 1) {
                             die(json_encode(array('message' => '1')));
                         } else {
                             die(json_encode(array('message' => '0')));
                         }
+                    } catch (Exception $e) {
+                        die(json_encode(array('message' => $e->getMessage())));
+                    } catch (InvalidArgumentException $iae) {
+                        die(json_encode(array('message' => $iae->getMessage())));
                     }
                 }
             }
