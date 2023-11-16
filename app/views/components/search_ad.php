@@ -15,87 +15,85 @@
                         <button id="ad_search_button" class="btn join-item">Pesquisar</button>
                     </div>
                 </div>
+            </div>
         </form>
-    </div>
-
-    <div class="flex flex-col overflow-auto">
-        <div class="my-4 ">
-            <table class="table">
-                <!-- head -->
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Nome</th>
-                        <th>Descrição</th>
-                        <th>Preço</th>
-                        <th>Tamanho</th>
-                        <th>Peso</th>
-                        <th>Video</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- row 1 -->
-                    <tr class="hover">
-                        <th>1</th>
-                        <td>Conjunto Freio à disco</td>
-                        <td>Conjunto de instalação de freio à disco para bicicletas. Contendo dois discos, duas pinças com quatro pastilhas, dois cabos com conduites</td>
-                        <td>R$150</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td class="flex justify-">
-                            <div>
-                                <button onclick="ad_update.showModal()" class="btn btn-ghost btn-xs">editar</button>
-                            </div>
-                            <div>
-                                <button onclick="ad_delete.showModal()" class="btn btn-ghost btn-xs">excluir</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <!-- row 2 -->
-                    <tr class="hover">
-                        <th>2</th>
-                        <td>Coroa</td>
-                        <td>Coroa convencional para bicicletas sem marcha. 44 dentes</td>
-                        <td>R$150</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td class="flex justify-between">
-                            <div>
-                                <button onclick="ad_update.showModal()" class="btn btn-ghost btn-xs">editar</button>
-                            </div>
-                            <div>
-                                <button onclick="ad_delete.showModal()" class="btn btn-ghost btn-xs">excluir</button>
-                            </div>
-                        </td>
-                    </tr>
-                    <!-- row 3 -->
-                    <tr>
-                    <tr class="hover">
-                        <th>3</th>
-                        <td>Pedivela</td>
-                        <td>Pedivila convencional de alumínio, 44mm</td>
-                        <td>R$150</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td class="flex justify-between">
-                            <div>
-                                <button onclick="ad_update.showModal()" class="btn btn-ghost btn-xs">editar</button>
-                            </div>
-                            <div>
-                                <button onclick="ad_delete.showModal()" class="btn btn-ghost btn-xs">excluir</button>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
+        <div class="flex flex-col overflow-auto">
+            <div class="my-4 ">
+                <table class="table">
+                    <!-- head -->
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Nome</th>
+                            <th>Descrição</th>
+                            <th>Preço</th>
+                            <th>Tamanho</th>
+                            <th>Peso</th>
+                            <th>Video</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- row 1 -->
+                        <tr class="hover">
+                            <th>1</th>
+                            <td>Conjunto Freio à disco</td>
+                            <td>Conjunto de instalação de freio à disco para bicicletas. Contendo dois discos, duas pinças com quatro pastilhas, dois cabos com conduites</td>
+                            <td>R$150</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td class="flex justify-">
+                                <div>
+                                    <button onclick="ad_update.showModal()" class="btn btn-ghost btn-xs">editar</button>
+                                </div>
+                                <div>
+                                    <button onclick="ad_delete.showModal()" class="btn btn-ghost btn-xs">excluir</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- row 2 -->
+                        <tr class="hover">
+                            <th>2</th>
+                            <td>Coroa</td>
+                            <td>Coroa convencional para bicicletas sem marcha. 44 dentes</td>
+                            <td>R$150</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td class="flex justify-between">
+                                <div>
+                                    <button onclick="ad_update.showModal()" class="btn btn-ghost btn-xs">editar</button>
+                                </div>
+                                <div>
+                                    <button onclick="ad_delete.showModal()" class="btn btn-ghost btn-xs">excluir</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- row 3 -->
+                        <tr class="hover">
+                            <th>3</th>
+                            <td>Pedivela</td>
+                            <td>Pedivila convencional de alumínio, 44mm</td>
+                            <td>R$150</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td class="flex justify-between">
+                                <div>
+                                    <button onclick="ad_update.showModal()" class="btn btn-ghost btn-xs">editar</button>
+                                </div>
+                                <div>
+                                    <button onclick="ad_delete.showModal()" class="btn btn-ghost btn-xs">excluir</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        </table>
     </div>
 </div>
-</div>
-</div>
+
 
 <script>
     function editAd(id) {
