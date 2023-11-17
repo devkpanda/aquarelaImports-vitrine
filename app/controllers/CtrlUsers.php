@@ -37,9 +37,10 @@ if ($uriPath == '/user/listall'){
 
             $json[] = $userArray;
         }
-
+        http_response_code(200);
         die(json_encode($json));
     } else {
+        http_response_code(400);
         die(json_encode(array('message' => 'Method not allowed')));
     }
 }
@@ -59,6 +60,7 @@ if ($uriPath == '/user/add') {
                 echo json_encode(array('message' => 'Empty json'));
             } else {
                 if (!isset($data['idNivelUsuario']) || !isset($data['name']) || !isset($data['email']) || !isset($data['password'])) {
+                    http_response_code(400);
                     die(json_encode(array('message' => 'unexpected JSON')));
                 } else {
                     try {
@@ -70,19 +72,24 @@ if ($uriPath == '/user/add') {
                         $user = new User(0, $idNivelUsuario, $name, $email, $password, 0, 0, '');
 
                         if (!$user->save()) {
-                            die(json_encode(array('message' => '1')));
+                            http_response_code(400);
+                            die(json_encode(array('message' => 'Houve um erro ao adicionar o usuário')));
                         } else {
-                            die(json_encode(array('message' => '0')));
+                            http_response_code(400);
+                            die(json_encode(array('message' => 'Usuário adicionado com sucesso')));
                         }
                     } catch (Exception $e) {
+                        http_response_code(400);
                         die(json_encode(array('message' => $e->getMessage())));
                     } catch (InvalidArgumentException $iae) {
+                        http_response_code(400);
                         die(json_encode(array('message' => $iae->getMessage())));
                     }
                 }
             }
         }
     } else {
+        http_response_code(400);
         echo json_encode(array('message' => 'Method not allowed'));
     }
 }
@@ -104,6 +111,7 @@ if ($uriPath == '/user/enable') {
                     die(json_encode(array('message' => 'Empty json')));
                 } else {
                     if (!isset($data['id'])) {
+                        http_response_code(400);
                         die(json_encode(array('message' => 'unexpected JSON')));
                     } else {
                         try {
@@ -120,15 +128,19 @@ if ($uriPath == '/user/enable') {
                             } else {
                                 $userList[0]->setActive("1");
             
-                                if ($userList[0]->save()) {
-                                    die(json_encode(array('message' => '0')));
-                                } else {
-                                    die(json_encode(array('message' => '1')));
+                                if (!$userList[0]->save()) {
+                                    http_response_code(400);
+                                    die(json_encode(array('message' => 'Houve um erro ao desativar o usuario')));
+                                } else {~
+                                    http_response_code(200);
+                                    die(json_encode(array('message' => 'Usuário desativado com sucesso')));
                                 }
                             }
                         } catch (Exception $e) {
+                            http_response_code(400);
                             die(json_encode(array('message' => $e->getMessage())));
                         } catch (InvalidArgumentException $iae) {
+                            http_response_code(400);
                             die(json_encode(array('message' => $iae->getMessage())));
                         }
                     }
@@ -156,6 +168,7 @@ if ($uriPath == '/user/disable') {
                     die(json_encode(array('message' => 'Empty json')));
                 } else {
                     if (!isset($data['id'])) {
+                        http_response_code(400);
                         die(json_encode(array('message' => 'unexpected JSON')));
                     } else {
                         try {
@@ -172,21 +185,26 @@ if ($uriPath == '/user/disable') {
                             } else {
                                 $userList[0]->setActive("0");
             
-                                if ($userList[0]->save()) {
-                                    die(json_encode(array('message' => '0')));
+                                if (!$userList[0]->save()) {
+                                    http_response_code(400);
+                                    die(json_encode(array('message' => 'Houve um erro ao desativar o usuário')));
                                 } else {
-                                    die(json_encode(array('message' => '1')));
+                                    http_response_code(200);
+                                    die(json_encode(array('message' => 'Usuário desativado com sucesso')));
                                 }
                             }
                         } catch (Exception $e) {
+                            http_response_code(400);
                             die(json_encode(array('message' => $e->getMessage())));
                         } catch (InvalidArgumentException $iae) {
+                            http_response_code(400);
                             die(json_encode(array('message' => $iae->getMessage())));
                         }
                     }
                 }   
             }
         } else {
+            http_response_code(400);
             echo json_encode(array('message' => 'Method not allowed'));
         }
     // }
@@ -207,8 +225,8 @@ if ($uriPath == '/user/update') {
                 echo json_encode(array('message' => 'Empty json'));
             } else {
                 if (!isset($data['id']) || !isset($data['idNivelUsuario']) || !isset($data['name'])  || !isset($data['email'])){
+                    http_response_code(400);
                     die(json_encode(array('message' => 'unexpected JSON')));
-                    
                 } else {
                     try {
                         $id = $data['id'];
@@ -227,19 +245,26 @@ if ($uriPath == '/user/update') {
                         $result[0]->setEmail($email);
                         
                         if (!$result[0]->save()) {
-                            die(json_encode(array('message' => '1')));
+                            http_response_code(400);
+                            die(json_encode(array('message' => 'Houve um erro ao editar o usuário')));
                         } else {
-                            die(json_encode(array('message' => '0')));
+                            http_response_code(200);
+                            die(json_encode(array('message' => 'Usuário editado com sucesso')));
                         }
                     } catch (Exception $e) {
+                        http_response_code(400);
                         die(json_encode(array('message' => $e->getMessage())));
                     } catch (InvalidArgumentException $iae) {
+                        http_response_code(400);
                         die(json_encode(array('message' => $iae->getMessage())));
                     }
                     
                 }
             }
         }
+    } else {
+        http_response_code(400);
+        die(json_encode(array('message' => 'Method not allowed')));
     }
 }
 
@@ -258,6 +283,7 @@ if ($uriPath == '/login/auth') {
                 echo json_encode(array('message' => 'Empty json'));
             } else {
                 if (!isset($data['email']) || !isset($data['password'])) {
+                    http_response_code(400);
                     die(json_encode(array('message' => 'unexpected JSON')));
                 } else {
                     $email = $data['email'];
@@ -293,16 +319,18 @@ if ($uriPath == '/login/auth') {
                             $json[] = $userArray;
                         }
                     } else {
-                        return json_encode(array('message' => '1'));
+                        http_response_code(400);
+                        die(json_encode(array('message' => '1')));
                     }
     
                     $_SESSION['idNivelUsuario'] = $user->getIdNivelUsuario();
-    
+                    http_response_code(200);
                     die(json_encode($json[0])); 
                 }
             }
         } 
     } else {
+        http_response_code(400);
         die(json_encode(array('message' => 'Method not allowed')));
     }
 }
