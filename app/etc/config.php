@@ -45,35 +45,37 @@ $dotenv->load();
 $routersFile = $rootPath . '/app/etc/routes.json';
 $uriArray    = [];
 $dominio     = $_SERVER['HTTP_HOST'];
-$uriArray    = array_values( 
-                    array_filter( 
-                        explode("/", explode("?", $_SERVER['REQUEST_URI'])[0]), 
-                        function ($item) { return trim($item) !== "";} 
-                    )
-               );
+$uriArray    = array_values(
+    array_filter(
+        explode("/", explode("?", $_SERVER['REQUEST_URI'])[0]),
+        function ($item) {
+            return trim($item) !== "";
+        }
+    )
+);
 $ultimaPastaDir = basename($rootPath);
 $primeiraPastaUri = $uriArray[0];
 
 $rootPathUrl = $dominio;
 if ($ultimaPastaDir === $primeiraPastaUri) {
-    $rootPathUrl = ((!empty($_SERVER['HTTPS']))?'https://':'http://') . $dominio."/" . $ultimaPastaDir . "/";
+    $rootPathUrl = ((!empty($_SERVER['HTTPS'])) ? 'https://' : 'http://') . $dominio . "/" . $ultimaPastaDir . "/";
     array_shift($uriArray);
 }
-   
+
 $showErrors = true;
 
-if ($showErrors){
-    ini_set('display_errors',1);
-    ini_set('display_startup_erros',1);
+if ($showErrors) {
+    ini_set('display_errors', 1);
+    ini_set('display_startup_erros', 1);
     error_reporting(E_ALL);
 }
 
 
-$config['database']['host']		= $_ENV['db_host'];
-$config['database']['schema']	= $_ENV['db_schema'];
-$config['database']['user']		= $_ENV['db_user'];
-$config['database']['pass']		= $_ENV['db_pass'];
-$config['database']['port']		= $_ENV['db_port'];
+$config['database']['host']        = $_ENV['db_host'];
+$config['database']['schema']    = $_ENV['db_schema'];
+$config['database']['user']        = $_ENV['db_user'];
+$config['database']['pass']        = $_ENV['db_pass'];
+$config['database']['port']        = $_ENV['db_port'];
 
 /* 
 $config['database']['host']		= '144.217.39.54';
@@ -83,49 +85,47 @@ $config['database']['pass']		= 'ifspgru@2022';
 $config['database']['port']		= '3306';
 */
 
-$config['email']['host']	    = 'smtp.mydomain.com';
-$config['email']['port']	    =  587;
-$config['email']['username']	= 'my_username';
-$config['email']['password']	= 'my_password';
-    
-$config['path']['routes']	  = $routersFile;
-$config['path']['root']	      = $rootPath;
-$config['path']['css']	      = $rootPath .'public/assets/css/';
-$config['path']['js']	      = $rootPath .'public/assets/js/';
-$config['path']['font']	      = $rootPath .'public/assets/fonts/';
-$config['path']['images']     = $rootPath .'public/assets/images/';
-$config['path']['uploads']    = $rootPath .'/app/uploads/';
-$config['path']['pdoErrors']  = $rootPath .'/app/etc/pdoErrors.php';
-$config['path']['controllers']= $rootPath .'app/controllers';
-$config['path']['views']	  = $rootPath .'app/views';
-$config['path']['models']     = $rootPath .'app/models';
+$config['email']['host']        = 'smtp.mydomain.com';
+$config['email']['port']        =  587;
+$config['email']['username']    = 'my_username';
+$config['email']['password']    = 'my_password';
 
-$config['url']['root']	     = $rootPathUrl;
+$config['path']['routes']      = $routersFile;
+$config['path']['root']          = $rootPath;
+$config['path']['css']          = $rootPath . 'public/assets/css/';
+$config['path']['js']          = $rootPath . 'public/assets/js/';
+$config['path']['font']          = $rootPath . 'public/assets/fonts/';
+$config['path']['images']     = $rootPath . 'public/assets/images/';
+$config['path']['uploads']    = $rootPath . '/app/uploads/';
+$config['path']['pdoErrors']  = $rootPath . '/app/etc/pdoErrors.php';
+$config['path']['controllers'] = $rootPath . 'app/controllers';
+$config['path']['views']      = $rootPath . 'app/views';
+$config['path']['models']     = $rootPath . 'app/models';
+
+$config['url']['root']         = $rootPathUrl;
 $config['url']['domain']     = $_SERVER['SERVER_NAME'];
-$config['url']['css']	     = $rootPathUrl .'public/assets/css/';
-$config['url']['js']	     = $rootPathUrl .'public/assets/js/';
-$config['url']['fonts']	     = $rootPathUrl .'public/assets/fonts/';
-$config['url']['images']     = $rootPathUrl .'public/assets/images/';
+$config['url']['css']         = $rootPathUrl . 'public/assets/css/';
+$config['url']['js']         = $rootPathUrl . 'public/assets/js/';
+$config['url']['fonts']         = $rootPathUrl . 'public/assets/fonts/';
+$config['url']['images']     = $rootPathUrl . 'public/assets/images/';
 
-$config['url']['options']    = $rootPathUrl.'public/options_loader.php';
+$config['url']['options']    = $rootPathUrl . 'public/options_loader.php';
 
 $head  = "\n\t";
 
-$head .= 
-$head .= "\n\t".'<script src="'.$rootPathUrl .'public/assets/css/bootstrap.min.css" rel="stylesheet">'.
-$head .= "\n\t".'<script src="'.$rootPathUrl .'public/assets/js/bootstrap.bundle.min.js"></script>'.
-$head .= "\n\t".'<script src="'.$rootPathUrl .'public/assets/js/jquery.min.js"></script>';
-$head .= "\n\t".'<script src="'.$rootPathUrl .'public/assets/js/' .'jquery.maskedinput.js" type="text/javascript" ></script>';
-$head .= "\n\t".'<script src="'.$rootPathUrl .'public/assets/js/' .'script.js"></script>';
-$head .= "\n\t".'<link  href="'.$rootPathUrl .'public/assets/css/'.'style.css" rel="stylesheet">';
+$head .=
+    $head .= "\n\t" . '<script src="' . $rootPathUrl . 'public/assets/css/bootstrap.min.css" rel="stylesheet">' .
+    $head .= "\n\t" . '<script src="' . $rootPathUrl . 'public/assets/js/bootstrap.bundle.min.js"></script>' .
+    $head .= "\n\t" . '<script src="' . $rootPathUrl . 'public/assets/js/jquery.min.js"></script>';
+$head .= "\n\t" . '<script src="' . $rootPathUrl . 'public/assets/js/' . 'jquery.maskedinput.js" type="text/javascript" ></script>';
+$head .= "\n\t" . '<script src="' . $rootPathUrl . 'public/assets/js/' . 'script.js"></script>';
+$head .= "\n\t" . '<link  href="' . $rootPathUrl . 'public/assets/css/' . 'style.css" rel="stylesheet">';
 
-if(!isset( $_SESSION['login'])){
-    
-    
+if (!isset($_SESSION['login'])) {
 }
 
 
-$config['head']['defaults']	    =  $head;
+$config['head']['defaults']        =  $head;
 
 /* 
 $config['login']['email']	    = null;
@@ -180,4 +180,3 @@ $_SESSION['login']['nome']      = $config['login']['nome'];
 $_SESSION['login']['idUsuario'] = $config['login']['idUsuario'];
 $_SESSION['login']['idNivel']   = $config['login']['idNivel'];
  */
-?>
