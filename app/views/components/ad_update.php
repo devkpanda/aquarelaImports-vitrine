@@ -24,7 +24,7 @@
                     <input id="ad_update_price" type="text" placeholder="Digite o preço.." class="w-full input input-bordered bg-gray-100" />
                 </div>
                 <div class="mt-3">
-                    <label for="email" class="block text-base mb-2">Id da Categoria</label>
+                    <label for="email" class="block text-base mb-2">ID da Categoria</label>
                     <input id="ad_update_id" type="text" placeholder="Digite o Id.." class="w-full input input-bordered bg-gray-100" />
                 </div>
                 <div class="mt-3">
@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="col-span-2 flex items-center mt-10">
-                    <button class="ml-auto btn btn-default bg-orange-500 hover:bg-black font-black border-orange-500 text-white">Editar anúncio</button>
+                    <button type="submit" id="ad_update_submit_button" class="ml-auto btn btn-default bg-orange-500 hover:bg-black font-black border-orange-500 text-white">Editar anúncio</button>
                 </div>
             </form>
         </div>
@@ -56,6 +56,18 @@
 <script>
     ad_update_form.addEventListener('submit', () => {
         const advertisement = JSON.parse(atob(editAdvertisementModal))
+
+        advertisement.disabled = true
+        ad_update_sku.disabled = true
+        ad_update_name.disabled = true
+        ad_update_description.disabled = true
+        ad_update_price.disabled = true
+        ad_update_id.disabled = true
+        ad_update_measurement.disabled = true
+        ad_update_size.disabled = true
+        ad_update_url.disabled = true
+        ad_update_photo.disabled = true
+        ad_update_submit_button.disabled = true
 
         const id = advertisement.id
         const sku = ad_update_sku.value
@@ -85,6 +97,18 @@
                 url,
                 photo
             })
+        }).finally(() => {
+            advertisement.disabled = false
+            ad_update_sku.disabled = false
+            ad_update_name.disabled = false
+            ad_update_description.disabled = false
+            ad_update_price.disabled = false
+            ad_update_id.disabled = false
+            ad_update_measurement.disabled = false
+            ad_update_size.disabled = false
+            ad_update_url.disabled = false
+            ad_update_photo.disabled = false
+            ad_update_submit_button.disabled = false
         })
     })
 </script>

@@ -21,7 +21,7 @@
                 </div>
 
                 <div class="md:col-span-2 flex justify-center items-center mt-6">
-                    <button type="submit" class="ml-auto btn btn-default bg-orange-500 hover:bg-black font-black border-orange-500 text-white">Adicionar categoria</button>
+                    <button id="category_add_submit_button" type="submit" class="ml-auto btn btn-default bg-orange-500 hover:bg-black font-black border-orange-500 text-white">Adicionar categoria</button>
                 </div>
             </form>
 
@@ -38,9 +38,12 @@
 </div>
 
 <script>
-    // edit not working
     ad_category_form.addEventListener('submit', async function(e) {
         e.preventDefault()
+
+        category_name.disabled = true
+        category_parent.disabled = true
+        category_add_submit_button.disabled = true
 
         const description = category_name.value
         const parentId = category_parent.value
@@ -57,7 +60,13 @@
             })
             .then((response) => response.json())
             .then((response) => {
-                window.location.reload()
+                if (response.ok) {
+                    window.location.reload()
+                }
+            }).finally(() => {
+                category_name.disabled = false
+                category_parent.disabled = false
+                category_add_submit_button.disabled = false
             })
     })
 </script>

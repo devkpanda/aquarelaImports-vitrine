@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="col-span-2 flex items-center mt-4">
-                    <button class="ml-auto btn btn-default bg-orange-500 hover:bg-black font-black border-orange-500 text-white">Editar categoria</button>
+                    <button id="category_update_submit" type="submit" class="ml-auto btn btn-default bg-orange-500 hover:bg-black font-black border-orange-500 text-white">Editar categoria</button>
                 </div>
             </form>
         </div>
@@ -25,20 +25,30 @@
 </dialog>
 
 <script>
+    var editCategoryModal
+
     category_update_form.addEventListener('submit', () => {
-        // todo pull id
+        category_update_parent.disabled = true
+        category_update_name.disabled = true
+        category_update_submit.disabled = true
+
         const name = category_update_name.value
         const parent = category_update_parent.value
 
-        fetch("http://127.0.0.1/", {
+        fetch("http://127.0.0.1/category/update", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
+                id: editCategoryModal.id,
                 name,
                 parent
             })
+        }).finally(() => {
+            category_update_parent.disabled = false
+            category_update_name.disabled = false
+            category_update_submit.disabled = false
         })
     })
 </script>

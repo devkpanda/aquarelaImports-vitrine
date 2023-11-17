@@ -34,7 +34,11 @@
                 <div class="mt-3">
                     <!-- Litros (L), Centimetro cubico (cm³), Metro cubico (m³) -->
                     <label for="email" class="block text-base mb-2">Medida</label>
-                    <input id="ad_measurement" type="text" placeholder="Digite a medida.." class="w-full input input-bordered bg-gray-100" /> 
+                    <select id="ad_measurement" type="text" placeholder="Digite a medida.." class="w-full select select-bordered bg-gray-100">
+                        <option>Litros (L)</option>
+                        <option>Centrimetro cúbico (cm²)</option>
+                        <option>Metro cúbico (m²)</option>
+                    </select>
                 </div>
                 <div class="mt-3">
                     <label for="email" class="block text-base mb-2">Tamanho</label>
@@ -47,7 +51,7 @@
 
                 <div class="mt-3">
                     <label for="email" class="block text-base mb-2">Fotos</label>
-                    <input id="ad_photo" multiple accept="image/*" type="file" class="file-input file-input-bordered file-input-bg-orange-500 w-full bg-gray-100" />
+                    <input id="ad_photo" multiple accept="image/jpeg" type="file" class="file-input file-input-bordered file-input-bg-orange-500 w-full bg-gray-100" />
                 </div>
 
                 <div class="hidden mt-6">
@@ -60,7 +64,7 @@
                 </div>
 
                 <div class="flex justify-center items-center mt-6">
-                    <button type="submit" class="ml-auto btn btn-default bg-orange-500 hover:bg-black font-black border-orange-500 text-white">Adicionar anúncio</button>
+                    <button id="ad_create_submit_button" type="submit" class="ml-auto btn btn-default bg-orange-500 hover:bg-black font-black border-orange-500 text-white">Adicionar anúncio</button>
                 </div>
             </form>
         </div>
@@ -87,8 +91,16 @@
 
     ad_advertisement_form.addEventListener('submit', async function(e) {
         e.preventDefault()
-        
-        //to do clean after submit
+
+        ad_sku.disabled = true
+        ad_id.disabled = true
+        ad_name.disabled = true
+        ad_description.disabled = true
+        ad_measurement.disabled = true
+        ad_price.disabled = true
+        ad_size.disabled = true
+        ad_url.disabled = true
+        ad_create_submit_button.disabled = true
 
         const sku = ad_sku.value
         const categoryId = ad_id.value
@@ -119,6 +131,17 @@
             .then((response) => response.json())
             .then((response) => {
                 window.location.reload()
+            })
+            .finally((response) => {
+                ad_sku.disabled = false
+                ad_id.disabled = false
+                ad_name.disabled = false
+                ad_description.disabled = false
+                ad_measurement.disabled = false
+                ad_price.disabled = false
+                ad_size.disabled = false
+                ad_url.disabled = false
+                ad_create_submit_button.disabled = false
             })
     })
 

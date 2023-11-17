@@ -28,7 +28,6 @@
                             <th>Descrição</th>
                             <th>Preço</th>
                             <th>Tamanho</th>
-                            <th>Peso</th>
                             <th>Video</th>
                         </tr>
                     </thead>
@@ -96,9 +95,8 @@
                 <td>${ad.name}</td>
                 <td>${ad.description}</td>
                 <td>${formatter.format(ad.price)}</td>
-                <td>-</td>
-                <td>-</td>
-                <td>-</td>
+                <td>${ad.size}</td>
+                <td><a class="truncate" href="${ad.video}">${ad.video}</a></td>
                 <td class="flex">
                     <div>
                         <button onclick="editAdvertisementModal = '${btoa(JSON.stringify(ad))}'; loadAdvertisement(); ad_update.showModal()" class="btn btn-ghost btn-xs">editar</button>
