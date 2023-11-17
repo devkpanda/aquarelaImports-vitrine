@@ -33,6 +33,7 @@ if ($uriPath == '/category/add') {
                 echo json_encode(array('message' => 'Empty json'));
             } else {
                 if (!isset($data['description']) || !isset($data['parent_id'])) {
+                    http_response_code(400);
                     die(json_encode(array('message' => 'unexpected JSON')));
                 } else {
                     try {
@@ -42,19 +43,24 @@ if ($uriPath == '/category/add') {
                         $category = new Category(0, $description, $parent_id);
 
                         if (!$category->save()) {
-                            die(json_encode(array('message' => '1')));
+                            http_response_code(400);
+                            die(json_encode(array('message' => 'Houve um erro ao adicionar a categoria')));
                         } else {
-                            die(json_encode(array('message' => '0')));
+                            http_response_code(200);
+                            die(json_encode(array('message' => 'Categoria inserida com sucesso')));
                         }
                     } catch (Exception $e) {
+                        http_response_code(400);
                         die(json_encode(array('message' => $e->getMessage())));
                     } catch (InvalidArgumentException $iae) {
+                        http_response_code(400);
                         die(json_encode(array('message' => $iae->getMessage())));
                     }
                 }
             }
         }
     } else {
+        http_response_code(400);
         echo json_encode(array('message' => 'Method not allowed'));
     }
 }
@@ -76,9 +82,10 @@ if ($uriPath == '/category/listall') {
 
             $json[] = $categoryArray;
         }
-
+        http_response_code(200);
         die(json_encode($json));
     } else {
+        http_response_code(400);
         die(json_encode(array('message' => 'Method not allowed')));
     }
 }
@@ -98,6 +105,7 @@ if ($uriPath == '/category/update') {
                 echo json_encode(array('message' => 'Empty json'));
             } else {
                 if (!isset($data['id']) || !isset($data['description']) || !isset($data['parent_id'])) {
+                    http_response_code(400);
                     die(json_encode(array('message' => 'unexpected JSON')));
                 } else {
                     try {
@@ -108,19 +116,23 @@ if ($uriPath == '/category/update') {
                         $category = new Category($id, $description, $parent_id);
 
                         if (!$category->save()->rowCount() == 1) {
-                            die(json_encode(array('message' => '1')));
+                            http_response_code(400);
+                            die(json_encode(array('message' => 'Houve um erro ao editar a categoria')));
                         } else {
-                            die(json_encode(array('message' => '0')));
+                            die(json_encode(array('message' => 'Categoria editada com sucesso')));
                         }
                     } catch (Exception $e) {
+                        http_response_code(400);
                         die(json_encode(array('message' => $e->getMessage())));
                     } catch (InvalidArgumentException $iae) {
+                        http_response_code(400);
                         die(json_encode(array('message' => $iae->getMessage())));
                     }
                 }
             }
         }
     } else {
+        http_response_code(400);
         die(json_encode(array('message' => 'Method not allowed')));
     }
 }
@@ -140,6 +152,7 @@ if ($uriPath == '/category/delete') {
                 echo json_encode(array('message' => 'Empty json'));
             } else {
                 if (!isset($data['id'])) {
+                    http_response_code(400);
                     die(json_encode(array('message' => 'unexpected JSON')));
                 } else {
                     try {
@@ -149,19 +162,23 @@ if ($uriPath == '/category/delete') {
                         $category->setId($id);
 
                         if (!$category->delete()->rowCount() == 1) {
-                            die(json_encode(array('message' => '1')));
+                            http_response_code(400);
+                            die(json_encode(array('message' => 'Houve um erro ao excluir a categoria')));
                         } else {
-                            die(json_encode(array('message' => '0')));
+                            die(json_encode(array('message' => 'Categoria excluida com sucesso')));
                         }
                     } catch (Exception $e) {
+                        http_response_code(400);
                         die(json_encode(array('message' => $e->getMessage())));
                     } catch (InvalidArgumentException $iae) {
+                        http_response_code(400);
                         die(json_encode(array('message' => $iae->getMessage())));
                     }
                 }
             }
         }
     } else {
+        http_response_code(400);
         die(json_encode(array('message' => 'Method not allowed'))); 
     }
 }
