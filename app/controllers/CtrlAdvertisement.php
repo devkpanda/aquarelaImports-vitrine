@@ -44,7 +44,7 @@ $uriPath = $url['path'];
         
                     $json[] = $advertisementArray;
                 }
-        
+                http_response_code(200);
                 die(json_encode($json));
             } else {
                 die(json_encode(array('message' => 'Method not allowed')));
@@ -57,6 +57,7 @@ $uriPath = $url['path'];
             $json = file_get_contents('php://input');
 
             if ($json === false){
+                http_response_code(400);
                 die(json_encode(array('message' => 'Error receiving json')));
             } else {
                 $data = json_decode($json, true);
@@ -97,12 +98,15 @@ $uriPath = $url['path'];
                             }
     
                             if ($success === false){
-                                die(json_encode(array('message' => '1')));
+                                http_response_code(400);
+                                die(json_encode(array('message' => 'Houve um erro ao adicionar o anúncio')));
                             } else {
-                                die(json_encode(array('message' => '0')));
+                                http_response_code(200);
+                                die(json_encode(array('message' => 'Anúncio inserido com sucesso')));
                             }
                         } else {
-                            die(json_encode(array('message' => '1')));
+                            http_response_code(400);
+                            die(json_encode(array('message' => 'Houve um erro ao adicionar o anúncio')));
                         }
                     }
                 }
@@ -125,6 +129,7 @@ $uriPath = $url['path'];
                     $data = json_decode($json, true);
                     
                     if ($data === null)  {
+                        http_response_code(400);
                         die (json_encode(array('message' => 'Empty data')));
                     } else {
                         if (!isset($data['id']) || !isset($data['cod']) || !isset($data['name']) || !isset($data['description']) || !isset($data['price']) || !isset($data['category_id']) || !isset($data['measurement']) || !isset($data['size']) || !isset($data['videoUrl']) || !isset($data['base64_data'])) {
@@ -146,13 +151,16 @@ $uriPath = $url['path'];
                             if($id !== 0) {
                                 $exist = true; 
                                 $rSet = $advertisement->save();
-                            if ($rSet->rowCount() == 1) {
-                                    die(json_encode(array('message' => '1')));
+                                if (!$rSet->rowCount() == 1) {
+                                    http_response_code(400);
+                                    die(json_encode(array('message' => 'Houve um erro ao editar o anúncio')));
                                 } else {
-                                    die(json_encode(array('message' => '0')));
+                                    http_response_code(200);
+                                    die(json_encode(array('message' => 'Anúncio editado com sucesso')));
                                 }
                             } else {
-                                die(json_encode(array('message' => '0')));
+                                http_response_code(400);
+                                die(json_encode(array('message' => 'Houve um erro ao editar o anúncio')));
                             }
                         }   
                     }
@@ -200,14 +208,15 @@ $uriPath = $url['path'];
                             "videoUrl"      => $ad->getVideoUrl(),
                             "isActive"      => $ad->getIsActive()
                         );
-    
+                        
                         $json[] = $adArray;
                     }
-    
+                    http_response_code(200);
                     die(json_encode($json));
                 }
             }
         } else {
+            http_response_code(400);
             die(json_encode(array('message' => 'Method not allowed')));
         }
     }
@@ -227,6 +236,7 @@ if ($uriPath == '/advertisement/search'){
                 echo json_encode(array('message' => 'Empty json'));
             } else {
                 if (!isset($data['search'])) {
+                    http_response_code(400);
                     die(json_encode(array('message' => 'unexpected JSON')));
                 } else {
                     $search = $data['search'];
@@ -255,7 +265,7 @@ if ($uriPath == '/advertisement/search'){
 
                     $json[] = $adArray;
                 }
-            
+                http_response_code(200);
                 die(json_encode($json));
                 }
             }
@@ -292,14 +302,16 @@ if ($uriPath == '/advertisement/enable'){
                     $advertisementList = $advertisement->listAdvertisements($where);
 
                     if (!count($advertisementList) == 1) {
-                        die(json_encode(array("message" => "unexpected id")));
+                        die(json_encode(array("message" => "id inesperado")));
                     } else {
                         $advertisementList[0]->setIsActive('1');
     
                         if ($advertisementList[0]->save()) {
-                            die(json_encode(array('message' => '0')));
+                            http_response_code(200);
+                            die(json_encode(array('message' => 'Anúncio ativado com sucesso')));
                         } else {
-                            die(json_encode(array('message' => '1')));
+                            http_response_code(400);
+                            die(json_encode(array('message' => 'Houve um erro ao ativar o anúncio')));
                         }
                     }
                 }
@@ -326,6 +338,7 @@ if ($uriPath == '/advertisement/disable'){
                 echo json_encode(array('message' => 'Empty json'));
             } else {
                 if (!isset($data['id'])){ 
+                    http_response_code(400);
                     die(json_encode(array('message' => 'unexpected JSON')));
                 } else {
                     $id = $data['id'];
@@ -337,14 +350,16 @@ if ($uriPath == '/advertisement/disable'){
                     $advertisementList = $advertisement->listAdvertisements($where);
 
                     if (!count($advertisementList) == 1) {
-                        die(json_encode(array("message" => "unexpected id")));
+                        die(json_encode(array("message" => "id inesperado")));
                     } else {
                         $advertisementList[0]->setIsActive('0');
     
                         if ($advertisementList[0]->save()) {
-                            die(json_encode(array('message' => '0')));
+                            http_response_code(200);
+                            die(json_encode(array('message' => 'Anúncio desativado com sucesso')));
                         } else {
-                            die(json_encode(array('message' => '1')));
+                            http_response_code(400);
+                            die(json_encode(array('message' => 'Houve um erro ao desativar o anúncio')));
                         }
                     }
                 }
