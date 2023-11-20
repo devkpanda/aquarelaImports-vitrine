@@ -162,7 +162,7 @@ class DBQuery {
             $sql .= " " . $outerJoin;
         }
         $sql .= $where->build();
-
+        
         return $this->conn->query($sql);
     }
     

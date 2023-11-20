@@ -9,13 +9,12 @@ class Photo {
     private $advertisement_id;
     private $base64_data;
     private $description;
-    private $upload_date;
 
     private $dbquery;
 
-    function __construct($id, $advertisement_id, $base64_data, $description, $upload_date) {
+    function __construct($id, $advertisement_id, $base64_data, $description) {
         $tableName = "photos";
-        $fieldsName = "id, advertisement_id, base64_data, upload_date, description";
+        $fieldsName = "id, advertisement_id, base64_data, description";
         $fieldKey = "id";
         $this->dbquery = new DBQuery($tableName, $fieldsName, $fieldKey);
 
@@ -30,8 +29,7 @@ class Photo {
             $this->getId(),
             $this->getAdvertisement_id(),
             $this->getBase64_data(),
-            $this->getDescription(),
-            $this->getUpload_date()
+            $this->getDescription()
         );
     }
 
@@ -57,8 +55,9 @@ class Photo {
     }
 
     public function listPhotos($where = null) : array {
-        $usuarios = array();
+        $photos = array();
         $rSet = null;
+        
         if ( $where == null){
             $rSet = $this->dbquery->select();
         } else {
@@ -71,15 +70,14 @@ class Photo {
                 $advertisement_id   = $linha['advertisement_id'];
                 $base64_data        = $linha['base64_data'];
                 $description        = $linha['description'];
-                $upload_date        = $linha['upload_date'];
                 
-                $photos[] = new Photo($id, $advertisement_id, $base64_data, $description, $upload_date);
+                $photos[] = new Photo($id, $advertisement_id, $base64_data, $description);
             }
         } else {
             $photos[] = array();
             echo  "{'message': no photos found'.\n'}";
         }
-        return( $photos );
+        return $photos;
     }
 
     public function delete() {
@@ -146,14 +144,6 @@ class Photo {
         $this->base64_data = $base64_data;
 
         return $this;
-    }
-
-    /**
-     * Get the value of upload_date
-     */ 
-    public function getUpload_date()
-    {
-        return $this->upload_date;
     }
 
     /**

@@ -4,9 +4,6 @@ namespace models;
 
 use core\database\DBQuery;
 
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
-
 class Advertisement
 {
     private $id;

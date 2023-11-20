@@ -24,19 +24,20 @@ $uriPath = $url['path'];
             if (strtolower($_SERVER['REQUEST_METHOD']) == 'get'){
                 $advertisement = new Advertisement('','','','','','','','','','');
                 $advertisements = $advertisement->listAdvertisements();
-
-                $where = new Where();
-                $where->addCondition('AND', 'advertisement_id', '=', '');
-
-                $photos = new Photo('','','','','');
-
-                $photos = $photo->listPhotos();
         
                 $json = array();
         
                 foreach ($advertisements as $advertisement) {
-                    
+                    $where = new Where();
+                    $where->addCondition('AND', 'advertisement_id', '=', $advertisement->getId());
 
+                    $photo = new Photo('','','','','');
+                    $photos = $photo->listPhotos($where);
+                    
+                    $photosArray = array();
+                    foreach ($photos as $photo) {
+                        array_push($photosArray, $photo->getBase64_data());
+                    }
                     $advertisementArray = array(
                         "id"            => $advertisement->getId(),
                         "cod"           => $advertisement->getCod(),
@@ -48,9 +49,11 @@ $uriPath = $url['path'];
                         "size"          => $advertisement->getSize(),
                         "videoUrl"      => $advertisement->getVideoUrl(),
                         "isActive"      => $advertisement->getIsActive(),
+                        "base64_data"   => $photosArray
                     );
-        
+
                     $json[] = $advertisementArray;
+
                 }
                 http_response_code(200);
                 die(json_encode($json));
@@ -98,7 +101,7 @@ $uriPath = $url['path'];
                             $success = "";
     
                             foreach ($base64_data as $photo) {
-                                $photo = new Photo(0, $result[0]->getId(), $photo, '', '');
+                                $photo = new Photo(0, $result[0]->getId(), $photo, '');
                                 if ($photo->save()) {
                                 } else {
                                     $success = false;
