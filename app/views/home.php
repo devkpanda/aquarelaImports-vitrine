@@ -9,6 +9,11 @@
     <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDU5_4EEiM4mlZw9zYcbM39TeTATyMSF0Q&callback=console.debug&libraries=maps,marker&v=beta">
     </script>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@3.5.1/dist/full.css" rel="stylesheet" type="text/css" />
+    <style>
+        :root {
+            --padding-card: 1rem;
+        }
+    </style>
     <title>Aquarela Imports - Vitrine Virtual</title>
 </head>
 
@@ -27,23 +32,8 @@
             </div>
         </div>
     </div>
-    <div id="categorias" class="min-w-full h-28 bg-orange-500 flex justify-center items-center">
-        <div>
-            <a href="#bicicleta"><img class="max-h-24 items-center px-6 pt-4  hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300" src="/app/views/images/bicicleta-sem-fundo.png" alt="" /></a>
-        </div>
-        <div>
-            <a href="#componentes"><img class="max-h-24 items-center pt-4 px-6 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300" src="/app/views/images/componentes-sem-fundo.png" alt="" /></a>
-        </div>
-        <div>
-            <a href="#ferramentas"><img class="max-h-24 px-6 pt-4 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300" src="/app/views/images/ferramentas-sem-fundo.png" alt="" /></a>
-        </div>
-        <div>
-            <a href="#mobiletes"><img class="max-h-24 px-6 pt-4 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300" src="/app/views/images/mobiletes-sem-fundo.png" alt="" /></a>
-        </div>
-        <div>
-            <a href="#vestuario"><img class="max-h-24 px-6 pt-4 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300" src="/app/views/images/vestuari-sem-fundo.png" alt="" /></a>
-        </div>
-    </div>
+    <nav id="categorias" class="min-w-full bg-orange-500 flex justify-center items-center gap-px">
+    </nav>
     <div class="carousel w-full">
         <div id="slide1" class="carousel-item relative w-full">
             <img src="/app/views/images/painel-1-mobilete-teste.png" class="w-full" />
@@ -75,235 +65,60 @@
         </div>
     </div>
 
-    <div id="componentes" class="border border-gray-100"></div>
-    <div>
-
-        <div class="flex justify-between w-3/4 mx-auto pt-5 pb-6">
-            <h2 class="text-2xl text-black py-5 pr-3">Se liga nos nossos componentes pra sua bicicleta top</h2>
-            <a href="#none" class="py-5 text-2xl underline" onclick="modalpoucoanuncio.showModal()">Ver mais</a>
-        </div>
-        <div class="flex justify-center items-center pb-5">
-            <div class="grid md:grid-cols-4 gap-10 w-3/4 pb-8 sm:pr-3">
-                <div class="card w-80 bg-base-100 bg-slate-50 text-primary-content">
-                    <figure><img class="w-full h-52 object-cover" src="/app/views/images/Conjunto Freio à disco.webp" alt="Shoes" /></figure>
-                    <div class="card-body">
-                        <h2 class="card-title text-black">Conjunto Freio à disco</h2>
-                        <p class="text-black">Conjunto de instalação de freio à disco para bicicletas. Contendo dois
-                            discos, duas pinças com quatro pastilhas, dois cabos com conduites</p>
-                        <div class="card-actions justify-end">
-                            <p class="mt-3 text-black">R$ 150</p>
-                            <button class="btn btn-primary border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300" onclick="produto.showModal()">Buy Now</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="card w-80 bg-base-100 bg-slate-50 text-primary-content">
-                    <figure><img class="w-full h-52 object-cover" src="/app/views/images/Coroa.jpg" alt="Shoes" /></figure>
-                    <div class="card-body">
-                        <h2 class="card-title text-black">Coroa</h2>
-                        <p class="text-black">Coroa convencional para bicicletas sem marcha. 44 dentes</p>
-                        <div class="card-actions justify-end">
-                            <p class="mt-3 text-black">R$ 150</p>
-                            <button class="btn btn-primary border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300" onclick="modalsemcompra.showModal()">Buy Now</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="card w-80 bg-base-100 bg-slate-50 text-primary-content">
-                    <figure><img class="w-full h-52 object-cover" src="/app/views/images/Pedivela.jpeg" alt="Shoes" />
-                    </figure>
-                    <div class="card-body">
-                        <h2 class="card-title text-black">Pedivela</h2>
-                        <p class="text-black">Pedivila convencional de alumínio, 44mm</p>
-                        <div class="card-actions justify-end">
-                            <p class="mt-3 text-black">R$ 150</p>
-                            <button class="btn btn-primary border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300" onclick="modalsemcompra.showModal()">Buy Now</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="card w-80 bg-base-100 bg-slate-50 text-primary-content">
-                    <figure><img class="w-full h-52 object-cover" src="/app/views/images/Pedal de Alumínio.jpeg" alt="Shoes" /></figure>
-                    <div class="card-body">
-                        <h2 class="card-title text-black">Pedal de Alumínio</h2>
-                        <p class="text-black">Pedal resistente de alumínio, com maior resistência à impactos,
-                            podendo vir com rosca grossa ou rosca fina</p>
-                        <div class="card-actions justify-end">
-                            <p class="mt-3 text-black">R$ 150</p>
-                            <button class="btn btn-primary border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300" onclick="modalsemcompra.showModal()">Buy Now</button>
-                        </div>
-                    </div>
-                </div>
+    <div id="advertisements_container">
+        <div id="componentes" class="border border-gray-100"></div>
+        <div>
+            <div class="flex justify-between max-w-5xl mx-auto pt-5 pb-6 px-4">
+                <h2 class="text-2xl text-black py-5 pr-3">Se liga nos nossos componentes pra sua bicicleta top</h2>
+                <a href="#none" class="py-5 text-2xl underline" onclick="modalpoucoanuncio.showModal()">Ver mais</a>
             </div>
-        </div>
-
-        <div id="ferramentas" class="border border-gray-100"></div>
-        <div class="flex justify-between w-3/4 mx-auto pt-5 pb-6">
-            <h2 class="text-2xl text-black py-5 pr-3">Se liga nas nossas ferramentas pra manutenção</h2>
-            <a href="#none" class="py-5 text-2xl underline" onclick="modalpoucoanuncio.showModal()">Ver mais</a>
-        </div>
-        <div class="flex justify-center items-center pb-5">
-            <div class="grid md:grid-cols-4 gap-10 w-3/4 pb-8 sm:pr-3">
-                <div class="card w-80 bg-base-100 bg-slate-50 text-primary-content">
-                    <figure><img class="w-full h-52 object-cover" src="/app/views/images/Kit de Remendo Peneu.webp" alt="Shoes" /></figure>
-                    <div class="card-body">
-                        <h2 class="card-title text-black">Kit de remendo Pneu</h2>
-                        <p class="text-black">Kit portátil completo para remendo de câmaras a frio, com todo o
-                            necessário para a realização do remendo. Contém no kit, espátulas, chaves para fixação e
-                            soltura da roda, remendo, cola para borracha, lixa d'água</p>
-                        <div class="card-actions justify-end">
-                            <p class="mt-3 text-black">R$ 150</p>
-                            <button class="btn btn-primary border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300" onclick="modalsemcompra.showModal()">Buy Now</button>
+            <div class="flex justify-center items-center pb-5 px-4">
+                <div class="grid md:grid-cols-4 gap-2 max-w-5xl pb-8 sm:pr-3">
+                    <div class="card bg-base-100 bg-slate-50 text-primary-content">
+                        <figure><img class="w-full h-52 object-cover" src="/app/views/images/Conjunto Freio à disco.webp" alt="Shoes" /></figure>
+                        <div class="card-body">
+                            <h2 class="card-title text-black">Conjunto Freio à disco</h2>
+                            <p class="md:text-sm text-black">Conjunto de instalação de freio à disco para bicicletas. Contendo dois
+                                discos, duas pinças com quatro pastilhas, dois cabos com conduites</p>
+                            <div class="card-actions justify-end">
+                                <p class="mt-3 text-lg text-black font-medium">R$ 150</p>
+                                <button class="btn btn-primary border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300" onclick="produto.showModal()">Comprar</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="card w-80 bg-base-100 bg-slate-50 text-primary-content">
-                    <figure><img class="w-full h-52 object-cover" src="/app/views/images/Extrator do Movimento Central.jpg" alt="Shoes" /></figure>
-                    <div class="card-body">
-                        <h2 class="card-title text-black">Extrator do movimento central</h2>
-                        <p class="text-black">Saca polia para extrair o movimento central de bicicletas
-                            convencionais</p>
-                        <div class="card-actions justify-end">
-                            <p class="mt-3 text-black">R$ 150</p>
-                            <button class="btn btn-primary border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300" onclick="modalsemcompra.showModal()">Buy Now</button>
+                    <div class="card bg-base-100 bg-slate-50 text-primary-content">
+                        <figure><img class="w-full h-52 object-cover" src="/app/views/images/Coroa.jpg" alt="Shoes" /></figure>
+                        <div class="card-body">
+                            <h2 class="card-title text-black">Coroa</h2>
+                            <p class="text-black">Coroa convencional para bicicletas sem marcha. 44 dentes</p>
+                            <div class="card-actions justify-end">
+                                <p class="mt-3 text-lg text-black font-medium">R$ 150</p>
+                                <button class="btn btn-primary border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300" onclick="modalsemcompra.showModal()">Comprar</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="card w-80 bg-base-100 bg-slate-50 text-primary-content">
-                    <figure><img class="w-full h-52 object-cover" src="/app/views/images/Kit Catraca.webp" alt="Shoes" />
-                    </figure>
-                    <div class="card-body">
-                        <h2 class="card-title text-black">Kit catraca</h2>
-                        <p class="text-black">Kit de chave catracada portátil com 10 opções de soquetes</p>
-                        <div class="card-actions justify-end">
-                            <p class="mt-3 text-black">R$ 150</p>
-                            <button class="btn btn-primary border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300" onclick="modalsemcompra.showModal()">Buy Now</button>
+                    <div class="card bg-base-100 bg-slate-50 text-primary-content">
+                        <figure><img class="w-full h-52 object-cover" src="/app/views/images/Pedivela.jpeg" alt="Shoes" />
+                        </figure>
+                        <div class="card-body">
+                            <h2 class="card-title text-black">Pedivela</h2>
+                            <p class="text-black">Pedivila convencional de alumínio, 44mm</p>
+                            <div class="card-actions justify-end">
+                                <p class="mt-3 text-lg text-black font-medium">R$ 150</p>
+                                <button class="btn btn-primary border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300" onclick="modalsemcompra.showModal()">Comprar</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="card w-80 bg-base-100 bg-slate-50 text-primary-content">
-                    <figure><img class="w-full h-50 object-cover" src="/app/views/images/Maleta de Ferramentas.jpg" alt="Shoes" /></figure>
-                    <div class="card-body">
-                        <h2 class="card-title text-black">Maleta de Ferramentas</h2>
-                        <p class="text-black">Maleta de ferramentas alemã, com todo tipo de ferramenta utilizada na
-                            manutenção de bicicletas.</p>
-                        <div class="card-actions justify-end">
-                            <p class="mt-3 text-black">R$ 150</p>
-                            <button class="btn btn-primary border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300" onclick="modalsemcompra.showModal()">Buy Now</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="mobiletes" class="border border-gray-100"></div>
-        <div class="flex justify-between w-3/4 mx-auto pt-5 pb-6">
-            <h2 class="text-2xl text-black py-5 pr-3">Se liga nas nossas bicicletas motorizadas</h2>
-            <a href="#none" class="py-5 text-2xl underline" onclick="modalpoucoanuncio.showModal()">Ver mais</a>
-        </div>
-        <div class="flex justify-center items-center pb-5">
-            <div class="grid md:grid-cols-4 gap-10 w-3/4 pb-8 sm:pr-3">
-                <div class="card w-80 bg-base-100 bg-slate-50 text-primary-content">
-                    <figure><img class="w-full h-52 object-cover" src="/app/views/images/Bicicleta Motorizada Moskito.jpg" alt="Shoes" /></figure>
-                    <div class="card-body">
-                        <h2 class="card-title text-black">Bicicleta Motorizada Moskito</h2>
-                        <p class="text-black">Bicicleta motorizada com motor 2 tempos 80cc. Tanque com capacidade de
-                            1,5L e autonomia geral de 40km/L</p>
-                        <div class="card-actions justify-end">
-                            <p class="mt-3 text-black">R$ 150</p>
-                            <button class="btn btn-primary border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300" onclick="modalsemcompra.showModal()">Buy Now</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="card w-80 bg-base-100 bg-slate-50 text-primary-content">
-                    <figure><img class="w-full h-52 object-cover" src="/app/views/images/Mobilete Motor Estacionário.webp" alt="Shoes" /></figure>
-                    <div class="card-body">
-                        <h2 class="card-title text-black">Mobilete com motor estacionário</h2>
-                        <p class="text-black">Mobilete quadro WMX com motor estacionário. Quadro com tanque com 2L
-                            de capacidade. Consumo pode chegar a 50km/L</p>
-                        <div class="card-actions justify-end">
-                            <p class="mt-3 text-black">R$ 150</p>
-                            <button class="btn btn-primary border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300" onclick="modalsemcompra.showModal()">Buy Now</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="card w-80 bg-base-100 bg-slate-50 text-primary-content">
-                    <figure><img class="w-full h-52 object-cover" src="/app/views/images/Mobilete 4 tempos.jpeg" alt="Shoes" /></figure>
-                    <div class="card-body">
-                        <h2 class="card-title text-black">Mobilete 4 Tempos</h2>
-                        <p class="text-black">A conhecida mobilete 4 tempos, agora com motor 90cc e 4 marchas,
-                            podendo chegar a até 100km/h com autonomia máxima de 50km/L. Capacidade para até 2
-                            pessoas</p>
-                        <div class="card-actions justify-end">
-                            <p class="mt-3 text-black">R$ 150</p>
-                            <button class="btn btn-primary border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300" onclick="modalsemcompra.showModal()">Buy Now</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="card w-80 bg-base-100 bg-slate-50 text-primary-content">
-                    <figure><img class="w-full h-52 object-cover" src="/app/views/images/Bicicleta Motorizada Moskito.jpg" alt="Shoes" /></figure>
-                    <div class="card-body">
-                        <h2 class="card-title text-black">Shoes!</h2>
-                        <p class="text-black">If a dog chews shoes whose shoes does he choose?</p>
-                        <div class="card-actions justify-end">
-                            <p class="mt-3 text-black">R$ 150</p>
-                            <button class="btn btn-primary border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300" onclick="modalsemcompra.showModal()">Buy Now</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="vestuario" class="border border-gray-100"></div>
-        <div class="flex justify-between w-3/4 mx-auto pt-5 pb-6">
-            <h2 class="text-2xl text-black py-5 pr-3 ">Se liga nas nossas roupas de ciclismo</h2>
-            <a href="#none" class="py-5 text-2xl underline" onclick="modalpoucoanuncio.showModal()">Ver mais</a>
-        </div>
-        <div class="flex justify-center items-center pb-5">
-            <div class="grid md:grid-cols-4 gap-10 w-3/4 pb-8 sm:pr-3">
-                <div class="card w-80 bg-base-100 bg-slate-50 text-primary-content">
-                    <figure><img class="w-full h-52 object-cover" src="/app/views/images/Capacete Absolute.webp" alt="Shoes" /></figure>
-                    <div class="card-body">
-                        <h2 class="card-title text-black">Capacete absolute</h2>
-                        <p class="text-black">Capacete de marca absolute com ajuste de tamanho universal, disponível
-                            em diversas cores, com ou sem LED de sinalização</p>
-                        <div class="card-actions justify-end">
-                            <p class="mt-3 text-black">R$ 150</p>
-                            <button class="btn btn-primary border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300" onclick="modalsemcompra.showModal()">Buy Now</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="card w-80 bg-base-100 bg-slate-50 text-primary-content">
-                    <figure><img class="w-full h-52 object-cover" src="/app/views/images/Luvas Ciclismo.webp" alt="Shoes" />
-                    </figure>
-                    <div class="card-body">
-                        <h2 class="card-title text-black">Luvas Ciclismo</h2>
-                        <p class="text-black">Luvas revestidas com gel para permitir maior conforto ao ciclista,
-                            evitando feridas ao apoiar a mão no guidão</p>
-                        <div class="card-actions justify-end">
-                            <p class="mt-3 text-black">R$ 150</p>
-                            <button class="btn btn-primary border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300" onclick="modalsemcompra.showModal()">Buy Now</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="card w-80 bg-base-100 bg-slate-50 text-primary-content">
-                    <figure><img class="w-full h-52 object-cover" src="/app/views/images/Shorts para Bike.jpg" alt="Shoes" />
-                    </figure>
-                    <div class="card-body">
-                        <h2 class="card-title text-black">Shorts para bike</h2>
-                        <p class="text-black">Shorts para ciclista com forro em gel</p>
-                        <div class="card-actions justify-end">
-                            <p class="mt-3 text-black">R$ 150</p>
-                            <button class="btn btn-primary border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300" onclick="modalsemcompra.showModal()">Buy Now</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="card w-80 bg-base-100 bg-slate-50 text-primary-content">
-                    <figure><img class="w-full h-52 object-cover" src="/app/views/images/Meia oggi.webp" alt="Shoes" />
-                    </figure>
-                    <div class="card-body">
-                        <h2 class="card-title text-black">Meia oggi</h2>
-                        <p class="text-black">Meião para ciclista de marca Oggi</p>
-                        <div class="card-actions justify-end">
-                            <p class="mt-3 text-black">R$ 150</p>
-                            <button class="btn btn-primary border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300" onclick="modalsemcompra.showModal()">Buy Now</button>
+                    <div class="card bg-base-100 bg-slate-50 text-primary-content">
+                        <figure><img class="w-full h-52 object-cover" src="/app/views/images/Pedal de Alumínio.jpeg" alt="Shoes" /></figure>
+                        <div class="card-body">
+                            <h2 class="card-title text-black">Pedal de Alumínio</h2>
+                            <p class="text-black">Pedal resistente de alumínio, com maior resistência à impactos,
+                                podendo vir com rosca grossa ou rosca fina</p>
+                            <div class="card-actions justify-end">
+                                <p class="mt-3 text-lg text-black font-medium">R$ 150</p>
+                                <button class="btn btn-primary border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300" onclick="modalsemcompra.showModal()">Comprar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -393,27 +208,98 @@
                     class="btn border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300 text-white">Close</button>
             </div>
         </form>
-    </dialog>
+    </dialog> -->
 
     <dialog id="modalpoucoanuncio" class="modal modal-bottom sm:modal-middle">
         <form method="dialog" class="modal-box bg-slate-100">
             <h3 class="font-bold text-lg text-black">Olá Cliente! Desculpe-nos pelo inconveniente mas nosso site ainda
                 está em desenvolvimento.</h3>
             <p class="py-4 text-black">No momento ainda não temos todos os nossos anuncios no site, mas você pode nos
-                contatar pelo whatsapp para ver mais produtos! Basta clicar no link: </p> <a
-                href="https://wa.me/5511978654859?text=Ol%C3%A1%2C+estou+interessado+nos+produtos+da+Aquarela+Imports%2C+podem+me+dar+mais+informa%C3%A7%C3%B5es%3F">
+                contatar pelo whatsapp para ver mais produtos! Basta clicar no link: </p> <a href="https://wa.me/5511978654859?text=Ol%C3%A1%2C+estou+interessado+nos+produtos+da+Aquarela+Imports%2C+podem+me+dar+mais+informa%C3%A7%C3%B5es%3F">
                 <p class="underline text-blue-600">https://wa.me/5511978654859</p>
             </a>. <br> <img src="/app/views/images/qrcode.png" alt=""><br>
             <p class="text-black">Lembrando que todos os nossos preços são ficticios no momento pois o site ainda está
                 em desenvolvimento.</p>
             <div class="modal-action">
-               
-                <button
-                    class="btn border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300 text-white">Close</button>
+
+                <button class="btn border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300 text-white">Close</button>
             </div>
         </form>
-    </dialog> -->
+    </dialog>
 
+    <script>
+        let advertisements = []
+
+        function buildCategory(category) {
+            return `
+                <div class="flex justify-between max-w-5xl mx-auto pt-5 pb-6 px-4">
+                    <h2 class="text-2xl text-black py-5 pr-3">${category.description}</h2>
+                    <a href="#none" class="py-5 text-xl underline" onclick="modalpoucoanuncio.showModal()">Ver mais</a>
+                </div>
+                <div class="flex justify-center items-center pb-5 px-4">
+                    <div id="category_items_${category.id}" class="grid md:grid-cols-4 gap-2 max-w-5xl pb-8 sm:pr-3">${category.description}</div>
+                </div>
+            `
+        }
+
+        function buildAd(ad) {
+            console.log(ad, ad.base64_data)
+
+            return `<div id="ad_item_${ad.id}" class="card bg-base-100 bg-slate-50 text-primary-content">
+                <figure><img class="w-full h-52 object-cover" src="${ad.base64_data ? ad.base64_data[0] : "?"}" alt="Shoes" /></figure>
+                <div class="card-body">
+                    <h2 class="card-title text-black">${ad.name}</h2>
+                    <p class="md:text-sm text-black">${ad.description}</p>
+                    <div class="card-actions justify-end">
+                        <p class="mt-3 text-lg text-black font-medium">R$ ${ad.price}</p>
+                        <button class="btn btn-primary border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300" onclick="produto.showModal()">Comprar</button>
+                    </div>
+                </div>
+            </div>`
+        }
+
+        function filterResults(categoryId) {
+            const ads = advertisements
+                .filter(ad => ad.category_id === categoryId)
+
+            return ads
+        }
+
+        function addCategoryToNavbar(category) {
+            const categoryItem = document.createElement('a')
+
+            categoryItem.className = "hover:bg-black/10 font-medium text-lg px-4 py-3 text-white"
+            categoryItem.innerText = category.description
+            categoryItem.addEventListener('click', () => {
+                const ads = filterResults(category.id)
+
+                if (ads.length > 0) {
+                    advertisements_container.innerHTML = buildCategory(category)
+
+                    const ads_container = document.getElementById('category_items_' + category.id)
+
+                    ads_container.innerHTML = ads.map(ad => buildAd(ad)).join('')
+                } else {
+                    modalpoucoanuncio.showModal()
+                }
+            })
+
+            categorias.appendChild(categoryItem)
+        }
+
+        async function init() {
+          fetch('http://localhost/category/listall')
+            .then(response => response.json())
+            .then((categories) => categories.map(category => addCategoryToNavbar(category)))
+
+
+          fetch('http://localhost/advertisement/listall')
+            .then(response => response.json())
+            .then(ads => advertisements = ads)
+        }
+
+        init()
+    </script>
 
     <script src="/public/assets/js/script.js"></script>
 </body>
