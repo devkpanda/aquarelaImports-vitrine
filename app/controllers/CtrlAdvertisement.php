@@ -23,12 +23,20 @@ $uriPath = $url['path'];
         if ($uriPath == '/advertisement/listall'){
             if (strtolower($_SERVER['REQUEST_METHOD']) == 'get'){
                 $advertisement = new Advertisement('','','','','','','','','','');
-        
                 $advertisements = $advertisement->listAdvertisements();
+
+                $where = new Where();
+                $where->addCondition('AND', 'advertisement_id', '=', '');
+
+                $photos = new Photo('','','','','');
+
+                $photos = $photo->listPhotos();
         
                 $json = array();
         
                 foreach ($advertisements as $advertisement) {
+                    
+
                     $advertisementArray = array(
                         "id"            => $advertisement->getId(),
                         "cod"           => $advertisement->getCod(),

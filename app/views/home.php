@@ -34,102 +34,48 @@
     </div>
     <nav id="categorias" class="min-w-full bg-orange-500 flex justify-center items-center gap-px">
     </nav>
-    <div class="carousel w-full">
-        <div id="slide1" class="carousel-item relative w-full">
-            <img src="/app/views/images/painel-1-mobilete-teste.png" class="w-full" />
-            <div class="absolute flex justify-between -translate-y-1/2 left-5 right-5 top-1/2">
-                <a href="#slide4" class="btn btn-circle">❮</a>
-                <a href="#slide2" class="btn btn-circle">❯</a>
-            </div>
-        </div>
-        <div id="slide2" class="carousel-item relative w-full">
-            <img src="/app/views/images/painel-2-kitferramentas-teste.png" class="w-full" />
-            <div class="absolute flex justify-between -translate-y-1/2 left-5 right-5 top-1/2 max-h-40">
-                <a href="#slide1" class="btn btn-circle">❮</a>
-                <a href="#slide3" class="btn btn-circle">❯</a>
-            </div>
-        </div>
-        <div id="slide3" class="carousel-item relative w-full">
-            <img src="/app/views/images/painel-1-mobilete-teste.png" class="w-full" />
-            <div class="absolute flex justify-between -translate-y-1/2 left-5 right-5 top-1/2">
-                <a href="#slide2" class="btn btn-circle">❮</a>
-                <a href="#slide4" class="btn btn-circle">❯</a>
-            </div>
-        </div>
-        <div id="slide4" class="carousel-item relative w-full">
-            <img src="/app/views/images/painel-1-mobilete-teste.png" class="w-full" />
-            <div class="absolute flex justify-between -translate-y-1/2 left-5 right-5 top-1/2">
-                <a href="#slide3" class="btn btn-circle">❮</a>
-                <a href="#slide1" class="btn btn-circle">❯</a>
-            </div>
-        </div>
-    </div>
 
-    <div id="advertisements_container">
-        <div id="componentes" class="border border-gray-100"></div>
-        <div>
-            <div class="flex justify-between max-w-5xl mx-auto pt-5 pb-6 px-4">
-                <h2 class="text-2xl text-black py-5 pr-3">Se liga nos nossos componentes pra sua bicicleta top</h2>
-                <a href="#none" class="py-5 text-2xl underline" onclick="modalpoucoanuncio.showModal()">Ver mais</a>
+    <div id="homeDiv">
+        <div class="carousel w-full">
+            <div id="slide1" class="carousel-item relative w-full">
+                <img src="/app/views/images/painel-1-mobilete-teste.png" class="w-full" />
+                <div class="absolute flex justify-between -translate-y-1/2 left-5 right-5 top-1/2">
+                    <a href="#slide4" class="btn btn-circle">❮</a>
+                    <a href="#slide2" class="btn btn-circle">❯</a>
+                </div>
             </div>
-            <div class="flex justify-center items-center pb-5 px-4">
-                <div class="grid md:grid-cols-4 gap-2 max-w-5xl pb-8 sm:pr-3">
-                    <div class="card bg-base-100 bg-slate-50 text-primary-content">
-                        <figure><img class="w-full h-52 object-cover" src="/app/views/images/Conjunto Freio à disco.webp" alt="Shoes" /></figure>
-                        <div class="card-body">
-                            <h2 class="card-title text-black">Conjunto Freio à disco</h2>
-                            <p class="md:text-sm text-black">Conjunto de instalação de freio à disco para bicicletas. Contendo dois
-                                discos, duas pinças com quatro pastilhas, dois cabos com conduites</p>
-                            <div class="card-actions justify-end">
-                                <p class="mt-3 text-lg text-black font-medium">R$ 150</p>
-                                <button class="btn btn-primary border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300" onclick="produto.showModal()">Comprar</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card bg-base-100 bg-slate-50 text-primary-content">
-                        <figure><img class="w-full h-52 object-cover" src="/app/views/images/Coroa.jpg" alt="Shoes" /></figure>
-                        <div class="card-body">
-                            <h2 class="card-title text-black">Coroa</h2>
-                            <p class="text-black">Coroa convencional para bicicletas sem marcha. 44 dentes</p>
-                            <div class="card-actions justify-end">
-                                <p class="mt-3 text-lg text-black font-medium">R$ 150</p>
-                                <button class="btn btn-primary border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300" onclick="modalsemcompra.showModal()">Comprar</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card bg-base-100 bg-slate-50 text-primary-content">
-                        <figure><img class="w-full h-52 object-cover" src="/app/views/images/Pedivela.jpeg" alt="Shoes" />
-                        </figure>
-                        <div class="card-body">
-                            <h2 class="card-title text-black">Pedivela</h2>
-                            <p class="text-black">Pedivila convencional de alumínio, 44mm</p>
-                            <div class="card-actions justify-end">
-                                <p class="mt-3 text-lg text-black font-medium">R$ 150</p>
-                                <button class="btn btn-primary border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300" onclick="modalsemcompra.showModal()">Comprar</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card bg-base-100 bg-slate-50 text-primary-content">
-                        <figure><img class="w-full h-52 object-cover" src="/app/views/images/Pedal de Alumínio.jpeg" alt="Shoes" /></figure>
-                        <div class="card-body">
-                            <h2 class="card-title text-black">Pedal de Alumínio</h2>
-                            <p class="text-black">Pedal resistente de alumínio, com maior resistência à impactos,
-                                podendo vir com rosca grossa ou rosca fina</p>
-                            <div class="card-actions justify-end">
-                                <p class="mt-3 text-lg text-black font-medium">R$ 150</p>
-                                <button class="btn btn-primary border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300" onclick="modalsemcompra.showModal()">Comprar</button>
-                            </div>
-                        </div>
-                    </div>
+            <div id="slide2" class="carousel-item relative w-full">
+                <img src="/app/views/images/painel-2-kitferramentas-teste.png" class="w-full" />
+                <div class="absolute flex justify-between -translate-y-1/2 left-5 right-5 top-1/2 max-h-40">
+                    <a href="#slide1" class="btn btn-circle">❮</a>
+                    <a href="#slide3" class="btn btn-circle">❯</a>
+                </div>
+            </div>
+            <div id="slide3" class="carousel-item relative w-full">
+                <img src="/app/views/images/painel-1-mobilete-teste.png" class="w-full" />
+                <div class="absolute flex justify-between -translate-y-1/2 left-5 right-5 top-1/2">
+                    <a href="#slide2" class="btn btn-circle">❮</a>
+                    <a href="#slide4" class="btn btn-circle">❯</a>
+                </div>
+            </div>
+            <div id="slide4" class="carousel-item relative w-full">
+                <img src="/app/views/images/painel-1-mobilete-teste.png" class="w-full" />
+                <div class="absolute flex justify-between -translate-y-1/2 left-5 right-5 top-1/2">
+                    <a href="#slide3" class="btn btn-circle">❮</a>
+                    <a href="#slide1" class="btn btn-circle">❯</a>
                 </div>
             </div>
         </div>
+
+        <div id="advertisements_container"></div>
+
+        <gmp-map class="w-full h-96" center="-23.541576385498047,-46.632240295410156" zoom="14" map-id="DEMO_MAP_ID">
+            <gmp-advanced-marker position="-23.541576385498047,-46.632240295410156" title="My location">
+            </gmp-advanced-marker>
+        </gmp-map>
     </div>
 
-    <gmp-map class="w-full h-96" center="-23.541576385498047,-46.632240295410156" zoom="14" map-id="DEMO_MAP_ID">
-        <gmp-advanced-marker position="-23.541576385498047,-46.632240295410156" title="My location">
-        </gmp-advanced-marker>
-    </gmp-map>
+
 
     <footer class="footer p-10 bg-neutral text-neutral-content">
         <div>
@@ -230,6 +176,8 @@
     <script>
         let advertisements = []
 
+
+
         function buildCategory(category) {
             return `
                 <div class="flex justify-between max-w-5xl mx-auto pt-5 pb-6 px-4">
@@ -274,6 +222,7 @@
                 const ads = filterResults(category.id)
 
                 if (ads.length > 0) {
+                    homeDiv.classList.add('hidden')
                     advertisements_container.innerHTML = buildCategory(category)
 
                     const ads_container = document.getElementById('category_items_' + category.id)
@@ -288,14 +237,25 @@
         }
 
         async function init() {
-          fetch('http://localhost/category/listall')
-            .then(response => response.json())
-            .then((categories) => categories.map(category => addCategoryToNavbar(category)))
+            const categories = await fetch('http://localhost/category/listall')
+                .then(response => response.json())
 
+            const advertisement = await fetch('http://localhost/advertisement/listall')
+                .then(response => response.json())
+                .then(ads => advertisements = ads)
 
-          fetch('http://localhost/advertisement/listall')
-            .then(response => response.json())
-            .then(ads => advertisements = ads)
+            categories.map(category => {
+                addCategoryToNavbar(category)
+                const ads = filterResults(category.id).slice(0, 4)
+
+                if (ads.length > 0) {
+                    advertisements_container.innerHTML += buildCategory(category)
+
+                    const ads_container = document.getElementById('category_items_' + category.id)
+
+                    ads_container.innerHTML = ads.map(ad => buildAd(ad)).join('')
+                }
+            })
         }
 
         init()
