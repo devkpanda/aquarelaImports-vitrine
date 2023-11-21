@@ -105,36 +105,69 @@
     </footer>
     </div>
 
-    <dialog id="produto" class="modal">
-        <div class="w-8/12">
-            <div class="card lg:card-side bg-base-100 shadow-xl">
-                <div class="m-10 flex flex-row">
-                    <img src="/app/views/images/Conjunto Freio à disco.webp" alt="" class="w-96 lg:rounded">
-                    <!--   <p class="py-4">Novo</p> -->
-                    <div class="w-full">
-                        <h3 class="font-bold text-2xl m-5">Conjunto Freio à disco</h3>
-                        <p class="text-lg m-5">Conjunto de instalação de freio à disco para bicicletas. Contendo dois discos, duas pinças com quatro pastilhas,
-                            dois cabos com conduites</p>
-                    </div>
-
-                </div>
-                <div class="modal-action">
-                    <form method="dialog">
-                        <!-- if there is a button, it will close the modal -->
-                        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                    </form>
-                </div>
-
-                <div class="m-12">
-                    <div class="card w-96 bg-base-100 shadow-xl">
-                        <div class="card-body items-center text-center h-96 m-12">
-                            <button class="btn btn-wide">Comprar</button>
+    <div>
+        <dialog id="produto" class="modal">
+            <div class="w-8/12">
+                <div class="card lg:card-side bg-base-100 shadow-xl">
+                    <div class="m-10 flex flex-row">
+                        <div class="carousel items-left w-full">
+                            <div id="slide_ad_1" class="carousel-item relative w-full h-full ">
+                                <img src="https://www.aacop.org.ar/frontend/assets/img/500x500/01.jpg" class="w-full object-contain" />
+                                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                                    <a href="#slide_ad_4" class="btn btn-circle">❮</a>
+                                    <a href="#slide_ad_2" class="btn btn-circle">❯</a>
+                                </div>
+                            </div>
+                            <div id="slide_ad_2" class="carousel-item relative w-full h-full">
+                                <img src="https://www.aacop.org.ar/frontend/assets/img/500x500/01.jpg" class="w-full object-contain" />
+                                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                                    <a href="#slide_ad_1" class="btn btn-circle">❮</a>
+                                    <a href="#slide_ad_3" class="btn btn-circle">❯</a>
+                                </div>
+                            </div>
+                            <div id="slide_ad_3" class="carousel-item relative w-full h-full">
+                                <img src="https://www.aacop.org.ar/frontend/assets/img/500x500/01.jpg" class="w-full object-contain" />
+                                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                                    <a href="#slide_ad_2" class="btn btn-circle">❮</a>
+                                    <a href="#slide_ad_4" class="btn btn-circle">❯</a>
+                                </div>
+                            </div>
+                            <div id="slide_ad_4" class="carousel-item relative w-full h-full">
+                                <img src="https://www.aacop.org.ar/frontend/assets/img/500x500/01.jpg" class="w-full object-contain" />
+                                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                                    <a href="#slide_ad_3" class="btn btn-circle">❮</a>
+                                    <a href="#slide_ad_1" class="btn btn-circle">❯</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    <div class="modal-action">
 
+                        <form method="dialog">
+                            <!-- if there is a button, it will close the modal -->
+                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                        </form>
+                    </div>
+
+                    <div class="m-12">
+
+                        <div class="card w-96 bg-base-100">
+                            <div class="w-full">
+                                <h3 class="font-bold text-2xl m-5">Conjunto Freio à disco</h3>
+                                <p class="text-lg m-5">Conjunto de instalação de freio à disco para bicicletas. Contendo dois discos, duas pinças com quatro pastilhas,
+                                    dois cabos com conduites</p>
+                                <p class="m-5 mt-3 text-lg text-black font-medium">R$12342.12</p>
+                            </div>
+                            <div class="card-body items-center text-center h-96 m-12">
+                                <button class="btn btn-neutral btn-wide bg-orange-500 border-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:ring-orange-300 text-white">Comprar</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-    </dialog>
+        </dialog>
+    </div>
+
 
 
     <!--  <dialog id="modalsemcompra" class="modal modal-bottom sm:modal-middle">
@@ -192,6 +225,71 @@
             return element
         }
 
+        function buildAdvertisement(ad) {
+            return `<div class="w-8/12">
+                <div class="card lg:card-side bg-base-100 shadow-xl">
+                    <div class="m-10 flex flex-row">
+                        <div class="carousel items-left w-full">
+                            ${Object.keys(ad.base64_data).map((id) => {
+                                const image = ad.base64_data[id]
+
+                                return `<div id="slide_ad_1" class="carousel-item relative w-full h-full">
+                                <img src="${image}" class="w-full object-contain" />
+                                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                                    <a href="#slide_ad_4" class="btn btn-circle">❮</a>
+                                    <a href="#slide_ad_2" class="btn btn-circle">❯</a>
+                                </div>
+                            </div>`
+                                })}
+                            
+                            <div id="slide_ad_2" class="carousel-item relative w-full h-full">
+                                <img src="https://www.aacop.org.ar/frontend/assets/img/500x500/01.jpg" class="w-full object-contain" />
+                                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                                    <a href="#slide_ad_1" class="btn btn-circle">❮</a>
+                                    <a href="#slide_ad_3" class="btn btn-circle">❯</a>
+                                </div>
+                            </div>
+                            <div id="slide_ad_3" class="carousel-item relative w-full h-full">
+                                <img src="https://www.aacop.org.ar/frontend/assets/img/500x500/01.jpg" class="w-full object-contain" />
+                                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                                    <a href="#slide_ad_2" class="btn btn-circle">❮</a>
+                                    <a href="#slide_ad_4" class="btn btn-circle">❯</a>
+                                </div>
+                            </div>
+                            <div id="slide_ad_4" class="carousel-item relative w-full h-full">
+                                <img src="https://www.aacop.org.ar/frontend/assets/img/500x500/01.jpg" class="w-full object-contain" />
+                                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                                    <a href="#slide_ad_3" class="btn btn-circle">❮</a>
+                                    <a href="#slide_ad_1" class="btn btn-circle">❯</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-action">
+
+                        <form method="dialog">
+                            <!-- if there is a button, it will close the modal -->
+                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                        </form>
+                    </div>
+
+                    <div class="m-12">
+
+                        <div class="card w-96 bg-base-100">
+                            <div class="w-full">
+                                <h3 class="font-bold text-2xl m-5">${ad.name}</h3>
+                                <p class="text-lg m-5">${ad.description}</p>
+                                <p class="m-5 mt-3 text-lg text-black font-medium">R$${ad.price}</p>
+                            </div>
+                            <div class="card-body items-center text-center h-96 m-12">
+                                <button class="btn btn-neutral btn-wide bg-orange-500 border-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:ring-orange-300 text-white">Comprar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>`
+        }
+
         function buildAd(ad) {
             return `<div id="ad_item_${ad.id}" class="card bg-base-100 bg-slate-50 text-primary-content">
                 <figure><img class="w-full h-52 object-cover" src="${ad.base64_data ? ad.base64_data[0] : "?"}" alt="Shoes" /></figure>
@@ -200,7 +298,7 @@
                     <p class="md:text-sm text-black">${ad.description}</p>
                     <div class="card-actions justify-end">
                         <p class="mt-3 text-lg text-black font-medium">R$ ${ad.price}</p>
-                        <button class="btn btn-primary border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300" onclick="produto.showModal()">Comprar</button>
+                        <button id="ad_button_${ad.id}" class="btn btn-primary border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300" onclick="showAd(${ad.id})">Comprar</button>
                     </div>
                 </div>
             </div>`
@@ -223,7 +321,7 @@
 
                 if (ads.length > 0) {
                     homeDiv.classList.add('hidden')
-                    
+
                     advertisement_by_categories.innerHTML = ""
                     advertisement_by_categories.appendChild((buildCategory(category, ads)))
                 } else {
@@ -241,26 +339,26 @@
                 homeDiv.classList.add('hidden')
 
                 const input = src_input.value
-                const category = { 
+                const category = {
                     id: category.id,
                     description: "Resultados da pesquisa",
-                    verMais: false 
+                    verMais: false
                 }
 
                 fetch('http://localhost/advertisement/search', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        search: input
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            search: input
+                        })
                     })
-                })
-                .then(response => response.json())
-                .then((ads) => {
-                    advertisement_by_categories.innerHTML = ""
-                    advertisement_by_categories.appendChild((buildCategory(category, ads)))
-                })
+                    .then(response => response.json())
+                    .then((ads) => {
+                        advertisement_by_categories.innerHTML = ""
+                        advertisement_by_categories.appendChild((buildCategory(category, ads)))
+                    })
             })
         }
 
@@ -268,15 +366,24 @@
             const category = categories1.find((category) => category.id == categoryId)
             const ads = filterResults(categoryId)
             homeDiv.classList.add('hidden')
-                    
+
             advertisement_by_categories.innerHTML = ""
             advertisement_by_categories.appendChild((buildCategory(category, ads)))
         }
-        
+
+        function showAd(advertisementId) {
+            const advertisement = advertisements.find(ad => ad.id == advertisementId)
+            console.log(advertisementId)
+            console.log(advertisement.id)
+
+            produto.innerHTML = buildAdvertisement(advertisement)
+            produto.showModal()
+        }
+
         async function init() {
             const categories = await fetch('http://localhost/category/listall')
                 .then(response => response.json())
-            categories1 = categories             
+            categories1 = categories
 
             const advertisement = await fetch('http://localhost/advertisement/listall')
                 .then(response => response.json())
@@ -285,7 +392,7 @@
             categories.map(category => {
                 addCategoryToNavbar(category)
                 const ads = filterResults(category.id).slice(0, 4)
-                
+
                 if (ads.length > 0) {
                     advertisements_container.appendChild(buildCategory({
                         id: category.id,
