@@ -282,7 +282,7 @@
                                 <p class="m-5 mt-3 text-lg text-black font-medium">R$${ad.price}</p>
                             </div>
                             <div class="card-body items-center text-center h-96 m-12">
-                                <button class="btn btn-neutral btn-wide bg-orange-500 border-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:ring-orange-300 text-white">Comprar</button>
+                                <button class="btn btn-neutral btn-wide bg-orange-500 border-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:ring-orange-300 text-white"><a href="https://wa.me/5511978654859?text=Ol%C3%A1%2C+estou+interessado+no+produto+${ad.name}+%2C+podem+me+dar+mais+informa%C3%A7%C3%B5es%3F">Comprar</a></button>
                             </div>
                         </div>
                     </div>
