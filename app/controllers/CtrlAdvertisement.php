@@ -148,7 +148,7 @@ $uriPath = $url['path'];
                         } else {
                             $id          = $data['id'];
                             $cod         = $data['cod'];
-                            $name        = $data['name'];
+                            $name        = strtolower($data['name']);
                             $description = $data['description'];
                             $price       = $data['price'];
                             $category_id = $data['category_id'];
@@ -250,10 +250,10 @@ if ($uriPath == '/advertisement/search'){
                     http_response_code(400);
                     die(json_encode(array('message' => 'unexpected JSON')));
                 } else {
-                    $search = $data['search'];
+                    $search = strtolower($data['search']);
 
                 $where = new Where();
-                $where->addLike('', 'name', $search);
+                $where->addLike('', 'lower(name)', $search);
 
                 $advertisement = new Advertisement('','','','','','','','','','');
                 $advertisementResult = $advertisement->listAdvertisements($where);

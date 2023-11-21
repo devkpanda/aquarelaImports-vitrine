@@ -145,6 +145,12 @@ class DBQuery {
         $sql = "SELECT {$fields} FROM {$this->tableName}" . (($where!="")?$where:"");
         return $this->conn->query($sql);
     }
+
+    public function selectWhereLowerLike($where) {
+        $fields = implode(', ', $this->fieldsName);
+        $sql = "SELECT {$fields} FROM {$this->tableName}" . (($where!="")?$where:"");
+        return $this->conn->query($sql);
+    }
     
     /**
      * Executa uma consulta SELECT com filtros

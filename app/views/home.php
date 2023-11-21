@@ -20,16 +20,16 @@
 <body class="bg-white">
     <div>
         <div id="navbar" class="h-28 bg-black grid-cols-1 flex justify-center items-center">
-            <div class="form-control">
+            <form id="src_form" class="form-control">
                 <div class="input-group ">
-                    <input type="text" placeholder="Pesquise seu produto aqui" class="input input-bordered" />
+                    <input id="src_input" type="text" placeholder="Pesquise seu produto aqui" class="input input-bordered" />
                     <button class="btn btn-square">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
                     </button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
     <nav id="categorias" class="min-w-full bg-orange-500 flex justify-center items-center gap-px">
@@ -75,7 +75,7 @@
         </gmp-map>
     </div>
 
-
+    <div id="advertisement_by_categories"></div>
 
     <footer class="footer p-10 bg-neutral text-neutral-content">
         <div>
@@ -176,23 +176,23 @@
     <script>
         let advertisements = []
 
+        let categories1 = []
 
-
-        function buildCategory(category) {
-            return `
+        function buildCategory(category, ad) {
+            const element = document.createElement("div")
+            element.innerHTML = `
                 <div class="flex justify-between max-w-5xl mx-auto pt-5 pb-6 px-4">
                     <h2 class="text-2xl text-black py-5 pr-3">${category.description}</h2>
-                    <a href="#none" class="py-5 text-xl underline" onclick="modalpoucoanuncio.showModal()">Ver mais</a>
+                    ${category.verMais ? '<a href="#none" class="py-5 text-xl underline" onclick="showMore('+ category.id + ')">Ver mais</a>' : '<a href="#none" class="py-5 text-xl underline" ></a>'}
                 </div>
                 <div class="flex justify-center items-center pb-5 px-4">
-                    <div id="category_items_${category.id}" class="grid md:grid-cols-4 gap-2 max-w-5xl pb-8 sm:pr-3">${category.description}</div>
+                    <div id="category_items_${category.id}" class="grid md:grid-cols-4 gap-2 max-w-5xl pb-8 sm:pr-3">${ad.map(ad => buildAd(ad)).join("")}</div>
                 </div>
             `
+            return element
         }
 
         function buildAd(ad) {
-            console.log(ad, ad.base64_data)
-
             return `<div id="ad_item_${ad.id}" class="card bg-base-100 bg-slate-50 text-primary-content">
                 <figure><img class="w-full h-52 object-cover" src="${ad.base64_data ? ad.base64_data[0] : "?"}" alt="Shoes" /></figure>
                 <div class="card-body">
@@ -223,11 +223,9 @@
 
                 if (ads.length > 0) {
                     homeDiv.classList.add('hidden')
-                    advertisements_container.innerHTML = buildCategory(category)
-
-                    const ads_container = document.getElementById('category_items_' + category.id)
-
-                    ads_container.innerHTML = ads.map(ad => buildAd(ad)).join('')
+                    
+                    advertisement_by_categories.innerHTML = ""
+                    advertisement_by_categories.appendChild((buildCategory(category, ads)))
                 } else {
                     modalpoucoanuncio.showModal()
                 }
@@ -236,9 +234,49 @@
             categorias.appendChild(categoryItem)
         }
 
+        function search() {
+            src_form.addEventListener('submit', (e) => {
+                e.preventDefault()
+
+                homeDiv.classList.add('hidden')
+
+                const input = src_input.value
+                const category = { 
+                    id: category.id,
+                    description: "Resultados da pesquisa",
+                    verMais: false 
+                }
+
+                fetch('http://localhost/advertisement/search', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        search: input
+                    })
+                })
+                .then(response => response.json())
+                .then((ads) => {
+                    advertisement_by_categories.innerHTML = ""
+                    advertisement_by_categories.appendChild((buildCategory(category, ads)))
+                })
+            })
+        }
+
+        function showMore(categoryId) {
+            const category = categories1.find((category) => category.id == categoryId)
+            const ads = filterResults(categoryId)
+            homeDiv.classList.add('hidden')
+                    
+            advertisement_by_categories.innerHTML = ""
+            advertisement_by_categories.appendChild((buildCategory(category, ads)))
+        }
+        
         async function init() {
             const categories = await fetch('http://localhost/category/listall')
                 .then(response => response.json())
+            categories1 = categories             
 
             const advertisement = await fetch('http://localhost/advertisement/listall')
                 .then(response => response.json())
@@ -247,21 +285,22 @@
             categories.map(category => {
                 addCategoryToNavbar(category)
                 const ads = filterResults(category.id).slice(0, 4)
-
+                
                 if (ads.length > 0) {
-                    advertisements_container.innerHTML += buildCategory(category)
-
-                    const ads_container = document.getElementById('category_items_' + category.id)
-
-                    ads_container.innerHTML = ads.map(ad => buildAd(ad)).join('')
+                    advertisements_container.appendChild(buildCategory({
+                        id: category.id,
+                        description: category.description,
+                        verMais: true
+                    }, ads))
                 }
             })
+            search()
         }
 
         init()
     </script>
 
-    <script src="/public/assets/js/script.js"></script>
+    <!-- <script src="/public/assets/js/script.js"></script> -->
 </body>
 
 </html>
