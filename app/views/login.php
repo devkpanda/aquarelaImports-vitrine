@@ -49,40 +49,18 @@
 
         <script>
             $("#login-loading").hide()
-       
-            /* 
-            var email    = $("#email").val();
-            var password = $("#password").val();
-            //const login  = document.getElementById("login");
-
-            $(document).on("click", "#login", function(e){
-                $("#login-loading").fadeIn(100)
-                e.preventDefault();
-                // /app/controllers/teste.php
-                 $.ajax ({
-                    url: "127.0.0.1/login/auth",
-                    type: "post",
-                    data: {
-                        email: email,
-                        password: password
-                    }, 
-                    sucess: function(response) {
-                        var data = JSON.parse(response);
-                        $("#result").html(data);
-                    }
-                }); 
-            }); 
-            */
 
             document.addEventListener("DOMContentLoaded", function(){
-                document.getElementById("login").addEventListener("submit", function(event){
-                    event.preventDefault();
+                document.getElementById("login").addEventListener("submit", function(e){
+                    e.preventDefault();
 
                     $("#login-loading").fadeIn(100)
 
                     const formData = new FormData(this);
-
-                    if (formData.has("email") && formData.has("password")){
+                    if (formData.get("email") == "" || formData.get("password") == "") {
+                        $("#login-loading").hide(100)
+                        $("#result").html("<p class='text-red-500'> Por Favor Insira seus dados<p>")
+                    } else {
                         fetch("http://127.0.0.1/login/auth", {
                             method: "POST",
                             headers: {
@@ -98,7 +76,7 @@
                         })
                         .then(response => {
                             if (!response.ok) {
-                                throw new Error('Erro na solicitação. Código de status: ' + response.status);
+                                $("#result").html("<p class='text-red-500 mb-4'> Falha no login, por favor verifique seus dados<p>")
                             }
                             return response.json();
                         })
@@ -114,7 +92,7 @@
                                 })
                                 .then(response => {
                                     if (!response.ok){
-                                        throw new Error('Erro na solicitação. Código de status: ' + response.status);
+                                        $("#result").html("<p class='text-red-500 mb-4'> Falha no login, por favor verifique seus dados<p>")
                                     }
                                     return response.text();
                                 })
@@ -124,28 +102,17 @@
                                     window.location.replace('adm');
                                 })
                                 .catch(error => {
-                                    console.error('Erro na solicitação Fetch:', error);
+                                    $("#result").html("<p class='text-red-500 mb-4'> Falha no login, por favor verifique seus dados<p>")
                                 });
                             }
                             $("#login-loading").hide(100)
                         })
                         .catch(error => {
                             $("#result").html(error)
-                        })
-                    } else if (!formData.has("email") && formData.has("password")) {
-                        $("#login-loading").hide(100)
-                        $("#result").html("<p class='text-red-500'> Por Favor Insira seus dados<p>")
-                    } else if (formData.has("email") && !formData.has("password")){
-                        $("#login-loading").hide(100)
-                        $("#result").html("<p class='text-red-500'> Por Favor Insira seus dados<p>")
-                    } else {
-                        $("#login-loading").hide(100)
-                        $("#result").html("<p class='text-red-500'> Por Favor Insira seus dados<p>")
+                        })  
                     }
-
                 })
             })
-        
         </script>
     </body>
 </html>
