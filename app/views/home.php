@@ -234,7 +234,7 @@
                                 const image = ad.base64_data[id]
 
                                 return `<div id="slide_ad_1" class="carousel-item relative w-full h-full">
-                                <img src="${image}" class="w-full object-contain" />
+                                <img src="${image}" class="w-full object-cover" />
                                 <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                                     <a href="#slide_ad_4" class="btn btn-circle">❮</a>
                                     <a href="#slide_ad_2" class="btn btn-circle">❯</a>

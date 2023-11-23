@@ -104,7 +104,7 @@
                         })
                         .then(data => {
                             if (data.message == "0") {
-                                fetch("http://127.0.0.1/manage/advertisement", {
+                                fetch("http://127.0.0.1/adm", {
                                     method: "GET",
                                     headers: {
                                         'Origin': 'http://127.0.0.1',
@@ -121,7 +121,7 @@
                                 .then(html => {
                                     $("#login-menu").hide()
                                     $("#adm-get").html(html)
-                                    window.location.replace('manage/advertisement');
+                                    window.location.replace('adm');
                                 })
                                 .catch(error => {
                                     console.error('Erro na solicitação Fetch:', error);
