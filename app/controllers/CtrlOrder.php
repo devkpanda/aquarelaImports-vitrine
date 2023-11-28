@@ -18,6 +18,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 $url = parse_url($_SERVER['REQUEST_URI']);
 $uriPath = $url['path'];
 
+
+if ($uriPath == '/order/add') {
+    if (strtolower($_SERVER['REQUEST_METHOD']) == 'post'){
+        $json = file_get_contents('php://input');
+
+        if ($json === false){
+            http_response_code(400);
+            echo json_encode(array('message' => 'Error receiving json'));
+        } else {
+            $data = json_decode($json, true);
+
+            if ($data === null) {
+                http_response_code(400);
+                echo json_encode(array('message' => 'Empty json'));
+            } else {
+                $advertisement_id = $data['advertisement_id'];
+
+                $order = new Order(0, $advertisement_id);
+
+                if ($order->save()) {
+                    echo json_encode(array('message' => '0'));
+                } else {
+                    echo json_encode(array('message' => '1'));
+                }
+            }   
+        }
+    } else {
+        echo json_encode(array('message' => 'Method not allowed'));
+    }
+    
+}
+
 if ($uriPath == '/order/listall'){
     if (strtolower($_SERVER['REQUEST_METHOD']) == 'get'){
         // por que alguns 'new __ ()' possuem 0 no primeiro elemento e outros apenas vazio?
@@ -27,9 +59,9 @@ if ($uriPath == '/order/listall'){
         $json = array();
 
         foreach ($orders as $order) {
-            $advertisementArray = array(
-                "id"                => $advertisement->getId(),
-                "advertisement_id"  => $advertisement->getAdvertisement_id()
+            $orderArray = array(
+                "id"                => $order->getId(),
+                "advertisement_id"  => $order->getAdvertisement_id()
             );
         }
 
