@@ -235,7 +235,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                         ad_search.classList.remove("hidden");
                         ad_add.classList.add("hidden");
 
-                        fetch('http://127.0.0.1/advertisement/listall')
+                        fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/advertisement/listall')
                             .then((response) => response.json())
                             .then((response) => displayAds(response))
                     });
@@ -285,10 +285,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                         usr_tbl.classList.remove("hidden");
                     });
 
-                    fetch("http://127.0.0.1/user/listall", {
+                    fetch("https://aquarelaimports.hostdeprojetosdoifsp.gru.br/user/listall", {
                             method: "GET",
                             headers: {
-                                'Origin': 'http://127.0.0.1',
+                                'Origin': 'https://aquarelaimports.hostdeprojetosdoifsp.gru.br',
                                 'Access-Control-Request-Method': 'GET',
                                 'Access-Control-Request-Headers': 'X-Requested-With, Content-Type',
                             }

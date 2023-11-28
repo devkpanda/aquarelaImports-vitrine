@@ -111,7 +111,7 @@
         const size = ad_size.value
         const videoUrl = ad_url.value
 
-        fetch('http://127.0.0.1/advertisement/add', {
+        fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/advertisement/add', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

@@ -12,7 +12,7 @@
 
 <script>
     user_delete_button.addEventListener('click', function() {
-        fetch('http://127.0.0.1/user/deactive', {
+        fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/user/deactive', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -48,7 +48,7 @@
         const description = category_name.value
         const parentId = category_parent.value
 
-        fetch('http://localhost/category/add', {
+        fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/category/add', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

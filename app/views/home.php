@@ -345,7 +345,7 @@
                     verMais: false
                 }
 
-                fetch('http://localhost/advertisement/search', {
+                fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/advertisement/search', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -383,7 +383,7 @@
         function orderAdd(advertisementId, advertisementName) {
             event.preventDefault()
 
-            fetch('http://localhost/order/add', {
+            fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/order/add', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -400,11 +400,11 @@
         }
 
         async function init() {
-            const categories = await fetch('http://localhost/category/listall')
+            const categories = await fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/category/listall')
                 .then(response => response.json())
             categories1 = categories
 
-            const advertisement = await fetch('http://localhost/advertisement/listall')
+            const advertisement = await fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/advertisement/listall')
                 .then(response => response.json())
                 .then(ads => advertisements = ads)
 

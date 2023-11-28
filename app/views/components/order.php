@@ -28,7 +28,7 @@
         category_update_parent.value = fields.parent_id
     }
 
-    fetch('http://127.0.0.1/order/listall')
+    fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/order/listall')
         .then(response => response.json())
         .then((orders) => {
             order_listing.innerHTML = orders.map(order => `

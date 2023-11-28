@@ -61,10 +61,10 @@
                         $("#login-loading").hide(100)
                         $("#result").html("<p class='text-red-500'> Por Favor Insira seus dados<p>")
                     } else {
-                        fetch("http://127.0.0.1/login/auth", {
+                        fetch("https://aquarelaimports.hostdeprojetosdoifsp.gru.br/login/auth", {
                             method: "POST",
                             headers: {
-                                'Origin': 'http://127.0.0.1', // O domínio do seu site
+                                'Origin': 'https://aquarelaimports.hostdeprojetosdoifsp.gru.br', // O domínio do seu site
                                 'Access-Control-Request-Method': 'GET', // O método de solicitação que você deseja usar
                                 'Access-Control-Request-Headers': 'X-Requested-With, Content-Type', // Quais cabeçalhos personalizados você deseja enviar
                                 'Content-Type': 'application/json'
@@ -82,10 +82,10 @@
                         })
                         .then(data => {
                             if (data.message == "0") {
-                                fetch("http://127.0.0.1/adm", {
+                                fetch("https://aquarelaimports.hostdeprojetosdoifsp.gru.br/adm", {
                                     method: "GET",
                                     headers: {
-                                        'Origin': 'http://127.0.0.1',
+                                        'Origin': 'https://aquarelaimports.hostdeprojetosdoifsp.gru.br',
                                         'Access-Control-Request-Method': 'GET',
                                         'Access-Control-Request-Headers': 'X-Requested-With, Content-Type',
                                     }

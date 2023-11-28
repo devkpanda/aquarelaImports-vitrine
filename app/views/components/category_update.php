@@ -35,7 +35,7 @@
         const name = category_update_name.value
         const parent = category_update_parent.value
 
-        fetch("http://127.0.0.1/category/update", {
+        fetch("https://aquarelaimports.hostdeprojetosdoifsp.gru.br/category/update", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

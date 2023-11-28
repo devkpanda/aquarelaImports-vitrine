@@ -55,7 +55,7 @@
         const email = user_email.value
         const active = user_active.value === 0 ? 0 : 1
 
-        fetch('http://127.0.0.1/user/update', {
+        fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/user/update', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

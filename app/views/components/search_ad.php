@@ -41,7 +41,7 @@
 
 <script>
     function editAd(id) {
-        fetch('http://127.0.0.1/advertisement/update', {
+        fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/advertisement/update', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -55,7 +55,7 @@
     }
 
     function deleteAd(id) {
-        fetch('http://127.0.0.1/advertisement/delete', {
+        fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/advertisement/delete', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -115,7 +115,7 @@
 
         const name = ad_search_name.value
 
-        fetch('http://127.0.0.1/advertisement/search', {
+        fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/advertisement/search', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

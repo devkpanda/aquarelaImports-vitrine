@@ -14,7 +14,7 @@
     var deleteCategoryId
 
     category_delete_button.addEventListener('click', function() {
-        fetch('http://127.0.0.1/category/delete', {
+        fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/category/delete', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

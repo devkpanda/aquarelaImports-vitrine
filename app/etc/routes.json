@@ -25,7 +25,7 @@
     },
     "advertisement/add": {
         "path": "app/controllers/CtrlAdvertisement.php",
-        "sessionKey": [{ "idUsuario": true }],
+        "sessionKey": [{ "idUsuario": false }],
         "sanitize": { "requestVars": true, "code": true, "sql": true },
         "errorPath": "app/views/home.php"
     },
@@ -55,25 +55,25 @@
     },
     "user/add": {
         "path": "app/controllers/CtrlUsers.php",
-        "sessionKey": [{ "idUsuario": true }],
+        "sessionKey": [{ "idUsuario": false }],
         "sanitize": { "requestVars": true, "code": true, "sql": true },
         "errorPath": "app/views/home.php"
     },
     "user/enable": {
         "path": "app/controllers/CtrlUsers.php",
-        "sessionKey": [{ "idUsuario": true }],
+        "sessionKey": [{ "idUsuario": false }],
         "sanitize": { "requestVars": true, "code": true, "sql": true },
         "errorPath": "app/views/home.php"
     },
     "user/disable": {
         "path": "app/controllers/CtrlUsers.php",
-        "sessionKey": [{ "idUsuario": true }],
+        "sessionKey": [{ "idUsuario": false }],
         "sanitize": { "requestVars": true, "code": true, "sql": true },
         "errorPath": "app/views/home.php"
     },
     "user/update": {
         "path": "app/controllers/CtrlUsers.php",
-        "sessionKey": [{ "idUsuario": true }],
+        "sessionKey": [{ "idUsuario": false }],
         "sanitize": { "requestVars": true, "code": true, "sql": true },
         "errorPath": "app/views/home.php"
     },
@@ -103,25 +103,25 @@
     },
     "category/add": {
         "path": "app/controllers/CtrlCategory.php",
-        "sessionKey": [{ "idUsuario": true }],
+        "sessionKey": [{ "idUsuario": false }],
         "sanitize": { "requestVars": true, "code": true, "sql": true },
         "errorPath": "app/views/home.php"
     },
     "category/listall": {
         "path": "app/controllers/CtrlCategory.php",
-        "sessionKey": [{ "idUsuario": true }],
+        "sessionKey": [{ "idUsuario": false }],
         "sanitize": { "requestVars": true, "code": true, "sql": true },
         "errorPath": "app/views/home.php"
     },
 	"category/update": {
         "path": "app/controllers/CtrlCategory.php",
-        "sessionKey": [{ "idUsuario": true }],
+        "sessionKey": [{ "idUsuario": false }],
         "sanitize": { "requestVars": true, "code": true, "sql": true },
         "errorPath": "app/views/home.php"
     },
 	"category/delete": {
         "path": "app/controllers/CtrlCategory.php",
-        "sessionKey": [{ "idUsuario": true }],
+        "sessionKey": [{ "idUsuario": false }],
         "sanitize": { "requestVars": true, "code": true, "sql": true },
         "errorPath": "app/views/home.php"
     },
@@ -139,7 +139,7 @@
     },
     "adm": {
         "path": "app/views/adm.php",
-        "sessionKey": [{ "idUsuario": false }],
+        "sessionKey": [{ "idUsuario": true }],
         "sanitize": { "requestVars": true, "code": true, "sql": true },
         "errorPath": "app/views/adm.php"
     },

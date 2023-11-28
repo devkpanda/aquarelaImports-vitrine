@@ -80,7 +80,7 @@
         const url = ad_update_url.value
         const photo = ad_update_photo.value
 
-        fetch("http://127.0.0.1/advertisement/update", {
+        fetch("https://aquarelaimports.hostdeprojetosdoifsp.gru.br/advertisement/update", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
