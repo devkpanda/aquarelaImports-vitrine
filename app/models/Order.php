@@ -11,7 +11,7 @@ class Order {
     private $id;
     private $advertisement_id;
 
-    private $dbQuery;
+    private $dbquery;
 
     public function __construct($id, $advertisement_id) {
             $tableName     = "orders";
