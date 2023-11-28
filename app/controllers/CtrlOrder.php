@@ -110,11 +110,11 @@ if ($uriPath == '/order/listall'){
                         }
                     }
                 }
-            }
-        } else {
+            } else {
             http_response_code(400);
-            die(json_encode(array('message' => 'sem permissao parça'))); 
+            die(json_encode(array('message' => 'Method not allowed'))); 
         }
+    }
     
 
 
