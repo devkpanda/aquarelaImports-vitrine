@@ -33,6 +33,16 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+$showErrors = false;
+
+if ($showErrors) {
+    ini_set('display_errors', 0);
+    ini_set('display_startup_erros', 1);
+    error_reporting(E_ALL);
+} else {
+    error_reporting(0);
+}
+
 global $rootPath; // é necessário global pra usar $rootPath de '/index.php'
 global $config;   // é necessário global pra usar $config de '/index.php'
 
@@ -61,15 +71,6 @@ if ($ultimaPastaDir === $primeiraPastaUri) {
     $rootPathUrl = ((!empty($_SERVER['HTTPS'])) ? 'https://' : 'http://') . $dominio . "/" . $ultimaPastaDir . "/";
     array_shift($uriArray);
 }
-
-$showErrors = true;
-
-if ($showErrors) {
-    ini_set('display_errors', 0);
-    ini_set('display_startup_erros', 1);
-    error_reporting(E_ALL);
-}
-
 
 $config['database']['host']        = $_ENV['db_host'];
 $config['database']['schema']    = $_ENV['db_schema'];
