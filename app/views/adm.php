@@ -222,7 +222,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
                     category_add.classList.add("hidden")
                     category_search.classList.add('hidden')
                     category_nav.classList.add('hidden')
-                    order_add.classList.add("hidden")
                     order_search.classList.add('hidden')
                     order_nav.classList.add('hidden')
                 }
