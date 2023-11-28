@@ -54,6 +54,7 @@ class User {
     
     public function save() {
         if($this->getId() == 0){
+            print_r($this->toArray());
             return( $this->dbquery->insert($this->toArray()));
         }else{
             return( $this->dbquery->update($this->toArray()));

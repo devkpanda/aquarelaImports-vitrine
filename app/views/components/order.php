@@ -38,7 +38,7 @@
                 <td>${order.advertisement_name}</td>
                 <td class="flex">
                     <div>
-                        <button onclick="deleteCategoryId = ${category.id}; category_delete.showModal()" class="btn btn-ghost btn-xs">excluir</button>
+                        <button onclick="deleteCategoryId = ${order.id}; category_delete.showModal()" class="btn btn-ghost btn-xs">excluir</button>
                     </div>
                 </td>
             </tr>

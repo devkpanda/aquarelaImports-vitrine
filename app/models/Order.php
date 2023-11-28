@@ -16,14 +16,13 @@ class Order {
 
     public function __construct($id, $advertisement_id, $advertisement_name) {
             $tableName     = "orders";
-            $fieldsName    = "id, advertisement_id";
+            $fieldsName = "id, advertisement_id, advertisement_name";
             $fieldKey      = "id";
             $this->dbquery = new DBQuery($tableName, $fieldsName, $fieldKey);
     
             $this->setId($id);
             $this->setAdvertisement_id($advertisement_id);
             $this->setAdvertisement_name($advertisement_name);
-
     }
 
     public function toArray()
@@ -31,7 +30,7 @@ class Order {
         return array(
             $this->getId(),
             $this->getAdvertisement_id(),
-            
+            $this->getAdvertisement_name()
         );
     }
 
@@ -51,12 +50,11 @@ class Order {
     }
 
 
-    public function save()
-    {
-        if ($this->getId() == 0) {
-            return ($this->dbquery->insert($this->toArray()));
-        } else {
-            return ($this->dbquery->update($this->toArray()));
+    public function save() {
+        if($this->getId() == 0){
+            return( $this->dbquery->insert($this->toArray()));
+        }else{
+            return( $this->dbquery->update($this->toArray()));
         }
     }
 
