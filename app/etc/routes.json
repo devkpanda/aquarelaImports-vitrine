@@ -160,5 +160,11 @@
         "sessionKey": [{ "idUsuario": false }],
         "sanitize": { "requestVars": true, "code": true, "sql": true },
         "errorPath": "app/views/home.php"
+    },
+    "order/delete": {
+        "path": "app/controllers/CtrlOrder.php",
+        "sessionKey": [{ "idUsuario": false }],
+        "sanitize": { "requestVars": true, "code": true, "sql": true },
+        "errorPath": "app/views/home.php"
     }
 }
