@@ -33,23 +33,38 @@ if ($uriPath == '/order/add') {
                 http_response_code(400);
                 echo json_encode(array('message' => 'Empty json'));
             } else {
-                $advertisement_id   = $data['advertisement_id'];
-                $advertisement_name = $data['advertisement_name'];
-
-                $order = new Order(0, $advertisement_id, $advertisement_name);
-
-                if ($order->save()) {
-                    echo json_encode(array('message' => '0'));
+                 if (!isset($data['advertisement_id']) || !isset($data['advertisement_name'])) {
+                    http_response_code(400);
+                    die(json_encode(array('message' => 'unexpected JSON')));
                 } else {
-                    echo json_encode(array('message' => '1'));
-                }
-            }   
+                try {
+                    $advertisement_id   = $data['advertisement_id'];
+                    $advertisement_name = $data['advertisement_name'];
+
+                    $order = new Order(0, $advertisement_id, $advertisement_name);
+
+                     if ( !$order->save()) {
+                            http_response_code(400);
+                            die(json_encode(array('message' => 'Houve um erro ao adicionar o pedido')));
+                        } else {
+                            http_response_code(200);
+                            die(json_encode(array('message' => 'Pedido inserido com sucesso')));
+                        }
+                    } catch (Exception $e) {
+                        http_response_code(400);
+                        die(json_encode(array('message' => $e->getMessage())));
+                    } catch (InvalidArgumentException $iae) {
+                        http_response_code(400);
+                        die(json_encode(array('message' => $iae->getMessage())));
+                    }
+                }   
+            }
         }
-    } else {
-        echo json_encode(array('message' => 'Method not allowed'));
+        } else {
+            http_response_code(400);
+            echo json_encode(array('message' => 'Method not allowed'));
+        }
     }
-    
-}
 
 if ($uriPath == '/order/listall'){
     if (strtolower($_SERVER['REQUEST_METHOD']) == 'get'){
@@ -69,6 +84,7 @@ if ($uriPath == '/order/listall'){
         http_response_code(200);
         die(json_encode($json));
     } else {
+        http_response_code(400);
         die(json_encode(array('message' => 'Method not allowed')));
     }
 }
@@ -89,6 +105,10 @@ if ($uriPath == '/order/listall'){
                     http_response_code(400);
                     echo json_encode(array('message' => 'Empty json'));
                 } else {
+                    if (!isset($data['id'])) {
+                        http_response_code(400);
+                        die(json_encode(array('message' => 'unexpected JSON')));
+                    } else {
                         try {
                             $id = $data['id'];
     
@@ -110,7 +130,8 @@ if ($uriPath == '/order/listall'){
                         }
                     }
                 }
-            } else {
+            }
+        } else {
             http_response_code(400);
             die(json_encode(array('message' => 'Method not allowed'))); 
         }
