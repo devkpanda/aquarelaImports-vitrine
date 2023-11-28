@@ -1,5 +1,12 @@
 <?php
 
+namespace models;
+
+use core\database\DBQuery;
+
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 class Order {
     private $id;
     private $advertisement_id;
@@ -7,9 +14,9 @@ class Order {
     private $dbQuery;
 
     public function __construct($id, $advertisement_id) {
-        $tableName = "category";
-            $fieldsName = "id, description, parent_id";
-            $fieldKey = "id";
+            $tableName     = "orders";
+            $fieldsName    = "id, advertisement_id";
+            $fieldKey      = "id";
             $this->dbquery = new DBQuery($tableName, $fieldsName, $fieldKey);
     
             $this->setId($id);
@@ -58,7 +65,7 @@ class Order {
         
     }
     
-    public function listOrder($where = null): array
+    public function listOrders($where = null): array
     {
         $order = array();
         $result = null;
