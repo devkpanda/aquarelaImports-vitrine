@@ -33,9 +33,10 @@ if ($uriPath == '/order/add') {
                 http_response_code(400);
                 echo json_encode(array('message' => 'Empty json'));
             } else {
-                $advertisement_id = $data['advertisement_id'];
+                $advertisement_id   = $data['advertisement_id'];
+                $advertisement_name = $data['advertisement_name'];
 
-                $order = new Order(0, $advertisement_id);
+                $order = new Order(0, $advertisement_id, $advertisement_name);
 
                 if ($order->save()) {
                     echo json_encode(array('message' => '0'));
@@ -52,22 +53,19 @@ if ($uriPath == '/order/add') {
 
 if ($uriPath == '/order/listall'){
     if (strtolower($_SERVER['REQUEST_METHOD']) == 'get'){
-        // por que alguns 'new __ ()' possuem 0 no primeiro elemento e outros apenas vazio?
-        $order = new Order('','');
+        $order = new Order('','','');
         $orders = $order->listOrders();
 
         $json = array();
 
         foreach ($orders as $order) {
             $orderArray = array(
-                "id"                => $order->getId(),
-                "advertisement_id"  => $order->getAdvertisement_id()
+                "id"                    => $order->getId(),
+                "advertisement_id"      => $order->getAdvertisement_id(),
+                "advertisement_name"    => $order->getAdvertisement_name()
             );
-        }
-
             $json[] = $orderArray;
-
-        
+        }
         http_response_code(200);
         die(json_encode($json));
     } else {
@@ -94,7 +92,7 @@ if ($uriPath == '/order/listall'){
                         try {
                             $id = $data['id'];
     
-                            $order = new Order($id, '');
+                            $order = new Order($id, '','');
                             $order->setId($id);
     
                             if (!$order->delete()->rowCount() == 1) {

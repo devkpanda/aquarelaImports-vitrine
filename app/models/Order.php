@@ -10,10 +10,11 @@ error_reporting(E_ALL);
 class Order {
     private $id;
     private $advertisement_id;
+    private $advertisement_name;
 
     private $dbquery;
 
-    public function __construct($id, $advertisement_id) {
+    public function __construct($id, $advertisement_id, $advertisement_name) {
             $tableName     = "orders";
             $fieldsName    = "id, advertisement_id";
             $fieldKey      = "id";
@@ -21,6 +22,7 @@ class Order {
     
             $this->setId($id);
             $this->setAdvertisement_id($advertisement_id);
+            $this->setAdvertisement_name($advertisement_name);
 
     }
 
@@ -78,9 +80,10 @@ class Order {
 
         if ($result) {
             foreach ($result as $line) {
-                $id                  = $line['id'];
-                $advertisement_id    = $line['advertisement_id'];
-                $order[] = new Order($id, $advertisement_id);
+                $id                     = $line['id'];
+                $advertisement_id       = $line['advertisement_id'];
+                $advertisement_name     = $line['advertisement_name'];
+                $order[] = new Order($id, $advertisement_id, $advertisement_name);
             }
         } else {
             $order[] = array();
@@ -114,6 +117,26 @@ class Order {
     public function setAdvertisement_id($advertisement_id)
     {
         $this->advertisement_id = $advertisement_id;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of advertisement_name
+     */ 
+    public function getAdvertisement_name()
+    {
+        return $this->advertisement_name;
+    }
+
+    /**
+     * Set the value of advertisement_name
+     *
+     * @return  self
+     */ 
+    public function setAdvertisement_name($advertisement_name)
+    {
+        $this->advertisement_name = $advertisement_name;
 
         return $this;
     }
