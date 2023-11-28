@@ -84,6 +84,7 @@ if ($uriPath == '/order/listall'){
         http_response_code(200);
         die(json_encode($json));
     } else {
+        http_response_code(400);
         die(json_encode(array('message' => 'Method not allowed')));
     }
 }
@@ -104,6 +105,10 @@ if ($uriPath == '/order/listall'){
                     http_response_code(400);
                     echo json_encode(array('message' => 'Empty json'));
                 } else {
+                    if (!isset($data['id'])) {
+                        http_response_code(400);
+                        die(json_encode(array('message' => 'unexpected JSON')));
+                    } else {
                         try {
                             $id = $data['id'];
     
@@ -125,7 +130,8 @@ if ($uriPath == '/order/listall'){
                         }
                     }
                 }
-            } else {
+            }
+        } else {
             http_response_code(400);
             die(json_encode(array('message' => 'Method not allowed'))); 
         }
