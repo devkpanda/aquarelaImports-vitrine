@@ -51,7 +51,8 @@
                 })
             })
             .then((response) => response.json())
-            // .then((response) => window.location.reload())
+            .then((response) => fetchAndDisplayAds())
+        // .then((response) => window.location.reload())
     }
 
     function deleteAd(id) {
@@ -65,7 +66,8 @@
                 })
             })
             .then((response) => response.json())
-            // .then((response) => window.location.reload())
+            .then((response) => fetchAndDisplayAds())
+        // .then((response) => window.location.reload())
     }
 
     var editAdvertisementModal
@@ -110,11 +112,7 @@
             .join("")
     }
 
-    ad_search_form.addEventListener('submit', (e) => {
-        e.preventDefault()
-
-        const name = ad_search_name.value
-
+    function fetchAndDisplayAds() {
         fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/advertisement/search', {
                 method: 'POST',
                 headers: {
@@ -126,5 +124,13 @@
             })
             .then((response) => response.json())
             .then((response) => displayAds(response))
+    }
+
+    ad_search_form.addEventListener('submit', (e) => {
+        e.preventDefault()
+
+        const name = ad_search_name.value
+
+        fetchAndDisplayAds()
     })
 </script>

@@ -130,7 +130,7 @@
             })
             .then((response) => response.json())
             .then((response) => {
-                // window.location.reload()
+                fetchAndDisplayAds(response)
             })
             .finally((response) => {
                 ad_sku.disabled = false
