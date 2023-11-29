@@ -209,14 +209,14 @@
     <script>
         let advertisements = []
 
-        let categories1 = []
+        let localCategories = []
 
         function buildCategory(category, ad) {
             const element = document.createElement("div")
             element.innerHTML = `
                 <div class="flex justify-between max-w-5xl mx-auto pt-5 pb-6 px-4">
                     <h2 class="text-2xl text-black py-5 pr-3">${category.description}</h2>
-                    ${category.verMais ? '<a href="#none" class="py-5 text-xl underline" onclick="showMore('+ category.id + ')">Ver mais</a>' : '<a href="#none" class="py-5 text-xl underline" ></a>'}
+                    ${category.verMais ? '<a href="#none" class="py-5 text-xl underline" onclick="showMore(\''+ category.id + '\')">Ver mais</a>' : '<a href="#none" class="py-5 text-xl underline" ></a>'}
                 </div>
                 <div class="flex justify-center items-center pb-5 px-4">
                     <div id="category_items_${category.id}" class="grid md:grid-cols-4 gap-2 max-w-5xl pb-8 sm:pr-3">${ad.map(ad => buildAd(ad)).join("")}</div>
@@ -305,10 +305,7 @@
         }
 
         function filterResults(categoryId) {
-            const ads = advertisements
-                .filter(ad => ad.category_id === categoryId)
-
-            return ads
+            return advertisements.filter(advertisement => advertisement.category_id == categoryId)
         }
 
         function addCategoryToNavbar(category) {
@@ -340,7 +337,7 @@
 
                 const input = src_input.value
                 const category = {
-                    id: category.id,
+                    id: 0,
                     description: "Resultados da pesquisa",
                     verMais: false
                 }
@@ -363,18 +360,19 @@
         }
 
         function showMore(categoryId) {
-            const category = categories1.find((category) => category.id == categoryId)
-            const ads = filterResults(categoryId)
+            const category = localCategories.find((category) => category.id == categoryId)
+            const ads = filterResults(category.id)
+
+            console.log({ category, ads })
+
             homeDiv.classList.add('hidden')
 
             advertisement_by_categories.innerHTML = ""
-            advertisement_by_categories.appendChild((buildCategory(category, ads)))
+            advertisement_by_categories.appendChild(buildCategory(category, ads))
         }
 
         function showAd(advertisementId) {
-            const advertisement = advertisements.find(ad => ad.id == advertisementId)
-            console.log(advertisementId)
-            console.log(advertisement.id)
+            const advertisement = advertisements.find(ad => ad.id === advertisementId)
 
             produto.innerHTML = buildAdvertisement(advertisement)
             produto.showModal()
@@ -402,7 +400,8 @@
         async function init() {
             const categories = await fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/category/listall')
                 .then(response => response.json())
-            categories1 = categories
+
+            localCategories = categories
 
             const advertisement = await fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/advertisement/listall')
                 .then(response => response.json())
@@ -420,6 +419,7 @@
                     }, ads))
                 }
             })
+
             search()
         }
 

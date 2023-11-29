@@ -79,11 +79,27 @@ class Router {
                 }
             } else {
                 // Se o arquivo físico da rota não existir, redireciona para a função notFound
-                $this->notFound();
+                http_response_code(404);
+                header('Content-Type: application/json');
+                header('Content-Type: text/html; charset=utf-8');
+                header('HTTP/1.0 404 Not Found');
+                $response = [
+                    'error' => '404 - Rota requerida existe, mas o recurso requerido não encontrado!',
+                    'errorno' => 404,
+                ];
+                echo json_encode($response, JSON_UNESCAPED_UNICODE);
             }
         } else {
             // Se a rota não estiver definida, redireciona para a função notFound
-            $this->notFound();
+            http_response_code(404);
+            header('Content-Type: application/json');
+            header('Content-Type: text/html; charset=utf-8');
+            header('HTTP/1.0 404 Route Module Not Found');
+            $response = [
+                'error' => '404 - Rota requerida não encontrada!',
+                'errorno' => 404,
+            ];
+            echo json_encode($response, JSON_UNESCAPED_UNICODE);
         }
     }
     
@@ -100,6 +116,7 @@ class Router {
             require $this->routes['404']['path'];
         } else {
             header('Content-Type: application/json'); 
+            header('Content-Type: text/html; charset=utf-8');
             header('HTTP/1.0 404 Not Found');
             $response = [
                 'error' => '404 - Page not found.',
@@ -108,7 +125,7 @@ class Router {
                 'POST' => $_POST,
                 'REQUEST' => $_REQUEST
             ];
-            echo json_encode($response); 
+            echo json_encode($response, JSON_UNESCAPED_UNICODE);
         }
     }
     
