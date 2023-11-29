@@ -61,7 +61,7 @@
             .then((response) => response.json())
             .then((response) => {
                 if (response.ok) {
-                    window.location.reload()
+                    // window.location.reload()
                 }
             }).finally(() => {
                 category_name.disabled = false

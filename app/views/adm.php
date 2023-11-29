@@ -12,6 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     exit;
 }
 
+print_r($_SESSION['idUsuario']);
+
 ?>
 
 <!DOCTYPE html>

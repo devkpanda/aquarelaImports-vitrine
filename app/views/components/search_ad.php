@@ -51,7 +51,7 @@
                 })
             })
             .then((response) => response.json())
-            .then((response) => window.location.reload())
+            // .then((response) => window.location.reload())
     }
 
     function deleteAd(id) {
@@ -65,7 +65,7 @@
                 })
             })
             .then((response) => response.json())
-            .then((response) => window.location.reload())
+            // .then((response) => window.location.reload())
     }
 
     var editAdvertisementModal

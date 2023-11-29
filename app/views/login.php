@@ -82,27 +82,7 @@
                         })
                         .then(data => {
                             if (data.message == "0") {
-                                fetch("https://aquarelaimports.hostdeprojetosdoifsp.gru.br/adm", {
-                                    method: "GET",
-                                    headers: {
-                                        'Origin': 'https://aquarelaimports.hostdeprojetosdoifsp.gru.br',
-                                        'Access-Control-Request-Method': 'GET',
-                                        'Access-Control-Request-Headers': 'X-Requested-With, Content-Type',
-                                    }
-                                })
-                                .then(response => {
-                                    if (!response.ok){
-                                        $("#result").html("<p class='text-red-500 mb-4'> Falha no login, por favor verifique seus dados<p>")
-                                    }
-                                    return response.text();
-                                })
-                                .then(html => {
-                                    $("#login-menu").hide()
-                                    $("#adm-get").html(html)
-                                })
-                                .catch(error => {
-                                    $("#result").html("<p class='text-red-500 mb-4'> Falha no login, por favor verifique seus dados<p>")
-                                });
+                                window.location.href('adm');
                             }
                             $("#login-loading").hide(100)
                         })

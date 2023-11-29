@@ -25,7 +25,7 @@
         })
         new Promise((resolve) => resolve(true))
             .then(() => {
-                window.location.reload()
+                // window.location.reload()
             })
     })
 </script>
