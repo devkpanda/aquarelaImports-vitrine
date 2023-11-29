@@ -323,7 +323,8 @@ if ($uriPath == '/login/auth') {
                         die(json_encode(array('message' => '1')));
                     }
     
-                    $_SESSION['idNivelUsuario'] = $user->getIdNivelUsuario();
+                    $_SESSION['idUsuario'] = $user->getId();
+                    print_r($_SESSION['idUsuario']);
                     http_response_code(200);
                     die(json_encode($json[0])); 
                 }

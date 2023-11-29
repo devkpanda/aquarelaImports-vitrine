@@ -99,7 +99,6 @@
                                 .then(html => {
                                     $("#login-menu").hide()
                                     $("#adm-get").html(html)
-                                    window.location.replace('adm');
                                 })
                                 .catch(error => {
                                     $("#result").html("<p class='text-red-500 mb-4'> Falha no login, por favor verifique seus dados<p>")
