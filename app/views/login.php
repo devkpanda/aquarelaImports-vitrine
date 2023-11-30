@@ -33,7 +33,7 @@
 
                     <div class="mt-3">
                         <label for="email" class="block text-base mb-2">Senha</label>
-                        <input type="text" id="password" name="password" class="rounded-md bg-white border w-full text-base px-2 py-1 focus:outline-none focues:ring-0
+                        <input type="password" id="password" name="password" class="rounded-md bg-white border w-full text-base px-2 py-1 focus:outline-none focues:ring-0
                         focus-border-gray-200" placeholder="Insira a senha...">
                     </div>
                     <div class="flex justify-center items-center mt-4">
