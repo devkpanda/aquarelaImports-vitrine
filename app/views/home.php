@@ -180,7 +180,7 @@
                                 const image = ad.base64_data[id]
 
                                 return `<div id="slide_ad_${index}" class="carousel-item relative w-full">
-                                <img src="${image}" class="w-full object-cover" />
+                                <img src="${image}" class="w-full object-scale-down" />
                                 <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                                     <a href="#slide_ad_${index - 1}" class="btn btn-circle">❮</a>
                                     <a href="#slide_ad_${index + 1}" class="btn btn-circle">❯</a>
