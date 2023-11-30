@@ -207,7 +207,7 @@ if (session_status() == PHP_SESSION_NONE) {
                     <h3 class="font-bold text-lg">Deseja mesmo sair?</h3>
                     <div class="modal-action">
                         <form method="dialog">
-                            <button class="btn">Sim</button>
+                            <button class="btn_logoff">Sim</button>
                             <button class="btn">Não</button>
                         </form>
                     </div>
@@ -220,6 +220,13 @@ if (session_status() == PHP_SESSION_NONE) {
                 var editOrderModal
 
                 var deleteUserId
+
+                function logoff() {
+                    btn_logoff.addEventListener("click", function() {
+                        window.location.reload()
+                        <?php $_SESSION['idUsuario'] = ""; $_SESSION['idNivelUsuario'] = "" ?>
+                    })
+                }
 
                 function reset() {
                     ad_nav.classList.add("hidden");
