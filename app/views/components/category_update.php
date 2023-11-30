@@ -45,7 +45,11 @@
                 name,
                 parent
             })
-        }).finally(() => {
+        })
+        .then(() => {
+            reset()
+        })
+        .finally(() => {
             category_update_parent.disabled = false
             category_update_name.disabled = false
             category_update_submit.disabled = false
