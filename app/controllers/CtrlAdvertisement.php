@@ -95,6 +95,9 @@ $uriPath = $url['path'];
                         $advertisement = new Advertisement(0, $cod, $name, $description, $price, $category_id, $measurement, $size, $videoUrl, 1);
     
                         if ($advertisement->save()) {
+                            echo json_encode(array(
+                                'advertisement_id_1' => $cod,
+                            ));
                             $where = new Where();
                             $where->addCondition('AND', 'cod', '=', $cod);
     
