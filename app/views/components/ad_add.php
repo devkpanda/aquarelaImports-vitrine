@@ -131,6 +131,7 @@
             .then((response) => response.json())
             .then((response) => {
                 fetchAndDisplayAds(response)
+                reset()
             })
             .finally((response) => {
                 ad_sku.disabled = false
