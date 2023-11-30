@@ -224,7 +224,7 @@ if (!isset($_SESSION['idUsuario']) || !isset($_SESSION['idNivelUsuario'])) {
                 var deleteUserId
 
                 function logoff() {
-                    window.location.href = "https://aquarelaimports.hostdeprojetosdoifsp.gru.br/login"
+                    window.location.replace("https://aquarelaimports.hostdeprojetosdoifsp.gru.br/login")
                     <?php $_SESSION['idUsuario'] = ""; $_SESSION['idNivelUsuario'] = "" ?>
                 }
 
