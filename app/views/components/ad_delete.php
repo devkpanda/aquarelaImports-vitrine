@@ -14,7 +14,7 @@
     var adDeleteId
 
     ad_delete_button.addEventListener('click', function() {
-        fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/advertisement/delete', {
+        fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/advertisement/disable', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
