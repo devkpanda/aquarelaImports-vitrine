@@ -44,10 +44,12 @@
 </dialog>
 
 <script>
+    var user_id
+
     edit_user.addEventListener('submit', function(e) {
         e.preventDefault()
 
-        const id = 1
+        const id = user_id
 
         const idNivelUsuario = user_role.value === 'Administrador' ? 1 : 2
 
