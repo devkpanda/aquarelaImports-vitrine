@@ -207,7 +207,7 @@ if (session_status() == PHP_SESSION_NONE) {
                     <h3 class="font-bold text-lg">Deseja mesmo sair?</h3>
                     <div class="modal-action">
                         <form method="dialog">
-                            <button class="btn_logoff">Sim</button>
+                            <button id="btn_logoff" class="btn">Sim</button>
                             <button class="btn">Não</button>
                         </form>
                     </div>
