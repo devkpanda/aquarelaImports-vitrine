@@ -25,7 +25,8 @@
             })
             .then(() => {
                 fetchAndDisplayAds(response)
-                reset()
             })
+            reset()
+            ad_search.classList.remove("hidden");
     })
 </script>
