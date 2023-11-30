@@ -24,7 +24,8 @@
                 })
             })
             .then(() => {
-                // window.location.reload()
+                fetchAndDisplayAds(response)
+                reset()
             })
     })
 </script>
