@@ -230,7 +230,7 @@
                 <div class="card lg:card-side bg-base-100 shadow-xl">
                     <div class="m-10 flex flex-row">
                         <div class="carousel items-left w-full">
-                            ${Object.keys(ad.base64_data).map((id) => {
+                            ${ad.base64_data ? Object.keys(ad.base64_data).map((id) => {
                                 const image = ad.base64_data[id]
 
                                 return `<div id="slide_ad_1" class="carousel-item relative w-full h-full">
@@ -240,7 +240,7 @@
                                     <a href="#slide_ad_2" class="btn btn-circle">❯</a>
                                 </div>
                             </div>`
-                                })}
+                                }).join('') : ""}
                             
                             <div id="slide_ad_2" class="carousel-item relative w-full h-full">
                                 <img src="https://www.aacop.org.ar/frontend/assets/img/500x500/01.jpg" class="w-full object-contain" />
@@ -363,7 +363,10 @@
             const category = localCategories.find((category) => category.id == categoryId)
             const ads = filterResults(category.id)
 
-            console.log({ category, ads })
+            console.log({
+                category,
+                ads
+            })
 
             homeDiv.classList.add('hidden')
 
@@ -383,19 +386,19 @@
             event.preventDefault()
 
             fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/order/add', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    advertisement_id: advertisementId,
-                    advertisement_name: advertisementName
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        advertisement_id: advertisementId,
+                        advertisement_name: advertisementName
+                    })
                 })
-            })
-            .then(response => response.json())
-            .then(uri => {
-                window.location.href = `https://wa.me/5511978654859?text=Ol%C3%A1%2C+estou+interessado+no+produto+${advertisementName}+%2C+podem+me+dar+mais+informa%C3%A7%C3%B5es%3F`
-            })
+                .then(response => response.json())
+                .then(uri => {
+                    window.location.href = `https://wa.me/5511978654859?text=Ol%C3%A1%2C+estou+interessado+no+produto+${advertisementName}+%2C+podem+me+dar+mais+informa%C3%A7%C3%B5es%3F`
+                })
         }
 
         async function init() {
