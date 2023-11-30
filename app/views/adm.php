@@ -72,17 +72,15 @@ if (session_status() == PHP_SESSION_NONE) {
                             Pedidos
                         </a>
                     </li>
-                    <?php if ($_SESSION['idNivelUsuario'] == 1): ?>
-
-                    <li>
-                        <a href="#" onclick="user()" id="usr_btn" class="md:w-full flex gap-x4 items-start py-2 text-gray-500 hover:text-black">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="mr-6 ml-2 mt-1 fill-[#c0bfbc]" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                                <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
-                            </svg>
-                            Usuários
-                        </a>
-                    </li>
-
+                    <?php echo $_SESSION['idNivelUsuario']; if ($_SESSION['idNivelUsuario'] == 1): ?>
+                        <li>
+                            <a href="#" onclick="user()" id="usr_btn" class="md:w-full flex gap-x4 items-start py-2 text-gray-500 hover:text-black">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="mr-6 ml-2 mt-1 fill-[#c0bfbc]" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                    <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z" />
+                                </svg>
+                                Usuários
+                            </a>
+                        </li>
                     <?php endif; ?>
                     <!--   <li>
                         <a href="#" class="md:w-full flex gap-x4 items-start py-2 text-gray-500 hover:text-black">
