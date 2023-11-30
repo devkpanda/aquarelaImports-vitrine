@@ -137,8 +137,6 @@ class DBQuery {
     public function select() {
         $fields = implode(', ', $this->fieldsName);
         $sql = "SELECT {$fields} FROM {$this->tableName}";
-        print_r($sql);
-        echo $sql;
         return $this->conn->query($sql);
     }
   
