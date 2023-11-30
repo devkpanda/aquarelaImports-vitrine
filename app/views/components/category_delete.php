@@ -15,15 +15,14 @@
 
     category_delete_button.addEventListener('click', function() {
         fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/category/delete', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                id: deleteCategoryId
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id: deleteCategoryId
+                })
             })
-        })
-        new Promise((resolve) => resolve(true))
             .then(() => {
                 reset()
                 fetchAndDisplayCategories()
