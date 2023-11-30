@@ -29,10 +29,10 @@
     }
 
     function fetchAndDisplayCategories() {
-        fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/category/listall')
+        return fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/category/listall')
             .then(response => response.json())
             .then((categories) => {
-                category_listing.innerHTML = categories.map(category => `
+                category_listing.innerHTML = categories.map((category) => `
                     <tr class="hover">
                         <th>${category.id}</th>
                         <td>${category.description}</td>

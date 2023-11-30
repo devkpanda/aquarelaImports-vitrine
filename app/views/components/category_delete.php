@@ -26,6 +26,7 @@
         new Promise((resolve) => resolve(true))
             .then(() => {
                 reset()
+                fetchAndDisplayCategories()
             })
     })
 </script>
