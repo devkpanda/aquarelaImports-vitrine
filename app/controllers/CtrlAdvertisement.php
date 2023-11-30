@@ -210,6 +210,7 @@ $uriPath = $url['path'];
     
                     $where = new Where();
                     $where->addCondition('AND', 'category_id', '=', $id);
+                    $where->addCondition('AND', 'isActive', '=', 1);
     
                     $advertisement = new Advertisement('','','','','','','','','', '');
                     $result = $advertisement->listAdvertisements($where);
@@ -264,6 +265,7 @@ if ($uriPath == '/advertisement/search'){
 
                 $where = new Where();
                 $where->addLike('', 'lower(name)', $search);
+                $where->addCondition('AND', 'isActive', '=', 1);
 
                 $advertisement = new Advertisement('','','','','','','','','','');
                 $advertisementResult = $advertisement->listAdvertisements($where);
