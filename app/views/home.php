@@ -375,10 +375,12 @@
         }
 
         function showAd(advertisementId) {
-            const advertisement = advertisements.find(ad => ad.id === advertisementId)
+            const advertisement = advertisements.find(ad => ad.id == advertisementId)
 
-            produto.innerHTML = buildAdvertisement(advertisement)
-            produto.showModal()
+            if (advertisement) {
+                produto.innerHTML = buildAdvertisement(advertisement)
+                produto.showModal()
+            }
         }
 
         function orderAdd(advertisementId, advertisementName) {
