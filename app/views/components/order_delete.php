@@ -14,18 +14,21 @@
     var deleteOrderId
 
     order_delete_button.addEventListener('click', function() {
+        order_delete_button.disabled = true
         fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/order/delete', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                id: deleteOrderId
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    id: deleteOrderId
+                })
             })
-        })
-        new Promise((resolve) => resolve(true))
             .then(() => {
                 reset()
+                order_delete.close()
+            }).finally(() => {
+                order_delete_button.disabled = true
             })
     })
 </script>
