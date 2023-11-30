@@ -270,7 +270,7 @@ if ($uriPath == '/advertisement/search'){
                     $advertisement = new Advertisement('','','','','','','','','','');
                     $advertisementResult = $advertisement->listAdvertisements($where);
 
-                    foreach ($advertisements as $advertisement) {
+                    foreach ($advertisementResult as $advertisement) {
                         $wherePhotos = new Where();
                         $wherePhotos->addCondition('AND', 'advertisement_id', '=', $advertisement->getId());
 
