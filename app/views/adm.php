@@ -16,6 +16,10 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+if (!isset($_SESSION['idUsuario']) || !isset($_SESSION['idNivelUsuario'])) {
+    header("Location: https://aquarelaimports.hostdeprojetosdoifsp.gru.br/login");
+}
+
 ?>
 
 <!DOCTYPE html>
