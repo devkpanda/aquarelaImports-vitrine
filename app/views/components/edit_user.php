@@ -36,7 +36,7 @@
                     </select>
                 </div>
                 <div class="mt-3 col-span-2 flex items-center justify-end">
-                    <button type="submit" class="btn btn-default border-orange-500 bg-orange-500 font-black text-white hover:bg-black">Alterar Usuário</button>
+                    <button id="user_update_submit_button" type="submit" class="btn btn-default border-orange-500 bg-orange-500 font-black text-white hover:bg-black">Alterar Usuário</button>
                 </div>
             </form>
         </div>
@@ -55,6 +55,8 @@
         const email = user_email.value
         const active = user_active.value == 0 ? 0 : 1
 
+        user_update_submit_button.disabled = true
+
         fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/user/update', {
                 method: 'POST',
                 headers: {
@@ -69,7 +71,11 @@
                 })
             })
             .then(() => {
-                // window.location.reload()
+                reset()
+                user_update.close()
+            })
+            .finally(() => {
+                user_update_submit_button.disabled = false
             })
     })
 </script>
