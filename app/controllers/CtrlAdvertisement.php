@@ -22,17 +22,19 @@ $uriPath = $url['path'];
     // if (isset($_SESSION['idNivelUsuario']) && $_SESSION['idNivelUsuario'] == 1) {
         if ($uriPath == '/advertisement/listall'){
             if (strtolower($_SERVER['REQUEST_METHOD']) == 'get'){
+                $where = new Where();
+                $where->addCondition('AND', 'isActive', '=', 1);
                 $advertisement = new Advertisement('','','','','','','','','','');
-                $advertisements = $advertisement->listAdvertisements();
+                $advertisements = $advertisement->listAdvertisements($where);
         
                 $json = array();
         
                 foreach ($advertisements as $advertisement) {
-                    $where = new Where();
-                    $where->addCondition('AND', 'advertisement_id', '=', $advertisement->getId());
+                    $wherePhotos = new Where();
+                    $wherePhotos->addCondition('AND', 'advertisement_id', '=', $advertisement->getId());
 
                     $photo = new Photo('','','','','');
-                    $photos = $photo->listPhotos($where);
+                    $photos = $photo->listPhotos($wherePhotos);
                     
                     $photosArray = array();
                     foreach ($photos as $photo) {
