@@ -102,7 +102,7 @@ if ($uriPath == '/category/update') {
 
             if ($data === null) {
                 http_response_code(400);
-                echo json_encode(array('message' => 'Empty json'));
+                echo json_encode(array('message' => 'Empty data'));
             } else {
                 if (!isset($data['id']) || !isset($data['description']) || !isset($data['parent_id'])) {
                     http_response_code(400);
@@ -119,6 +119,7 @@ if ($uriPath == '/category/update') {
                             http_response_code(400);
                             die(json_encode(array('message' => 'Houve um erro ao editar a categoria')));
                         } else {
+                            http_response_code(200);
                             die(json_encode(array('message' => 'Categoria editada com sucesso')));
                         }
                     } catch (Exception $e) {

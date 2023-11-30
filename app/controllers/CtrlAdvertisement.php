@@ -145,35 +145,35 @@ $uriPath = $url['path'];
                         http_response_code(400);
                         die (json_encode(array('message' => 'Empty data')));
                     } else {
-                        if (!isset($data['id']) || !isset($data['cod']) || !isset($data['name']) || !isset($data['description']) || !isset($data['price']) || !isset($data['category_id']) || !isset($data['measurement']) || !isset($data['size']) || !isset($data['videoUrl']) || !isset($data['base64_data'])) {
+                        if (!isset($data['id']) || !isset($data['cod']) || !isset($data['name']) || !isset($data['description']) || !isset($data['price']) || !isset($data['category_id']) || !isset($data['measurement']) || !isset($data['size']) || !isset($data['videoUrl'])) {
                             die(json_encode(array('message' => 'unexpected JSON')));
                         } else {
-                            $id          = $data['id'];
-                            $cod         = $data['cod'];
-                            $name        = strtolower($data['name']);
-                            $description = $data['description'];
-                            $price       = $data['price'];
-                            $category_id = $data['category_id'];
-                            $measurement = $data['measurement'];
-                            $size        = $data['size'];
-                            $videoUrl    = $data['videoUrl'];
-                            $base64_data = $data['base64_data'];
-    
-                            $exist = false;
-                            $advertisement = new Advertisement($id, $cod, $name, $description, $price, $category_id, $measurement, $size, $videoUrl, 1);
-                            if($id !== 0) {
-                                $exist = true; 
-                                $rSet = $advertisement->save();
-                                if (!$rSet->rowCount() == 1) {
+                            try {
+                                $id          = $data['id'];
+                                $cod         = $data['cod'];
+                                $name        = strtolower($data['name']);
+                                $description = $data['description'];
+                                $price       = $data['price'];
+                                $category_id = $data['category_id'];
+                                $measurement = $data['measurement'];
+                                $size        = $data['size'];
+                                $videoUrl    = $data['videoUrl'];
+
+                                $advertisement = new Advertisement($id, $cod, $name, $description, $price, $category_id, $measurement, $size, $videoUrl, 1);
+
+                                if(!$advertisement->save()->rowCount() == 1) {
                                     http_response_code(400);
                                     die(json_encode(array('message' => 'Houve um erro ao editar o anúncio')));
                                 } else {
                                     http_response_code(200);
-                                    die(json_encode(array('message' => 'Anúncio editado com sucesso')));
+                                    die(json_encode(array('message' => 'Anuncio editado com sucesso')));
                                 }
-                            } else {
+                            } catch (Exception $e) {
                                 http_response_code(400);
-                                die(json_encode(array('message' => 'Houve um erro ao editar o anúncio')));
+                                die(json_encode(array('message' => $e->getMessage())));
+                            } catch (InvalidArgumentException $iae) {
+                                http_response_code(400);
+                                die(json_encode(array('message' => $iae->getMessage())));
                             }
                         }   
                     }
