@@ -60,9 +60,8 @@
             })
             .then((response) => response.json())
             .then((response) => {
-                if (response.ok) {
-                    fetchAndDisplayCategories()
-                }
+                fetchAndDisplayCategories()
+                reset()
             }).finally(() => {
                 category_name.disabled = false
                 category_parent.disabled = false
