@@ -209,7 +209,7 @@ if (!isset($_SESSION['idUsuario']) || !isset($_SESSION['idNivelUsuario'])) {
                     <h3 class="font-bold text-lg">Deseja mesmo sair?</h3>
                     <div class="modal-action">
                         <form method="dialog">
-                            <button id="btn_logoff" class="btn">Sim</button>
+                            <button id="btn_logoff" class="btn" onclick="logoff()">Sim</button>
                             <button class="btn">Não</button>
                         </form>
                     </div>
@@ -224,10 +224,8 @@ if (!isset($_SESSION['idUsuario']) || !isset($_SESSION['idNivelUsuario'])) {
                 var deleteUserId
 
                 function logoff() {
-                    btn_logoff.addEventListener("click", function() {
-                        window.location.href = "https://aquarelaimports.hostdeprojetosdoifsp.gru.br/login"
-                        <?php $_SESSION['idUsuario'] = ""; $_SESSION['idNivelUsuario'] = "" ?>
-                    })
+                    window.location.href = "https://aquarelaimports.hostdeprojetosdoifsp.gru.br/login"
+                    <?php $_SESSION['idUsuario'] = ""; $_SESSION['idNivelUsuario'] = "" ?>
                 }
 
                 function reset() {
