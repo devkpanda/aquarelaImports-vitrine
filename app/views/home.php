@@ -106,66 +106,7 @@
     </div>
 
     <div>
-        <dialog id="produto" class="modal">
-            <div class="w-8/12">
-                <div class="card lg:card-side bg-base-100 shadow-xl">
-                    <div class="m-10 flex flex-row">
-                        <div class="carousel items-left w-full">
-                            <div id="slide_ad_1" class="carousel-item relative w-full h-full ">
-                                <img src="https://www.aacop.org.ar/frontend/assets/img/500x500/01.jpg" class="w-full object-contain" />
-                                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                                    <a href="#slide_ad_4" class="btn btn-circle">❮</a>
-                                    <a href="#slide_ad_2" class="btn btn-circle">❯</a>
-                                </div>
-                            </div>
-                            <div id="slide_ad_2" class="carousel-item relative w-full h-full">
-                                <img src="https://www.aacop.org.ar/frontend/assets/img/500x500/01.jpg" class="w-full object-contain" />
-                                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                                    <a href="#slide_ad_1" class="btn btn-circle">❮</a>
-                                    <a href="#slide_ad_3" class="btn btn-circle">❯</a>
-                                </div>
-                            </div>
-                            <div id="slide_ad_3" class="carousel-item relative w-full h-full">
-                                <img src="https://www.aacop.org.ar/frontend/assets/img/500x500/01.jpg" class="w-full object-contain" />
-                                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                                    <a href="#slide_ad_2" class="btn btn-circle">❮</a>
-                                    <a href="#slide_ad_4" class="btn btn-circle">❯</a>
-                                </div>
-                            </div>
-                            <div id="slide_ad_4" class="carousel-item relative w-full h-full">
-                                <img src="https://www.aacop.org.ar/frontend/assets/img/500x500/01.jpg" class="w-full object-contain" />
-                                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                                    <a href="#slide_ad_3" class="btn btn-circle">❮</a>
-                                    <a href="#slide_ad_1" class="btn btn-circle">❯</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-action">
-
-                        <form method="dialog">
-                            <!-- if there is a button, it will close the modal -->
-                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                        </form>
-                    </div>
-
-                    <div class="m-12">
-
-                        <div class="card w-96 bg-base-100">
-                            <div class="w-full">
-                                <h3 class="font-bold text-2xl m-5">Conjunto Freio à disco</h3>
-                                <p class="text-lg m-5">Conjunto de instalação de freio à disco para bicicletas. Contendo dois discos, duas pinças com quatro pastilhas,
-                                    dois cabos com conduites</p>
-                                <p class="m-5 mt-3 text-lg text-black font-medium">R$12342.12</p>
-                            </div>
-                            <div class="card-body items-center text-center h-96 m-12">
-                                <button class="btn btn-neutral btn-wide bg-orange-500 border-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:ring-orange-300 text-white">Comprar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </dialog>
+        <dialog id="produto" class="rounded-lg bg-white"></dialog>
     </div>
 
 
@@ -226,38 +167,35 @@
         }
 
         function buildAdvertisement(ad) {
-            return `<div class="w-8/12">
-                <div class="card lg:card-side bg-base-100 shadow-xl">
-                    <div class="m-10 flex flex-row">
+            return `<div class="max-w-5xl w-full">
+                <div class="lg:flex bg-base-100 shadow-xl">
+                    <div class="modal-action ml-auto">
+                        <form method="dialog">
+                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                        </form>
+                    </div>
+                    <div class="m-10 flex flex-row justify-center">
                         <div class="carousel items-left w-full">
-                            ${ad.base64_data ? Object.keys(ad.base64_data).map((id) => {
+                            ${ad.base64_data ? Object.keys(ad.base64_data).map((id, index) => {
                                 const image = ad.base64_data[id]
 
-                                return `<div id="slide_ad_1" class="carousel-item relative w-full h-full">
+                                return `<div id="slide_ad_${index}" class="carousel-item relative w-full">
                                 <img src="${image}" class="w-full object-cover" />
                                 <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                                    <a href="#slide_ad_4" class="btn btn-circle">❮</a>
-                                    <a href="#slide_ad_2" class="btn btn-circle">❯</a>
+                                    <a href="#slide_ad_${index - 1}" class="btn btn-circle">❮</a>
+                                    <a href="#slide_ad_${index + 1}" class="btn btn-circle">❯</a>
                                 </div>
                             </div>`
                                 }).join('') : ""}
                         </div>
                     </div>
-                    <div class="modal-action">
-
-                        <form method="dialog">
-                            <!-- if there is a button, it will close the modal -->
-                            <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                        </form>
-                    </div>
 
                     <div class="m-12">
-
                         <div class="card w-96 bg-base-100">
-                            <div class="w-full">
-                                <h3 class="font-bold text-2xl m-5">${ad.name}</h3>
-                                <p class="text-lg m-5">${ad.description}</p>
-                                <p class="m-5 mt-3 text-lg text-black font-medium">R$${ad.price}</p>
+                            <div class="w-full p-5">
+                                <h3 class="font-bold text-2xl">${ad.name}</h3>
+                                <p class="text-lg">${ad.description}</p>
+                                <p class="mt-3 text-lg text-black font-medium">R$${ad.price}</p>
                             </div>
                             <div class="card-body items-center text-center h-96 m-12">
                                 <button id="buy_btn_${ad.id}" class="btn btn-neutral btn-wide bg-orange-500 border-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:ring-orange-300 text-white" onclick="orderAdd('${ad.id}','${ad.name}')"><a href="https://wa.me/5511978654859?text=Ol%C3%A1%2C+estou+interessado+no+produto+${ad.name}+%2C+podem+me+dar+mais+informa%C3%A7%C3%B5es%3F">Comprar</a></button>
