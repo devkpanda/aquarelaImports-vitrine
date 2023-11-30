@@ -12,7 +12,7 @@
 
 <script>
     user_delete_button.addEventListener('click', function() {
-        fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/user/deactive', {
+        fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/user/disable', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
