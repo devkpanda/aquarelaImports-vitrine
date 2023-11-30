@@ -263,37 +263,45 @@ if ($uriPath == '/advertisement/search'){
                 } else {
                     $search = strtolower($data['search']);
 
-                $where = new Where();
-                $where->addLike('', 'lower(name)', $search);
-                $where->addCondition('AND', 'isActive', '=', 1);
+                    $where = new Where();
+                    $where->addLike('', 'lower(name)', $search);
+                    $where->addCondition('AND', 'isActive', '=', 1);
 
-                $advertisement = new Advertisement('','','','','','','','','','');
-                $advertisementResult = $advertisement->listAdvertisements($where);
+                    $advertisement = new Advertisement('','','','','','','','','','');
+                    $advertisementResult = $advertisement->listAdvertisements($where);
 
-                $json = array();
+                    foreach ($advertisements as $advertisement) {
+                        $wherePhotos = new Where();
+                        $wherePhotos->addCondition('AND', 'advertisement_id', '=', $advertisement->getId());
 
-                foreach ($advertisementResult as $ad) {
-                    $adArray = array(
-                        "id"            => $ad->getId(),
-                        "cod"           => $ad->getCod(),
-                        "name"          => $ad->getName(),
-                        "description"   => $ad->getDescription(),
-                        "price"         => $ad->getPrice(),
-                        "category_id"   => $ad->getCategory_id(),
-                        "measurement"   => $ad->getMeasurement(),
-                        "size"          => $ad->getSize(),
-                        "videoUrl"      => $ad->getVideoUrl(),
-                        "isActive"      => $ad->getIsActive()
-                    );
+                        $photo = new Photo('','','','','');
+                        $photos = $photo->listPhotos($wherePhotos);
 
-                    $json[] = $adArray;
-                }
-                http_response_code(200);
-                die(json_encode($json));
+                        $photosArray = array();
+                        foreach ($photos as $photo) {
+                            array_push($photosArray, $photo->getBase64_data());
+                        }
+                        $advertisementArray = array(
+                            "id"            => $advertisement->getId(),
+                            "cod"           => $advertisement->getCod(),
+                            "name"          => $advertisement->getName(),
+                            "description"   => $advertisement->getDescription(),
+                            "price"         => $advertisement->getPrice(),
+                            "category_id"   => $advertisement->getCategory_id(),
+                            "measurement"   => $advertisement->getMeasurement(),
+                            "size"          => $advertisement->getSize(),
+                            "videoUrl"      => $advertisement->getVideoUrl(),
+                            "isActive"      => $advertisement->getIsActive(),
+                            "base64_data"   => $photosArray
+                        );
+
+                        $json[] = $advertisementArray;
+                    }
+                    http_response_code(200);
+                    die(json_encode($json));
                 }
             }
         }
-    
     } else {
         echo json_encode(array('message' => 'Method not allowed'));
     }
