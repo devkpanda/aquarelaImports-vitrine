@@ -373,6 +373,7 @@
 
         function showAd(advertisementId) {
             const advertisement = advertisements.find(ad => ad.id === advertisementId)
+            console.log(advertisement)
 
             produto.innerHTML = buildAdvertisement(advertisement)
             produto.showModal()

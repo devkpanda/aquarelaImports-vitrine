@@ -324,6 +324,7 @@ if ($uriPath == '/login/auth') {
                     }
     
                     $_SESSION['idUsuario'] = $user->getId();
+                    $_SESSION['idNivelUsuario'] = $user->getIdNivelUsuario();
                     http_response_code(200);
                     die(json_encode($json[0])); 
                 }
