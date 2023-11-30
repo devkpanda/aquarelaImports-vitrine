@@ -224,7 +224,7 @@ if ($uriPath == '/user/update') {
                 http_response_code(400);
                 echo json_encode(array('message' => 'Empty json'));
             } else {
-                if (!isset($data['id']) || !isset($data['idNivelUsuario']) || !isset($data['name'])  || !isset($data['email'])){
+                if (!isset($data['id']) || !isset($data['active'])|| !isset($data['idNivelUsuario']) || !isset($data['name'])  || !isset($data['email'])){
                     http_response_code(400);
                     die(json_encode(array('message' => 'unexpected JSON')));
                 } else {
@@ -233,6 +233,7 @@ if ($uriPath == '/user/update') {
                         $idNivelUsuario = $data['idNivelUsuario'];
                         $name = $data['name'];
                         $email = $data['email'];
+                        $active = $data['active'];
 
                         $where = new Where();
                         $where->addCondition('AND', 'id', '=', $id);
@@ -243,6 +244,7 @@ if ($uriPath == '/user/update') {
                         $result[0]->setIdNivelUsuario($idNivelUsuario);
                         $result[0]->setName($name);
                         $result[0]->setEmail($email);
+                        $result[0]->setActive($active);
                         
                         if (!$result[0]->save()) {
                             http_response_code(400);
