@@ -132,7 +132,6 @@
             .then((response) => {
                 fetchAndDisplayAds(response)
                 reset()
-                ad_search.classList.remove("hidden");
             })
             .finally((response) => {
                 ad_sku.disabled = false

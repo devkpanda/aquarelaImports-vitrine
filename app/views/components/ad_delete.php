@@ -27,6 +27,5 @@
                 fetchAndDisplayAds(response)
             })
             reset()
-            ad_search.classList.remove("hidden");
     })
 </script>
