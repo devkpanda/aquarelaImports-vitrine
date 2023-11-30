@@ -28,23 +28,27 @@
         category_update_parent.value = fields.parent_id
     }
 
-    fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/category/listall')
-        .then(response => response.json())
-        .then((categories) => {
-            category_listing.innerHTML = categories.map(category => `
-            <tr class="hover">
-                <th>${category.id}</th>
-                <td>${category.description}</td>
-                <td>${category.parent_id}</td>
-                <td class="flex">
-                    <div>
-                        <button onclick="editCategoryModal = '${btoa(JSON.stringify(category))}'; displayCategoryUpdate(); category_update.showModal();" class="btn btn-ghost btn-xs">editar</button>
-                    </div>
-                    <div>
-                        <button onclick="deleteCategoryId = ${category.id}; category_delete.showModal()" class="btn btn-ghost btn-xs">excluir</button>
-                    </div>
-                </td>
-            </tr>
-            `).join('')
-        })
+    function fetchAndDisplayCategories() {
+        fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/category/listall')
+            .then(response => response.json())
+            .then((categories) => {
+                category_listing.innerHTML = categories.map(category => `
+                    <tr class="hover">
+                        <th>${category.id}</th>
+                        <td>${category.description}</td>
+                        <td>${category.parent_id}</td>
+                        <td class="flex">
+                            <div>
+                                <button onclick="editCategoryModal = '${btoa(JSON.stringify(category))}'; displayCategoryUpdate(); category_update.showModal();" class="btn btn-ghost btn-xs">editar</button>
+                            </div>
+                            <div>
+                                <button onclick="deleteCategoryId = ${category.id}; category_delete.showModal()" class="btn btn-ghost btn-xs">excluir</button>
+                            </div>
+                        </td>
+                    </tr>
+                `).join('')
+            })
+    }
+
+    fetchAndDisplayCategories()
 </script>
