@@ -31,8 +31,8 @@
                 <div class="mt-3">
                     <label for="user_active" class="mb-2 block text-base">Ativo</label>
                     <select id="user_active" class="select select-bordered join-item w-full">
-                        <option>Sim</option>
-                        <option>Não</option>
+                        <option value="1">Sim</option>
+                        <option value="0">Não</option>
                     </select>
                 </div>
                 <div class="mt-3 col-span-2 flex items-center justify-end">
@@ -53,7 +53,7 @@
 
         const name = user_name.value
         const email = user_email.value
-        const active = user_active.value === 0 ? 0 : 1
+        const active = user_active.value == 0 ? 0 : 1
 
         fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/user/update', {
                 method: 'POST',
