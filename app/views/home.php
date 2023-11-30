@@ -241,28 +241,6 @@
                                 </div>
                             </div>`
                                 }).join('') : ""}
-                            
-                            <div id="slide_ad_2" class="carousel-item relative w-full h-full">
-                                <img src="https://www.aacop.org.ar/frontend/assets/img/500x500/01.jpg" class="w-full object-contain" />
-                                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                                    <a href="#slide_ad_1" class="btn btn-circle">❮</a>
-                                    <a href="#slide_ad_3" class="btn btn-circle">❯</a>
-                                </div>
-                            </div>
-                            <div id="slide_ad_3" class="carousel-item relative w-full h-full">
-                                <img src="https://www.aacop.org.ar/frontend/assets/img/500x500/01.jpg" class="w-full object-contain" />
-                                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                                    <a href="#slide_ad_2" class="btn btn-circle">❮</a>
-                                    <a href="#slide_ad_4" class="btn btn-circle">❯</a>
-                                </div>
-                            </div>
-                            <div id="slide_ad_4" class="carousel-item relative w-full h-full">
-                                <img src="https://www.aacop.org.ar/frontend/assets/img/500x500/01.jpg" class="w-full object-contain" />
-                                <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-                                    <a href="#slide_ad_3" class="btn btn-circle">❮</a>
-                                    <a href="#slide_ad_1" class="btn btn-circle">❯</a>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="modal-action">
