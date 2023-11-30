@@ -297,7 +297,7 @@ if ($uriPath == '/login/auth') {
     
                     // uncomment line below here when email send work correctly to activate users
     
-                    // $where->addCondition('AND', 'active', '=', 1);
+                    $where->addCondition('AND', 'active', '=', 1);
     
                     $user = new User('','','','','','','','','');
                     $result = $user->listUsuarios($where);
