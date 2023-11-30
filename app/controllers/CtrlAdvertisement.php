@@ -103,8 +103,10 @@ $uriPath = $url['path'];
                             $success = "";
     
                             foreach ($base64_data as $photo) {
-                                echo $photo;
-                                echo $result[0]->getId();
+                                echo json_encode(array(
+                                    'advertisement_id' => $result[0]->getId(),
+                                    'photo' => $photo
+                                ));
                                 $photo = new Photo(0, $result[0]->getId(), $photo, '');
                                 if ($photo->save()) {
                                     echo json_encode(array('message' => 'foto inserida'));
