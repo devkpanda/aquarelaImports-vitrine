@@ -76,7 +76,7 @@ if (!isset($_SESSION['idUsuario']) || !isset($_SESSION['idNivelUsuario'])) {
                             Pedidos
                         </a>
                     </li>
-                    <?php if ($_SESSION['idNivelUsuario'] == 1): ?>
+                    <?php if ($_SESSION['idNivelUsuario'] == 1) : ?>
                         <li>
                             <a href="#" onclick="user()" id="usr_btn" class="md:w-full flex gap-x4 items-start py-2 text-gray-500 hover:text-black">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="mr-6 ml-2 mt-1 fill-[#c0bfbc]" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
@@ -190,11 +190,7 @@ if (!isset($_SESSION['idUsuario']) || !isset($_SESSION['idNivelUsuario'])) {
 
             <!-- advertisement -->
             <?php include "components/ad_add.php" ?>
-
-            <!-- modal update (ad) -->
             <?php include "components/ad_update.php" ?>
-
-            <!-- modal delete (ad) -->
             <?php include "components/ad_delete.php" ?>
 
             <!-- modal update (user) -->
@@ -226,7 +222,8 @@ if (!isset($_SESSION['idUsuario']) || !isset($_SESSION['idNivelUsuario'])) {
                 function logoff() {
                     btn_logoff.addEventListener("click", function() {
                         window.location.reload()
-                        <?php $_SESSION['idUsuario'] = ""; $_SESSION['idNivelUsuario'] = "" ?>
+                        <?php $_SESSION['idUsuario'] = "";
+                        $_SESSION['idNivelUsuario'] = "" ?>
                     })
                 }
 
@@ -273,6 +270,7 @@ if (!isset($_SESSION['idUsuario']) || !isset($_SESSION['idNivelUsuario'])) {
                     category_nav.classList.remove('hidden')
 
                     category_list_btn.addEventListener('click', function() {
+                        fetchAndDisplayCategories()
                         category_search.classList.remove('hidden')
                         category_add.classList.add("hidden");
                     })
@@ -283,7 +281,7 @@ if (!isset($_SESSION['idUsuario']) || !isset($_SESSION['idNivelUsuario'])) {
                     })
                 }
 
-                function order(){
+                function order() {
                     reset()
 
                     order_nav.classList.remove('hidden')

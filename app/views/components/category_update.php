@@ -50,8 +50,6 @@
             })
             .then(() => {
                 reset()
-                fetchAndDisplayCategories()
-
                 category_update.close()
             })
             .finally(() => {
