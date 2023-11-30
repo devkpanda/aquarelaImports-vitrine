@@ -319,7 +319,7 @@ if (!isset($_SESSION['idUsuario']) || !isset($_SESSION['idNivelUsuario'])) {
                                 }
 
                                 listusers.innerHTML = response.map(user => {
-                                    const userActive = user.active === 0 ? "Não" : "Sim"
+                                    const userActive = user.active == 0 ? "Não" : "Sim"
 
                                     return `
                                         <tr>
