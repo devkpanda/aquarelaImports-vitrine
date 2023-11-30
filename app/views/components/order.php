@@ -19,29 +19,22 @@
 </div>
 
 <script>
-    var editCategoryModal
-
-    function displayCategoryUpdate() {
-        const fields = JSON.parse(atob(editCategoryModal))
-
-        category_update_name.value = fields.description
-        category_update_parent.value = fields.parent_id
+    function fetchAndDisplayOrders() {
+        return fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/order/listall')
+            .then(response => response.json())
+            .then((orders) => {
+                order_listing.innerHTML = orders.map(order => `
+                <tr class="hover">
+                    <th>${order.id}</th>
+                    <td>${order.advertisement_id}</td>
+                    <td>${order.advertisement_name}</td>
+                    <td class="flex">
+                        <div>
+                            <button onclick="deleteOrderId = ${order.id}; order_delete.showModal()" class="btn btn-ghost btn-xs">excluir</button>
+                        </div>
+                    </td>
+                </tr>
+                `).join('')
+            })
     }
-
-    fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/order/listall')
-        .then(response => response.json())
-        .then((orders) => {
-            order_listing.innerHTML = orders.map(order => `
-            <tr class="hover">
-                <th>${order.id}</th>
-                <td>${order.advertisement_id}</td>
-                <td>${order.advertisement_name}</td>
-                <td class="flex">
-                    <div>
-                        <button onclick="deleteCategoryId = ${order.id}; category_delete.showModal()" class="btn btn-ghost btn-xs">excluir</button>
-                    </div>
-                </td>
-            </tr>
-            `).join('')
-        })
 </script>

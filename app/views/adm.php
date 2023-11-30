@@ -199,6 +199,9 @@ if (!isset($_SESSION['idUsuario']) || !isset($_SESSION['idNivelUsuario'])) {
             <!-- model delete (user) -->
             <?php include "components/delete_user.php" ?>
 
+            <!-- order delete -->
+            <?php include "components/order_delete.php" ?>
+
             <!-- modal logout -->
             <dialog id="logout1" class="modal">
                 <div class="modal-box">
@@ -283,11 +286,12 @@ if (!isset($_SESSION['idUsuario']) || !isset($_SESSION['idNivelUsuario'])) {
 
                 function order() {
                     reset()
-
                     order_nav.classList.remove('hidden')
 
                     order_list_btn.addEventListener('click', function() {
                         order_search.classList.remove('hidden')
+
+                        fetchAndDisplayOrders()
                     })
                 }
 
@@ -298,55 +302,56 @@ if (!isset($_SESSION['idUsuario']) || !isset($_SESSION['idNivelUsuario'])) {
 
                     list_btn.addEventListener("click", function() {
                         usr_tbl.classList.remove("hidden");
+
+                        fetch("https://aquarelaimports.hostdeprojetosdoifsp.gru.br/user/listall", {
+                                method: "GET",
+                                headers: {
+                                    'Origin': 'https://aquarelaimports.hostdeprojetosdoifsp.gru.br',
+                                    'Access-Control-Request-Method': 'GET',
+                                    'Access-Control-Request-Headers': 'X-Requested-With, Content-Type',
+                                }
+                            })
+                            .then((response) => response.json())
+                            .then((response) => {
+                                const roles = {
+                                    1: "Administrador",
+                                    2: "Funcionário"
+                                }
+
+                                listusers.innerHTML = response.map(user => {
+                                    const userActive = user.active === 0 ? "Não" : "Sim"
+
+                                    return `
+                                        <tr>
+                                            <th>
+                                            </th>
+                                            <td>
+                                                <div class="flex items-center space-x-3">
+                                                    <div>
+                                                        <div class="font-bold">${user.name}</div>
+                                                        <div class="text-sm opacity-50">${roles[user.idNivelUsuario]}</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                ${user.email}
+                                            </td>
+                                            <td>
+                                                ${userActive}
+                                            </td>
+                                            <td class="flex gap-2 mt-2">
+                                                <div>
+                                                    <button onclick="user_id = ${user.id}; user_active.value = '${userActive}'; user_role.value = '${roles[user.idNivelUsuario]}'; user_name.value = '${user.name}'; user_email.value = '${user.email}'; user_update.showModal()" class="btn btn-ghost btn-xs">editar</button>
+                                                </div>
+                                                <div>
+                                                    <button onclick="deleteUserId = ${user.id}; user_delete.showModal()" class="btn btn-ghost btn-xs">desativar</button>
+                                                </div>
+                                            </td>
+                                        </tr>`
+                                }).join('')
+                            })
                     });
 
-                    fetch("https://aquarelaimports.hostdeprojetosdoifsp.gru.br/user/listall", {
-                            method: "GET",
-                            headers: {
-                                'Origin': 'https://aquarelaimports.hostdeprojetosdoifsp.gru.br',
-                                'Access-Control-Request-Method': 'GET',
-                                'Access-Control-Request-Headers': 'X-Requested-With, Content-Type',
-                            }
-                        })
-                        .then((response) => response.json())
-                        .then((response) => {
-                            const roles = {
-                                1: "Administrador",
-                                2: "Funcionário"
-                            }
-
-                            listusers.innerHTML = response.map(user => {
-                                const userActive = user.active === 0 ? "Não" : "Sim"
-
-                                return `
-                                    <tr>
-                                        <th>
-                                        </th>
-                                        <td>
-                                            <div class="flex items-center space-x-3">
-                                                <div>
-                                                    <div class="font-bold">${user.name}</div>
-                                                    <div class="text-sm opacity-50">${roles[user.idNivelUsuario]}</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            ${user.email}
-                                        </td>
-                                        <td>
-                                            ${userActive}
-                                        </td>
-                                        <td class="flex gap-2 mt-2">
-                                            <div>
-                                                <button onclick="user_id = ${user.id}; user_active.value = '${userActive}'; user_role.value = '${roles[user.idNivelUsuario]}'; user_name.value = '${user.name}'; user_email.value = '${user.email}'; user_update.showModal()" class="btn btn-ghost btn-xs">editar</button>
-                                            </div>
-                                            <div>
-                                                <button onclick="deleteUserId = ${user.id}; user_delete.showModal()" class="btn btn-ghost btn-xs">desativar</button>
-                                            </div>
-                                        </td>
-                                    </tr>`
-                            }).join('')
-                        })
                 }
             </script>
 </body>
