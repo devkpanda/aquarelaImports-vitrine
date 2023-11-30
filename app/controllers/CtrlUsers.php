@@ -224,7 +224,7 @@ if ($uriPath == '/user/update') {
                 http_response_code(400);
                 echo json_encode(array('message' => 'Empty json'));
             } else {
-                if (!isset($data['id']) || !isset($data['idNivelUsuario']) || !isset($data['name'])  || !isset($data['email'])){
+                if (!isset($data['id']) || !isset($data['active'])|| !isset($data['idNivelUsuario']) || !isset($data['name'])  || !isset($data['email'])){
                     http_response_code(400);
                     die(json_encode(array('message' => 'unexpected JSON')));
                 } else {
