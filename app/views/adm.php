@@ -225,7 +225,7 @@ if (!isset($_SESSION['idUsuario']) || !isset($_SESSION['idNivelUsuario'])) {
 
                 function logoff() {
                     btn_logoff.addEventListener("click", function() {
-                        window.location.reload()
+                        window.location.href = "https://aquarelaimports.hostdeprojetosdoifsp.gru.br/login"
                         <?php $_SESSION['idUsuario'] = ""; $_SESSION['idNivelUsuario'] = "" ?>
                     })
                 }
