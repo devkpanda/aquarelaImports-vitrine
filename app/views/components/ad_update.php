@@ -28,8 +28,13 @@
                     <input id="ad_update_id" type="text" placeholder="Digite o Id.." class="w-full input input-bordered bg-gray-100" />
                 </div>
                 <div class="mt-3">
+                    <!-- Litros (L), Centimetro cubico (cm³), Metro cubico (m³) -->
                     <label for="email" class="block text-base mb-2">Medida</label>
-                    <input id="ad_update_measurement" type="text" placeholder="Digite a medida.." class="w-full input input-bordered bg-gray-100" />
+                    <select id="ad_update_measurement" type="text" placeholder="Digite a medida.." class="w-full select select-bordered bg-gray-100">
+                        <option value="L">Litros (L)</option>
+                        <option value="cm²">Centrimetro cúbico (cm²)</option>
+                        <option value="m²">Metro cúbico (m²)</option>
+                    </select>
                 </div>
                 <div class="mt-3">
                     <label for="email" class="block text-base mb-2">Tamanho</label>
@@ -38,11 +43,6 @@
                 <div class="mt-3">
                     <label for="email" class="block text-base mb-2">URL do vídeo</label>
                     <input id="ad_update_url" type="text" placeholder="Digite a URL do vídeo.." class="w-full input input-bordered bg-gray-100" />
-                </div>
-
-                <div class="mt-3">
-                    <label for="email" class="block text-base mb-2">Fotos</label>
-                    <input id="ad_update_photo" multiple accept="image/*" type="file" class="file-input file-input-bordered file-input-bg-orange-500 w-full bg-gray-100" />
                 </div>
 
                 <div class="col-span-2 flex items-center mt-10">
@@ -66,7 +66,6 @@
         ad_update_measurement.disabled = true
         ad_update_size.disabled = true
         ad_update_url.disabled = true
-        ad_update_photo.disabled = true
         ad_update_submit_button.disabled = true
 
         const id = advertisement.id
@@ -78,37 +77,39 @@
         const measurement = ad_update_measurement.value
         const size = ad_update_size.value
         const url = ad_update_url.value
-        const photo = ad_update_photo.value
 
         fetch("https://aquarelaimports.hostdeprojetosdoifsp.gru.br/advertisement/update", {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                id,
-                cod: sku,
-                name,
-                description,
-                price,
-                category_id,
-                measurement,
-                size,
-                url,
-                photo
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    id,
+                    cod: sku,
+                    name,
+                    description,
+                    price,
+                    category_id,
+                    measurement,
+                    size,
+                    url,
+                })
             })
-        }).finally(() => {
-            advertisement.disabled = false
-            ad_update_sku.disabled = false
-            ad_update_name.disabled = false
-            ad_update_description.disabled = false
-            ad_update_price.disabled = false
-            ad_update_id.disabled = false
-            ad_update_measurement.disabled = false
-            ad_update_size.disabled = false
-            ad_update_url.disabled = false
-            ad_update_photo.disabled = false
-            ad_update_submit_button.disabled = false
-        })
+            .then(() => {
+                fetchAndDisplayAds(response)
+                ad_update.close()
+            })
+            .finally(() => {
+                advertisement.disabled = false
+                ad_update_sku.disabled = false
+                ad_update_name.disabled = false
+                ad_update_description.disabled = false
+                ad_update_price.disabled = false
+                ad_update_id.disabled = false
+                ad_update_measurement.disabled = false
+                ad_update_size.disabled = false
+                ad_update_url.disabled = false
+                ad_update_submit_button.disabled = false
+            })
     })
 </script>

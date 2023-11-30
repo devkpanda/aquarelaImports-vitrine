@@ -35,9 +35,9 @@
                     <!-- Litros (L), Centimetro cubico (cm³), Metro cubico (m³) -->
                     <label for="email" class="block text-base mb-2">Medida</label>
                     <select id="ad_measurement" type="text" placeholder="Digite a medida.." class="w-full select select-bordered bg-gray-100">
-                        <option>Litros (L)</option>
-                        <option>Centrimetro cúbico (cm²)</option>
-                        <option>Metro cúbico (m²)</option>
+                        <option value="L">Litros (L)</option>
+                        <option value="cm²">Centrimetro cúbico (cm²)</option>
+                        <option value="m²">Metro cúbico (m²)</option>
                     </select>
                 </div>
                 <div class="mt-3">
