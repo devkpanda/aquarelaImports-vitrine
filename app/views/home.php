@@ -147,6 +147,78 @@
         </form>
     </dialog>
 
+    <!--botão carrinho-->
+        <button onclick="carrinho.showModal()">
+        <img class="mask mask-circle w-48" src="/app/views/images/carrinho2.png" />
+        </button>
+   
+        <dialog id="carrinho" class="modal">
+            <div class="modal-box">
+                <div class="overflow-x-auto">
+                    <table class="table">
+                        <!-- head -->
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>Item</th>
+                            <th>Preço</th>
+                            <th>Quantidade</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!-- row 1 -->
+                        <tr>
+                            <th>1</th>
+                            <td>Cy Ganderton</td>
+                            <td>Quality Control Specialist</td>
+                            <td>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <input type="text" placeholder="" class="input input-bordered w-full max-w-xs" />
+                                    <button class="btn btn-error">
+                                        Remover
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- row 2 -->
+                        <tr>
+                            <th>2</th>
+                            <td>Hart Hagerty</td>
+                            <td>Desktop Support Technician</td>
+                            <td>
+                            <div class="grid grid-cols-2 gap-2">
+                                    <input type="text" placeholder="" class="input input-bordered w-full max-w-xs" />
+                                    <button class="btn btn-error">Remover</button>
+                            </div>
+                            </td>
+                        </tr>
+                        <!-- row 3 -->
+                        <tr>
+                            <th>3</th>
+                            <td>Brice Swyre</td>
+                            <td>Tax Accountant</td>
+                            <td>
+                                <div class="grid grid-cols-2 gap-2">
+                                        <input type="text" placeholder="" class="input input-bordered w-full max-w-xs" />
+                                        <button class="btn btn-error">Remover</button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <ul>
+                    </div>
+                    <div class="modal-action">
+                        <form method="dialog">
+                            <!-- if there is a button in form, it will close the modal -->
+                            <button class="btn">Close</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </dialog>
+
+        
     <script>
         let advertisements = []
 
@@ -198,7 +270,7 @@
                                 <p class="mt-3 text-lg text-black font-medium">R$${ad.price}</p>
                             </div>
                             <div class="card-body items-center text-center h-96 m-12">
-                                <button id="buy_btn_${ad.id}" class="btn btn-neutral btn-wide bg-orange-500 border-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:ring-orange-300 text-white" onclick="orderAdd('${ad.id}','${ad.name}')"><a href="https://wa.me/5511978654859?text=Ol%C3%A1%2C+estou+interessado+no+produto+${ad.name}+%2C+podem+me+dar+mais+informa%C3%A7%C3%B5es%3F">Comprar</a></button>
+                                <button id="buy_btn_${ad.id}" class="btn btn-neutral btn-wide bg-orange-500 border-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:ring-orange-300 text-white" onclick="orderAdd('${ad.id}','${ad.name}')"><a href="https://wa.me/5511978654859?text=Ol%C3%A1%2C+estou+interessado+no+produto+${ad.name}+%2C+podem+me+dar+mais+informa%C3%A7%C3%B5es%3F">Adicionar ao carrinho</a></button>
                             </div>
                         </div>
                     </div>
