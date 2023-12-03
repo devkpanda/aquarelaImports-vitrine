@@ -148,6 +148,7 @@
     </dialog>
 
     <!--botão carrinho-->
+
         <button onclick="carrinho.showModal()">
         <img class="mask mask-circle w-48" src="/app/views/images/carrinho2.png" />
         </button>
@@ -159,7 +160,6 @@
                         <!-- head -->
                         <thead>
                         <tr>
-                            <th></th>
                             <th>Item</th>
                             <th>Preço</th>
                             <th>Quantidade</th>
@@ -167,59 +167,104 @@
                         </thead>
                         <tbody>
                         <!-- row 1 -->
-                        <tr>
-                            <th>1</th>
-                            <td>Cy Ganderton</td>
-                            <td>Quality Control Specialist</td>
+                        <tr class="cart_product">
+                            <td>Hoverboard</td>
+
+                            <td>
+                                <span class="price_product">R$900,00 </span>
+                            </td>
+
                             <td>
                                 <div class="grid grid-cols-2 gap-2">
-                                    <input type="text" placeholder="" class="input input-bordered w-full max-w-xs" />
-                                    <button class="btn btn-error">
+                                    <input type="number" min="1" value="1" class="input input-bordered w-full max-w-xs qtd_product" />
+                                    <button class="btn btn-error remove-button">
                                         Remover
                                     </button>
                                 </div>
                             </td>
                         </tr>
                         <!-- row 2 -->
-                        <tr>
-                            <th>2</th>
-                            <td>Hart Hagerty</td>
-                            <td>Desktop Support Technician</td>
+                        <tr class="cart_product">
+                            
+                            <td>Luva</td>
                             <td>
-                            <div class="grid grid-cols-2 gap-2">
-                                    <input type="text" placeholder="" class="input input-bordered w-full max-w-xs" />
-                                    <button class="btn btn-error">Remover</button>
-                            </div>
+                                <span class="price_product">R$50,00</span>
+                            </td>
+                            <td>
+                                <div class="grid grid-cols-2 gap-2">
+                                        <input type="number" min="1" value="2" class="input input-bordered w-full max-w-xs qtd_product" />
+                                        <button class="btn btn-error remove-button">Remover</button>
+                                </div>
                             </td>
                         </tr>
                         <!-- row 3 -->
-                        <tr>
-                            <th>3</th>
-                            <td>Brice Swyre</td>
-                            <td>Tax Accountant</td>
+                        <tr class="cart_product">
+                            
+                            <td>Farol Bike</td>
+                            <td>
+                                <span class="price_product">R$120,00</span>
+                            </td>
                             <td>
                                 <div class="grid grid-cols-2 gap-2">
-                                        <input type="text" placeholder="" class="input input-bordered w-full max-w-xs" />
-                                        <button class="btn btn-error">Remover</button>
+                                        <input type="number" min="1" value="3" class="input input-bordered w-full max-w-xs qtd_product" />
+                                        <button class="btn btn-error remove-button">Remover</button>
                                 </div>
                             </td>
                         </tr>
                         </tbody>
+                        <tr></tr>
                     </table>
-                    <ul>
+
+                    <div class="flex justify-end m-2 total">
+                        <strong class="mr-2">Total: </strong>
+                        <span></span>
+                    </div>
+                    
                     </div>
                     <div class="modal-action">
                         <form method="dialog">
                             <!-- if there is a button in form, it will close the modal -->
-                            <button class="btn">Close</button>
+                            <button class="btn">Finalizar Compra</button>
                         </form>
                     </div>
                 </div>
             </div>
         </dialog>
 
-        
+
     <script>
+
+        
+            const remove_btn = document.getElementsByClassName("remove-button")
+            
+            for (var i = 0; i < remove_btn.length; i++) {
+            remove_btn[i].addEventListener("click", removeProduct)
+            }
+
+        function removeProduct (event) {
+                const parent = event.target.parentElement.parentElement.parentElement
+                parent.remove()
+                calcTotal()
+        }
+
+        function calcTotal() {
+            let totalAmount = 0
+            const cart_product = document.getElementsByClassName("cart_product")
+        
+                for (var i = 0; i < cart_product.length; i++) {
+                    
+                        
+                        const prod_price = cart_product[i].getElementsByClassName("price_product")[0].innerText.replace("R$", "").replace(",", ".")
+                        const prod_qtd   = cart_product[i].getElementsByClassName("qtd_product")[0].value
+                        console.log(prod_price)
+
+            totalAmount += prod_price * prod_qtd
+        }
+            totalAmount = totalAmount.toFixed(2).replace(".", ",")
+            document.querySelector(".total span").innerText = " R$" + totalAmount
+        }
+
+
         let advertisements = []
 
         let localCategories = []
