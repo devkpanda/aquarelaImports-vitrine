@@ -148,10 +148,12 @@
     </dialog>
 
     <!--botão carrinho-->
-
-        <button onclick="carrinho.showModal()">
-        <img class="mask mask-circle w-48" src="/app/views/images/carrinho2.png" />
-        </button>
+        <div class="absolute -bottom-20 right-2">
+            <button onclick="carrinho.showModal()">
+                    <img class="mask mask-circle w-36" src="/app/views/images/cart.jpg"/>
+            </button>
+        </div>
+        
    
         <dialog id="carrinho" class="modal">
             <div class="modal-box">
@@ -168,7 +170,9 @@
                         <tbody>
                         <!-- row 1 -->
                         <tr class="cart_product">
-                            <td>Hoverboard</td>
+                            <td>
+                                <img src="/app/views/images/Coroa.jpg" class="w-48" alt="">
+                            </td>
 
                             <td>
                                 <span class="price_product">R$900,00 </span>
@@ -186,7 +190,9 @@
                         <!-- row 2 -->
                         <tr class="cart_product">
                             
-                            <td>Luva</td>
+                            <td>
+                                <img src="/app/views/images/Coroa.jpg" class="w-48" alt="">
+                            </td>
                             <td>
                                 <span class="price_product">R$50,00</span>
                             </td>
@@ -200,7 +206,9 @@
                         <!-- row 3 -->
                         <tr class="cart_product">
                             
-                            <td>Farol Bike</td>
+                            <td>
+                                <img src="/app/views/images/Coroa.jpg" class="w-48" alt="">
+                            </td>
                             <td>
                                 <span class="price_product">R$120,00</span>
                             </td>
@@ -227,6 +235,9 @@
                             <button class="btn">Finalizar Compra</button>
                         </form>
                     </div>
+                    <form method="dialog">
+                        <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                    </form>
                 </div>
             </div>
         </dialog>
@@ -234,8 +245,12 @@
 <!-- <a href="https://wa.me/5511978654859?text=Ol%C3%A1%2C+estou+interessado+no+produto+${ad.name}+%2C+podem+me+dar+mais+informa%C3%A7%C3%B5es%3F"> </a>-->
 
     <script>
-
         
+        
+
+       
+
+            updateTotal()
             const remove_btn = document.getElementsByClassName("remove-button")
             
             for (var i = 0; i < remove_btn.length; i++) {
@@ -249,16 +264,16 @@
 
             const addCart_btn = document.getElementsByClassName("add-cart")
             console.log(addCart_btn)
-
             
             for (var i = 0; i < addCart_btn.length; i++) {
                 addCart_btn[i].addEventListener("click", addProductToCart)
             }
+        
 
             function addProductToCart (event) {
                 button = event.target
                 const parent = button.parentElement.parentElement.parentElement
-                console.log("teste")
+                console.log(parent)
                 
             }
 
@@ -278,7 +293,7 @@
                             
                             const prod_price = cart_product[i].getElementsByClassName("price_product")[0].innerText.replace("R$", "").replace(",", ".")
                             const qty_prod   = cart_product[i].getElementsByClassName("qty_product")[0].value
-                            console.log(prod_price)
+                        
 
                 totalAmount += prod_price * qty_prod
             }
