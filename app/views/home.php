@@ -176,7 +176,7 @@
 
                             <td>
                                 <div class="grid grid-cols-2 gap-2">
-                                    <input type="number" min="1" value="1" class="input input-bordered w-full max-w-xs qtd_product" />
+                                    <input type="number" min="1" value="1" class="input input-bordered w-full max-w-xs qty_product" />
                                     <button class="btn btn-error remove-button">
                                         Remover
                                     </button>
@@ -192,7 +192,7 @@
                             </td>
                             <td>
                                 <div class="grid grid-cols-2 gap-2">
-                                        <input type="number" min="1" value="2" class="input input-bordered w-full max-w-xs qtd_product" />
+                                        <input type="number" min="1" value="2" class="input input-bordered w-full max-w-xs qty_product" />
                                         <button class="btn btn-error remove-button">Remover</button>
                                 </div>
                             </td>
@@ -206,7 +206,7 @@
                             </td>
                             <td>
                                 <div class="grid grid-cols-2 gap-2">
-                                        <input type="number" min="1" value="3" class="input input-bordered w-full max-w-xs qtd_product" />
+                                        <input type="number" min="1" value="3" class="input input-bordered w-full max-w-xs qty_product" />
                                         <button class="btn btn-error remove-button">Remover</button>
                                 </div>
                             </td>
@@ -231,6 +231,7 @@
             </div>
         </dialog>
 
+<!-- <a href="https://wa.me/5511978654859?text=Ol%C3%A1%2C+estou+interessado+no+produto+${ad.name}+%2C+podem+me+dar+mais+informa%C3%A7%C3%B5es%3F"> </a>-->
 
     <script>
 
@@ -241,28 +242,49 @@
             remove_btn[i].addEventListener("click", removeProduct)
             }
 
-        function removeProduct (event) {
-                const parent = event.target.parentElement.parentElement.parentElement
-                parent.remove()
-                calcTotal()
-        }
+            const qty_prod = document.getElementsByClassName("qty_product")
+            for (var i = 0; i < qty_prod.length; i++) {
+                qty_prod[i],addEventListener("change", updateTotal)
+            }
 
-        function calcTotal() {
-            let totalAmount = 0
-            const cart_product = document.getElementsByClassName("cart_product")
-        
-                for (var i = 0; i < cart_product.length; i++) {
-                    
+            const addCart_btn = document.getElementsByClassName("add-cart")
+            console.log(addCart_btn)
+
+            
+            for (var i = 0; i < addCart_btn.length; i++) {
+                addCart_btn[i].addEventListener("click", addProductToCart)
+            }
+
+            function addProductToCart (event) {
+                button = event.target
+                const parent = button.parentElement.parentElement.parentElement
+                console.log("teste")
+                
+            }
+
+            function removeProduct (event) {
+                    const parent = event.target.parentElement.parentElement.parentElement
+                    parent.remove()
+                    updateTotal()
+            }
+
+
+            function updateTotal() {
+                let totalAmount = 0
+                const cart_product = document.getElementsByClassName("cart_product")
+            
+                    for (var i = 0; i < cart_product.length; i++) {
                         
-                        const prod_price = cart_product[i].getElementsByClassName("price_product")[0].innerText.replace("R$", "").replace(",", ".")
-                        const prod_qtd   = cart_product[i].getElementsByClassName("qtd_product")[0].value
-                        console.log(prod_price)
+                            
+                            const prod_price = cart_product[i].getElementsByClassName("price_product")[0].innerText.replace("R$", "").replace(",", ".")
+                            const qty_prod   = cart_product[i].getElementsByClassName("qty_product")[0].value
+                            console.log(prod_price)
 
-            totalAmount += prod_price * prod_qtd
-        }
-            totalAmount = totalAmount.toFixed(2).replace(".", ",")
-            document.querySelector(".total span").innerText = " R$" + totalAmount
-        }
+                totalAmount += prod_price * qty_prod
+            }
+                totalAmount = totalAmount.toFixed(2).replace(".", ",")
+                document.querySelector(".total span").innerText = " R$" + totalAmount
+            }
 
 
         let advertisements = []
@@ -315,7 +337,8 @@
                                 <p class="mt-3 text-lg text-black font-medium">R$${ad.price}</p>
                             </div>
                             <div class="card-body items-center text-center h-96 m-12">
-                                <button id="buy_btn_${ad.id}" class="btn btn-neutral btn-wide bg-orange-500 border-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:ring-orange-300 text-white" onclick="orderAdd('${ad.id}','${ad.name}')"><a href="https://wa.me/5511978654859?text=Ol%C3%A1%2C+estou+interessado+no+produto+${ad.name}+%2C+podem+me+dar+mais+informa%C3%A7%C3%B5es%3F">Adicionar ao carrinho</a></button>
+                                <button id="buy_btn_${ad.id}" class="btn btn-neutral btn-wide bg-orange-500 border-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:ring-orange-300 text-white" onclick="orderAdd('${ad.id}','${ad.name}')" <a href="https://wa.me/5511978654859?text=Ol%C3%A1%2C+estou+interessado+no+produto+${ad.name}+%2C+podem+me+dar+mais+informa%C3%A7%C3%B5es%3F">Comprar</a></button>
+                                <button class="btn btn-neutral btn-wide bg-orange-500 border-orange-500 hover:bg-orange-600 active:bg-orange-700 ocus:ring-orange-300 text-white mt-2 add-cart">Adicionar ao carrinho</button>
                             </div>
                         </div>
                     </div>
