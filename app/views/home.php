@@ -67,7 +67,11 @@
             </div>
         </div>
 
-        <div id="advertisements_container"></div>
+        <div id="advertisements_container">
+            <button class="btn btn-error m-4 test-btn">
+                Teste
+            </button>
+        </div>
 
         <gmp-map class="w-full h-96" center="-23.541576385498047,-46.632240295410156" zoom="14" map-id="DEMO_MAP_ID">
             <gmp-advanced-marker position="-23.541576385498047,-46.632240295410156" title="My location">
@@ -108,7 +112,7 @@
     <div>
         <dialog id="produto" class="rounded-lg bg-white"></dialog>
     </div>
-
+   
 
 
     <!--  <dialog id="modalsemcompra" class="modal modal-bottom sm:modal-middle">
@@ -242,65 +246,83 @@
             </div>
         </dialog>
 
+
 <!-- <a href="https://wa.me/5511978654859?text=Ol%C3%A1%2C+estou+interessado+no+produto+${ad.name}+%2C+podem+me+dar+mais+informa%C3%A7%C3%B5es%3F"> </a>-->
 
     <script>
-        
-        
 
-       
-
-            updateTotal()
-            const remove_btn = document.getElementsByClassName("remove-button")
-            
+        updateTotal()
+        const remove_btn = document.getElementsByClassName("remove-button")
+  
             for (var i = 0; i < remove_btn.length; i++) {
-            remove_btn[i].addEventListener("click", removeProduct)
+                remove_btn[i].addEventListener("click", removeProduct)
             }
-
-            const qty_prod = document.getElementsByClassName("qty_product")
+  
+        const qty_prod = document.getElementsByClassName("qty_product")
             for (var i = 0; i < qty_prod.length; i++) {
                 qty_prod[i],addEventListener("change", updateTotal)
             }
 
+            /*const test_btn = document.getElementsByClassName("test-btn")
+            console.log(test_btn)
+                for (var i = 0; i < test_btn.length; i++) {
+                    test_btn[i].addEventListener("click", teste)
+                        
+                } 
+
+            const buy_btn = document.getElementsByClassName("buy-btn")
+            console.log(buy_btn)
+                for (var i = 0; i < buy_btn.length; i++) {
+                    buy_btn[i].addEventListener("click", buy)
+                } 
+
+            function buy () {
+                console.log("botão buy-btn clicado")
+            } */
+            
+        function addProductToCart (event) {
             const addCart_btn = document.getElementsByClassName("add-cart")
             console.log(addCart_btn)
-            
+
             for (var i = 0; i < addCart_btn.length; i++) {
-                addCart_btn[i].addEventListener("click", addProductToCart)
-            }
-        
+                console("teste22")
+                addCart_btn[i].addEventListener("click", teste)
+                    
+            } 
 
-            function addProductToCart (event) {
-                button = event.target
-                const parent = button.parentElement.parentElement.parentElement
-                console.log(parent)
-                
-            }
-
-            function removeProduct (event) {
-                    const parent = event.target.parentElement.parentElement.parentElement
-                    parent.remove()
-                    updateTotal()
+            function teste () {
+            console.log("botão test-btn clicado")
+            console.log(addCart_btn)
             }
 
+          /*  console.log("teste")
+            button = event.target
+            console.log("teste")
+            const prod_info = button.parentElement.parentElement
+            const prod_img = prod_info.getElementsByClassName("prod-img")[0].src
+            console.log(prod_img) */
+        }
 
-            function updateTotal() {
-                let totalAmount = 0
-                const cart_product = document.getElementsByClassName("cart_product")
+        function removeProduct (event) {
+            const parent = event.target.parentElement.parentElement.parentElement
+            parent.remove()
+            updateTotal()
+        }
+
+
+        function updateTotal() {
+            let totalAmount = 0
+            const cart_product = document.getElementsByClassName("cart_product")
+
+                for (var i = 0; i < cart_product.length; i++) {
+                    const prod_price = cart_product[i].getElementsByClassName("price_product")[0].innerText.replace("R$", "").replace(",", ".")
+                    const qty_prod   = cart_product[i].getElementsByClassName("qty_product")[0].value
             
-                    for (var i = 0; i < cart_product.length; i++) {
-                        
-                            
-                            const prod_price = cart_product[i].getElementsByClassName("price_product")[0].innerText.replace("R$", "").replace(",", ".")
-                            const qty_prod   = cart_product[i].getElementsByClassName("qty_product")[0].value
-                        
-
-                totalAmount += prod_price * qty_prod
-            }
-                totalAmount = totalAmount.toFixed(2).replace(".", ",")
-                document.querySelector(".total span").innerText = " R$" + totalAmount
-            }
-
+            totalAmount += prod_price * qty_prod
+        }
+            totalAmount = totalAmount.toFixed(2).replace(".", ",")
+            document.querySelector(".total span").innerText = " R$" + totalAmount
+        }
 
         let advertisements = []
 
@@ -334,7 +356,7 @@
                                 const image = ad.base64_data[id]
 
                                 return `<div id="slide_ad_${index}" class="carousel-item relative w-full">
-                                <img src="${image}" class="w-full object-scale-down" />
+                                <img src="${image}" class="w-full object-scale-down prod-img" />
                                 <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
                                     <a href="#slide_ad_${index - 1}" class="btn btn-circle">❮</a>
                                     <a href="#slide_ad_${index + 1}" class="btn btn-circle">❯</a>
@@ -353,7 +375,7 @@
                             </div>
                             <div class="card-body items-center text-center h-96 m-12">
                                 <button id="buy_btn_${ad.id}" class="btn btn-neutral btn-wide bg-orange-500 border-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:ring-orange-300 text-white" onclick="orderAdd('${ad.id}','${ad.name}')" <a href="https://wa.me/5511978654859?text=Ol%C3%A1%2C+estou+interessado+no+produto+${ad.name}+%2C+podem+me+dar+mais+informa%C3%A7%C3%B5es%3F">Comprar</a></button>
-                                <button class="btn btn-neutral btn-wide bg-orange-500 border-orange-500 hover:bg-orange-600 active:bg-orange-700 ocus:ring-orange-300 text-white mt-2 add-cart">Adicionar ao carrinho</button>
+                                <button class="btn btn-neutral btn-wide bg-orange-500 border-orange-500 hover:bg-orange-600 active:bg-orange-700 ocus:ring-orange-300 text-white mt-2 add-cart" onclick="addProductToCart()">Adicionar ao carrinho</button>
                             </div>
                         </div>
                     </div>
@@ -369,7 +391,7 @@
                     <p class="md:text-sm text-black">${ad.description}</p>
                     <div class="card-actions justify-end">
                         <p class="mt-3 text-lg text-black font-medium">R$ ${ad.price}</p>
-                        <button id="ad_button_${ad.id}" class="btn btn-primary border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300" onclick="showAd(${ad.id})">Comprar</button>
+                        <button id="ad_button_${ad.id}" class="btn btn-primary border-orange-500 bg-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:ring focus:ring-orange-300 buy-btn" onclick="showAd(${ad.id})">Comprar</button>
                     </div>
                 </div>
             </div>`
@@ -500,6 +522,7 @@
         }
 
         init()
+
     </script>
 
     <!-- <script src="/public/assets/js/script.js"></script> -->
