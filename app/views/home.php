@@ -169,67 +169,7 @@
                         </tr>
                         </thead>
                         <tbody class="tbody-cart">
-                        <!-- row 1 -->
-                        <tr class="cart_product">
-                            <td>
-                                <div class="grid grid-cols-2 gap-2">
-                                    <img src="/app/views/images/Coroa.jpg" class="w-48 mr-2" alt="Titulo">
-                                    <span class=""> Titulo </span>
-                                </div>
-                                
-                            </td>
-
-                            <td>
-                                <span class="price_product">R$900,00 </span>
-                            </td>
-
-                            <td>
-                                <div class="grid grid-cols-2 gap-2">
-                                    <input type="number" min="1" value="1" class="input input-bordered w-full max-w-xs qty_product" />
-                                    <button class="btn btn-error remove-button">
-                                        Remover
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                        <!-- row 2 -->
-                        <tr class="cart_product">
-                            
-                            <td>
-                                <div class="grid grid-cols-2 gap-2">
-                                    <img src="/app/views/images/Coroa.jpg" class="w-48 mr-2" alt="Titulo">
-                                    <span class=""> Titulo </span>
-                                </div>
-                            </td>
-                            <td>
-                                <span class="price_product">R$50,00</span>
-                            </td>
-                            <td>
-                                <div class="grid grid-cols-2 gap-2">
-                                        <input type="number" min="1" value="2" class="input input-bordered w-full max-w-xs qty_product" />
-                                        <button class="btn btn-error remove-button">Remover</button>
-                                </div>
-                            </td>
-                        </tr>
-                        <!-- row 3 -->
-                        <tr class="cart_product">
-                            
-                            <td>
-                                <div class="grid grid-cols-2 gap-1">
-                                    <img src="/app/views/images/Coroa.jpg" class="w-48 mr-2" alt="Titulo">
-                                    <span class=""> Titulo </span>
-                                </div>
-                            </td>
-                            <td>
-                                <span class="price_product">R$120,00</span>
-                            </td>
-                            <td>
-                                <div class="grid grid-cols-2 gap-2">
-                                        <input type="number" min="1" value="3" class="input input-bordered w-full max-w-xs qty_product" />
-                                        <button class="btn btn-error remove-button">Remover</button>
-                                </div>
-                            </td>
-                        </tr>
+                        
                         </tbody>
                         <tr></tr>
                     </table>
@@ -257,18 +197,6 @@
 <!-- <a href="https://wa.me/5511978654859?text=Ol%C3%A1%2C+estou+interessado+no+produto+${ad.name}+%2C+podem+me+dar+mais+informa%C3%A7%C3%B5es%3F"> </a>-->
 
     <script>
-
-        updateTotal()
-        const remove_btn = document.getElementsByClassName("remove-button")
-  
-            for (var i = 0; i < remove_btn.length; i++) {
-                remove_btn[i].addEventListener("click", removeProduct)
-            }
-  
-        const qty_prod = document.getElementsByClassName("qty_product")
-            for (var i = 0; i < qty_prod.length; i++) {
-                qty_prod[i],addEventListener("change", updateTotal)
-            }
             
         function addProductToCart (event) {
             const addCart_btn = document.getElementsByClassName("add-cart")
@@ -279,15 +207,16 @@
             let newCartProduct = document.createElement("tr")
             newCartProduct.classList.add("cart_product")
 
-            newCartProduct.innerHTML = `<td>
+            newCartProduct.innerHTML = 
+                            `<td>
                                 <div class="grid grid-cols-2 gap-1">
-                                    <img src="${(prod_img)}" class="w-48 mr-2">
-                                    <span class=""> ${(prod_name)} </span>
+                                    <img src="${(prod_img)}" class="w-48 mr-2 prod-img">
+                                    <span class="prod-name flex justify-center"> ${(prod_name)} </span>
                                 </div>
                             </td>
 
                             <td>
-                                <span class="price_product">${(prod_price)}</span>
+                                <span class="prod-price">${(prod_price)}</span>
                             </td>
 
                             <td>
@@ -299,9 +228,25 @@
                                 </div>
                             </td>
             `
-          const tBody = document.getElementsByClassName("tbody-cart")
-          console.log(tBody)
-          tBody.append(newCartProduct)
+          const tBody = document.querySelector(".cart-table tbody")
+          tBody.appendChild(newCartProduct)
+
+          updateTotal()
+          updateQty()
+
+          const remove_btn = document.getElementsByClassName("remove-button")
+  
+            for (var i = 0; i < remove_btn.length; i++) {
+                remove_btn[i].addEventListener("click", removeProduct)
+            }
+          
+        }
+
+        function updateQty() {
+            const qty_prod = document.getElementsByClassName("qty_product")
+            for (var i = 0; i < qty_prod.length; i++) {
+                qty_prod[i],addEventListener("change", updateTotal)
+            }
         }
 
         function removeProduct (event) {
@@ -316,7 +261,7 @@
             const cart_product = document.getElementsByClassName("cart_product")
 
                 for (var i = 0; i < cart_product.length; i++) {
-                    const prod_price = cart_product[i].getElementsByClassName("price_product")[0].innerText.replace("R$", "").replace(",", ".")
+                    const prod_price = cart_product[i].getElementsByClassName("prod-price")[0].innerText.replace("R$", "")
                     const qty_prod   = cart_product[i].getElementsByClassName("qty_product")[0].value
             
             totalAmount += prod_price * qty_prod
