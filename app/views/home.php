@@ -68,9 +68,6 @@
         </div>
 
         <div id="advertisements_container">
-            <button class="btn btn-error m-4 test-btn">
-                Teste
-            </button>
         </div>
 
         <gmp-map class="w-full h-96" center="-23.541576385498047,-46.632240295410156" zoom="14" map-id="DEMO_MAP_ID">
@@ -160,9 +157,9 @@
         
    
         <dialog id="carrinho" class="modal">
-            <div class="modal-box">
+            <div class="modal-box w-11/12 max-w-5xl">
                 <div class="overflow-x-auto">
-                    <table class="table">
+                    <table class="table cart-table">
                         <!-- head -->
                         <thead>
                         <tr>
@@ -171,11 +168,15 @@
                             <th>Quantidade</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="tbody-cart">
                         <!-- row 1 -->
                         <tr class="cart_product">
                             <td>
-                                <img src="/app/views/images/Coroa.jpg" class="w-48" alt="">
+                                <div class="grid grid-cols-2 gap-2">
+                                    <img src="/app/views/images/Coroa.jpg" class="w-48 mr-2" alt="Titulo">
+                                    <span class=""> Titulo </span>
+                                </div>
+                                
                             </td>
 
                             <td>
@@ -195,7 +196,10 @@
                         <tr class="cart_product">
                             
                             <td>
-                                <img src="/app/views/images/Coroa.jpg" class="w-48" alt="">
+                                <div class="grid grid-cols-2 gap-2">
+                                    <img src="/app/views/images/Coroa.jpg" class="w-48 mr-2" alt="Titulo">
+                                    <span class=""> Titulo </span>
+                                </div>
                             </td>
                             <td>
                                 <span class="price_product">R$50,00</span>
@@ -211,7 +215,10 @@
                         <tr class="cart_product">
                             
                             <td>
-                                <img src="/app/views/images/Coroa.jpg" class="w-48" alt="">
+                                <div class="grid grid-cols-2 gap-1">
+                                    <img src="/app/views/images/Coroa.jpg" class="w-48 mr-2" alt="Titulo">
+                                    <span class=""> Titulo </span>
+                                </div>
                             </td>
                             <td>
                                 <span class="price_product">R$120,00</span>
@@ -262,45 +269,39 @@
             for (var i = 0; i < qty_prod.length; i++) {
                 qty_prod[i],addEventListener("change", updateTotal)
             }
-
-            /*const test_btn = document.getElementsByClassName("test-btn")
-            console.log(test_btn)
-                for (var i = 0; i < test_btn.length; i++) {
-                    test_btn[i].addEventListener("click", teste)
-                        
-                } 
-
-            const buy_btn = document.getElementsByClassName("buy-btn")
-            console.log(buy_btn)
-                for (var i = 0; i < buy_btn.length; i++) {
-                    buy_btn[i].addEventListener("click", buy)
-                } 
-
-            function buy () {
-                console.log("botão buy-btn clicado")
-            } */
             
         function addProductToCart (event) {
             const addCart_btn = document.getElementsByClassName("add-cart")
-            console.log(addCart_btn)
+            const prod_img    = document.getElementsByClassName("prod-img")[0].src
+            const prod_name   = document.getElementsByClassName("prod-name")[0].innerText
+            const prod_price  = document.getElementsByClassName("prod-price")[0].innerText
 
-            for (var i = 0; i < addCart_btn.length; i++) {
-                console("teste22")
-                addCart_btn[i].addEventListener("click", teste)
-                    
-            } 
+            let newCartProduct = document.createElement("tr")
+            newCartProduct.classList.add("cart_product")
 
-            function teste () {
-            console.log("botão test-btn clicado")
-            console.log(addCart_btn)
-            }
+            newCartProduct.innerHTML = `<td>
+                                <div class="grid grid-cols-2 gap-1">
+                                    <img src="${(prod_img)}" class="w-48 mr-2">
+                                    <span class=""> ${(prod_name)} </span>
+                                </div>
+                            </td>
 
-          /*  console.log("teste")
-            button = event.target
-            console.log("teste")
-            const prod_info = button.parentElement.parentElement
-            const prod_img = prod_info.getElementsByClassName("prod-img")[0].src
-            console.log(prod_img) */
+                            <td>
+                                <span class="price_product">${(prod_price)}</span>
+                            </td>
+
+                            <td>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <input type="number" min="1" value="1" class="input input-bordered w-full max-w-xs qty_product" />
+                                    <button class="btn btn-error remove-button">
+                                        Remover
+                                    </button>
+                                </div>
+                            </td>
+            `
+          const tBody = document.getElementsByClassName("tbody-cart")
+          console.log(tBody)
+          tBody.append(newCartProduct)
         }
 
         function removeProduct (event) {
@@ -343,7 +344,8 @@
         }
 
         function buildAdvertisement(ad) {
-            return `<div class="max-w-5xl w-full">
+            return `
+            <div class="max-w-5xl w-full modal-parent">
                 <div class="lg:flex bg-base-100 shadow-xl">
                     <div class="modal-action ml-auto">
                         <form method="dialog">
@@ -369,9 +371,9 @@
                     <div class="m-12">
                         <div class="card w-96 bg-base-100">
                             <div class="w-full p-5">
-                                <h3 class="font-bold text-2xl">${ad.name}</h3>
+                                <span class="font-bold text-2xl prod-name">${ad.name}</span>
                                 <p class="text-lg">${ad.description}</p>
-                                <p class="mt-3 text-lg text-black font-medium">R$${ad.price}</p>
+                                <span class="mt-3 text-lg text-black font-medium prod-price">R$${ad.price}</span>
                             </div>
                             <div class="card-body items-center text-center h-96 m-12">
                                 <button id="buy_btn_${ad.id}" class="btn btn-neutral btn-wide bg-orange-500 border-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:ring-orange-300 text-white" onclick="orderAdd('${ad.id}','${ad.name}')" <a href="https://wa.me/5511978654859?text=Ol%C3%A1%2C+estou+interessado+no+produto+${ad.name}+%2C+podem+me+dar+mais+informa%C3%A7%C3%B5es%3F">Comprar</a></button>
