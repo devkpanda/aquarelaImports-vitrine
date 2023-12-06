@@ -61,7 +61,7 @@
                         $("#login-loading").hide(100)
                         $("#result").html("<p class='text-red-500'> Por Favor Insira seus dados<p>")
                     } else {
-                        fetch("https://aquarelaimports.hostdeprojetosdoifsp.gru.br/login/auth", {
+                        fetch("http://localhost/login/auth", {
                             method: "POST",
                             headers: {
                                 'Origin': 'https://aquarelaimports.hostdeprojetosdoifsp.gru.br', // O domínio do seu site
@@ -82,7 +82,8 @@
                         })
                         .then(data => {
                             if (data.message == "0") {
-                                fetch("https://aquarelaimports.hostdeprojetosdoifsp.gru.br/adm", {
+                                //https://aquarelaimports.hostdeprojetosdoifsp.gru.br/adm
+                                fetch("http://localhost/adm", {
                                     method: "GET",
                                     headers: {
                                         'Origin': 'https://aquarelaimports.hostdeprojetosdoifsp.gru.br',

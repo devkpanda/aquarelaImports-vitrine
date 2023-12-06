@@ -19,7 +19,10 @@
 
 <body class="bg-white">
     <div>
-        <div id="navbar" class="h-28 bg-black grid-cols-1 flex justify-center items-center">
+        <div id="navbar" class="h-28 bg-black flex justify-between items-center">
+            <div>
+
+            </div>
             <form id="src_form" class="form-control">
                 <div class="input-group ">
                     <input id="src_input" type="text" placeholder="Pesquise seu produto aqui" class="input input-bordered" />
@@ -30,19 +33,20 @@
                     </button>
                 </div>
             </form>
-            <div class="flex-none">
+            <div class="flex justify-end">
                 <div class="dropdown dropdown-end">
-                <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
-                <div class="indicator">
-                    <button onclick="carrinhoVazio.showModal()" class="">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-                        <!-- <span class="badge badge-sm indicator-item cart-qty"> 0 </span> -->
-                    </button>
+                    <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+                        <div class="indicator flex mr-2">
+                            <button onclick="carrinho.showModal()" class="cart">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                                <!-- <span class="badge badge-sm indicator-item cart-qty"> 0 </span> -->
+                            </button>
+                        </div>
+                    </div>
                 </div>
-        </div>
-        </div>
-        </div>
+            </div>
     </div>
+
     <nav id="categorias" class="min-w-full bg-orange-500 flex justify-center items-center gap-px">
     </nav>
 
@@ -213,10 +217,12 @@
 
            /* const cart_qty = document.getElementsByClassName("cart-qty")[0].innerText.
             const a = parseInt(cart_qty)
-            console.log(a) */
+            console.log(a) 
+            const cart = document.getElementsByClassName("cart")
+            console.log(cart) */
+        
 
-
-        function addProductToCart (event) {
+        function addProductToCart (ad) {
             const addCart_btn = document.getElementsByClassName("add-cart")
             const prod_img    = document.getElementsByClassName("prod-img")[0].src
             const prod_name   = document.getElementsByClassName("prod-name")[0].innerText
@@ -235,6 +241,9 @@
 
             let newCartProduct = document.createElement("tr")
             newCartProduct.classList.add("cart_product")
+
+            // ${image}, ${ad.name}, ${ad.price}, ${ad.id}
+            // ${(prod_img)}, ${(prod_name)}, ${(prod_price)}
 
             newCartProduct.innerHTML = 
                             `<td>
@@ -272,10 +281,6 @@
          //   "https://wa.me/5511978654859?text=Ol%C3%A1%2C+estou+interessado+no+produto+${ad.name}+%2C+podem+me+dar+mais+informa%C3%A7%C3%B5es%3F"
          //     https://api.whatsapp.com/send/?phone=5511978654859&text=Ol%C3%A1%2C+estou+interessado+no(s)+produto(s)+%24{ad.name}+%2C+podem+me+dar+mais+informa%C3%A7%C3%B5es%3F&type=phone_number&app_absent=0
           
-        }
-
-        function UrlCart () {
-
         }
 
         function updateQty() {
