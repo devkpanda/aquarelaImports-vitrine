@@ -30,6 +30,17 @@
                     </button>
                 </div>
             </form>
+            <div class="flex-none">
+                <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle">
+                <div class="indicator">
+                    <button onclick="carrinho.showModal()" class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                        <span class="badge badge-sm indicator-item cart-qty">0</span>
+                    </button>
+                </div>
+        </div>
+        </div>
         </div>
     </div>
     <nav id="categorias" class="min-w-full bg-orange-500 flex justify-center items-center gap-px">
@@ -148,16 +159,27 @@
         </form>
     </dialog>
 
+
     <!--botão carrinho-->
-        <div class="absolute -bottom-20 right-2">
+        <div class="absolute -bottom-90 right-2">
             <button onclick="carrinho.showModal()">
                     <img class="mask mask-circle w-36" src="/app/views/images/cart.jpg"/>
             </button>
         </div>
+
+        <dialog id="carrinhoVazio" class="modal">
+            <div class="modal-box">
+                <form method="dialog">
+                    <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                </form>
+                <h3 class="font-bold text-lg">Carrinho Vazio.</h3>
+                <p class="py-4">Adicione produtos!</p>
+            </div>
+        </dialog>
         
    
         <dialog id="carrinho" class="modal">
-            <div class="modal-box w-11/12 max-w-5xl">
+            <div class="modal-box w-6/12 max-w-5xl">
                 <div class="overflow-x-auto">
                     <table class="table cart-table">
                         <!-- head -->
@@ -169,7 +191,6 @@
                         </tr>
                         </thead>
                         <tbody class="tbody-cart">
-                        
                         </tbody>
                         <tr></tr>
                     </table>
@@ -197,12 +218,26 @@
 <!-- <a href="https://wa.me/5511978654859?text=Ol%C3%A1%2C+estou+interessado+no+produto+${ad.name}+%2C+podem+me+dar+mais+informa%C3%A7%C3%B5es%3F"> </a>-->
 
     <script>
+
             
+
+
         function addProductToCart (event) {
             const addCart_btn = document.getElementsByClassName("add-cart")
             const prod_img    = document.getElementsByClassName("prod-img")[0].src
             const prod_name   = document.getElementsByClassName("prod-name")[0].innerText
             const prod_price  = document.getElementsByClassName("prod-price")[0].innerText
+
+            const cart_prod_name = document.getElementsByClassName("cart-prod-name")
+
+            for (let i = 0; i < cart_prod_name.length; i++) {
+                if (cart_prod_name[i].innerText == prod_name) {
+                    cart_prod_name[i].parentElement.parentElement.parentElement.parentElement.getElementsByClassName("qty_product")[0].value++
+                    updateTotal()
+                    return
+                }
+                
+            }
 
             let newCartProduct = document.createElement("tr")
             newCartProduct.classList.add("cart_product")
@@ -211,7 +246,9 @@
                             `<td>
                                 <div class="grid grid-cols-2 gap-1">
                                     <img src="${(prod_img)}" class="w-48 mr-2 prod-img">
-                                    <span class="prod-name flex justify-center"> ${(prod_name)} </span>
+                                    <div class="flex justify-center items-center ml-4">
+                                        <span class="cart-prod-name font-bold text-xs"> ${(prod_name)} </span>
+                                    </div>
                                 </div>
                             </td>
 
@@ -221,25 +258,30 @@
 
                             <td>
                                 <div class="grid grid-cols-2 gap-2">
-                                    <input type="number" min="1" value="1" class="input input-bordered w-full max-w-xs qty_product" />
-                                    <button class="btn btn-error remove-button">
+                                    <input type="number" min="1" value="1" class="input input-bordered w-6/12 max-w-xs qty_product" />
+                                    <button class="btn bg-black text-white remove-button w-24 ml-4">
                                         Remover
                                     </button>
                                 </div>
                             </td>
+                            
             `
+
           const tBody = document.querySelector(".cart-table tbody")
           tBody.appendChild(newCartProduct)
 
           updateTotal()
           updateQty()
 
-          const remove_btn = document.getElementsByClassName("remove-button")
-  
-            for (var i = 0; i < remove_btn.length; i++) {
-                remove_btn[i].addEventListener("click", removeProduct)
-            }
+          newCartProduct.getElementsByClassName("remove-button")[0].addEventListener("click", removeProduct)
+
+         //   "https://wa.me/5511978654859?text=Ol%C3%A1%2C+estou+interessado+no+produto+${ad.name}+%2C+podem+me+dar+mais+informa%C3%A7%C3%B5es%3F"
+         //     https://api.whatsapp.com/send/?phone=5511978654859&text=Ol%C3%A1%2C+estou+interessado+no(s)+produto(s)+%24{ad.name}+%2C+podem+me+dar+mais+informa%C3%A7%C3%B5es%3F&type=phone_number&app_absent=0
           
+        }
+
+        function UrlCart () {
+
         }
 
         function updateQty() {
