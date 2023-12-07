@@ -221,8 +221,9 @@
             const cart = document.getElementsByClassName("cart")
             console.log(cart) */
         
-
+            let count = 0
         function addProductToCart (ad) {
+            
             const addCart_btn = document.getElementsByClassName("add-cart")
             const prod_img    = document.getElementsByClassName("prod-img")[0].src
             const prod_name   = document.getElementsByClassName("prod-name")[0].innerText
@@ -231,13 +232,18 @@
             const cart_prod_name = document.getElementsByClassName("cart-prod-name")
 
             for (let i = 0; i < cart_prod_name.length; i++) {
+
                 if (cart_prod_name[i].innerText == prod_name) {
                     cart_prod_name[i].parentElement.parentElement.parentElement.parentElement.getElementsByClassName("qty_product")[0].value++
                     updateTotal()
+                    count += 1
+                    console.log(count)
                     return
                 }
                 
             }
+            count += 1
+            console.log(count)
 
             let newCartProduct = document.createElement("tr")
             newCartProduct.classList.add("cart_product")
@@ -467,6 +473,10 @@
         function orderAdd(advertisementId, advertisementName) {
             event.preventDefault()
 
+            for (let i = 0; i < array.length; i++) {
+                
+                
+            }
             fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/order/add', {
                     method: 'POST',
                     headers: {
