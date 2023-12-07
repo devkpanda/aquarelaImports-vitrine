@@ -6,29 +6,32 @@ use core\database\DBQuery;
 
     class Cart {
         private $id;
-        private $advertisement_id;
-        private $advertisement_name;
+        private $product_id;
+        private $product_name;
+        private $product_qty;
         private $cart_id;
 
         private $dbquery;
 
-        function __construct ($id, $advertisement_id, $advertisement_name, $cart_id) {
+        function __construct ($id, $product_id, $product_name, $product_qty, $cart_id) {
             $tableName = "cart";
-            $fieldsName = "id, advertisement_id, advsertisement_name, cart_id";
+            $fieldsName = "id, product_id, product_name, product_qty, cart_id";
             $fieldKey = "id";
             $this->dbquery = new DBQuery($tableName, $fieldsName, $fieldKey);
     
             $this->setId($id);
-            $this->setAdvertisement_id($advertisement_id);
-            $this->setAdvertisement_name($advertisement_name);
+            $this->setProduct_id($product_id);
+            $this->setProduct_name($product_name);
+            $this->setProduct_qty($product_qty);
             $this->setCart_id($cart_id);
         }
 
         public function toArray(){
             return array(
                 $this->getId(),
-                $this->getAdvertisement_id(),
-                $this->getAdvertisement_name(),
+                $this->getProduct_id(),
+                $this->getProduct_name(),
+                $this->getProduct_qty(),
                 $this->getCart_id()
             );
         }
@@ -66,12 +69,13 @@ use core\database\DBQuery;
             
             if ($rSet) {
                 foreach ($rSet as $linha) {
-                    $id                 = $linha['id'];
-                    $advertisement_id   = $linha['advertisement_id'];
-                    $advertisement_name = $linha['advertisement_name'];
-                    $cart_id            = $linha['cart_id'];
+                    $id           = $linha['id'];
+                    $product_id   = $linha['product_id'];
+                    $product_name = $linha['product_name'];
+                    $product_qty  = $linha['product_qty'];
+                    $cart_id      = $linha['cart_id'];
                     
-                    $carts[] = new Cart($id, $advertisement_id, $advertisement_name, $cart_id);
+                    $carts[] = new Cart($id, $product_id, $product_name, $product_qty, $cart_id);
                 }
             } else {
                 $carts[] = array();
@@ -99,26 +103,38 @@ use core\database\DBQuery;
                 return $this;
         }
 
-        public function getAdvertisement_id()
+        public function getProduct_id()
         {
-                return $this->advertisement_id;
+                return $this->product_id;
         }
 
-        public function setAdvertisement_id($advertisement_id)
+        public function setProduct_id($product_id)
         {
-                $this->advertisement_id = $advertisement_id;
+                $this->product_id = $product_id;
 
                 return $this;
         }
 
-        public function getAdvertisement_name()
+        public function getProduct_name()
         {
-                return $this->advertisement_name;
+                return $this->product_name;
         }
 
-        public function setAdvertisement_name($advertisement_name)
+        public function setProduct_name($product_name)
         {
-                $this->advertisement_name = $advertisement_name;
+                $this->product_name = $product_name;
+
+                return $this;
+        }
+
+        public function getProduct_qty()
+        {
+                return $this->product_qty;
+        }
+
+        public function setProduct_qty($product_qty)
+        {
+                $this->product_qty = $product_qty;
 
                 return $this;
         }
