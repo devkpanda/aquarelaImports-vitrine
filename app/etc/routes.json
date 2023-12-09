@@ -168,7 +168,7 @@
         "errorPath": "app/views/home.php"
     },
     "cart/add": {
-        "path": "public/assets/CtrlCart.php",
+        "path": "app/controllers/CtrlCart.php",
         "sessionKey": [{ "idUsuario": false }],
         "sanitize": { "requestVars": true, "code": true, "sql": true },
         "errorPath": "app/views/home.php"

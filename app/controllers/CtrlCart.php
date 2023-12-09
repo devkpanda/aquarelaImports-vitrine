@@ -1,7 +1,7 @@
 <?php
 
 use core\database\Where;
-use models\Order;
+use models\Cart;
 
 // accept CORS requests
 
@@ -46,26 +46,26 @@ if ($uriPath == '/cart/add') {
 
                     if ($cart->save()) {
                         echo json_encode(array(
-                            'product_id_1' => $product_id
+                            'product_id' => $product_id
                         ));
                         $where = new Where();
                         $where->addCondition('AND', 'product_id', '=', $product_id);
-                        $result = $cart->listAdvertisements($where);
+                        $result = $cart->listCarts($where);
                         
                         $success = "";
 
-                    /*    foreach ($base64_data as $photo) {
+                        foreach ($product_name as $order) {
                             echo json_encode(array(
-                                'advertisement_id' => $result[0]->getId(),
-                                'photo' => $photo
+                                'advertisement_id' => $result[0]->getProduct_id(),
+                                'order' => $order
                             ));
-                            $photo = new Photo(0, $result[0]->getId(), $photo, '');
-                            if ($photo->save()) {
-                                echo json_encode(array('message' => 'foto inserida'));
+                            $order = new Order(0, $result[0]->getProduct_id(), $order);
+                            if ($order->save()) {
+                                echo json_encode(array('message' => 'pedido inserido'));
                             } else {
                                 $success = false;
                             }
-                        } */
+                        } 
 
                         if ($success === false){
                             http_response_code(400);
