@@ -2,6 +2,7 @@
 
 use core\database\Where;
 use models\Cart;
+use models\Order;
 
 // accept CORS requests
 
@@ -47,33 +48,15 @@ if ($uriPath == '/cart/add') {
                     if ($cart->save()) {
                         echo json_encode(array(
                             'product_id' => $product_id
-                        ));
-                        $where = new Where();
-                        $where->addCondition('AND', 'product_id', '=', $product_id);
-                        $result = $cart->listCarts($where);
-                        
-                        $success = "";
+                        )); 
 
-                        foreach ($product_name as $order) {
-                            echo json_encode(array(
-                                'advertisement_id' => $result[0]->getProduct_id(),
-                                'order' => $order
-                            ));
-                            $order = new Order(0, $result[0]->getProduct_id(), $order);
+                        $order = new Order(0, $product_id, $product_name);
+
                             if ($order->save()) {
                                 echo json_encode(array('message' => 'pedido inserido'));
                             } else {
-                                $success = false;
+                                echo json_encode(array('message' => 'erro ao inserir o pedido'));
                             }
-                        } 
-
-                        if ($success === false){
-                            http_response_code(400);
-                            die(json_encode(array('message' => 'Houve um erro ao adicionar o carrinho')));
-                        } else {
-                            http_response_code(200);
-                            die(json_encode(array('message' => 'Carrinho inserido com sucesso')));
-                        }
                     } else {
                         http_response_code(400);
                         die(json_encode(array('message' => 'Houve um erro ao adicionar o anúncio')));

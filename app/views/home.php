@@ -200,7 +200,7 @@
                     <div class="modal-action">
                         <form method="dialog">
                             <!-- if there is a button in form, it will close the modal -->
-                            <button class="btn">Finalizar Compra</button>
+                            <button class="btn" onclick="orderAdd('${ad.id}','${ad.name}')">Finalizar Compra</button>
                         </form>
                     </div>
                     <form method="dialog">
@@ -470,21 +470,22 @@
             }
         }
 
-        function orderAdd(advertisementId, advertisementName) {
+        function orderAdd(productId, productName) {
             event.preventDefault()
 
             for (let i = 0; i < array.length; i++) {
                 
                 
             }
-            fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/order/add', {
+            fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/cart/add', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        advertisement_id: advertisementId,
-                        advertisement_name: advertisementName
+                        product_id: productId,
+                        product_name:productName
+                        
                     })
                 })
                 .then(response => response.json())
