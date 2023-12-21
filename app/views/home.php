@@ -220,14 +220,30 @@
             console.log(a) 
             const cart = document.getElementsByClassName("cart")
             console.log(cart) */
+
+            let advertisements = []
+
+            let localCategories = []
+
+            let cart = []
         
-            let count = 0
-        function addProductToCart (ad) {
-            
+            let countItem = 0
+            let countProduct = 0
+
+        function addProductToCart (advertisementId) {
+
+            const advertisement = advertisements.find(ad => ad.id == advertisementId)
+            console.log(advertisement)
+
+          //  const response = fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/advertisement/add')
+          //  console.log(response)
+
             const addCart_btn = document.getElementsByClassName("add-cart")
+
             const prod_img    = document.getElementsByClassName("prod-img")[0].src
             const prod_name   = document.getElementsByClassName("prod-name")[0].innerText
             const prod_price  = document.getElementsByClassName("prod-price")[0].innerText
+            
 
             const cart_prod_name = document.getElementsByClassName("cart-prod-name")
 
@@ -248,15 +264,16 @@
             let newCartProduct = document.createElement("tr")
             newCartProduct.classList.add("cart_product")
 
-            // ${image}, ${ad.name}, ${ad.price}, ${ad.id}
+            // ${ad.image}, ${ad.name}, ${ad.price}, ${ad.id}
             // ${(prod_img)}, ${(prod_name)}, ${(prod_price)}
 
             newCartProduct.innerHTML = 
                             `<td>
                                 <div class="grid grid-cols-2 gap-1">
-                                    <img src="${(prod_img)}" class="w-48 mr-2 prod-img">
+
+                                <img src="${ad.base64_data ? ad.base64_data[0] : "?"}" class="w-48 mr-2 prod-img" />
                                     <div class="flex justify-center items-center ml-4">
-                                        <span class="cart-prod-name font-bold text-xs"> ${(prod_name)} </span>
+                                        <span class="cart-prod-name font-bold text-xs"> ${ad.name} </span>
                                     </div>
                                 </div>
                             </td>
@@ -273,14 +290,19 @@
                                     </button>
                                 </div>
                             </td>
+                            `
                             
-            `
+            
 
           const tBody = document.querySelector(".cart-table tbody")
           tBody.appendChild(newCartProduct)
 
           updateTotal()
           updateQty()
+
+         // count += 1
+         // console.log(countProdutct)
+          
 
           newCartProduct.getElementsByClassName("remove-button")[0].addEventListener("click", removeProduct)
 
@@ -317,9 +339,9 @@
             document.querySelector(".total span").innerText = " R$" + totalAmount
         }
 
-        let advertisements = []
+       // let advertisements = []
 
-        let localCategories = []
+       // let localCategories = []
 
         function buildCategory(category, ad) {
             const element = document.createElement("div")
@@ -369,7 +391,7 @@
                             </div>
                             <div class="card-body items-center text-center h-96 m-12">
                                 <button id="buy_btn_${ad.id}" class="btn btn-neutral btn-wide bg-orange-500 border-orange-500 hover:bg-orange-600 active:bg-orange-700 focus:ring-orange-300 text-white" onclick="orderAdd('${ad.id}','${ad.name}')" <a href="https://wa.me/5511978654859?text=Ol%C3%A1%2C+estou+interessado+no+produto+${ad.name}+%2C+podem+me+dar+mais+informa%C3%A7%C3%B5es%3F">Comprar</a></button>
-                                <button class="btn btn-neutral btn-wide bg-orange-500 border-orange-500 hover:bg-orange-600 active:bg-orange-700 ocus:ring-orange-300 text-white mt-2 add-cart" onclick="addProductToCart()">Adicionar ao carrinho</button>
+                                <button class="btn btn-neutral btn-wide bg-orange-500 border-orange-500 hover:bg-orange-600 active:bg-orange-700 ocus:ring-orange-300 text-white mt-2 add-cart" onclick="addProductToCart(${ad.id})">Adicionar ao carrinho</button>
                             </div>
                         </div>
                     </div>
@@ -464,6 +486,7 @@
         function showAd(advertisementId) {
             const advertisement = advertisements.find(ad => ad.id == advertisementId)
 
+
             if (advertisement) {
                 produto.innerHTML = buildAdvertisement(advertisement)
                 produto.showModal()
@@ -484,14 +507,14 @@
                     },
                     body: JSON.stringify({
                         product_id: productId,
-                        product_name:productName
+                        product_name: productName
                         
                     })
                 })
                 .then(response => response.json())
-                .then(uri => {
-                    window.location.href = `https://wa.me/5511978654859?text=Ol%C3%A1%2C+estou+interessado+no+produto+${advertisementName}+%2C+podem+me+dar+mais+informa%C3%A7%C3%B5es%3F`
-                })
+               // .then(uri => {
+                //    window.location.href = `https://wa.me/5511978654859?text=Ol%C3%A1%2C+estou+interessado+no+produto+${advertisementName}+%2C+podem+me+dar+mais+informa%C3%A7%C3%B5es%3F`
+              //  })
         }
 
         async function init() {

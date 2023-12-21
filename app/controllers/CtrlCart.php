@@ -34,16 +34,16 @@ if ($uriPath == '/cart/add') {
                 http_response_code(400);
                 echo json_encode(array('message' => 'Empty json'));
             } else {
-                 if (!isset($data['product_id']) || !isset($data['product_name']) || !isset($data['product_qty']) || !isset($data['cart_id'])) {
+                 if (!isset($data['product_id']) || !isset($data['product_name']) /*|| !isset($data['product_qty']) || !isset($data['cart_id']) */) {
                     http_response_code(400);
                     die(json_encode(array('message' => 'unexpected JSON')));
                 } else {
                     $product_id   = $data['product_id'];
                     $product_name = $data['product_name'];
-                    $product_qty  = $data ['product_qty'];
-                    $cart_id      = $data ['cart_id'];
+                    //$product_qty  = $data ['product_qty'];
+                    //$cart_id      = $data ['cart_id'];
 
-                    $cart = new Cart(0, $product_id, $product_name, $product_qty, $cart_id);
+                    $cart = new Cart(0, $product_id, $product_name, '', '');
 
                     if ($cart->save()) {
                         echo json_encode(array(
