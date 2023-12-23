@@ -187,6 +187,7 @@
                         </tr>
                         </thead>
                         <tbody class="tbody-cart">
+                            <!-- <tr> </tr> -->
                         </tbody>
                         <tr></tr>
                     </table>
@@ -226,26 +227,56 @@
             let localCategories = []
 
             let cart = []
+
+            
+
+
+           /* let ProductId = [1,2]
+            let ProductName = ["a", "b"]
+
+            let ProductsCart = [ProductId, ProductName]
+
+            console.log(ProductsCart[1][1] ) */
         
             let countItem = 0
             let countProduct = 0
 
+            let ProductsCart = []
+
         function addProductToCart (advertisementId) {
 
             const advertisement = advertisements.find(ad => ad.id == advertisementId)
-            
+            const adId = advertisement.id
+            const adName = advertisement.name
 
-            //buildCart()
+            console.log(advertisements)
+            
+            let obj = {}
+
+            obj.product_id = adId
+            obj.product_name = adName
+
+            ProductsCart.push(obj)
+
+
+
+            
+           // ProductsCart.push(adId, adName)
+            console.log(obj)
+            console.log(ProductsCart)
 
             buildCart(advertisement)
          
             updateTotal()
             updateQty()
 
+
          //   "https://wa.me/5511978654859?text=Ol%C3%A1%2C+estou+interessado+no+produto+${ad.name}+%2C+podem+me+dar+mais+informa%C3%A7%C3%B5es%3F"
          //     https://api.whatsapp.com/send/?phone=5511978654859&text=Ol%C3%A1%2C+estou+interessado+no(s)+produto(s)+%24{ad.name}+%2C+podem+me+dar+mais+informa%C3%A7%C3%B5es%3F&type=phone_number&app_absent=0
           
         }
+        
+        
 
         function buildCart(ad) {
 
@@ -328,10 +359,6 @@
             totalAmount = totalAmount.toFixed(2).replace(".", ",")
             document.querySelector(".total span").innerText = " R$" + totalAmount
         }
-
-       // let advertisements = []
-
-       // let localCategories = []
 
         function buildCategory(category, ad) {
             const element = document.createElement("div")
@@ -482,6 +509,8 @@
                 produto.showModal()
             }
         }
+
+        
 
         function orderAdd(advertisementId, advertisementName) {
             event.preventDefault()
