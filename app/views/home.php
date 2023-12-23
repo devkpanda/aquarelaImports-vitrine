@@ -201,7 +201,7 @@
                     <div class="modal-action">
                         <form method="dialog">
                             <!-- if there is a button in form, it will close the modal -->
-                            <button class="btn" onclick="orderAdd('${ad.id}','${ad.name}')">Finalizar Compra</button>
+                            <button class="btn" onclick="orderAdd()">Finalizar Compra</button>
                         </form>
                     </div>
                     <form method="dialog">
@@ -241,29 +241,15 @@
             let countItem = 0
             let countProduct = 0
 
-            let ProductsCart = []
+            let productsCart = []
 
         function addProductToCart (advertisementId) {
 
             const advertisement = advertisements.find(ad => ad.id == advertisementId)
             const adId = advertisement.id
             const adName = advertisement.name
-
-            console.log(advertisements)
-            
-            let obj = {}
-
-            obj.product_id = adId
-            obj.product_name = adName
-
-            ProductsCart.push(obj)
-
-
-
-            
-           // ProductsCart.push(adId, adName)
-            console.log(obj)
-            console.log(ProductsCart)
+        
+            ProductCart(adId, adName)
 
             buildCart(advertisement)
          
@@ -274,6 +260,17 @@
          //   "https://wa.me/5511978654859?text=Ol%C3%A1%2C+estou+interessado+no+produto+${ad.name}+%2C+podem+me+dar+mais+informa%C3%A7%C3%B5es%3F"
          //     https://api.whatsapp.com/send/?phone=5511978654859&text=Ol%C3%A1%2C+estou+interessado+no(s)+produto(s)+%24{ad.name}+%2C+podem+me+dar+mais+informa%C3%A7%C3%B5es%3F&type=phone_number&app_absent=0
           
+        }
+
+        function ProductCart (adId, adName) {
+            let obj = {}
+
+            obj.product_id = adId
+            obj.product_name = adName
+
+            productsCart.push(obj)
+
+            return productsCart
         }
         
         
@@ -512,22 +509,35 @@
 
         
 
-        function orderAdd(advertisementId, advertisementName) {
+        function orderAdd() {
             event.preventDefault()
-            console.log("orderAdd")
+            console.log(productsCart)
 
-            for (let i = 0; i < array.length; i++) {
-                
-                
-            }
-            fetch('http://localhost/cart/add', {
+           for (let i = 0; i < productsCart.length; i++) {
+                const product_id   = productsCart[i].product_id
+                const product_name = productsCart[i].product_name
+
+                fetch('http://localhost/cart/add', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        product_id: advertisementId,
-                        product_name: advertisementName
+                        product_id: product_id,
+                        product_name: product_name
+                    })
+                })
+                .then(response => response.json())
+            }
+
+           /* fetch('http://localhost/cart/add', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        product_id: productId,
+                        product_name: productName
                         
                     })
                 })
