@@ -125,8 +125,6 @@
         <dialog id="produto" class="rounded-lg bg-white"></dialog>
     </div>
    
-
-
     <!--  <dialog id="modalsemcompra" class="modal modal-bottom sm:modal-middle">
         <form method="dialog" class="modal-box bg-slate-100">
             <h3 class="font-bold text-lg text-black">Olá Cliente! Desculpe-nos pelo inconveniente mas nosso site ainda
@@ -201,7 +199,7 @@
                     <div class="modal-action">
                         <form method="dialog">
                             <!-- if there is a button in form, it will close the modal -->
-                            <button class="btn" onclick="orderAdd()">Finalizar Compra</button>
+                            <button class="btn" onclick="cartAdd()">Finalizar Compra</button>
                         </form>
                     </div>
                     <form method="dialog">
@@ -216,27 +214,11 @@
 
     <script>
 
-           /* const cart_qty = document.getElementsByClassName("cart-qty")[0].innerText.
-            const a = parseInt(cart_qty)
-            console.log(a) 
-            const cart = document.getElementsByClassName("cart")
-            console.log(cart) */
-
             let advertisements = []
 
             let localCategories = []
 
             let cart = []
-
-            
-
-
-           /* let ProductId = [1,2]
-            let ProductName = ["a", "b"]
-
-            let ProductsCart = [ProductId, ProductName]
-
-            console.log(ProductsCart[1][1] ) */
         
             let countItem = 0
             let countProduct = 0
@@ -267,6 +249,7 @@
 
             obj.product_id = adId
             obj.product_name = adName
+
 
             productsCart.push(obj)
 
@@ -313,7 +296,7 @@
                             <td>
                                 <div class="grid grid-cols-2 gap-2">
                                     <input type="number" min="1" value="1" class="input input-bordered w-6/12 max-w-xs qty_product" />
-                                    <button class="btn bg-black text-white remove-button w-24 ml-4">
+                                    <button class="btn bg-black text-white remove-button w-24 ml-4" onclick="remove(${ad.id})">
                                         Remover
                                     </button>
                                 </div>
@@ -334,6 +317,22 @@
             for (var i = 0; i < qty_prod.length; i++) {
                 qty_prod[i],addEventListener("change", updateTotal)
             }
+        }
+
+        function remove(advertisementId) {
+            const advertisement = advertisements.find(ad => ad.id == advertisementId)
+            const adId = advertisement.id
+
+            const productRemove = productsCart.find(p => p.product_id == adId)
+
+            var index = productsCart.map(function(e) {
+                return e.product_id;
+            }).indexOf(productRemove.product_id);
+
+            productsCart.splice(index, 1);
+
+            return productsCart
+
         }
 
         function removeProduct (event) {
@@ -508,62 +507,30 @@
         }
 
         
-
-        function orderAdd() {
+        function cartAdd() {
             event.preventDefault()
-            console.log(productsCart)
 
-           for (let i = 0; i < productsCart.length; i++) {
-                const product_id   = productsCart[i].product_id
-                const product_name = productsCart[i].product_name
+            if ( !productsCart.lenght == 0 ) {
+                for (let i = 0; i < productsCart.length; i++) {
+                    const product_id   = productsCart[i].product_id
+                    const product_name = productsCart[i].product_name
 
-                fetch('http://localhost/cart/add', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        product_id: product_id,
-                        product_name: product_name
+                    fetch('http://localhost/cart/add', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            product_id: product_id,
+                            product_name: product_name
+                        })
                     })
-                })
-                .then(response => response.json())
+                    .then(response => response.json())
+                }
+            } else {
+                console.log("carrinho vazio")
             }
-
-           /* fetch('http://localhost/cart/add', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        product_id: productId,
-                        product_name: productName
-                        
-                    })
-                })
-                .then(response => response.json())
-                /*.then(uri => {
-                   window.location.href = `https://wa.me/5511978654859?text=Ol%C3%A1%2C+estou+interessado+no+produto+tal+%2C+podem+me+dar+mais+informa%C3%A7%C3%B5es%3F`
-                }) */
         }
-
-      /*  function orderAdd(advertisementId, advertisementName) {
-            event.preventDefault()
-            fetch('http://localhost/order/add', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    advertisement_id: advertisementId,
-                    advertisement_name: advertisementName
-                })
-            })
-            .then(response => response.json())
-            .then(uri => {
-                window.location.href = `https://wa.me/5511978654859?text=Ol%C3%A1%2C+estou+interessado+no+produto+${advertisementName}+%2C+podem+me+dar+mais+informa%C3%A7%C3%B5es%3F`
-            })
-        } */
 
         async function init() {
             const categories = await fetch('https://aquarelaimports.hostdeprojetosdoifsp.gru.br/category/listall')
