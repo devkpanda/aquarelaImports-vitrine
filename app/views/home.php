@@ -230,11 +230,16 @@
             const advertisement = advertisements.find(ad => ad.id == advertisementId)
             const adId = advertisement.id
             const adName = advertisement.name
-        
-            ProductCart(adId, adName)
 
-            buildCart(advertisement)
-         
+            const response = filterQty(adId)
+
+            if (response) {
+                ProductCart(adId, adName)
+                buildCart(advertisement)
+            } else {
+
+            }
+
             updateTotal()
             updateQty()
 
@@ -247,8 +252,9 @@
         function ProductCart (adId, adName) {
             let obj = {}
 
-            obj.product_id = adId
+            obj.product_id   = adId
             obj.product_name = adName
+           // obj.product_qty  = prodQty
 
 
             productsCart.push(obj)
@@ -257,26 +263,52 @@
         }
         
         
+        function filterQty(adId) {
+
+            if (productsCart.length == 0) {
+                var response = true
+            } else {
+                
+                for (let i = 0; i < productsCart.length; i++) {
+                    if (adId == productsCart[i].product_id ) {
+                        var response = false
+                        return response
+                    } else {
+                        var response = true
+                    }
+               }
+            }
+
+            return response
+
+
+
+
+           /* if (adName == prod) {
+                    console.log("produtos iguais!")
+
+                  /*  cart_prod_name[i].parentElement.parentElement.parentElement.parentElement.getElementsByClassName("qty_product")[0].value++
+                    updateTotal()
+                    count += 1
+                    console.log(count)
+                    return 
+            }
+
+            const prod_name = document.getElementsByClassName("prod-name")[0].innerText */
+
+        }
 
         function buildCart(ad) {
 
             let newCartProduct = document.createElement("tr")
             newCartProduct.classList.add("cart_product")
 
-            const prod_name   = document.getElementsByClassName("prod-name")[0].innerText
+          /*  const prod_name   = document.getElementsByClassName("prod-name")[0].innerText
             const cart_prod_name = document.getElementsByClassName("cart-prod-name")
 
             for (let i = 0; i < cart_prod_name.length; i++) {
 
-                if (cart_prod_name[i].innerText == prod_name) {
-                    cart_prod_name[i].parentElement.parentElement.parentElement.parentElement.getElementsByClassName("qty_product")[0].value++
-                    updateTotal()
-                    count += 1
-                    console.log(count)
-                    return
-            }
-
-            }
+            } */
 
             newCartProduct.innerHTML = `
             <td>
