@@ -225,19 +225,22 @@
 
             let productsCart = []
 
+            let cart_id = 0
+
         function addProductToCart (advertisementId) {
 
             const advertisement = advertisements.find(ad => ad.id == advertisementId)
-            const adId = advertisement.id
-            const adName = advertisement.name
+            const prodId = advertisement.id
+            const prodName = advertisement.name
 
-            const response = filterQty(adId)
+            const response = filterQty(prodId)
 
             if (response) {
-                ProductCart(adId, adName)
+                ProductCart(prodId, prodName)
                 buildCart(advertisement)
+                
             } else {
-
+                changeQty(prodId)
             }
 
             updateTotal()
@@ -249,12 +252,12 @@
           
         }
 
-        function ProductCart (adId, adName) {
+        function ProductCart (prodId, prodName) {
             let obj = {}
 
-            obj.product_id   = adId
-            obj.product_name = adName
-           // obj.product_qty  = prodQty
+            obj.product_id   = prodId
+            obj.product_name = prodName
+            obj.product_qty  = "1"
 
 
             productsCart.push(obj)
@@ -263,14 +266,20 @@
         }
         
         
-        function filterQty(adId) {
+        function filterQty(prodId) {
 
             if (productsCart.length == 0) {
                 var response = true
             } else {
                 
                 for (let i = 0; i < productsCart.length; i++) {
-                    if (adId == productsCart[i].product_id ) {
+                    if (prodId == productsCart[i].product_id ) {
+                       /* const product = productsCart.find(prod => prod.product_id == prodId)
+                        const prodQty = product.product_qty++
+                        console.log(prodQty)
+                        changeQty(product)
+                        */
+
                         var response = false
                         return response
                     } else {
@@ -281,21 +290,6 @@
 
             return response
 
-
-
-
-           /* if (adName == prod) {
-                    console.log("produtos iguais!")
-
-                  /*  cart_prod_name[i].parentElement.parentElement.parentElement.parentElement.getElementsByClassName("qty_product")[0].value++
-                    updateTotal()
-                    count += 1
-                    console.log(count)
-                    return 
-            }
-
-            const prod_name = document.getElementsByClassName("prod-name")[0].innerText */
-
         }
 
         function buildCart(ad) {
@@ -303,12 +297,6 @@
             let newCartProduct = document.createElement("tr")
             newCartProduct.classList.add("cart_product")
 
-          /*  const prod_name   = document.getElementsByClassName("prod-name")[0].innerText
-            const cart_prod_name = document.getElementsByClassName("cart-prod-name")
-
-            for (let i = 0; i < cart_prod_name.length; i++) {
-
-            } */
 
             newCartProduct.innerHTML = `
             <td>
@@ -325,9 +313,11 @@
                                 <span class="prod-price">${ad.price}</span>
                             </td>
 
-                            <td>
+                            <td class="${ad.id}">
                                 <div class="grid grid-cols-2 gap-2">
-                                    <input type="number" min="1" value="1" class="input input-bordered w-6/12 max-w-xs qty_product" />
+                                <div class="qty">
+                                    <input type="number" min="1" value="1" class="input input-bordered w-6/12 max-w-xs product_qty" />
+                               </div>
                                     <button class="btn bg-black text-white remove-button w-24 ml-4" onclick="remove(${ad.id})">
                                         Remover
                                     </button>
@@ -344,8 +334,30 @@
         
         }
 
+      function changeQty(prodId) {
+        console.log("changeQty")
+            const product = productsCart.find(prod => prod.product_id == prodId)
+            // const prodId = product.product_id
+
+            const td = document.getElementsByClassName(prodId)
+            console.log(td)
+
+            const prodQty = td.querySelector(".qty")
+            console.log(prodQty)
+
+           /* const response = prodQty.innerHTML = ` <input type="number" min="1" value="${prod.product_qty}" class="input input-bordered w-6/12 max-w-xs product_qty" /> `
+              return response
+
+              let prodQty = document.getElementsByClassName("product_qty").innerHTML
+              console.log(prodQty)
+
+              prodQty.innertHTML = `
+              <input type="number" min="1" value="3" class="input input-bordered w-6/12 max-w-xs product_qty" />
+            ` */
+        } 
+
         function updateQty() {
-            const qty_prod = document.getElementsByClassName("qty_product")
+            const qty_prod = document.getElementsByClassName("product_qty")
             for (var i = 0; i < qty_prod.length; i++) {
                 qty_prod[i],addEventListener("change", updateTotal)
             }
@@ -353,9 +365,9 @@
 
         function remove(advertisementId) {
             const advertisement = advertisements.find(ad => ad.id == advertisementId)
-            const adId = advertisement.id
+            const prodId = advertisement.id
 
-            const productRemove = productsCart.find(p => p.product_id == adId)
+            const productRemove = productsCart.find(p => p.product_id == prodId)
 
             var index = productsCart.map(function(e) {
                 return e.product_id;
@@ -380,7 +392,7 @@
 
                 for (var i = 0; i < cart_product.length; i++) {
                     const prod_price = cart_product[i].getElementsByClassName("prod-price")[0].innerText.replace("R$", "")
-                    const qty_prod   = cart_product[i].getElementsByClassName("qty_product")[0].value
+                    const qty_prod   = cart_product[i].getElementsByClassName("product_qty")[0].value
             
             totalAmount += prod_price * qty_prod
         }
@@ -542,6 +554,8 @@
         function cartAdd() {
             event.preventDefault()
 
+            //cart_id += 1
+
             if ( !productsCart.lenght == 0 ) {
                 for (let i = 0; i < productsCart.length; i++) {
                     const product_id   = productsCart[i].product_id
@@ -555,6 +569,8 @@
                         body: JSON.stringify({
                             product_id: product_id,
                             product_name: product_name
+                         // product_qty: product_qty
+                         // cart_id: cart_id
                         })
                     })
                     .then(response => response.json())
