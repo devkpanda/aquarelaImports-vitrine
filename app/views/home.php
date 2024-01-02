@@ -257,7 +257,7 @@
 
             obj.product_id   = prodId
             obj.product_name = prodName
-            obj.product_qty  = "1"
+            obj.product_qty  = 1
 
 
             productsCart.push(obj)
@@ -313,10 +313,10 @@
                                 <span class="prod-price">${ad.price}</span>
                             </td>
 
-                            <td class="${ad.id}">
+                            <td>
                                 <div class="grid grid-cols-2 gap-2">
-                                <div class="qty">
-                                    <input type="number" min="1" value="1" class="input input-bordered w-6/12 max-w-xs product_qty" />
+                                <div class="">
+                                    <input type="number" min="1" value="1" class="input input-bordered w-6/12 max-w-xs product_qty ${ad.id}" />
                                </div>
                                     <button class="btn bg-black text-white remove-button w-24 ml-4" onclick="remove(${ad.id})">
                                         Remover
@@ -325,35 +325,21 @@
                             </td>
                             `
 
-          const tBody = document.querySelector(".cart-table tbody")
-          tBody.appendChild(newCartProduct)
+            const tBody = document.querySelector(".cart-table tbody")
+            tBody.appendChild(newCartProduct)
 
-          newCartProduct.getElementsByClassName("remove-button")[0].addEventListener("click", removeProduct)
+            newCartProduct.getElementsByClassName("remove-button")[0].addEventListener("click", removeProduct)
 
-          return newCartProduct
+            return newCartProduct
         
         }
 
       function changeQty(prodId) {
-        console.log("changeQty")
             const product = productsCart.find(prod => prod.product_id == prodId)
-            // const prodId = product.product_id
+            const prodQty = product.product_qty++
 
-            const td = document.getElementsByClassName(prodId)
-            console.log(td)
-
-            const prodQty = td.querySelector(".qty")
-            console.log(prodQty)
-
-           /* const response = prodQty.innerHTML = ` <input type="number" min="1" value="${prod.product_qty}" class="input input-bordered w-6/12 max-w-xs product_qty" /> `
-              return response
-
-              let prodQty = document.getElementsByClassName("product_qty").innerHTML
-              console.log(prodQty)
-
-              prodQty.innertHTML = `
-              <input type="number" min="1" value="3" class="input input-bordered w-6/12 max-w-xs product_qty" />
-            ` */
+            const td = document.getElementsByClassName(prodId)[0].value++
+        
         } 
 
         function updateQty() {
