@@ -336,9 +336,12 @@
 
       function changeQty(prodId) {
             const product = productsCart.find(prod => prod.product_id == prodId)
-            const prodQty = product.product_qty++
+           
 
             const td = document.getElementsByClassName(prodId)[0].value++
+            product.product_qty = document.getElementsByClassName(prodId)[0].value
+
+            return productsCart
         
         } 
 
@@ -542,10 +545,13 @@
 
             //cart_id += 1
 
-            if ( !productsCart.lenght == 0 ) {
+            console.log(productsCart)
+
+            if ( !productsCart.length == 0 ) {
                 for (let i = 0; i < productsCart.length; i++) {
                     const product_id   = productsCart[i].product_id
                     const product_name = productsCart[i].product_name
+                    const product_qty  = productsCart[i].product_qty
 
                     fetch('http://localhost/cart/add', {
                         method: 'POST',
@@ -554,8 +560,8 @@
                         },
                         body: JSON.stringify({
                             product_id: product_id,
-                            product_name: product_name
-                         // product_qty: product_qty
+                            product_name: product_name,
+                            product_qty: product_qty
                          // cart_id: cart_id
                         })
                     })
