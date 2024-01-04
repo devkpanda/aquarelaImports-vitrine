@@ -219,13 +219,8 @@
             let localCategories = []
 
             let cart = []
-        
-            let countItem = 0
-            let countProduct = 0
 
             let productsCart = []
-
-            let cart_id = 0
 
         function addProductToCart (advertisementId) {
 
@@ -257,7 +252,6 @@
 
             obj.product_id   = prodId
             obj.product_name = prodName
-            obj.product_qty  = 1
 
 
             productsCart.push(obj)
@@ -335,11 +329,8 @@
         }
 
       function changeQty(prodId) {
-            const product = productsCart.find(prod => prod.product_id == prodId)
-           
 
             const td = document.getElementsByClassName(prodId)[0].value++
-            product.product_qty = document.getElementsByClassName(prodId)[0].value
 
             return productsCart
         
@@ -543,15 +534,15 @@
         function cartAdd() {
             event.preventDefault()
 
-            //cart_id += 1
+            let cart_id = 1
 
-            console.log(productsCart)
+            console.log(cart_id)
 
             if ( !productsCart.length == 0 ) {
                 for (let i = 0; i < productsCart.length; i++) {
                     const product_id   = productsCart[i].product_id
                     const product_name = productsCart[i].product_name
-                    const product_qty  = productsCart[i].product_qty
+                    const product_qty  = document.getElementsByClassName(productsCart[i].product_id)[0].value
 
                     fetch('http://localhost/cart/add', {
                         method: 'POST',
@@ -561,8 +552,8 @@
                         body: JSON.stringify({
                             product_id: product_id,
                             product_name: product_name,
-                            product_qty: product_qty
-                         // cart_id: cart_id
+                            product_qty: product_qty,
+                            cart_id: cart_id
                         })
                     })
                     .then(response => response.json())
@@ -570,6 +561,7 @@
             } else {
                 console.log("carrinho vazio")
             }
+            cart_id++
         }
 
         async function init() {
